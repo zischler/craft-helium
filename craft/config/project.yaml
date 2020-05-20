@@ -1,4 +1,4 @@
-dateModified: 1589963323
+dateModified: 1589989814
 email:
   fromEmail: tobias@zischler.ch
   fromName: 'Craft Helium'
@@ -381,6 +381,24 @@ fields:
     translationKeyFormat: null
     translationMethod: language
     type: craft\redactor\Field
+  f0f128d0-aa3d-4530-87c2-0471cb009257:
+    contentColumnType: text
+    fieldGroup: a61e403f-3fd4-4ce8-9513-5dce27201307
+    handle: caption
+    instructions: ''
+    name: Caption
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: language
+    type: craft\fields\PlainText
   f428ded1-1ef6-4866-a79a-fe7cbd4a6eca:
     contentColumnType: string
     fieldGroup: d89526f0-270b-4f39-8afb-812fe0300304
@@ -846,6 +864,52 @@ matrixBlockTypes:
     handle: moduleImageText
     name: 'Module Image Text'
     sortOrder: 4
+  d088d8db-4c21-4464-999f-7a61ffc5d277:
+    field: 5e08f4dc-6179-4976-bef0-c3101e21b0bb
+    fieldLayouts:
+      0026cd20-2884-4362-84e5-e72e03791f53:
+        tabs:
+          -
+            fields:
+              ca9d800b-136c-4683-a696-e85617c3e182:
+                required: false
+                sortOrder: 1
+            name: Content
+            sortOrder: 1
+    fields:
+      ca9d800b-136c-4683-a696-e85617c3e182:
+        contentColumnType: string
+        fieldGroup: null
+        handle: media
+        instructions: ''
+        name: Media
+        searchable: true
+        settings:
+          allowedKinds:
+            - image
+            - video
+          defaultUploadLocationSource: 'volume:93c3ea35-a059-402f-a51b-1eaf3d12b299'
+          defaultUploadLocationSubpath: ''
+          limit: '1'
+          localizeRelations: ''
+          restrictFiles: '1'
+          selectionLabel: ''
+          showUnpermittedFiles: false
+          showUnpermittedVolumes: false
+          singleUploadLocationSource: 'volume:93c3ea35-a059-402f-a51b-1eaf3d12b299'
+          singleUploadLocationSubpath: ''
+          source: null
+          sources: '*'
+          targetSiteId: null
+          useSingleFolder: false
+          validateRelatedElements: ''
+          viewMode: list
+        translationKeyFormat: null
+        translationMethod: site
+        type: craft\fields\Assets
+    handle: lazyMedia
+    name: 'Lazy Media'
+    sortOrder: 7
   e903795d-11aa-4989-93f8-efd5bc667c7a:
     field: 5e08f4dc-6179-4976-bef0-c3101e21b0bb
     fieldLayouts:
@@ -1367,6 +1431,9 @@ volumes:
               43891f46-b3d8-4adf-b1fd-1b6f440deb2f:
                 required: false
                 sortOrder: 1
+              f0f128d0-aa3d-4530-87c2-0471cb009257:
+                required: false
+                sortOrder: 2
             name: Main
             sortOrder: 1
     handle: assets
