@@ -47,12 +47,13 @@
 
 - clone repository
 - install MAMP or XAMPP to run MySQL and Apache Server on machine
-- create database craft-helium on MySQL server
-- MySQL Settings:
-  - user: root
-  - pw: root
-  - port: 8889
-
+- setup .env file in /craft
+  - setup database name for mysql server
+  - MySQL Settings:
+    - user: root
+    - pw: root
+    - port: 8889
+- create database with your database name on MySQL server
 - Any more questions? Read this: https://docs.craftcms.com/v3/installation.html
 
 ## Run Frontend
