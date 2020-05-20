@@ -117,14 +117,13 @@
             {% endif %}
         {% endif %}
 
-        {% set dataJson = "" %}
-        {% include "_includes/mediaJSON.twig" %}
+        {% from "_includes/mediaJSON.twig" import mediaJSON %}
 
         {#-- Asset Rendering --#}
         <lazy-media :ratio="{{ ratioObj ?? '' }}"
                     :css-ratio="'{{ cssRatioObj ?? '' }}'"
                     :position-class="'{{ positionClass ?? '' }}'"
-                    :data-json="'{{ dataJson ?? '' }}'"
+                    :data-json="'{{ mediaJSON(asset) ?? '' }}'"
                     :as-hero="{{ asHero ?? '' }}"
                     :is-cover="{{ isCover ?? '' }}"
                     :has-ratio="{{ hasRatio ?? '' }}"
