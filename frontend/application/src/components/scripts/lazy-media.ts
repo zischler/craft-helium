@@ -17,9 +17,6 @@ export default class LazyMedia extends Vue {
     asHero!: boolean; // calculate height from top position, at render
 
     @Prop({ type: Boolean, default: false })
-    asSvg!: boolean;
-
-    @Prop({ type: Boolean, default: false })
     isInstantly!: boolean;
 
     @Prop({ type: Boolean, default: false })
@@ -302,35 +299,11 @@ export default class LazyMedia extends Vue {
     }
 
     async imgLoaded(image) {
-        let width = image.naturalWidth;
-        let height = image.naturalHeight;
-        let svg;
+        const width = image.naturalWidth;
+        const height = image.naturalHeight;
 
         const source = image.getAttribute("src") || "";
         const ext = source.slice(((source.lastIndexOf(".") - 1) >>> 0) + 2);
-
-        if (ext === "svg") {
-            const parser = new DOMParser();
-            const file = await fetch(this.source, {
-                credentials: "include",
-            });
-            const fileAsText = await file.text();
-            const fileAsSvg = parser.parseFromString(
-                fileAsText,
-                "image/svg+xml",
-            );
-
-            svg = fileAsSvg.getElementsByTagName("svg")[0] as SVGSVGElement;
-
-            if (svg) {
-                width =
-                    svg.width.baseVal.value ||
-                    svg.viewBox.baseVal.width;
-                height =
-                    svg.height.baseVal.value ||
-                    svg.viewBox.baseVal.height;
-            }
-        }
 
         this.width = width;
         this.height = height;
@@ -342,42 +315,6 @@ export default class LazyMedia extends Vue {
         if (this.maxHeight !== "unset") {
             this.width = "auto";
             this.height = this.hasRatio ? "100%" : this.height;
-        }
-
-        if (svg && this.asSvg) {
-            svg.setAttribute("preserveAspectRatio", "xMidYMid");
-
-            if(this.isCover) {
-                svg.setAttribute("width", "100%");
-                svg.setAttribute("height", "100%");
-
-                this.width = "100%";
-                this.height = "100%";
-            }
-            else {
-                let widthAttr = width.toString();
-                let heightAttr = height.toString();
-
-                if ( widthAttr.indexOf("%") === -1 ) {
-                    if ( widthAttr.indexOf("px") === -1 ) { widthAttr = widthAttr + "px" }
-                    svg.setAttribute("width", widthAttr);
-                }
-                else {
-                    svg.setAttribute("width", "100%");
-                }
-
-                if ( heightAttr.indexOf("%") === -1 ) {
-                    if ( heightAttr.indexOf("px") === -1 ) { heightAttr = heightAttr + "px" }
-                    svg.setAttribute("height", "100%");
-                } else {
-                    svg.setAttribute("height", heightAttr);
-                }
-
-                this.width = widthAttr;
-                this.height = heightAttr;
-            }
-
-            this.domSvg = svg.outerHTML || new XMLSerializer().serializeToString(svg);
         }
 
         if (this.scaled) {

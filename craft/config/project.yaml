@@ -1,4 +1,4 @@
-dateModified: 1589989814
+dateModified: 1589996263
 email:
   fromEmail: tobias@zischler.ch
   fromName: 'Craft Helium'
@@ -454,6 +454,97 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
+imageTransforms:
+  000b257f-20ae-4957-b45b-77fe2eb79d8c:
+    format: null
+    handle: big2x
+    height: null
+    interlace: none
+    mode: crop
+    name: 'Big 2x'
+    position: center-center
+    quality: null
+    width: 2048
+  037476eb-db1c-4f71-9e81-962e65be1b25:
+    format: null
+    handle: medium
+    height: null
+    interlace: none
+    mode: crop
+    name: Medium
+    position: center-center
+    quality: null
+    width: 768
+  0f85f7ce-2dc6-4dfd-8b02-5e75af89d623:
+    format: null
+    handle: big
+    height: null
+    interlace: none
+    mode: crop
+    name: Big
+    position: center-center
+    quality: null
+    width: 1024
+  28386312-ccec-460f-ae09-eeca0ddff546:
+    format: null
+    handle: medium2x
+    height: null
+    interlace: none
+    mode: crop
+    name: 'Medium 2x'
+    position: center-center
+    quality: null
+    width: 1536
+  6648f00a-3d09-4a7e-8f07-4f180b089ab3:
+    format: null
+    handle: small2x
+    height: null
+    interlace: none
+    mode: crop
+    name: 'Small 2x'
+    position: center-center
+    quality: null
+    width: 750
+  893d3bc7-d875-45e9-b61b-0efcd618c99a:
+    format: null
+    handle: xxl
+    height: null
+    interlace: none
+    mode: crop
+    name: XXL
+    position: center-center
+    quality: null
+    width: 1440
+  90b2637d-8dc7-4f56-9433-33c656c1e282:
+    format: null
+    handle: xxl2x
+    height: null
+    interlace: none
+    mode: crop
+    name: 'XXL 2x'
+    position: center-center
+    quality: null
+    width: 2880
+  bc742965-951f-48f6-b8af-70cb1d69f8af:
+    format: null
+    handle: max
+    height: null
+    interlace: none
+    mode: crop
+    name: Max
+    position: center-center
+    quality: null
+    width: 2560
+  ca891769-585f-4dab-8220-fd4c90a7c832:
+    format: null
+    handle: small
+    height: null
+    interlace: none
+    mode: crop
+    name: Small
+    position: center-center
+    quality: null
+    width: 375
 matrixBlockTypes:
   875ed351-c655-48cb-9069-7d2d9726ba57:
     field: 5e08f4dc-6179-4976-bef0-c3101e21b0bb

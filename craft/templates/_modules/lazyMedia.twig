@@ -22,61 +22,41 @@
     {% set cssRatio = "" %}
     {% set assetRatio = "" %}
     {% set isInstantly = false %}
-    
+    {% set parameters = parameters ?? {} %}
+    {#-- hasCaption --#}
+    {% set hasCaption = false %}
+    {% set asHero = asHero ?? false %}
+
     {% if asset != null %}
 
         {% if asset.kind == 'image' %}
-            {% set imageWidth = asset.getWidth() %}
-            {% set imageHeight = asset.getHeight() %}
+            {% set imageWidth = asset.width %}
+            {% set imageHeight = asset.height %}
             {% if imageWidth != 0 and imageHeight != 0 %}
-                {% set assetRatioCss = "calc(" + imageHeight + " / " + imageWidth + " * 100%)" %}
+                {% set assetRatioCss = "calc(" ~ imageHeight ~ " / " ~ imageWidth ~ " * 100%)" %}
             {% endif %}
         {% endif %}
 
-        {#-- isAutoplay --#}
-        {% set isAutoplay = module.isAutoplay %}
-
-        {#-- position --#}
-        {% set position = module.position ?? "center"%}
-        {% if asset.getPosition() != null %}
-            {% set position = asset.getPosition() %}
-        {% endif %}
-
-        {#-- hasCaption --#}
-        {% set hasCaption = module.showCaption ?? false %}
-
         {#-- Params: assetRatio width W + H inputs --#}
-        {% if parameters.width != null and parameters.height != null%}
+        {% if parameters.width is defined and parameters.height is defined %}
             {% set hasRatio = true %}
             {% set ratioW = parameters.width %}
             {% set ratioH = parameters.height %}
         {% endif %}
 
         {#-- Params : assetRatio Selection --#}
-        {% if parameters.assetRatio != null%}
+        {% if parameters.assetRatio is defined %}
             {% set assetRatio = parameters.assetRatio ?? null %}
         {% endif %}
 
-        {#-- Props : assetRatio Selection --#}
-        {% if module.assetRatio != null %}
-            {% set assetRatio = module.assetRatio%}
-        {% endif %}
-
-        {#-- Props : assetRatio width W + H inputs --#}
-        {% if module.width != null and module.height != null%}
-            {% set hasRatio = true %}
-            {% set ratioW = module.width %}
-            {% set ratioH = module.height %}
-        {% endif %}
-
         {#-- Inherited Params : from Carousel --#}
-        {% if parameters.itemRatio != null%}
+        {% if parameters.itemRatio is defined %}
             {% set assetRatio = parameters.itemRatio ?? null%}
         {% endif %}
 
         {% if assetRatio != null%}
             {% set hasRatio = true%}
-            {% set ratioArray = assetRatio?split("/")%}
+            {% set ratioArray = assetRatio | split("/") %}
             {% if ratioArray != null and ratioArray?size == 2%}
                 {% set ratioW = ratioArray[0] ?? null%}
                 {% set ratioH = ratioArray[1] ?? null%}
@@ -84,28 +64,16 @@
         {% endif %}
 
         {#-- isCover --#}
-        {% set isCover = (parameters.isCover is defined and parameters.isCover == true) and (hasRatio is defined and hasRatio == true) ?? false%}
-
-        {% if (module.isCover != null and module.isCover == true) and (hasRatio != null and hasRatio == true)%}
-            {% set isCover = true %}
-        {% else if (module.isCover != null and module.isCover == false)%}
-            {% set isCover = false %}
-            {% set hasRatio = false %}
-        {% endif %}
+        {% set isCover = (parameters.isCover is defined and parameters.isCover == true) and (hasRatio is defined and hasRatio == true) %}
 
         {#-- asHero --#}
-        {% set asHero = (parameters.asHero is defined and parameters.asHero == true) ?? false %}
+        {% set asHero = (parameters.asHero is defined and parameters.asHero == true) %}
         {% set isCover = asHero %}
 
-        {% if (module.asHero != null and module.asHero == true)%}
-            {% set asHero = true %}
-            {% set isCover = true %}
-        {% endif %}
-
         {#-- maxRendition --#}
-        {% if parameters.maxRenditionWidth != null%}
+        {% if parameters.maxRenditionWidth is defined %}
             {% set maxRenditionWidth = def.parameters.maxRenditionWidth?number%}
-        {% else if imageWidth != null and imageWidth != 2560 %}
+        {% elseif imageWidth != null and imageWidth != 2560 %}
             {% set maxRenditionWidth = imageWidth %}
         {% endif %}
 
@@ -122,29 +90,19 @@
         {% set maxHeight = "unset" %}
 
         {% if not isCover%}
-            {% if parameters.maxWidth != null %}
+            {% if parameters.maxWidth is defined %}
                 {% set maxWidth = parameters.maxWidth %}
                 {% set hasMaxSize = true %}
             {% endif %}
 
-            {% if module.maxWidth != null %}
-                {% set maxWidth = module.maxWidth %}
-                {% set hasMaxSize = true %}
-            {% endif %}
-
-            {% if parameters.maxHeight != null %}
+            {% if parameters.maxHeight is defined %}
                 {% set maxHeight = parameters.maxHeight %}
-                {% set hasMaxSize = true %}
-            {% endif %}
-
-            {% if module.maxHeight != null %}
-                {% set maxHeight = module.maxHeight %}
                 {% set hasMaxSize = true %}
             {% endif %}
         {% endif %}
 
         {% set positionClass = "is-center"%}
-        {% if position != null%}
+        {% if position is defined %}
             {% set positionClass = "is-" + position%}
         {% endif %}
 
@@ -159,28 +117,29 @@
             {% endif %}
         {% endif %}
 
+        {% set dataJson = "" %}
+        {% include "_includes/mediaJSON.twig" %}
+
         {#-- Asset Rendering --#}
-        <lazy-media :ratio="{{ ratioObj ? '' }}"
-                    :css-ratio="'{{ cssRatioObj ? '' }}'"
-                    :position-class="'{{ positionClass ? '' }}'"
-                    :data-json="'{{ asset | json_encode() }}'"
-                    :as-hero="{{ asHero ? '' }}"
-                    :is-cover="{{ isCover ? '' }}"
-                    :item-key="'{{ itemKey ? '' }}'"
-                    :is-autoplay="{{ isAutoplay ? '' }}"
-                    :has-ratio="{{ hasRatio ? '' }}"
-                    :has-caption="{{ hasCaption ? '' }}"
-                    :max-rendition="{{ maxRenditionWidth ? '' }}"
-                    :max-width="'{{ maxWidth ? '' }}'"
-                    :max-height="'{{ maxHeight ? '' }}'"
-                    :natural-height="{{ imageHeight ? '' }}"
-                    :natural-width="{{ imageWidth ? '' }}"
+        <lazy-media :ratio="{{ ratioObj ?? '' }}"
+                    :css-ratio="'{{ cssRatioObj ?? '' }}'"
+                    :position-class="'{{ positionClass ?? '' }}'"
+                    :data-json="'{{ dataJson ?? '' }}'"
+                    :as-hero="{{ asHero ?? '' }}"
+                    :is-cover="{{ isCover ?? '' }}"
+                    :has-ratio="{{ hasRatio ?? '' }}"
+                    :has-caption="{{ hasCaption ?? '' }}"
+                    :max-rendition="{{ maxRenditionWidth ?? '' }}"
+                    :max-width="{{ maxWidth ?? '' }}"
+                    :max-height="{{ maxHeight ?? '' }}"
+                    :natural-height="{{ imageHeight ?? '' }}"
+                    :natural-width="{{ imageWidth ?? '' }}"
             >
-            <figure class="figure {% if hasBgcolor %}has-bgcolor{% endif %}" {% if assetRatioCss != null %}style="padding-top: {{ assetRatioCss ?? "" }}; font-size: 0;"{% endif %}>
-                {% if asset.getMimeType()?starts_with("image")%}
+            <figure class="figure" {% if assetRatioCss is defined %}style="padding-top: {{ assetRatioCss ?? '' }}; font-size: 0;"{% endif %}>
+                {% if asset.kind == 'image' %}
                     <picture class="container js-loaded {% if assetRatioCss != null%}has-fixed-ratio{% endif %}">
-                        <img class="media {{ positionClass ? ''} is-{{ objectfit ? ''}" width="{{ imageWidth ? ''}" height="{{ imageHeight ? ''}"
-                             src="{% if assetRatioCss != null %}data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII={% else %}{{ asset.getUrl(thumb) }}{% endif %}" style="display: block; max-width: {{ maxWidth ?? '' }} ; max-height: {{ maxHeight ?? '' }} ;{% if hasRatio == null %} opacity: 0;{% endif %}" {% if assetMap != null %}{# TODO: Add alt macro stuff #}{% endif %}>
+                        <img class="media {{ positionClass ? ''}} is-{{ objectfit ? ''}}" width="{{ imageWidth ? ''}}" height="{{ imageHeight ? ''}}"
+                             src="{% if assetRatioCss is defined %}data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII={% else %}{{ asset.getUrl(thumb) }}{% endif %}" style="display: block; max-width: {{ maxWidth ?? '' }} ; max-height: {{ maxHeight ?? '' }} ;{% if hasRatio == null %} opacity: 0;{% endif %}" {% if assetMap is defined %}{# TODO: Add alt macro stuff #}{% endif %}>
                     </picture>
                 {% else %}
                     <video controls class="container media js-loaded {% if assetRatioCss != null%}has-fixed-ratio{% endif %}" src="" preload="metadata" style="display: block; max-width:{{ maxWidth ?? '' }}; max-height:{{ maxHeight ?? '' }}; visibility: hidden;">
