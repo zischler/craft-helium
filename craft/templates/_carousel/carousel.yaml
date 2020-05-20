@@ -1,0 +1,20 @@
+title: Carousel
+renderType: freemarker
+templateScript: /helium/templates/components/carousel/carousel.ftl
+dialog: helium:components/carousel/carousel
+
+parameters:
+  editModeMaxCell: 4
+  maxRenditionWidth: 2560
+  hasCaption: false
+  isInstantly: true
+  asHero: false
+  isCover: true
+  position: center
+  showBulletsDesktop: false
+
+areas:
+  slides:
+    availableComponents:
+      slide:
+        id: helium:components/carousel/carouselSlide

@@ -1,0 +1,15 @@
+title: Carousel Slide
+renderType: freemarker
+templateScript: /helium/templates/components/carousel/carouselSlide.ftl
+dialog: helium:components/carousel/carouselSlide
+
+parameters:
+  maxRenditionWidth: #inherit from parent
+  hasCaption: false
+  isInstantly: false
+  isAutoplay: false
+  asHero: true
+  isCover: true
+  width:
+  height:
+  position: center
