@@ -39,24 +39,6 @@ h1, .h1 {
     font-weight: 700;
 }
 
-/* h1 special styling */
-h1 {
-    display: inline-block;
-    position: relative;
-    margin-bottom: 0; /* because always top of page with section break */
-}
-
-@keyframes h1-anim {
-    from {
-        width: 0px;
-    }
-    to {
-        width: 80%;
-    }
-}
-
-/* END h1 special styling*/
-
 h2, .h2 {
     margin: var(--h2-margin-top) 0 var(--h2-margin-bottom);
 }
@@ -64,6 +46,20 @@ h2, .h2 {
 p {
     font-feature-settings: 'liga' 1, 'lnum' 1, 'kern' 1;
 }
+
+
+a {
+    transition: color 0.15s linear, border-bottom-color 0.15s linear;
+}
+
+a.is-active {
+    color: var(--red);
+}
+
+.-dark a, .-black a {
+    color: var(--light-gray);
+}
+
 
 .hnav {
     font-size: var(--hnav-font-size);
