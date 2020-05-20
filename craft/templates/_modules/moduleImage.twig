@@ -1,0 +1,15 @@
+{% set lightBgClass = "" %}
+{% if module.isLight %}
+    {% set lightBgClass = "has-background -gray has-top-inner-space has-bottom-inner-space" %}
+{% endif %}
+<div class="o-section {{ lightBgClass }}">
+    <div class="o-group has-inner-gutter">
+        <div class="article-body">
+            <anim-component inline-template>
+                <div class="o-component module-image anim-component" :class="{loaded: loadedImage, 'animate': animate}">
+                    {% include "_includes/image.twig" %}
+                </div>
+            </anim-component>
+        </div>
+    </div>
+</div>

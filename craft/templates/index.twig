@@ -1,0 +1,39 @@
+{% extends '_layout' %}
+
+{% set title = 'Home' %}
+{% set bodyClass = '-bg-cream -color-anthracit' %}
+
+{% block hero %}
+	{#Home Hero#}
+	<div class="o-section o-hero has-no-top-space is-full-width -bg-pattern">
+		{% include "_includes/heroImage.twig" %}
+	</div>
+{% endblock %}
+
+{% block content %}
+	<div class="main has-main-vertical-padding has-no-top-space has-top-inner-space">
+		<section class="o-section">
+			<div class="o-group">
+            	<h1>Craft Helium</h1>
+			</div>
+		</section>
+
+		{% for module in entry.modules.all() %}
+			{% include "_modules/" ~ module.type %}
+		{% endfor %}
+
+		<section class="o-section has-background -gray">
+			<div class="o-group">
+				<h2>News Example</h2>
+				{% set newsQuery = craft.entries()
+                    .section('news')
+                    .orderBy('postDate desc')
+					.limit(3) %}
+				{% set newsPages = newsQuery.all() %}
+				{% for newsPage in newsPages %}
+					{% include "_includes/newsTeaser" %}
+				{% endfor %}
+			</div>
+		</section>
+	</div>
+{% endblock %}

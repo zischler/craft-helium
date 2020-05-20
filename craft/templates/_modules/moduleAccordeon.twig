@@ -1,0 +1,25 @@
+{% set lightBgClass = "" %}
+{% if module.isLight %}
+	{% set lightBgClass = "has-background -gray has-top-inner-space has-bottom-inner-space" %}
+{% endif %}
+<toggle-field>
+	<div class="o-section {{ lightBgClass }}">
+		<div class="o-group has-inner-gutter">
+			<div class="article-body">
+				<div class="o-component module-accordeon">
+					{% if module.header != null %}
+						<div class="editorial-header">
+							<h2>{{ module.header }}</h2>
+							{% if module.subtitle != null %}
+								<div class="subtitle">{{ module.subtitle }}</div>
+							{% endif %}
+						</div>
+					{% endif %}
+					<div class="module-accordeon-text">
+						{{ module.text }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</toggle-field>

@@ -1,0 +1,9 @@
+{% if module.header != null %}
+    <div class="editorial-header">
+        <h2>{{ module.header }}</h2>
+        {% if module.subtitle != null %}
+            <div class="subtitle">{{ module.subtitle }}</div>
+        {% endif %}
+    </div>
+{% endif %}
+{{ module.text }}

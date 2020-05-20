@@ -1,0 +1,52 @@
+@import url(../../variables.css);
+
+.quote-wrapper {
+  margin: var(--section-margin-height) 0;
+}
+
+.quote {
+  font-size: 1.5em;
+  line-height: calc(var(--default-line-height) * 1.25);
+  display: inline;
+  font-weight: bold;
+  position: relative;
+  margin-right: 10px;
+
+  &:before {
+    content:'«';
+    color: var(--dark-red);
+    font-size: 30px;
+    margin-right: 5px;
+  }
+
+  &:after {
+    content: '»';
+    color: var(--dark-red);
+    font-size: 30px;
+    line-height: 1;
+    margin-left: 5px;
+  }
+}
+
+.quote-wrapper .author {
+  display: inline-block;
+  font-size: 1.2em;
+  line-height: calc(var(--default-line-height) * 1.2);
+  margin-left: 0.5em;
+
+  & .minus {
+    color: var(--dark-red);
+  }
+}
+
+@media (--for-sm-down) {
+  .quote {
+    font-size: 1.25em;
+    line-height: calc(var(--default-line-height) * 1.25);
+  }
+
+  .quote-wrapper .author {
+    display: block;
+    margin-top: 10px;
+  }
+}

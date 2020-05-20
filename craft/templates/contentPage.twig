@@ -1,0 +1,26 @@
+{% extends '_layout' %}
+
+{% set title = entry.title %}
+{% set bodyClass = '-bg-cream -color-anthracit' %}
+
+{% block hero %}
+    {#Hero#}
+    <div class="o-section o-hero has-no-top-space is-full-width -bg-pattern">
+        {% include "_includes/heroImage.twig" %}
+        <div class="o-view-header-sentinel"></div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="main has-main-vertical-padding has-no-top-space has-top-inner-space">
+		<section class="o-section">
+			<div class="o-group">
+            	<h1>{{ entry.title }}</h1>
+			</div>
+		</section>
+        
+        {% for module in entry.modules.all() %}
+            {% include "_modules/" ~ module.type %}
+        {% endfor %}
+    </div>
+{% endblock %}

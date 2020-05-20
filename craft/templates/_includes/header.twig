@@ -1,0 +1,44 @@
+{% set isHomeClass = entry.type == "homepage" ? "is-home" : "" %}
+
+<header id="page-header" class="o-view-header {{ isHomeClass }}" :class="{'js-open': isMenuOpen, 'is-hidden': isHomeNavigationHover}">
+    <div class="o-section header-spacing o-view-header-collapsed has-no-top-space has-no-bottom-space">
+        <div class="o-group has-inner-gutter">
+            <div class="o-flex-space -relative">
+                <div class="cell-1of3 is-left">
+                    <div class="logo has-hidden-links">
+                        <a href="{{ homepage.url }}" class="hidden-links">
+                            <svg width="80px" height="80px">
+                                <use xlink:href="#logo" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="cell-1of3">
+                </div>
+                <div class="cell-1of3 is-right">
+                    <button v-on:click="toggleFlyout" class="burger" v-bind:class="{'js-open': isMenuOpen}" aria-label="open menu" accesskey="1">
+                        <div class="burger-bars">
+                            <span class="burger-bar burger-bar-top" aria-hidden="true"></span>
+                            <span class="burger-bar burger-bar-middle" aria-hidden="true"></span>
+                            <span class="burger-bar burger-bar-bottom" aria-hidden="true"></span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flyout -bg-pattern-ant" :class="{'js-animate': isMenuAnimate, 'js-open': isMenuOpen}">
+        <div id="flyoutScrollbox" class="flyout-scrollbox">
+            <div class="flyout-inner o-section">
+                <div class="o-group-first-child" style="display: inline;"></div>
+                <div class="o-group">
+                    <div class="menu-panel -relative">
+                        <nav id="mainNavigation" class="o-navigation" v-bind:class="{'js-open': isMenuOpen}">
+                            {% include "_includes/navigation.twig" %}
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

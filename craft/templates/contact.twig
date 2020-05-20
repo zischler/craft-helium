@@ -1,0 +1,137 @@
+{% extends '_layout' %}
+
+{% macro errorList(errors) %}
+	{% if errors %}
+		<ul class="errors">
+			{% for error in errors %}
+				<li>{{ error }}</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+{% endmacro %}
+
+{% from _self import errorList %}
+
+{% set title = entry.title %}
+{% set bodyClass = '-bg-cream -color-anthracit' %}
+
+
+{% if craft.app.language == 'de' %}
+	{% set contactTitle = 'Kontaktformular' %}
+	{% set contactName = 'Name' %}
+	{% set contactSurname = 'Nachname' %}
+	{% set contactEmail = 'Email' %}
+	{% set contactSubject = 'Betreff' %}
+	{% set contactMessage = 'Nachricht' %}
+	{% set contactPrivacyText = 'Ich bestätige hiermit das Lesen und akzeptiere den ' %}
+	{% set contactPrivacy = 'Datenschutz' %}
+	{% set contactSubmit = 'Senden' %}
+{% else %}
+	{% set contactTitle = 'Contact Form' %}
+	{% set contactName = 'Name' %}
+	{% set contactSurname = 'Surname' %}
+	{% set contactEmail = 'Email' %}
+	{% set contactSubject = 'Subject' %}
+	{% set contactMessage = 'Message' %}
+	{% set contactPrivacyText = 'I have read and agree to the ' %}
+	{% set contactPrivacy = 'Data Policy' %}
+	{% set contactSubmit = 'Submit' %}
+{% endif %}
+
+{% block hero %}
+	{#Hero#}
+	<div class="o-section o-hero has-no-top-space is-full-width -bg-pattern">
+		{% include "_includes/heroImage.twig" %}
+		<div class="o-view-header-sentinel"></div>
+	</div>
+{% endblock %}
+
+{% block content %}
+	<div class="main has-main-vertical-padding has-no-top-space has-top-inner-space">
+		<section class="o-section">
+			<div class="o-group">
+            	<h1>{{ entry.title }}</h1>
+			</div>
+		</section>
+		
+		{% for module in entry.modules.all() %}
+			{% include "_modules/" ~ module.type %}
+		{% endfor %}
+
+		<section class="o-section">
+			<div class="o-group">
+				<h2>{{ contactTitle }}</h2>
+				<form method="post" action="" accept-charset="UTF-8">
+					<fieldset class="o-flex is-vertical has-gutter is-multiline">
+						{{ csrfInput() }}
+						<input type="hidden" name="action" value="contact-form/send">
+
+						<div class="form-row">
+							<div class="input-wrapper">
+								<input id="from-name" type="text" name="fromName" value="{{ message.fromName ?? '' }}" placeholder="{{ contactName }}">
+								<label for="from-name">{{ contactName }}</label>
+								{{ message is defined and message ? errorList(message.getErrors('fromName')) }}
+							</div>
+						</div>
+
+						<div class="form-row">
+							<div class="input-wrapper">
+								<input id="surname" type="text" name="message[Surname]" value="{{ message.message.Surname ?? '' }}" placeholder="{{ contactSurname }}">
+								<label for="surname">{{ contactSurname }}</label>
+								{{ message is defined and message ? errorList(message.getErrors('message[Surname]')) }}
+							</div>
+						</div>
+
+						<div class="form-row">
+							<div class="input-wrapper">
+								<input id="from-email" type="email" name="fromEmail" value="{{ message.fromEmail ?? '' }}" placeholder="{{ contactEmail }}">
+								<label for="from-email">{{ contactEmail }}</label>
+							</div>
+						</div>
+
+						<div class="form-row">
+							<div class="input-wrapper">
+								<input id="subject" type="text" name="subject" value="{{ message.subject ?? '' }}" placeholder="{{ contactSubject }}">
+								<label for="subject">{{ contactSubject }}</label>
+								{{ message is defined and message ? errorList(message.getErrors('subject')) }}
+							</div>
+						</div>
+
+						<div class="form-row">
+							<div class="text-area-wrapper">
+								<textarea rows="10" cols="40" id="message" name="message[body]" placeholder="{{ contactMessage }}">{{ message.message.body ?? '' }}</textarea>
+								<label for="message">{{ contactMessage }}</label>
+								{{ message is defined and message ? errorList(message.getErrors('message[body]')) }}
+							</div>
+						</div>
+
+						<div class="form-row">
+							<div class="checkbox-wrapper">
+								<input name="message[privacy]" id="privacy" required type="checkbox">
+								<label class="checkbox-label" for="privacy">
+									{{ contactPrivacyText }}
+									<a href="{{ entry.dataPolicyPage.one().url }}" target="_blank">{{ contactPrivacy }}</a>.
+								</label>
+								{{ message is defined and message ? errorList(message.getErrors('message[privacy]')) }}
+							</div>
+						</div>
+
+						<input id="winnie" name="winnie" type="text">
+
+						<div class="form-row">
+							<input type="submit" value="{{ contactSubmit }}">
+						</div>
+
+						<div class="form-row">
+							{% if craft.app.session.hasFlash('notice') %}
+								<p class="message notice">{{ craft.app.session.getFlash('notice') }}</p>
+							{% elseif craft.app.session.hasFlash('error') %}
+								<p class="message error">{{ craft.app.session.getFlash('error') }}</p>
+							{% endif %}
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}

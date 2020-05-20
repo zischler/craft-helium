@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Picture Sources",
+  "description": "Picture Source for lazy responsive media",
+  "type": "object",
+  "properties": {
+    "all": {
+      "type": "string",
+      "pattern": "^(?:(http[s]?):\\/\\/|\\/)?([^:\\/\\s]+)(:[0-9]+)?((?:\\/\\w+)*\\/)([\\w\\-\\.]+[^#?\\s]+)([^#\\s]*)?(#[\\w\\-]+)?, (?:(http[s]?):\\/\\/|\\/)?([^:\\/\\s]+)(:[0-9]+)?((?:\\/\\w+)*\\/)([\\w\\-\\.]+[^#?\\s]+)([^#\\s]*)?(#[\\w\\-]+)? 2x$"
+    }
+  },
+  "patternProperties": {
+    "^\\d+px$": {
+      "type": "string",
+      "pattern": "^(?:(http[s]?):\\/\\/|\\/)?([^:\\/\\s]+)(:[0-9]+)?((?:\\/\\w+)*\\/)([\\w\\-\\.]+[^#?\\s]+)([^#\\s]*)?(#[\\w\\-]+)?, (?:(http[s]?):\\/\\/|\\/)?([^:\\/\\s]+)(:[0-9]+)?((?:\\/\\w+)*\\/)([\\w\\-\\.]+[^#?\\s]+)([^#\\s]*)?(#[\\w\\-]+)? 2x$"
+    }
+  },
+  "additionalProperties": false,
+  "required": [ "all" ]
+}
+

@@ -1,0 +1,104 @@
+@import url(../../variables.css);
+
+/*
+-- image sizes --
+- 1x2
+- 9x16
+- 16x9
+- 4x3
+*/
+
+
+.o-grid {
+    display: grid;
+    grid-auto-flow: row dense;
+    grid-template-columns: repeat(48, 2.08% [col-start]);
+}
+
+[class*="o-grid"].has-gutter {
+    margin-left: calc(var(--layout-gutter-width) / -2);
+    margin-right: calc(var(--layout-gutter-width) / -2);
+    margin-bottom: calc(var(--layout-gutter-width) * -1);
+}
+
+[class*="o-grid"].has-gutter > * {
+    padding-left: calc(var(--layout-gutter-width) / 2);
+    padding-right: calc(var(--layout-gutter-width) / 2);
+    margin-bottom: var(--layout-gutter-width);
+}
+
+.grid-item {
+    overflow: hidden;
+}
+
+.has-3-cols {
+    & .is-1-to-2 {
+        grid-row-start: span 36;
+        grid-column-start: span 16;
+        grid-column-end: auto;
+        grid-row-end: auto;
+    }
+
+    & .is-9-to-16 {
+        grid-row-start: span 29;
+        grid-column-start: span 16;
+        grid-column-end: auto;
+        grid-row-end: auto;
+    }
+
+    & .is-16-to-9 {
+        grid-row-start: span 9;
+        grid-column-start: span 16;
+        grid-column-end: auto;
+        grid-row-end: auto;
+    }
+
+    & .is-4-to-3 {
+        grid-row-start: span 12;
+        grid-column-start: span 16;
+        grid-column-end: auto;
+        grid-row-end: auto;
+    }
+}
+
+.has-1-col {
+    grid-template-columns: [col1] 100%;
+}
+
+@media (--for-md-down) {
+    .has-2-cols-md {
+        & .is-1-to-2 {
+            grid-row-start: span 54;
+            grid-column-start: span 24;
+            grid-column-end: auto;
+            grid-row-end: auto;
+        }
+
+        & .is-9-to-16 {
+            grid-row-start: span 44;
+            grid-column-start: span 24;
+            grid-column-end: auto;
+            grid-row-end: auto;
+        }
+
+        & .is-16-to-9 {
+            grid-row-start: span 14;
+            grid-column-start: span 24;
+            grid-column-end: auto;
+            grid-row-end: auto;
+        }
+
+        & .is-4-to-3 {
+            grid-row-start: span 18;
+            grid-column-start: span 24;
+            grid-column-end: auto;
+            grid-row-end: auto;
+        }
+    }
+}
+
+@media (--for-sm-down) {
+    .has-1-col-sm {
+        grid-template-columns: [col1] 100%;
+    }
+}

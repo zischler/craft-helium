@@ -1,0 +1,20 @@
+<ul>
+    {# Homepage link #}
+    <li>
+        <a class="link is-level-0 {% if entry.id == homepage.id %}is-active{% endif %}" href="{{ homepage.url }}">
+            {{ homepage.title }}
+        </a>
+    </li>
+
+    {# Navigation Seiten#}
+    {% set navPages = craft.entries.section('page').level(1).all() %}
+    {% nav navPage in navPages %}
+        {% if not navPage.hideInNavigation.contains('hide') %}
+            <li>
+                <a class="link is-level-0 {% if entry.id == navPage.id %}is-active{% endif %}" href="{{ navPage.url }}">
+                    {{ navPage.title }}
+                </a>
+            </li>
+        {% endif %}
+    {% endnav %}
+</ul>

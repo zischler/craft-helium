@@ -1,0 +1,42 @@
+@import url(../../variables.css);
+
+.module-accordeon {
+  & .editorial-header {
+    position: relative;
+    cursor: pointer;
+
+    &.active {
+      color: var(--red);
+    }
+    &.active::before {
+      transform: rotate(180deg);
+      transition: transform 0.15s ease-out;
+      background-color: var(--red);
+    }
+    &:before {
+      height: 24px;
+      width: 24px;
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+      content: "";
+      display: inline-block;
+      mask: url("../../assets/accordeon/arrow.svg") no-repeat 50% 50%;
+      transition: transform 0.15s ease-in;
+      mask-size: cover;
+      background-color: var(--white);
+    }
+  }
+
+  & .module-accordeon-text {
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.75s cubic-bezier(0, 1, 0, 1);
+    overflow: hidden;
+  }
+  & .module-accordeon-text.active {
+    max-height: 1500px;
+    opacity: 1;
+    transition: max-height 0.5s ease-out;
+  }
+}

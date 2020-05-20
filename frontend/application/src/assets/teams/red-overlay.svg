@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="133" width="375">
+  <defs>
+    <path id="path-0" opacity="1" fill-rule="evenodd" d="M0,98 C0,98 104.48384594672994,133.5669651173277 220.50000000000006,100 C336.51615405327016,66.4330348826723 375,0 375,0 L375,133 L4.440892098500626e-16,133 L0,98Z"/>
+    <radialGradient id="radialGradient-1" cx="0.76" cy="1.62" r="1.6635504200354132">
+      <stop offset="0" stop-color="rgb(255,70,70)" stop-opacity="1"/>
+      <stop offset="1" stop-color="rgb(255,255,255)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g opacity="1">
+    <use xlink:href="#path-0" fill="url(#radialGradient-1)"/>
+  </g>
+</svg>

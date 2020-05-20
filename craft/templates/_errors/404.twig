@@ -1,0 +1,27 @@
+{% extends '_layout' %}
+
+{% set title = '404 - Page Not Found' %}
+{% set bodyClass = '-bg-cream -color-anthracit' %}
+
+{% block hero %}
+	{#Home Hero#}
+	<div class="o-section o-hero has-no-top-space is-full-width -bg-pattern">
+		{% include "_includes/heroImage.twig" %}
+	</div>
+{% endblock %}
+
+{% block content %}
+
+	<div class="main has-main-vertical-padding has-no-top-space has-top-inner-space">
+		<section class="o-section">
+			<div class="o-group">
+            	<h1>404 - Page Not Found</h1>
+			</div>
+		</section>
+        <section class="o-section">
+			<div class="o-group">
+                {{ entry.text }}
+            </div>
+        </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,150 @@
+{% set homepage = craft.entries.section('homepage').one() %}
+{% set applicationName = 'Craft Helium' %}
+<!DOCTYPE html>
+<html lang="{{ craft.app.locale }}">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        {#
+         #  Fetch the 404 Single entry, if we don’t already have it.
+         #}
+        {% if entry is not defined %}
+            {% set entry = craft.entries.uri('404').one() %}
+        {% endif %}
+        <title>{{ entry.title }}</title>
+
+        <meta name="viewport" content="width=device-width">
+        <meta name="title" content="{% if entry.title is defined and entry.title is not empty %}{{ entry.title }}{% endif %}">
+        <meta name="description" content="{% if entry.metaDescription is defined and entry.metaDescription is not empty %}{{ entry.metaDescription }}{% elseif homepage.metaDescription %}{{ homepage.metaDescription }}{% endif %}">
+
+        <link rel="manifest" href="/webresources/manifest.json" crossorigin="use-credentials">
+
+        {% if devMode %}
+            <meta name="robots" content="noindex" />
+        {% endif %}
+
+        {# CSS #}
+        {{ craft.twigpack.includeInlineCssTags("@webroot/webresources/build/module/critical.css") }}
+        {{ craft.twigpack.includeInlineCssTags("@webroot/webresources/build/module/helium.css") }}
+
+        <!-- Android / Standard: 192x192px -->
+        <meta name="application-name" content="{{ applicationName }}">
+        <meta name="mobile-web-app-capable" content="no">
+        <meta name="theme-color" content="#FFFFFF">
+        <link rel="icon" type="image/png" href="/webresources/icons/touch-icon.png">
+
+        <!-- iOS: 152x152px (180x180px) -->
+        <meta name="apple-mobile-web-app-capable" content="no">
+        <meta name="apple-mobile-web-app-title" content="{{ applicationName }}">
+        <meta name="apple-mobile-web-app-status-bar-style" content="default">
+        <meta name="format-detection" content="telephone=no">
+        <link rel="apple-touch-icon" href="/webresources/icons/apple-touch-icon.png">
+
+        <!-- Safari pinned tab: 80x80px -->
+        <link rel="mask-icon" href="/webresources/icons/website-icon.svg" color="#ffffff">
+
+        <!-- Windows: 144x144px -->
+        <meta name="msapplication-TileImage" content="/webresources/icons/ms-touch-icon.png">
+        <meta name="msapplication-TileColor" content="#FFFFFF">
+        <meta name="msapplication-tap-highlight" content="no">
+
+        <!-- Social networks -->
+        <meta property="og:title" content="{% if entry.metaTitle is defined and entry.metaTitle is not empty %}{{ entry.metaTitle }}{% elseif homepage.metaTitle %}{{ homepage.metaTitle }}{% else %}{{ siteName }}{% endif %}">
+        <meta property="og:description" content="{% if entry.metaDescription is defined and entry.metaDescription is not empty %}{{ entry.metaDescription }}{% elseif homepage.metaDescription %}{{ homepage.metaDescription }}{% endif %}">
+        <meta property="og:url" content="{{ entry.url }}">
+        <meta property="og:site_name" content="{{ applicationName }}">
+        <meta property="og:locale" content="{{ craft.app.locale }}">
+        <meta property="og:type" content="website">
+
+        <meta name="twitter:title" content="{% if entry.metaTitle is defined and entry.metaTitle is not empty  %}{{ entry.metaTitle }}{% elseif homepage.metaTitle %}{{ homepage.metaTitle }}{% else %}{{ siteName }}{% endif %}">
+        <meta name="twitter:description" content="{% if entry.metaDescription is defined and entry.metaDescription is not empty %}{{ entry.metaDescription }}{% elseif homepage.metaDescription %}{{ homepage.metaDescription }}{% endif %}">
+
+        {% set pageMetaImage = null %}
+        {% if entry.metaImage is defined and entry.metaImage.one() %}
+            {% set pageMetaImage = entry.metaImage.one() %}
+        {% elseif entry.heroMedia is defined and entry.heroMedia.one() and entry.heroMedia.one().kind == 'image' %}
+            {% set pageMetaImage = entry.heroMedia.one() %}
+        {% elseif homepage.metaImage is defined and homepage.metaImage.one() %}
+            {% set pageMetaImage = homepage.metaImage.one() %}
+        {% endif %}
+        {% if pageMetaImage is not null %}
+            <meta property="og:image" content="{{ pageMetaImage.url }}">
+            <meta property="og:image:width" content="{{ pageMetaImage.width }}">
+            <meta property="og:image:height" content="{{ pageMetaImage.height }}">
+            <meta name="og:image:alt" content="{{ pageMetaImage.altText }}">
+            <meta name="twitter:card" content="summary_large_image">
+            <meta name="twitter:image" content="{{ pageMetaImage.url }}">
+            <meta name="twitter:image:alt" content="{{ pageMetaImage.altText }}">
+        {% endif %}
+    </head>
+    <body>
+        {% include "_includes/symbols.svg" %}
+        
+        <div id="view" class="o-view" :class="{'js-mounted':isMounted}">
+
+            {% include "_includes/header.twig" %}
+
+            {% block hero %}
+            {% endblock %}
+
+            <div id="pageContent" class="page-content" :class="{'js-mounted':isMounted}">
+                <article>
+                    {% block content %}
+                    {% endblock %}
+                </article>
+            </div>
+
+            {% include "_includes/footer.twig" %}
+
+            <cookie-banner 
+                {% if homepage.cookieBannerExplanations is defined and homepage.cookieBannerExplanations != null %}
+                :banner-text="'{{ homepage.cookieBannerExplanations }}'"
+                {% endif %}
+                {% if homepage.cookieBannerReadMorePage is defined and homepage.cookieBannerReadMorePage.one() != null %}
+                :read-more="'{{ homepage.cookieBannerReadMorePage.one().url }}'"
+                {% endif %}
+                {% if homepage.cookieBannerReadMoreLabel is defined and homepage.cookieBannerReadMoreLabel != null %}
+                :read-more-label="'{{ homepage.cookieBannerReadMoreLabel }}'"
+                {% endif %}
+                {% if homepage.cookieSettings is defined and homepage.cookieSettings != null %}
+                :settings-label="'{{ homepage.cookieSettings }}'"
+                {% endif %}
+                {% if homepage.cookieAcceptLabel is defined and homepage.cookieAcceptLabel != null %}
+                :accept-label="'{{ homepage.cookieAcceptLabel }}'"
+                {% endif %}
+                {% if homepage.cookieBackLabel is defined and homepage.cookieBackLabel != null %}
+                :back-label="'{{ homepage.cookieBackLabel }}'"
+                {% endif %}
+                {% if homepage.cookieConfirmLabel is defined and homepage.cookieConfirmLabel != null %}
+                :confirm-label="'{{ homepage.cookieConfirmLabel }}'"
+                {% endif %}
+                {% if homepage.cookieSettingsExplanations is defined and homepage.cookieSettingsExplanations != null %}
+                :settings-explanations="'{{ homepage.cookieSettingsExplanations }}'"
+                {% endif %}
+                :analytics-cookies="true"></cookie-banner>
+        </div>
+
+        <!-- JS -->
+        <script nomodule>window.__nomodule__ = true;</script>
+        <script>
+            (function() {
+                var script = document.createElement("script");
+                script.async = true;
+                script.crossOrigin = "use-credentials";
+
+                if (window.__nomodule__) {
+                    script.noModule = true;
+                    script.defer = true;
+                    script.src = "/webresources/build/legacy/main.js";
+                } else {
+                    script.type = "module";
+                    script.src = "/webresources/build/module/main.js";
+                }
+                document.body.appendChild(script);
+            })();
+        </script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-********-1"></script>
+    </body>
+</html>

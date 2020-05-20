@@ -1,0 +1,4 @@
+.o-section.has-background.-gray {
+    position: relative;
+    background-color: var(--light-gray);
+}

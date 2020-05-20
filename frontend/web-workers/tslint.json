@@ -1,0 +1,21 @@
+{
+  "extends": [
+    "tslint:recommended",
+    "tslint-config-prettier"
+  ],
+  "defaultSeverity": "warning",
+  "rules": {
+    "interface-name": [false],
+    "max-classes-per-file": [false],
+    "max-line-length": [false],
+    "member-ordering": [false],
+    "no-angle-bracket-type-assertion": false,
+    "object-literal-sort-keys": false,
+    "one-line": [false],
+    "only-arrow-functions": [false],
+    "ordered-imports": [false],
+    "triple-equals": [true, "allow-undefined-check"],
+    "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case"],
+    "ban-types": false
+  }
+}

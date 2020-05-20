@@ -1,0 +1,23 @@
+@import url(../../variables.css);
+
+.page-footer .o-flex-space {
+  align-items: baseline;
+}
+
+.footer-nav,
+.social-media-list {
+  margin-top: 10px;
+}
+
+
+.social-media-list a {
+  color: var(--white);
+
+  &:hover {
+    color: var(--red);
+  }
+}
+
+.page-footer .languages  > * {
+  margin-right: 2rem;
+} 

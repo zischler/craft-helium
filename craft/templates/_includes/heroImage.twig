@@ -1,0 +1,21 @@
+{% if entry.heroMedia is defined %}
+	{% set heroMedia = entry.heroMedia.one() %}
+	{% if heroMedia != null %}
+		<div class="header-image-wrapper">
+			<div class="o-lazy-media is-cover">
+				<div class="figure is-cover">
+					<div class="container js-loaded">
+						{% if heroMedia.kind == 'video' %}
+							<video class="media is-cover is-center" src="{{heroMedia.url}}" autoplay muted loop></video>
+						{% elseif heroMedia.kind == 'image' %}
+							<img class="media is-cover is-center" src="{{heroMedia.url}}" alt="{{ heroMedia.title }}">
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	{% else %}
+		<div class="header-image-fill">
+		</div>
+	{% endif %}
+{% endif %}

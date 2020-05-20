@@ -1,0 +1,13 @@
+@import url(../../variables.css);
+
+iframe {
+    max-width: 100%;
+    height: calc(var(--page-maxwidth-large) * 0.56);
+}
+
+@media (--for-md-down) {
+    iframe {
+        height: calc(56vw - var(--page-gutter-width-sm));
+    }
+}
+

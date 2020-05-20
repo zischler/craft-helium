@@ -1,0 +1,106 @@
+@import url(../../variables.css);
+
+.o-editorial ol,
+.o-editorial ul {
+    list-style-position: inside;
+}
+
+.o-editorial ul {
+    list-style: none
+}
+
+.o-editorial ol li,
+.o-editorial ul li {
+    position: relative;
+    padding-left: 1.5em;
+}
+
+.o-editorial ul li::before {
+    content: "\2022"; /* • = "\2022", ◦ = \25E6" and ▪ = "\25AA" */
+    color: inherit;
+    display: inline-block;
+    width: 1em;
+    font-size: 2em;
+    position: absolute;
+    top: 0;
+    left: 0.15em;
+    line-height: 1.15em;
+}
+
+.o-editorial ol {
+    list-style: none;
+    counter-reset: li
+}
+
+.o-editorial ol li {counter-increment: li}
+
+.o-editorial ol li::before {
+    content: counter(li);
+    color: inherit;
+    font-weight: 600;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1.5em;
+    margin-right: 0.5em;
+    text-align: right;
+    direction: rtl;
+}
+
+.o-editorial ol:not(:last-child),
+.o-editorial ul:not(:last-child),
+.o-editorial p:not(:last-child) {
+    margin-bottom: 2em;
+}
+
+.o-editorial + .o-editorial:not([class*="cell-"]),
+.o-lazy-media + .o-editorial:not([class*="cell-"]),
+.o-google-map + .o-editorial:not([class*="cell-"]) {
+    margin-top: var(--section-margin-height);
+}
+
+.o-editorial + .o-lazy-media:not([class*="cell-"]),
+.o-editorial + .o-google-map:not([class*="cell-"]) {
+    margin-top: var(--section-margin-height);
+}
+
+.o-lazy-media {
+    position: relative;
+}
+
+
+/* --- Lazy Media Editorial --- */
+
+.o-lazy-media .o-editorial {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    color: white;
+    transform: translate(-50%, -50%);
+}
+
+.o-lazy-media .o-editorial .title {
+    color: inherit;
+}
+
+/* --- Search --- */
+.o-search {
+    list-style: none;
+}
+
+.o-search .search-result:not(:last-child) {
+    margin-bottom: var(--section-margin-height)
+}
+
+/* --- Editorial Header --- */
+.editorial-header {
+    margin-bottom: var(--h2-margin-bottom);
+}
+
+.editorial-header h2 {
+    margin-bottom: 0;
+}
+
+.editorial-header .subtitle {
+    font-size: 0.9em;
+}

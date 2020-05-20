@@ -1,0 +1,54 @@
+<footer id="pageFooter" class="page-footer o-section o-footer is-full-width has-no-top-space has-no-bottom-space has-top-inner-space has-bottom-inner-space">
+	<div class="o-group has-inner-gutter">
+		<div class="o-flex-space is-multiline has-gutter">
+			<div class="cell-1of3 cell-1of1-sm-down">
+				<span class="h2">Navigation</span>
+				<div class="footer-nav o-flex-inline is-left">
+					{% include "_includes/navigation.twig" %}
+				</div>
+			</div>
+			<div class="cell-1of3 cell-1of1-sm-down">
+
+				{% if craft.app.language == 'de' %}
+					<span class="h2">Mehr links</span>
+				{% else %}
+					<span class="h2">More links</span>
+				{% endif %}
+				{% set footerLinks = homepage.footerLinks %}
+				<div class="footer-nav o-flex-inline is-left">
+					{% if footerLinks %}
+						<ul>
+							{% for footerLink in footerLinks.all() %}
+								<li>
+									<a class="link {% if entry.id == footerLink.id %}is-active{% endif %}" href="{{ footerLink.url }}">
+										<span>{{ footerLink.title }}</span>
+									</a>
+								</li>
+							{% endfor %}
+						</ul>
+					{% endif %}
+				</div>
+			</div>
+			<div class="cell-1of3 cell-1of1-sm-down">©
+				{{ homepage.copyright }}</div>
+			<div class="cell-1of3 languages">
+				{% set currentSite = craft.app.sites.currentSite %}
+				{% for siteInGroup in currentSite.getGroup.getSites() %}
+					{% if siteInGroup.language == 'de' %}
+						{% set languageName = 'Deutsch' %}
+					{% elseif siteInGroup.language == 'en-GB' %}
+						{% set languageName = 'English' %}
+					{% endif %}
+					{% if siteInGroup.id == entry.siteId %}
+						<a href="" class="is-active">{{ languageName }}</a>
+					{% else %}
+						{% set entryForOtherSite = craft.entries.id(entry.id).site(siteInGroup).one() %}
+						{% if entryForOtherSite != null %}
+							<a href="{{ entryForOtherSite.getUrl() }}">{{ languageName }}</a>
+						{% endif %}
+					{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</footer>

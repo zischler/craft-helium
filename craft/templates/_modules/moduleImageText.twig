@@ -1,0 +1,26 @@
+{% set lightBgClass = "" %}
+{% if module.isLight %}
+    {% set lightBgClass = "has-background -gray has-top-inner-space has-bottom-inner-space" %}
+{% endif %}
+<div class="o-section {{ lightBgClass }}">
+    <div class="o-group has-inner-gutter">
+        <div class="article-body">
+            {% set isreversed = "" %}
+            {% if module.imageposition == "right" %}
+                {% set isreversed = "is-reverse" %}
+            {% endif %}
+            <anim-component inline-template>
+                <div class="o-component module-image-text anim-component" :class="{loaded: loadedImage, 'animate': animate}">
+                    <div class="o-flex is-multiline has-gutter {{ isreversed }}">
+                        <div class="image-wrapper cell-1of2 cell-1of1-sm-down">
+                            {% include "_includes/image.twig" %}
+                        </div>
+                        <div class="cell-1of2 cell-1of1-sm-down">
+                            {% include "_includes/text.twig" %}
+                        </div>
+                    </div>
+                </div>
+            </anim-component>
+        </div>
+    </div>
+</div>
