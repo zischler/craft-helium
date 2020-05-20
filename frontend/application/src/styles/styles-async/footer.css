@@ -4,18 +4,8 @@
   align-items: baseline;
 }
 
-.footer-nav,
-.social-media-list {
+.footer-nav {
   margin-top: 10px;
-}
-
-
-.social-media-list a {
-  color: var(--white);
-
-  &:hover {
-    color: var(--red);
-  }
 }
 
 .page-footer .languages  > * {

@@ -11,17 +11,14 @@
 
 .has-background.-light {
     background: var(--light);
-    color: var(--default-dark-text-color);
 }
 
 .has-background.-dark {
     background: var(--dark);
-    color: var(--light);
 }
 
 .has-background.-black {
     background: var(--black);
-    color: var(--light);
 }
 
 .light-color {

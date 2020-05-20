@@ -4,7 +4,9 @@
 craft/web/webresources/build/
 craft/web/cpresources
 craft/web/assets
-craft/storage/*
+craft/storage/backups/
+craft/storage/runtime/
+craft/storage/userphotos/
 
 # --- Temp ---
 tmp/
