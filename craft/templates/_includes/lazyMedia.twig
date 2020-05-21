@@ -1,6 +1,21 @@
+{#-------
+    Lazy Media is a component for images and videos
+    to load them lazy (on scroll) and have many options
+    like ratio changes, or if the image has to cover the area.
+    Transforms are also loaded for the image depending
+    on the screen size.
+    Transforms (with width):
+        (Normal)           (Retina Display)
+        "375px": "small",  ("750px": "small2x")
+        "768px": "medium", ("1536px": "medium2x")
+        "1024px": "big",   ("2048px": "big2x")
+        "all": "max"
+    -> They need to be added to the craft settings in "Asset Settings"
+--------#}
 <div class="o-lazy-media o-component">
     {% set asset = module.media.one() %}
 
+    {#-- placeholder thumbnail until image is loaded --#}
     {% set thumb = {
         mode: 'crop',
         width: 100,
@@ -18,9 +33,9 @@
     {% set objectfit = "contain" %}
     {% set hasRatio = false %}
     {% set assetRatio = "" %}
+    {#-- parameters can be inherited by other components, like Carousel and add config to the images --#}
     {% set parameters = parameters ?? {} %}
     {% set asHero = asHero ?? false %}
-    {% set isAutoplay = (module.isAutoplay is defined and module.isAutoplay == true) %}
 
     {% if asset != null %}
 
@@ -32,6 +47,7 @@
             {% endif %}
         {% elseif asset.kind == 'video' %}
             {% set isVideo = true %}
+            {% set isAutoplay = (module.isAutoplay is defined and module.isAutoplay == true) %}
         {% endif %}
 
         {#-- Params: assetRatio width W + H inputs --#}
