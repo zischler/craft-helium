@@ -1,4 +1,4 @@
-dateModified: 1590081138
+dateModified: 1590081572
 email:
   fromEmail: tobias@zischler.ch
   fromName: 'Craft Helium'
@@ -908,8 +908,8 @@ matrixBlockTypes:
         translationKeyFormat: null
         translationMethod: site
         type: craft\fields\Entries
-    handle: moduleText
-    name: 'Module Text'
+    handle: text
+    name: Text
     sortOrder: 1
   b4af5dcd-6ae0-4231-a5f7-89d87ff3c455:
     field: 5e08f4dc-6179-4976-bef0-c3101e21b0bb
@@ -1000,8 +1000,8 @@ matrixBlockTypes:
         translationKeyFormat: null
         translationMethod: site
         type: craft\fields\Assets
-    handle: moduleVideo
-    name: 'Module Video'
+    handle: video
+    name: Video
     sortOrder: 7
   b53a6aa5-8430-4c0c-966e-90797766d995:
     field: 5e08f4dc-6179-4976-bef0-c3101e21b0bb
@@ -1045,8 +1045,8 @@ matrixBlockTypes:
         translationKeyFormat: null
         translationMethod: site
         type: craft\fields\Assets
-    handle: moduleImage
-    name: 'Module Image'
+    handle: image
+    name: Image
     sortOrder: 3
   c1f09350-2df6-41c2-b736-47bdd1ac4a5c:
     field: 5e08f4dc-6179-4976-bef0-c3101e21b0bb
@@ -1100,8 +1100,8 @@ matrixBlockTypes:
         translationKeyFormat: null
         translationMethod: none
         type: craft\fields\PlainText
-    handle: moduleQuote
-    name: 'Module Quote'
+    handle: quote
+    name: Quote
     sortOrder: 6
   c291a2ea-b2c1-4466-8fa9-e08405ba80b4:
     field: 5e08f4dc-6179-4976-bef0-c3101e21b0bb
@@ -1254,8 +1254,8 @@ matrixBlockTypes:
         translationKeyFormat: null
         translationMethod: site
         type: craft\redactor\Field
-    handle: moduleImageText
-    name: 'Module Image Text'
+    handle: imageText
+    name: 'Image Text'
     sortOrder: 4
   e903795d-11aa-4989-93f8-efd5bc667c7a:
     field: 5e08f4dc-6179-4976-bef0-c3101e21b0bb
@@ -1325,8 +1325,8 @@ matrixBlockTypes:
         translationKeyFormat: null
         translationMethod: none
         type: craft\fields\RadioButtons
-    handle: moduleSocialVideo
-    name: 'Module Social Video'
+    handle: socialVideo
+    name: 'Social Video'
     sortOrder: 2
   ed8f5e9b-e2ae-40c1-93aa-43cb0f9a6e15:
     field: 5e08f4dc-6179-4976-bef0-c3101e21b0bb
@@ -1385,8 +1385,8 @@ matrixBlockTypes:
         translationKeyFormat: null
         translationMethod: site
         type: craft\redactor\Field
-    handle: moduleAccordeon
-    name: 'Module Accordeon'
+    handle: accordeon
+    name: Accordeon
     sortOrder: 5
 neoBlockTypes:
   25f006f0-0d1f-4fbe-a429-a897bbb2547a:
