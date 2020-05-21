@@ -1,0 +1,29 @@
+{#--
+carousel slide params
+maxRenditionWidth: #inherit from parent
+hasCaption: false
+isInstantly: false
+isAutoplay: false
+asHero: true
+isCover: true
+width:
+height:
+position: center
+--#}
+
+<div class="slide">
+    <div class="slide-inner">
+        {% if (module.title is defined and module.title != null) or (module.text is defined and module.text != null) %}
+            <div class="foreground is-vertical o-section has-no-top-space has-no-bottom-space">
+                {% include "_includes/text.twig" %}
+            </div>
+        {% endif %}
+        {% if module.media is defined and module.media.one() != null %}
+            <div class="background">
+                <div class="o-lazy-media">
+                    {% include "_includes/lazyMedia.twig" %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>

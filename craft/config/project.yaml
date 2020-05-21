@@ -1,4 +1,4 @@
-dateModified: 1590055771
+dateModified: 1590060283
 email:
   fromEmail: tobias@zischler.ch
   fromName: 'Craft Helium'
@@ -399,6 +399,22 @@ fields:
     translationKeyFormat: null
     translationMethod: language
     type: craft\fields\PlainText
+  f223541d-0057-4b42-8f60-11587c05dbf9:
+    contentColumnType: string
+    fieldGroup: a61e403f-3fd4-4ce8-9513-5dce27201307
+    handle: components
+    instructions: ''
+    name: components
+    searchable: true
+    settings:
+      maxBlocks: ''
+      maxTopBlocks: ''
+      minBlocks: ''
+      propagationMethod: all
+      wasModified: true
+    translationKeyFormat: null
+    translationMethod: site
+    type: benf\neo\Field
   f428ded1-1ef6-4866-a79a-fe7cbd4a6eca:
     contentColumnType: string
     fieldGroup: d89526f0-270b-4f39-8afb-812fe0300304
@@ -1174,6 +1190,26 @@ matrixBlockTypes:
     handle: moduleAccordeon
     name: 'Module Accordeon'
     sortOrder: 5
+neoBlockTypes:
+  25f006f0-0d1f-4fbe-a429-a897bbb2547a:
+    childBlocks: ''
+    field: f223541d-0057-4b42-8f60-11587c05dbf9
+    fieldLayouts:
+      -
+        tabs:
+          -
+            fields:
+              5e08f4dc-6179-4976-bef0-c3101e21b0bb:
+                required: false
+                sortOrder: 1
+            name: Main
+            sortOrder: 1
+    handle: carousel
+    maxBlocks: 0
+    maxChildBlocks: 0
+    name: Carousel
+    sortOrder: 1
+    topLevel: true
 plugins:
   contact-form:
     edition: standard
@@ -1191,6 +1227,10 @@ plugins:
     schemaVersion: 1.0.0
     settings:
       honeypotParam: winnie
+  neo:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.3.0
   redactor:
     edition: standard
     enabled: true
@@ -1364,6 +1404,9 @@ sections:
                   e4a284e3-2244-492e-89de-7fcbb7e392d8:
                     required: false
                     sortOrder: 2
+                  f223541d-0057-4b42-8f60-11587c05dbf9:
+                    required: false
+                    sortOrder: 4
                 name: Main
                 sortOrder: 1
               -

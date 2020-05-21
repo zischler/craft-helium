@@ -1,0 +1,87 @@
+{#--
+TODO: set carousel normal parameters
+editModeMaxCell: 4
+maxRenditionWidth: 2560
+hasCaption: false
+isInstantly: true
+asHero: false
+isCover: true
+position: center
+showBulletsDesktop: false
+
+TODO: hero carousel
+editModeMaxCell: 2
+maxRenditionWidth: 2560
+hasCaption: false
+isInstantly: false
+isAutoplay: false
+asHero: false
+isCover: true
+width:
+height:
+position: center
+
+--#}
+
+
+{% set hasGutter = content.hasGutter?? && content.hasGutter == true %}
+
+{% set asHero = def.parameters.asHero!false %}
+{% set isCover = def.parameters.isCover!false %}
+{% set maxRenditionWidth = def.parameters.maxRenditionWidth!false %}
+{% set showBulletsDesktop = def.parameters.showBulletsDesktop!false %}
+{% set itemRatio = "" %}
+{% set itemWidth = "" %}
+{% set itemHeight = "" %}
+{% set isInfinite = (content.isInfinite?has_content && content.isInfinite) ||
+(content.renderType?has_content && content.renderType == "slideshow" && (content.renderTypeslideshow?? && content.renderTypeslideshow)) %}
+
+{% if content.asHero?? && content.asHero == true %}
+    {% set asHero = true %}
+    {% set isCover = true %}
+{% endif %}
+
+{% if asHero == false %}
+    {% set itemRatio = def.parameters.itemRatio!"" %}
+    {% if content.itemRatio?has_content && content.itemRatio != "none" %}{% set itemRatio = content.itemRatio!itemRatio! %}{% endif %}
+    {% set itemWidth = def.parameters.width!"" %}
+    {% set itemHeight = def.parameters.height!"" %}
+
+    {% if itemRatio?has_content %}
+        {% set imageRatio = 1 / (itemRatio?eval) * 100 %}
+        {% set hasRatio = true %}
+    {% elseif content.width?has_content && content.width?eval > 0
+    && content.height?has_content && content.height?eval > 0 %}
+        {% set imageRatio = 1 / (content.width?eval / content.height?eval) * 100 %}
+        {% set itemWidth = content.width?eval %}
+        {% set itemHeight = content.height?eval %}
+        {% set itemRatio = "${itemWidth!}/${itemHeight!}" %}
+        {% set hasRatio = true %}
+    {% elseif itemWidth?has_content && itemHeight?has_content %}
+        {% set imageRatio = 1 / (itemWidth?eval / itemHeight?eval) * 100 %}
+        {% set itemWidth = itemWidth?eval %}
+        {% set itemHeight = itemHeight?eval %}
+        {% set itemRatio = "${itemWidth!}/${itemHeight!}" %}
+        {% set hasRatio = true %}
+    {% endif %}
+{% endif %}
+
+<div class="o-carousel-wrapper o-component">
+    <multi-carousel v-bind:transition-delay="${content.transitionDelay!'350'}"
+                    v-bind:delay="${content.delay!'5000'}"
+                    v-bind:autoplay="${(content.autoplay!false)?c}"
+                    v-bind:as-hero="${(asHero!false)?c}"
+                    v-bind:start-at="${(content.startAt!0)?number}"
+                    v-bind:render-type="'${content.renderType!'slideshow'}'"
+                    v-bind:orientation="'${content.orientation!'horizontal'}'"
+                    v-bind:is-infinite="${isInfinite?c}"
+                    {% if imageRatio?? %}v-bind:slide-ratio="${imageRatio?string.computer!0}"{% endif %}
+            {% if content.columns?? %}v-bind:columns="${content.columns!'0'}"{% endif %}
+            {% if content.minWidth?? %}v-bind:min-width="${content.minWidth!'0'}"{% endif %}
+            {% if content.maxWidth?? %}v-bind:max-width="${content.maxWidth!'0'}"{% endif %}
+                    class="o-carousel o-component {% if hasGutter %}has-inner-gutter{% endif %} {% if showBulletsDesktop %}show-bullets{% endif %}" {% if asHero == true %}style="height: 100vh"{% endif %}>
+        <template slot="slides">
+            [@cms.area name="slides" contextAttributes={"cell": cellNb!,"itemRatio":itemRatio!,"itemWidth":itemWidth!,"itemHeight":itemHeight!,"asHero":asHero!,"isCover":isCover!,"maxRenditionWidth":maxRenditionWidth!} / %}
+        </template>
+    </multi-carousel>
+</div>

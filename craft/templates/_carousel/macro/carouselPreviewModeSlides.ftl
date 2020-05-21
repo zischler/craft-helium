@@ -1,1 +1,0 @@
-[@cms.area name="slides" contextAttributes={"cell": cellNb!,"itemRatio":itemRatio!,"itemWidth":itemWidth!,"itemHeight":itemHeight!,"asHero":asHero!,"isCover":isCover!,"maxRenditionWidth":maxRenditionWidth!} /]

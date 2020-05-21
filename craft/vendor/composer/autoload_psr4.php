@@ -41,6 +41,7 @@ return array(
     'craft\\composer\\' => array($vendorDir . '/craftcms/plugin-installer/src'),
     'craft\\' => array($vendorDir . '/craftcms/cms/src'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
+    'benf\\neo\\' => array($vendorDir . '/spicyweb/craft-neo/src'),
     'XdgBaseDir\\' => array($vendorDir . '/dnoegel/php-xdg-base-dir/src'),
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
     'Twig\\' => array($vendorDir . '/twig/twig/src'),
