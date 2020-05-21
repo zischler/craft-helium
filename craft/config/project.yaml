@@ -1,4 +1,4 @@
-dateModified: 1589963323
+dateModified: 1590055771
 email:
   fromEmail: tobias@zischler.ch
   fromName: 'Craft Helium'
@@ -381,6 +381,24 @@ fields:
     translationKeyFormat: null
     translationMethod: language
     type: craft\redactor\Field
+  f0f128d0-aa3d-4530-87c2-0471cb009257:
+    contentColumnType: text
+    fieldGroup: a61e403f-3fd4-4ce8-9513-5dce27201307
+    handle: caption
+    instructions: ''
+    name: Caption
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: language
+    type: craft\fields\PlainText
   f428ded1-1ef6-4866-a79a-fe7cbd4a6eca:
     contentColumnType: string
     fieldGroup: d89526f0-270b-4f39-8afb-812fe0300304
@@ -436,6 +454,77 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
+imageTransforms:
+  000b257f-20ae-4957-b45b-77fe2eb79d8c:
+    format: null
+    handle: big2x
+    height: null
+    interlace: none
+    mode: crop
+    name: 'Big 2x'
+    position: center-center
+    quality: null
+    width: 2048
+  037476eb-db1c-4f71-9e81-962e65be1b25:
+    format: null
+    handle: medium
+    height: null
+    interlace: none
+    mode: crop
+    name: Medium
+    position: center-center
+    quality: null
+    width: 768
+  0f85f7ce-2dc6-4dfd-8b02-5e75af89d623:
+    format: null
+    handle: big
+    height: null
+    interlace: none
+    mode: crop
+    name: Big
+    position: center-center
+    quality: null
+    width: 1024
+  28386312-ccec-460f-ae09-eeca0ddff546:
+    format: null
+    handle: medium2x
+    height: null
+    interlace: none
+    mode: crop
+    name: 'Medium 2x'
+    position: center-center
+    quality: null
+    width: 1536
+  6648f00a-3d09-4a7e-8f07-4f180b089ab3:
+    format: null
+    handle: small2x
+    height: null
+    interlace: none
+    mode: crop
+    name: 'Small 2x'
+    position: center-center
+    quality: null
+    width: 750
+  bc742965-951f-48f6-b8af-70cb1d69f8af:
+    format: null
+    handle: max
+    height: null
+    interlace: none
+    mode: crop
+    name: Max
+    position: center-center
+    quality: null
+    width: 2560
+  ca891769-585f-4dab-8220-fd4c90a7c832:
+    format: null
+    handle: small
+    height: null
+    interlace: none
+    mode: crop
+    name: Small
+    position: center-center
+    quality: null
+    width: 375
 matrixBlockTypes:
   875ed351-c655-48cb-9069-7d2d9726ba57:
     field: 5e08f4dc-6179-4976-bef0-c3101e21b0bb
@@ -563,6 +652,98 @@ matrixBlockTypes:
     handle: moduleText
     name: 'Module Text'
     sortOrder: 1
+  b4af5dcd-6ae0-4231-a5f7-89d87ff3c455:
+    field: 5e08f4dc-6179-4976-bef0-c3101e21b0bb
+    fieldLayouts:
+      65978ab3-99f8-41d6-919d-334cca4654fd:
+        tabs:
+          -
+            fields:
+              3dacfc79-22a2-4204-8376-66c7c79d954b:
+                required: false
+                sortOrder: 2
+              ca4e3128-cd7e-441c-b999-3db877315fd5:
+                required: false
+                sortOrder: 3
+              f30a0ea0-2a86-4a6f-8ad9-e8e0b86e5d3c:
+                required: true
+                sortOrder: 1
+            name: Content
+            sortOrder: 1
+    fields:
+      3dacfc79-22a2-4204-8376-66c7c79d954b:
+        contentColumnType: string
+        fieldGroup: null
+        handle: poster
+        instructions: ''
+        name: Poster
+        searchable: true
+        settings:
+          allowedKinds:
+            - image
+          defaultUploadLocationSource: 'volume:93c3ea35-a059-402f-a51b-1eaf3d12b299'
+          defaultUploadLocationSubpath: ''
+          limit: '1'
+          localizeRelations: ''
+          restrictFiles: '1'
+          selectionLabel: ''
+          showUnpermittedFiles: false
+          showUnpermittedVolumes: false
+          singleUploadLocationSource: 'volume:93c3ea35-a059-402f-a51b-1eaf3d12b299'
+          singleUploadLocationSubpath: ''
+          source: null
+          sources: '*'
+          targetSiteId: null
+          useSingleFolder: false
+          validateRelatedElements: ''
+          viewMode: list
+        translationKeyFormat: null
+        translationMethod: site
+        type: craft\fields\Assets
+      ca4e3128-cd7e-441c-b999-3db877315fd5:
+        contentColumnType: boolean
+        fieldGroup: null
+        handle: isAutoplay
+        instructions: ''
+        name: 'Is Autoplay'
+        searchable: true
+        settings:
+          default: ''
+        translationKeyFormat: null
+        translationMethod: none
+        type: craft\fields\Lightswitch
+      f30a0ea0-2a86-4a6f-8ad9-e8e0b86e5d3c:
+        contentColumnType: string
+        fieldGroup: null
+        handle: media
+        instructions: ''
+        name: Media
+        searchable: true
+        settings:
+          allowedKinds:
+            - video
+          defaultUploadLocationSource: 'volume:93c3ea35-a059-402f-a51b-1eaf3d12b299'
+          defaultUploadLocationSubpath: ''
+          limit: '1'
+          localizeRelations: ''
+          restrictFiles: '1'
+          selectionLabel: ''
+          showUnpermittedFiles: false
+          showUnpermittedVolumes: false
+          singleUploadLocationSource: 'volume:93c3ea35-a059-402f-a51b-1eaf3d12b299'
+          singleUploadLocationSubpath: ''
+          source: null
+          sources: '*'
+          targetSiteId: null
+          useSingleFolder: false
+          validateRelatedElements: ''
+          viewMode: list
+        translationKeyFormat: null
+        translationMethod: site
+        type: craft\fields\Assets
+    handle: moduleVideo
+    name: 'Module Video'
+    sortOrder: 7
   b53a6aa5-8430-4c0c-966e-90797766d995:
     field: 5e08f4dc-6179-4976-bef0-c3101e21b0bb
     fieldLayouts:
@@ -582,17 +763,18 @@ matrixBlockTypes:
       0eef956e-21b2-4fa8-9636-af85935d7c09:
         contentColumnType: string
         fieldGroup: null
-        handle: image
+        handle: media
         instructions: ''
-        name: image
+        name: Media
         searchable: true
         settings:
-          allowedKinds: null
+          allowedKinds:
+            - image
           defaultUploadLocationSource: 'volume:93c3ea35-a059-402f-a51b-1eaf3d12b299'
           defaultUploadLocationSubpath: ''
           limit: ''
           localizeRelations: ''
-          restrictFiles: ''
+          restrictFiles: '1'
           selectionLabel: ''
           showUnpermittedFiles: false
           showUnpermittedVolumes: true
@@ -761,9 +943,9 @@ matrixBlockTypes:
       8a4e35f2-6da1-4a72-a836-696129490869:
         contentColumnType: string
         fieldGroup: null
-        handle: image
+        handle: media
         instructions: ''
-        name: Image
+        name: Media
         searchable: true
         settings:
           allowedKinds: null
@@ -789,7 +971,7 @@ matrixBlockTypes:
       b3c9764c-0039-43aa-80f2-8c7651377ee6:
         contentColumnType: string
         fieldGroup: null
-        handle: imageposition
+        handle: imagePosition
         instructions: ''
         name: 'Image Position'
         searchable: true
@@ -929,8 +1111,8 @@ matrixBlockTypes:
         translationKeyFormat: null
         translationMethod: none
         type: craft\fields\Lightswitch
-    handle: moduleVideo
-    name: 'Module Video'
+    handle: moduleSocialVideo
+    name: 'Module Social Video'
     sortOrder: 2
   ed8f5e9b-e2ae-40c1-93aa-43cb0f9a6e15:
     field: 5e08f4dc-6179-4976-bef0-c3101e21b0bb
@@ -1367,6 +1549,9 @@ volumes:
               43891f46-b3d8-4adf-b1fd-1b6f440deb2f:
                 required: false
                 sortOrder: 1
+              f0f128d0-aa3d-4530-87c2-0471cb009257:
+                required: false
+                sortOrder: 2
             name: Main
             sortOrder: 1
     handle: assets

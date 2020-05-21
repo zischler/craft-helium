@@ -1,0 +1,19 @@
+{#------
+    JSON Object for media that is given to the Lazy Media
+    Vue Component.
+-------#}
+{% macro mediaJSON(asset) %}
+    {% set objStart = "{" %}
+    {% if asset is defined and asset != null %}
+        {% set extension = asset.extension | lower %}
+        {% set link = "\'link\':\'" ~ asset.url ~ "\',"  %}
+        {% set title = "\'title\':\'" ~ asset.title ~ "\',"  %}
+        {% set kind = "\'kind\':\'" ~ asset.kind ~ "\'," %}
+        {% set ext = "\'extension\':\'" ~ extension ~ "\',"  %}
+        {% set altText = "\'altText\':\'" ~ asset.altText ~ "\'"  %}
+        {% set assetProps = link ~ title ~ kind ~ ext ~ altText %}
+    {% endif %}
+    {% set objEnd = "}" %}
+    {% set dataJson = objStart ~ assetProps ~ objEnd  %}
+    {{ dataJson|raw }}
+{% endmacro %}
