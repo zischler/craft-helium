@@ -2,32 +2,37 @@
 
 /* --- Default settings --- */
 form {
-  width: 100%;
-  position: relative;
-  margin-top: 2rem;
+    width: 100%;
+    position: relative;
+    margin-top: 2rem;
 }
 
-a, button { cursor: pointer; }
-button, input { color: inherit; }
+a, button {
+    cursor: pointer;
+}
+
+button, input {
+    color: inherit;
+}
 
 button, input, textarea {
-  -moz-appearance: none;
-  -webkit-appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
 }
 
 button:-moz-ui-invalid,
 input:-moz-ui-invalid,
 textarea:-moz-ui-invalid {
-  box-shadow: 0 0;
+    box-shadow: 0 0;
 }
 
 button, input, textarea, label {
-  transition: 350ms;
+    transition: 350ms;
 }
 
 input, textarea {
-  border-radius: 0;
-  font-family: inherit;
+    border-radius: 0;
+    font-family: inherit;
 }
 
 button,
@@ -36,7 +41,7 @@ input[type="radio"],
 input[type="checkbox"],
 input[type="submit"],
 input[type="button"] {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 #winnie {
@@ -44,34 +49,36 @@ input[type="button"] {
 }
 
 .text-area-wrapper {
-  padding-top: 15px;
+    padding-top: 15px;
 }
 
-input:valid { border-color: var(--form-default-color); }
+input:valid {
+    border-color: var(--form-default-color);
+}
 
 /* Button */
 .button,
 input[type="submit"],
 input[type="button"] {
-  border-radius: 0;
-  background: var(--dark-red);
-  color: var(--white);
-  border: none;
-  padding: 10px 15px;
-  min-width: 150px;
-  max-width: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    border-radius: 0;
+    background: var(--dark-red);
+    color: var(--white);
+    border: none;
+    padding: 10px 15px;
+    min-width: 150px;
+    max-width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 a.button-wrapper {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 .button svg {
-  margin-left: 8px;
-  transition: transform 0.3s ease-in-out ;
+    margin-left: 8px;
+    transition: transform 0.3s ease-in-out;
 }
 
 .button:focus,
@@ -90,66 +97,66 @@ input[type="button"]:hover {
     background: white;
 
     & svg {
-      transform: translatex(5px);
+        transform: translatex(5px);
     }
 }
 
 @media (--for-sm-down) {
-  .button,
-  input[type="submit"],
-  input[type="button"] {
-    max-width: 100%;
-  }
+    .button,
+    input[type="submit"],
+    input[type="button"] {
+        max-width: 100%;
+    }
 }
 
 /* --- Form Styling --- */
 
 .form__checkbox-info {
-  color: var(--form-default-color);
-  font-size: 80%;
-  margin-top: 10px;
+    color: var(--form-default-color);
+    font-size: 80%;
+    margin-top: 10px;
 }
 
 .form__fieldset-title {
-  flex-basis: 100%;
+    flex-basis: 100%;
 }
 
 .form__required-notice {
-  margin-top: 10px;
-  font-size: 85%;
+    margin-top: 10px;
+    font-size: 85%;
 }
 
 .form .text,
 .form__fieldset-main {
-  margin-bottom: var(--p-margin-bottom);
+    margin-bottom: var(--p-margin-bottom);
 }
 
 .form-row {
-  position: relative;
+    position: relative;
 }
 
 @media (--for-sm-down) {
-  [class*="o-flex"].has-gutter:not(.no-vertical-margin) > .form-row {
-    margin-bottom: 2rem;
-  }
+    [class*="o-flex"].has-gutter:not(.no-vertical-margin) > .form-row {
+        margin-bottom: 2rem;
+    }
 }
 
 /* Autocomplete Styling Chrome */
 .form {
-  & input:-webkit-autofill,
-  & input:-webkit-autofill:hover, 
-  & input:-webkit-autofill:focus,
-  & textarea:-webkit-autofill,
-  & textarea:-webkit-autofill:hover,
-  & textarea:-webkit-autofill:focus,
-  & select:-webkit-autofill,
-  & select:-webkit-autofill:hover,
-  & select:-webkit-autofill:focus {
-    border: 1px solid var(--form-default-color);
-    -webkit-text-fill-color: var(--white);
-    -webkit-box-shadow: 0 0 0 1000px var(--dark) inset;
-    transition: background-color 5000s ease-in-out 0s;
-  }
+    & input:-webkit-autofill,
+    & input:-webkit-autofill:hover,
+    & input:-webkit-autofill:focus,
+    & textarea:-webkit-autofill,
+    & textarea:-webkit-autofill:hover,
+    & textarea:-webkit-autofill:focus,
+    & select:-webkit-autofill,
+    & select:-webkit-autofill:hover,
+    & select:-webkit-autofill:focus {
+        border: 1px solid var(--form-default-color);
+        -webkit-text-fill-color: var(--white);
+        -webkit-box-shadow: 0 0 0 1000px var(--dark) inset;
+        transition: background-color 5000s ease-in-out 0s;
+    }
 }
 
 /* Checkbox + Radio */
@@ -180,7 +187,7 @@ input[type="radio"]:checked {
 }
 
 .checkbox-wrapper {
-  display: flex; /* not o-flex because of input width */
+    display: flex; /* not o-flex because of input width */
 }
 
 input {
@@ -246,7 +253,7 @@ textarea + label {
     opacity: 0;
 }
 
-input:not(:placeholder-shown) + label{
+input:not(:placeholder-shown) + label {
     transform: translate3d(0, -1.9em, 0) scale(0.7);
     opacity: 1;
 }
