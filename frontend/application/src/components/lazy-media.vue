@@ -19,7 +19,7 @@
                      :width="width"
                      :height="height"
                      :title="media.title || ''"
-                     :alt="altText"
+                     :alt="media.altText"
                      :style="{maxWidth: maxWidth, maxHeight: maxHeight}">
             </picture>
         </div>

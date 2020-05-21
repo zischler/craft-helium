@@ -1,4 +1,4 @@
-export class Media {
+export interface Media {
     link: string;
     title: string;
     altText: string;

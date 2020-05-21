@@ -1,4 +1,4 @@
-dateModified: 1590051379
+dateModified: 1590054597
 email:
   fromEmail: tobias@zischler.ch
   fromName: 'Craft Helium'
@@ -652,6 +652,98 @@ matrixBlockTypes:
     handle: moduleText
     name: 'Module Text'
     sortOrder: 1
+  b4af5dcd-6ae0-4231-a5f7-89d87ff3c455:
+    field: 5e08f4dc-6179-4976-bef0-c3101e21b0bb
+    fieldLayouts:
+      65978ab3-99f8-41d6-919d-334cca4654fd:
+        tabs:
+          -
+            fields:
+              3dacfc79-22a2-4204-8376-66c7c79d954b:
+                required: false
+                sortOrder: 2
+              ca4e3128-cd7e-441c-b999-3db877315fd5:
+                required: false
+                sortOrder: 3
+              f30a0ea0-2a86-4a6f-8ad9-e8e0b86e5d3c:
+                required: true
+                sortOrder: 1
+            name: Content
+            sortOrder: 1
+    fields:
+      3dacfc79-22a2-4204-8376-66c7c79d954b:
+        contentColumnType: string
+        fieldGroup: null
+        handle: poster
+        instructions: ''
+        name: Poster
+        searchable: true
+        settings:
+          allowedKinds:
+            - image
+          defaultUploadLocationSource: 'volume:93c3ea35-a059-402f-a51b-1eaf3d12b299'
+          defaultUploadLocationSubpath: ''
+          limit: '1'
+          localizeRelations: ''
+          restrictFiles: '1'
+          selectionLabel: ''
+          showUnpermittedFiles: false
+          showUnpermittedVolumes: false
+          singleUploadLocationSource: 'volume:93c3ea35-a059-402f-a51b-1eaf3d12b299'
+          singleUploadLocationSubpath: ''
+          source: null
+          sources: '*'
+          targetSiteId: null
+          useSingleFolder: false
+          validateRelatedElements: ''
+          viewMode: list
+        translationKeyFormat: null
+        translationMethod: site
+        type: craft\fields\Assets
+      ca4e3128-cd7e-441c-b999-3db877315fd5:
+        contentColumnType: boolean
+        fieldGroup: null
+        handle: isAutoplay
+        instructions: ''
+        name: 'Is Autoplay'
+        searchable: true
+        settings:
+          default: ''
+        translationKeyFormat: null
+        translationMethod: none
+        type: craft\fields\Lightswitch
+      f30a0ea0-2a86-4a6f-8ad9-e8e0b86e5d3c:
+        contentColumnType: string
+        fieldGroup: null
+        handle: media
+        instructions: ''
+        name: Media
+        searchable: true
+        settings:
+          allowedKinds:
+            - video
+          defaultUploadLocationSource: 'volume:93c3ea35-a059-402f-a51b-1eaf3d12b299'
+          defaultUploadLocationSubpath: ''
+          limit: '1'
+          localizeRelations: ''
+          restrictFiles: '1'
+          selectionLabel: ''
+          showUnpermittedFiles: false
+          showUnpermittedVolumes: false
+          singleUploadLocationSource: 'volume:93c3ea35-a059-402f-a51b-1eaf3d12b299'
+          singleUploadLocationSubpath: ''
+          source: null
+          sources: '*'
+          targetSiteId: null
+          useSingleFolder: false
+          validateRelatedElements: ''
+          viewMode: list
+        translationKeyFormat: null
+        translationMethod: site
+        type: craft\fields\Assets
+    handle: moduleVideo
+    name: 'Module Video'
+    sortOrder: 7
   b53a6aa5-8430-4c0c-966e-90797766d995:
     field: 5e08f4dc-6179-4976-bef0-c3101e21b0bb
     fieldLayouts:
@@ -671,17 +763,18 @@ matrixBlockTypes:
       0eef956e-21b2-4fa8-9636-af85935d7c09:
         contentColumnType: string
         fieldGroup: null
-        handle: image
+        handle: media
         instructions: ''
-        name: image
+        name: Media
         searchable: true
         settings:
-          allowedKinds: null
+          allowedKinds:
+            - image
           defaultUploadLocationSource: 'volume:93c3ea35-a059-402f-a51b-1eaf3d12b299'
           defaultUploadLocationSubpath: ''
           limit: ''
           localizeRelations: ''
-          restrictFiles: ''
+          restrictFiles: '1'
           selectionLabel: ''
           showUnpermittedFiles: false
           showUnpermittedVolumes: true
@@ -935,52 +1028,6 @@ matrixBlockTypes:
     handle: moduleImageText
     name: 'Module Image Text'
     sortOrder: 4
-  d088d8db-4c21-4464-999f-7a61ffc5d277:
-    field: 5e08f4dc-6179-4976-bef0-c3101e21b0bb
-    fieldLayouts:
-      0026cd20-2884-4362-84e5-e72e03791f53:
-        tabs:
-          -
-            fields:
-              ca9d800b-136c-4683-a696-e85617c3e182:
-                required: false
-                sortOrder: 1
-            name: Content
-            sortOrder: 1
-    fields:
-      ca9d800b-136c-4683-a696-e85617c3e182:
-        contentColumnType: string
-        fieldGroup: null
-        handle: media
-        instructions: ''
-        name: Media
-        searchable: true
-        settings:
-          allowedKinds:
-            - image
-            - video
-          defaultUploadLocationSource: 'volume:93c3ea35-a059-402f-a51b-1eaf3d12b299'
-          defaultUploadLocationSubpath: ''
-          limit: '1'
-          localizeRelations: ''
-          restrictFiles: '1'
-          selectionLabel: ''
-          showUnpermittedFiles: false
-          showUnpermittedVolumes: false
-          singleUploadLocationSource: 'volume:93c3ea35-a059-402f-a51b-1eaf3d12b299'
-          singleUploadLocationSubpath: ''
-          source: null
-          sources: '*'
-          targetSiteId: null
-          useSingleFolder: false
-          validateRelatedElements: ''
-          viewMode: list
-        translationKeyFormat: null
-        translationMethod: site
-        type: craft\fields\Assets
-    handle: lazyMedia
-    name: 'Lazy Media'
-    sortOrder: 7
   e903795d-11aa-4989-93f8-efd5bc667c7a:
     field: 5e08f4dc-6179-4976-bef0-c3101e21b0bb
     fieldLayouts:
@@ -1064,8 +1111,8 @@ matrixBlockTypes:
         translationKeyFormat: null
         translationMethod: none
         type: craft\fields\Lightswitch
-    handle: moduleVideo
-    name: 'Module Video'
+    handle: moduleSocialVideo
+    name: 'Module Social Video'
     sortOrder: 2
   ed8f5e9b-e2ae-40c1-93aa-43cb0f9a6e15:
     field: 5e08f4dc-6179-4976-bef0-c3101e21b0bb

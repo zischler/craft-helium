@@ -9,17 +9,8 @@ const isOutdatedBrowser = IEdgeMatches !== null; // && parseInt(IEdgeMatches[2],
 
 @Component
 export default class LazyMedia extends Vue {
-    @Prop({ type: Object, default: new Media })
-    media: string;
-
-    @Prop({ type: String, default: "" })
-    link: string;
-
-    @Prop({ type: String, default: "" })
-    altText!: string;
-
-    @Prop({ type: String, default: "" })
-    kind!: string;
+    @Prop({ type: Object, default: {}})
+    mediaObject: string;
 
     @Prop({ type: Boolean, default: false })
     asHero!: boolean; // calculate height from top position, at render
@@ -66,6 +57,7 @@ export default class LazyMedia extends Vue {
     @Prop({ type: Number, default: -1 })
     naturalHeight!: number;
 
+    media: Media = {} as Media;
     source = "";
     width: string | number = "100%";
     height: string | number = "100%";
@@ -102,7 +94,8 @@ export default class LazyMedia extends Vue {
      * @returns {Promise<void>}
      */
     async init(): Promise<void> {
-        this.isImage = this.kind === "image";
+        this.media = this.mediaObject as unknown as Media;
+        this.isImage = this.media.kind === "image";
 
         if (this.asHero && this.isCover) {
             pageLoaded().then(() => {
@@ -113,14 +106,14 @@ export default class LazyMedia extends Vue {
             });
         }
 
-        const source = this.isImage ? await getPictureSource(this.link) : this.link;
+        const source = this.isImage ? await getPictureSource(this.media.link) : this.media.link;
 
         if (this.hasRatio && this.ratio && this.ratio.w && this.ratio.h && (this.$refs.figure as any)) {
             (this.$refs.figure as any).style.paddingTop =
                 `calc(1 / (${this.ratio.w} / ${this.ratio.h}) * 100%)`;
         }
 
-        if (this.kind === "video") {
+        if (this.media.kind === "video") {
 
             this.videoPlaying = false;
 
