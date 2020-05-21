@@ -35,6 +35,8 @@
             {% if imageWidth != 0 and imageHeight != 0 %}
                 {% set assetRatioCss = "calc(" ~ imageHeight ~ " / " ~ imageWidth ~ " * 100%)" %}
             {% endif %}
+        {% elseif asset.kind == 'video' %}
+            {% set isVideo = true %}
         {% endif %}
 
         {#-- Params: assetRatio width W + H inputs --#}
@@ -120,19 +122,24 @@
         {% from "_includes/mediaJSON.twig" import mediaJSON %}
 
         {#-- Asset Rendering --#}
-        <lazy-media :ratio="{{ ratioObj ?? '' }}"
+        <lazy-media
+                    :media="{{ mediaJSON(asset) }}"
+                    :ratio="{{ ratioObj ?? '' }}"
                     :css-ratio="'{{ cssRatioObj ?? '' }}'"
                     :position-class="'{{ positionClass ?? '' }}'"
-                    :data-json="'{{ mediaJSON(asset) ?? '' }}'"
-                    :as-hero="{{ asHero ?? '' }}"
-                    :is-cover="{{ isCover ?? '' }}"
-                    :has-ratio="{{ hasRatio ?? '' }}"
-                    :has-caption="{{ hasCaption ?? '' }}"
-                    :max-rendition="{{ maxRenditionWidth ?? '' }}"
-                    :max-width="{{ maxWidth ?? '' }}"
-                    :max-height="{{ maxHeight ?? '' }}"
+                    :link="'{{ asset.url ?? '' }}'"
+                    :alt-text="'{{ asset.altText ?? '' }}'"
+                    :kind="'{{ asset.kind ?? '' }}'"
+                    :as-hero="{{ asHero ? 'true' : 'false' ?? '' }}"
+                    :is-cover="{{ isCover ? 'true' : 'false' ?? '' }}"
+                    :has-ratio="{{ hasRatio ? 'true' : 'false' ?? '' }}"
+                    :max-width="'{{ maxWidth ?? '' }}'"
+                    :max-height="'{{ maxHeight ?? '' }}'"
                     :natural-height="{{ imageHeight ?? '' }}"
                     :natural-width="{{ imageWidth ?? '' }}"
+                    {% if isVideo is defined %}
+                    :video-poster="'{{ module.poster.one().url ?? '' }}'"
+                    {% endif %}
             >
             <figure class="figure" {% if assetRatioCss is defined %}style="padding-top: {{ assetRatioCss ?? '' }}; font-size: 0;"{% endif %}>
                 {% if asset.kind == 'image' %}

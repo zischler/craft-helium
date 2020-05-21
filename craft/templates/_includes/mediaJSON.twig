@@ -1,63 +1,15 @@
 {% macro mediaJSON(asset) %}
     {% set objStart = "{" %}
-
     {% if asset is defined and asset != null %}
         {% set extension = asset.extension | lower %}
-        {% if asset.kind == 'image' %}
-            {% set picStart = '\"picture\":{'  %}
-                {% set picLink = '\"link\":\"' ~ asset.url ~ '\",'  %}
-                {% set picId = '\"id\":\"' ~ asset.id ~ '\",'  %}
-                {% set picExt = '\"extension\":\"' ~ extension ~ '\",'  %}
-                {% set picW = '\"width\":\"' ~ asset.width ~ '\",'  %}
-                {% set picH = '\"height\":\"' ~ asset.height ~ '\",'  %}
-
-                {% set picSrcsStart = '\"sources\":{'  %}
-
-                {% if extension != "gif" %}
-                    {% set picSrc1 = '\"375px\":\"' ~ asset.getUrl("small") ~ ', ' ~  asset.getUrl("small2x") ~ ' 2x\",'  %}
-                    {% set picSrc2 = '\"768px\":\"' ~  asset.getUrl("medium") ~ ', ' ~ asset.getUrl("medium2x") ~ ' 2x\",'  %}
-                    {% set picSrc3 = '\"1024px\":\"' ~  asset.getUrl("big") ~ ', ' ~  asset.getUrl("big2x") ~ ' 2x\",'  %}
-                    {% set picSrc4 = '\"1440px\":\"' ~  asset.getUrl("xxl") ~ ', ' ~  asset.getUrl("xxl2x") ~ ' 2x\",'  %}
-                    {% set picSrc5 = '\"2560px\":\"' ~  asset.getUrl("max") ~ '\",'  %}
-                    {% set picSrc = '\"all\":\"' ~  asset.getUrl("max") ~ '\"'  %}
-                    {% set picSources = picSrc1 ~ picSrc2 ~ picSrc3 ~ picSrc4 ~ picSrc5 ~ picSrc  %}
-                {% else %}
-                    {% set picSources = '\"all\":\"' ~  asset.url ~ '\"'  %}
-                {% endif %}
-
-                {% set picSrcsEnd = '}'  %}
-            {% set picEnd = '},'  %}
-
-            {% set assetProps = picStart ~ picLink ~ picId ~ picExt ~ picW ~ picSrcsStart ~ picSources ~ picSrcsEnd ~ picEnd %}
-
-        {% elseif asset.kind == 'video' %}
-            {% set videoStart = '\"video\":{'  %}
-                {% set videoLink = '\"link\":\"' ~ asset.url ~ '\",'  %}
-                {% set videoId = '\"id\":\"' ~ asset.id ~ '\",'  %}
-                {% set videoExt = '\"extension\":\"' ~ extension ~ '\",'  %}
-                {% if module.poster is defined and module.poster != null %}
-                    {% set videoPoster = '\"poster\":\"' ~ content.poster.getUrl("big") ~ '\"'  %}
-                {% else %}
-                    {% set videoPoster = '\"poster\":\"\"'  %}
-                {% endif %}
-            {% set videoEnd = '},'  %}
-
-            {% set assetProps = videoStart ~ videoLink ~ videoId ~ videoExt ~ videoPoster ~ videoEnd %}
-        {% endif %}
+        {% set link = "\'link\':\'" ~ asset.url ~ "\',"  %}
+        {% set title = "\'title\':\'" ~ asset.title ~ "\',"  %}
+        {% set kind = "\'kind\':\'" ~ asset.kind ~ "\'," %}
+        {% set ext = "\'extension\':\'" ~ extension ~ "\',"  %}
+        {% set altText = "\'altText\':\'" ~ asset.altText ~ "\'"  %}
+        {% set assetProps = link ~ title ~ kind ~ ext ~ altText %}
     {% endif %}
-
-    {% set mdStart = '\"metadata\":{' %}
-        {% set mdMimetype = '\"mimetype\":\"' ~ asset.kind ~ '\",'  %}
-        {% set mdTitle = '\"title\":\"' ~ asset.title ~ '\",'  %}
-        {% set mdDescription = '\"description\":\"' ~ asset.altText ~ '\",'  %}
-        {% set mdCaption = '\"caption\":\"' ~ asset.caption ~ '\"'  %}
-    {% set mdEnd = '}' %}
-
-    {% set metadata = mdStart ~ mdMimetype ~ mdTitle ~ mdDescription ~ mdCaption ~ mdEnd %}
-
     {% set objEnd = "}" %}
-
-    {% set dataJson = objStart ~ assetProps ~ metadata ~ objEnd  %}
-
+    {% set dataJson = objStart ~ assetProps ~ objEnd  %}
     {{ dataJson|raw }}
 {% endmacro %}
