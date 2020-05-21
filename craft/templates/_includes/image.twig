@@ -1,6 +1,0 @@
-{% set image = module.image.one() %}
-<div class="o-lazy-media">
-    <div class="figure">
-        <img class="media" src="{{image.url}}" alt="{{ image.title }}" v-on:load="loadedImage = true">
-    </div>
-</div>

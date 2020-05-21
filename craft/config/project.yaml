@@ -1,4 +1,4 @@
-dateModified: 1590054597
+dateModified: 1590055771
 email:
   fromEmail: tobias@zischler.ch
   fromName: 'Craft Helium'
@@ -943,9 +943,9 @@ matrixBlockTypes:
       8a4e35f2-6da1-4a72-a836-696129490869:
         contentColumnType: string
         fieldGroup: null
-        handle: image
+        handle: media
         instructions: ''
-        name: Image
+        name: Media
         searchable: true
         settings:
           allowedKinds: null
@@ -971,7 +971,7 @@ matrixBlockTypes:
       b3c9764c-0039-43aa-80f2-8c7651377ee6:
         contentColumnType: string
         fieldGroup: null
-        handle: imageposition
+        handle: imagePosition
         instructions: ''
         name: 'Image Position'
         searchable: true
