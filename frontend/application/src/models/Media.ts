@@ -4,4 +4,5 @@ export interface Media {
     altText: string;
     kind: string;
     extension: string;
+    sources: Object;
 }

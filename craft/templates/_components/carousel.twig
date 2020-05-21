@@ -1,19 +1,11 @@
-{#-- initializing parameters, which get inherited by children --#}
-{% set parameters = {
-    asHero: false,
-    isAutoplay: false,
-    isCover: true,
-    showBulletsDesktop: false
-} %}
-
 {#-- initializing variables --#}
 {% set hasGutter = module["hasGutter"] is defined and module.hasGutter == true %}
 {% set asHero = parameters.asHero | default(false) %}
 {% set isCover = parameters.isCover | default(false) %}
 {% set showBulletsDesktop = parameters.showBulletsDesktop ?? false %}
-{% set itemRatio = "" %}
 {% set itemWidth = "" %}
 {% set itemHeight = "" %}
+{% set hasRatio = false %}
 {% set isInfinite = (module["isInfinite"] is defined and module.isInfinite) or
 (module["renderType"] is defined and module.renderType == "slideshow") %}
 
@@ -24,14 +16,14 @@
 
 {#-- Non Hero Ratio settings --#}
 {% if asHero == false %}
-    {% set itemRatio = parameters.itemRatio ?? null %}
+    {% set itemRatio = parameters.itemRatio|default(null) %}
     {% if module.itemRatio is defined and module.itemRatio != "none" %}
-        {% set itemRatio = module.itemRatio ?? itemRatio ?? null %}
+        {% set itemRatio = module.itemRatio.value ?? itemRatio ?? null %}
     {% endif %}
     {% set itemWidth = parameters.width|default %}
     {% set itemHeight = parameters.height|default %}
 
-    {% if itemRatio|default %}
+    {% if itemRatio != null %}
         {% set imageRatio = 1 / (itemRatio) * 100 %}
         {% set hasRatio = true %}
     {% elseif module.width is defined and module.width > 0
@@ -50,6 +42,17 @@
     {% endif %}
 {% endif %}
 
+{#-- initializing parameters, which get inherited by children --#}
+{% set parameters = {
+    asHero: false,
+    isAutoplay: false,
+    isCover: true,
+    showBulletsDesktop: false,
+    hasRatio: hasRatio,
+    itemRatio: itemRatio ?? null,
+    assetRatio: imageRatio ?? null
+} %}
+
 {#-- Macro for Carousel Slide --#}
 {% from "_components/_includes/carouselSlide.twig" import carouselSlide %}
 
@@ -58,8 +61,8 @@
 {% if module["isLight"] is defined and module.isLight %}
     {% set lightBgClass = "has-background -gray has-top-inner-space has-bottom-inner-space" %}
 {% endif %}
-<div class="o-section {{ lightBgClass }}">
-    <div class="o-group has-inner-gutter">
+<div class="o-section {{ lightBgClass }} {{ asHero ? 'is-full-width' : ''}}">
+    <div class="o-group has-inner-gutter  {{ asHero ? 'is-full-width' : ''}}">
         <div class="o-carousel-wrapper o-component">
             <multi-carousel v-bind:transition-delay="350"
                             v-bind:delay="{{ module.delay ?? '5000' }}"
@@ -77,7 +80,7 @@
                 <template slot="slides">
                     {% if module.modules.all() is not empty %}
                         {% for child in module.modules.all() %}
-                            {{ carouselSlide(child) }}
+                            {{ carouselSlide(child, parameters) }}
                         {% endfor %}
                     {% endif %}
                 </template>

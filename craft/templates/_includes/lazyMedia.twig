@@ -3,14 +3,7 @@
     to load them lazy (on scroll) and have many options
     like ratio changes, or if the image has to cover the area.
     Transforms are also loaded for the image depending
-    on the screen size.
-    Transforms (with width):
-        (Normal)           (Retina Display)
-        "375px": "small",  ("750px": "small2x")
-        "768px": "medium", ("1536px": "medium2x")
-        "1024px": "big",   ("2048px": "big2x")
-        "all": "max"
-    -> They need to be added to the craft settings in "Asset Settings"
+    on the screen size. (more infos in /mediaJSON.twig)
 --------#}
 <div class="o-lazy-media o-component">
     {% set asset = module.media.one() %}
@@ -68,20 +61,21 @@
         {% endif %}
 
         {% if assetRatio != null%}
-            {% set hasRatio = true%}
+            {% set hasRatio = true %}
             {% set ratioArray = assetRatio | split("/") %}
-            {% if ratioArray != null and ratioArray?size == 2%}
-                {% set ratioW = ratioArray[0] ?? null%}
-                {% set ratioH = ratioArray[1] ?? null%}
+            {% if ratioArray != null and ratioArray|length == 2 %}
+                {% set ratioW = ratioArray[0] ?? null %}
+                {% set ratioH = ratioArray[1] ?? null %}
             {% endif %}
         {% endif %}
 
+
         {#-- isCover --#}
-        {% set isCover = (parameters.isCover is defined and parameters.isCover == true) and (hasRatio is defined and hasRatio == true) %}
+        {% set isCover = (parameters.isCover is defined and parameters.isCover) and (hasRatio is defined and hasRatio) %}
 
         {#-- asHero --#}
         {% set asHero = (parameters.asHero is defined and parameters.asHero == true) %}
-        {% set isCover = asHero %}
+        {#% set isCover = asHero %#}
 
         {#-- objectfit --#}
         {% if isCover != null and isCover == true %}
@@ -146,7 +140,7 @@
             <figure class="figure" {% if assetRatioCss is defined %}style="padding-top: {{ assetRatioCss ?? '' }}; font-size: 0;"{% endif %}>
                 {% if asset.kind == 'image' %}
                     <picture class="container js-loaded {% if assetRatioCss is defined %}has-fixed-ratio{% endif %}">
-                        <img class="media {{ positionClass ? ''}} is-{{ objectfit ? ''}}" width="{{ imageWidth ? ''}}" height="{{ imageHeight ? ''}}"
+                        <img class="media {{ positionClass ?? ''}} is-{{ objectfit ?? ''}}" width="{{ imageWidth ?? ''}}" height="{{ imageHeight ?? ''}}"
                              src="{% if assetRatioCss is defined %}data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII={% else %}{{ asset.getUrl(thumb) }}{% endif %}" style="display: block; max-width: {{ maxWidth ?? '' }} ; max-height: {{ maxHeight ?? '' }} ;{% if hasRatio == null %} opacity: 0;{% endif %}" {% if asset.altText is defined %}alt="{{ asset.altText }}"{% endif %}>
                     </picture>
                 {% else %}

@@ -1,6 +1,15 @@
 {#------
     JSON Object for media that is given to the Lazy Media
     Vue Component.
+
+    Transforms (with width):
+        (Normal)           (Retina Display)
+        "375px": "small",  ("750px": "small2x")
+        "768px": "medium", ("1536px": "medium2x")
+        "1024px": "big",   ("2048px": "big2x")
+        "2560px": "max"
+        "all": "max"
+    -> They need to be added to the craft settings in "Asset Settings"
 -------#}
 {% macro mediaJSON(asset) %}
     {% set objStart = "{" %}
@@ -10,8 +19,25 @@
         {% set title = "\'title\':\'" ~ asset.title ~ "\',"  %}
         {% set kind = "\'kind\':\'" ~ asset.kind ~ "\'," %}
         {% set ext = "\'extension\':\'" ~ extension ~ "\',"  %}
-        {% set altText = "\'altText\':\'" ~ asset.altText ~ "\'"  %}
-        {% set assetProps = link ~ title ~ kind ~ ext ~ altText %}
+        {% set altText = "\'altText\':\'" ~ asset.altText ~ "\',"  %}
+        {% set picSources = "" %}
+        {#-- Sources for image in transform sizes --#}
+        {% if asset.kind == "image" %}
+            {% set picSrcsStart = "\'sources\':{"  %}
+            {% if extension != "gif" %}
+                {% set picSrc1 = "\'375px\':\'" ~ asset.getUrl("small") ~ ", " ~  asset.getUrl("small2x") ~ " 2x\',"  %}
+                {% set picSrc2 = "\'768px\':\'" ~  asset.getUrl("medium") ~ ", " ~ asset.getUrl("medium2x") ~ " 2x\',"  %}
+                {% set picSrc3 = "\'1024px\':\'" ~  asset.getUrl("big") ~ ", " ~  asset.getUrl("big2x") ~ " 2x\',"  %}
+                {% set picSrc4 = "\'2560px\':\'" ~  asset.getUrl("max") ~ "\',"  %}
+                {% set picSrc = "\'all\':\'" ~  asset.getUrl("max") ~ "\'"  %}
+                {% set picSources = picSrc1 ~ picSrc2 ~ picSrc3 ~ picSrc4 ~ picSrc  %}
+            {% else %}
+                {% set picSources = "\'all\':\'" ~  asset.url ~ "\'"  %}
+            {% endif %}
+            {% set picSrcsEnd = '}'  %}
+            {% set picSources = picSrcsStart ~ picSources ~ picSrcsEnd %}
+        {% endif %}
+        {% set assetProps = link ~ title ~ kind ~ ext ~ altText ~ picSources %}
     {% endif %}
     {% set objEnd = "}" %}
     {% set dataJson = objStart ~ assetProps ~ objEnd  %}

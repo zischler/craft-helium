@@ -106,7 +106,7 @@ export default class LazyMedia extends Vue {
             });
         }
 
-        const source = this.isImage ? await getPictureSource(this.media.link) : this.media.link;
+        const source = this.isImage ? await getPictureSource(this.media.sources) : this.media.link;
 
         if (this.hasRatio && this.ratio && this.ratio.w && this.ratio.h && (this.$refs.figure as any)) {
             (this.$refs.figure as any).style.paddingTop =
@@ -335,32 +335,18 @@ export default class LazyMedia extends Vue {
     }
 }
 
-async function getPictureSource(link: string): Promise<string> {
+async function getPictureSource(data: any): Promise<string> {
 
     const pixelRatio = window.devicePixelRatio || 1;
     const sourcesInfos: Array<{ pxr: number; src: string }> = [];
     let srcset: string = "";
-    const sizes = {
-        "375px": "small",
-        "768px": "medium",
-        "1024px": "big",
-        "all": "max",
-    };
 
     // Get the srcset that match the media query
-    for (const key of Object.keys(sizes)) {
+    for (const key of Object.keys(data)) {
         const media = key === "all" ? key : `(max-width:${key})`;
 
         if (window.matchMedia(media).matches) {
-            const sizeName = "/_" + sizes[key];
-            const beforeSize = link.substring(0, link.lastIndexOf("/"));
-            const afterSize = link.substring(link.lastIndexOf("/"), link.length);
-            srcset = beforeSize + sizeName + afterSize;
-            if(key !== "all") {
-                const sizeName2x = sizeName + "2x";
-                const newFileName2x = beforeSize + sizeName2x + afterSize + " 2x";
-                srcset += "," + newFileName2x;
-            }
+            srcset = data[key];
             break;
         }
     }
