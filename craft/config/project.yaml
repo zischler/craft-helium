@@ -1,4 +1,4 @@
-dateModified: 1589996263
+dateModified: 1590051379
 email:
   fromEmail: tobias@zischler.ch
   fromName: 'Craft Helium'
@@ -505,26 +505,6 @@ imageTransforms:
     position: center-center
     quality: null
     width: 750
-  893d3bc7-d875-45e9-b61b-0efcd618c99a:
-    format: null
-    handle: xxl
-    height: null
-    interlace: none
-    mode: crop
-    name: XXL
-    position: center-center
-    quality: null
-    width: 1440
-  90b2637d-8dc7-4f56-9433-33c656c1e282:
-    format: null
-    handle: xxl2x
-    height: null
-    interlace: none
-    mode: crop
-    name: 'XXL 2x'
-    position: center-center
-    quality: null
-    width: 2880
   bc742965-951f-48f6-b8af-70cb1d69f8af:
     format: null
     handle: max

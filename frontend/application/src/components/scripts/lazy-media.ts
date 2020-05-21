@@ -362,10 +362,11 @@ async function getPictureSource(link: string): Promise<string> {
             const sizeName = "/_" + sizes[key];
             const beforeSize = link.substring(0, link.lastIndexOf("/"));
             const afterSize = link.substring(link.lastIndexOf("/"), link.length);
-            const newFileName = beforeSize + sizeName + afterSize;
-            srcset = newFileName;
+            srcset = beforeSize + sizeName + afterSize;
             if(key !== "all") {
-                srcset += "," + newFileName + "2x 2x";
+                const sizeName2x = sizeName + "2x";
+                const newFileName2x = beforeSize + sizeName2x + afterSize + " 2x";
+                srcset += "," + newFileName2x;
             }
             break;
         }
