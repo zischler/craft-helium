@@ -1,4 +1,4 @@
-dateModified: 1590070591
+dateModified: 1590081138
 email:
   fromEmail: tobias@zischler.ch
   fromName: 'Craft Helium'
@@ -337,6 +337,18 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
+  804ec350-22ec-4d47-8cb1-647b34d1b4f9:
+    contentColumnType: boolean
+    fieldGroup: a61e403f-3fd4-4ce8-9513-5dce27201307
+    handle: isLight
+    instructions: ''
+    name: 'Is Light'
+    searchable: true
+    settings:
+      default: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
   8f4137a5-b419-47fb-acbe-2e482f903c52:
     contentColumnType: text
     fieldGroup: d89526f0-270b-4f39-8afb-812fe0300304
@@ -804,9 +816,6 @@ matrixBlockTypes:
               3d493226-c557-44da-904d-0ee7aff47e0c:
                 required: false
                 sortOrder: 1
-              94be2685-6a42-4caf-8e1e-9e6f64951885:
-                required: false
-                sortOrder: 5
               ea3bf8e5-e587-49b6-b2f1-109068b2c61d:
                 required: false
                 sortOrder: 4
@@ -877,18 +886,6 @@ matrixBlockTypes:
         translationKeyFormat: null
         translationMethod: site
         type: craft\fields\PlainText
-      94be2685-6a42-4caf-8e1e-9e6f64951885:
-        contentColumnType: boolean
-        fieldGroup: null
-        handle: isLight
-        instructions: 'Is Background dark?'
-        name: 'is light'
-        searchable: false
-        settings:
-          default: ''
-        translationKeyFormat: null
-        translationMethod: none
-        type: craft\fields\Lightswitch
       ea3bf8e5-e587-49b6-b2f1-109068b2c61d:
         contentColumnType: string
         fieldGroup: null
@@ -1016,9 +1013,6 @@ matrixBlockTypes:
               0eef956e-21b2-4fa8-9636-af85935d7c09:
                 required: false
                 sortOrder: 1
-              9b5cfab8-6270-46b6-9c8a-07117bfd1f1b:
-                required: false
-                sortOrder: 2
             name: Content
             sortOrder: 1
     fields:
@@ -1051,18 +1045,6 @@ matrixBlockTypes:
         translationKeyFormat: null
         translationMethod: site
         type: craft\fields\Assets
-      9b5cfab8-6270-46b6-9c8a-07117bfd1f1b:
-        contentColumnType: boolean
-        fieldGroup: null
-        handle: isLight
-        instructions: 'Is dark background?'
-        name: 'is light'
-        searchable: false
-        settings:
-          default: ''
-        translationKeyFormat: null
-        translationMethod: none
-        type: craft\fields\Lightswitch
     handle: moduleImage
     name: 'Module Image'
     sortOrder: 3
@@ -1131,9 +1113,6 @@ matrixBlockTypes:
               2e823108-67c9-4f22-81d2-940e91f882d3:
                 required: false
                 sortOrder: 3
-              35f6cdb0-0dfd-4471-8cd0-b9a5960947e2:
-                required: false
-                sortOrder: 6
               68490af3-70d3-4691-b1fb-70f04734330f:
                 required: false
                 sortOrder: 1
@@ -1172,18 +1151,6 @@ matrixBlockTypes:
         translationKeyFormat: null
         translationMethod: site
         type: craft\redactor\Field
-      35f6cdb0-0dfd-4471-8cd0-b9a5960947e2:
-        contentColumnType: boolean
-        fieldGroup: null
-        handle: isLight
-        instructions: 'Is dark background?'
-        name: 'is light'
-        searchable: false
-        settings:
-          default: ''
-        translationKeyFormat: null
-        translationMethod: none
-        type: craft\fields\Lightswitch
       68490af3-70d3-4691-b1fb-70f04734330f:
         contentColumnType: text
         fieldGroup: null
@@ -1303,9 +1270,6 @@ matrixBlockTypes:
               cc3318aa-9af5-4c5c-9ef1-383b4c7146bb:
                 required: false
                 sortOrder: 2
-              ee9c8ee8-4d54-4611-b645-efd4f00f1403:
-                required: false
-                sortOrder: 3
             name: Content
             sortOrder: 1
     fields:
@@ -1361,18 +1325,6 @@ matrixBlockTypes:
         translationKeyFormat: null
         translationMethod: none
         type: craft\fields\RadioButtons
-      ee9c8ee8-4d54-4611-b645-efd4f00f1403:
-        contentColumnType: boolean
-        fieldGroup: null
-        handle: isLight
-        instructions: 'Is dark background?'
-        name: 'is light'
-        searchable: false
-        settings:
-          default: ''
-        translationKeyFormat: null
-        translationMethod: none
-        type: craft\fields\Lightswitch
     handle: moduleSocialVideo
     name: 'Module Social Video'
     sortOrder: 2
@@ -1490,6 +1442,32 @@ neoBlockTypes:
     name: Carousel
     sortOrder: 1
     topLevel: true
+  3ea6e56b-5c6e-4bf4-ae63-bb6823999677:
+    childBlocks: ''
+    field: f223541d-0057-4b42-8f60-11587c05dbf9
+    fieldLayouts:
+      e86ef0bc-02ad-48a9-85c0-690e4bde9d07:
+        tabs:
+          -
+            fields:
+              5e08f4dc-6179-4976-bef0-c3101e21b0bb:
+                required: false
+                sortOrder: 1
+            name: Main
+            sortOrder: 1
+          -
+            fields:
+              804ec350-22ec-4d47-8cb1-647b34d1b4f9:
+                required: false
+                sortOrder: 1
+            name: Settings
+            sortOrder: 2
+    handle: moduleGroup
+    maxBlocks: 0
+    maxChildBlocks: 0
+    name: 'Module Group'
+    sortOrder: 2
+    topLevel: true
 plugins:
   contact-form:
     edition: standard
@@ -1529,18 +1507,18 @@ sections:
             tabs:
               -
                 fields:
-                  5e08f4dc-6179-4976-bef0-c3101e21b0bb:
-                    required: false
-                    sortOrder: 5
                   d20136ac-1e31-4c44-a588-8b385f2627f0:
                     required: false
                     sortOrder: 1
                   e4a284e3-2244-492e-89de-7fcbb7e392d8:
                     required: false
-                    sortOrder: 3
-                  fb92e632-d628-44ad-a668-2b07a066a8ba:
+                    sortOrder: 2
+                  f223541d-0057-4b42-8f60-11587c05dbf9:
                     required: false
                     sortOrder: 4
+                  fb92e632-d628-44ad-a668-2b07a066a8ba:
+                    required: false
+                    sortOrder: 3
                 name: Main
                 sortOrder: 1
               -
@@ -1621,15 +1599,15 @@ sections:
             tabs:
               -
                 fields:
-                  5e08f4dc-6179-4976-bef0-c3101e21b0bb:
-                    required: false
-                    sortOrder: 4
                   6027c90e-6bf7-4408-ac4b-5ed40857fc4f:
                     required: true
                     sortOrder: 2
                   e4a284e3-2244-492e-89de-7fcbb7e392d8:
                     required: false
                     sortOrder: 1
+                  f223541d-0057-4b42-8f60-11587c05dbf9:
+                    required: false
+                    sortOrder: 3
                 name: Main
                 sortOrder: 1
               -
@@ -1675,9 +1653,6 @@ sections:
             tabs:
               -
                 fields:
-                  5e08f4dc-6179-4976-bef0-c3101e21b0bb:
-                    required: false
-                    sortOrder: 3
                   d20136ac-1e31-4c44-a588-8b385f2627f0:
                     required: false
                     sortOrder: 1
@@ -1686,7 +1661,7 @@ sections:
                     sortOrder: 2
                   f223541d-0057-4b42-8f60-11587c05dbf9:
                     required: false
-                    sortOrder: 4
+                    sortOrder: 3
                 name: Main
                 sortOrder: 1
               -
@@ -1735,12 +1710,12 @@ sections:
             tabs:
               -
                 fields:
-                  5e08f4dc-6179-4976-bef0-c3101e21b0bb:
-                    required: false
-                    sortOrder: 2
                   e4a284e3-2244-492e-89de-7fcbb7e392d8:
                     required: false
                     sortOrder: 1
+                  f223541d-0057-4b42-8f60-11587c05dbf9:
+                    required: false
+                    sortOrder: 2
                 name: Common
                 sortOrder: 1
               -

@@ -1,0 +1,13 @@
+{% set lightBgClass = "" %}
+{% if component.isLight %}
+    {% set lightBgClass = "has-background -gray has-top-inner-space has-bottom-inner-space" %}
+{% endif %}
+<div class="o-section {{ lightBgClass }}">
+    <div class="o-group has-inner-gutter">
+        {% if component.modules.all() is not empty %}
+            {% for module in component.modules.all() %}
+                {% include "_modules/" ~ module.type %}
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>

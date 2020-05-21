@@ -18,13 +18,9 @@
             	<h1>{{ entry.title }}</h1>
 			</div>
 		</section>
-        
-        {% for module in entry.modules.all() %}
-            {% include "_modules/" ~ module.type %}
-        {% endfor %}
 
-        {% for module in entry.components.level(1).all() %}
-            {% include "_components/" ~ module.type %}
+        {% for component in entry.components.level(1).all() %}
+            {% include "_components/" ~ component.type %}
         {% endfor %}
     </div>
 {% endblock %}

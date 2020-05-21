@@ -1,15 +1,15 @@
 {#-- initializing variables --#}
-{% set hasGutter = module["hasGutter"] is defined and module.hasGutter == true %}
+{% set hasGutter = component["hasGutter"] is defined and component.hasGutter == true %}
 {% set asHero = parameters.asHero | default(false) %}
 {% set isCover = parameters.isCover | default(false) %}
 {% set showBulletsDesktop = parameters.showBulletsDesktop ?? false %}
 {% set itemWidth = "" %}
 {% set itemHeight = "" %}
 {% set hasRatio = false %}
-{% set isInfinite = (module["isInfinite"] is defined and module.isInfinite) or
-(module["renderType"] is defined and module.renderType == "slideshow") %}
+{% set isInfinite = (component["isInfinite"] is defined and component.isInfinite) or
+(component["renderType"] is defined and component.renderType == "slideshow") %}
 
-{% if module["asHero"] is defined and module.asHero == true %}
+{% if component["asHero"] is defined and component.asHero == true %}
     {% set asHero = true %}
     {% set isCover = true %}
 {% endif %}
@@ -17,8 +17,8 @@
 {#-- Non Hero Ratio settings --#}
 {% if asHero == false %}
     {% set itemRatio = parameters.itemRatio|default(null) %}
-    {% if module.itemRatio is defined and module.itemRatio != "none" %}
-        {% set itemRatio = module.itemRatio.value ?? itemRatio ?? null %}
+    {% if component.itemRatio is defined and component.itemRatio != "none" %}
+        {% set itemRatio = component.itemRatio.value ?? itemRatio ?? null %}
     {% endif %}
     {% set itemWidth = parameters.width|default %}
     {% set itemHeight = parameters.height|default %}
@@ -26,11 +26,11 @@
     {% if itemRatio != null %}
         {% set imageRatio = 1 / (itemRatio) * 100 %}
         {% set hasRatio = true %}
-    {% elseif module.width is defined and module.width > 0
-        and module.height is defined and module.height > 0 %}
-        {% set imageRatio = 1 / (module.width / module.height) * 100 %}
-        {% set itemWidth = module.width %}
-        {% set itemHeight = module.height %}
+    {% elseif component.width is defined and component.width > 0
+        and component.height is defined and component.height > 0 %}
+        {% set imageRatio = 1 / (component.width / component.height) * 100 %}
+        {% set itemWidth = component.width %}
+        {% set itemHeight = component.height %}
         {% set itemRatio = itemWidth ~ "/" ~ itemHeight %}
         {% set hasRatio = true %}
     {% elseif itemWidth|default and itemHeight|default %}
@@ -53,34 +53,35 @@
     assetRatio: imageRatio ?? null
 } %}
 
-{#-- Macro for Carousel Slide --#}
-{% from "_components/_includes/carouselSlide.twig" import carouselSlide %}
-
 {#-- Light Background for Section --#}
 {% set lightBgClass = "" %}
-{% if module["isLight"] is defined and module.isLight %}
+{% if component["isLight"] is defined and component.isLight %}
     {% set lightBgClass = "has-background -gray has-top-inner-space has-bottom-inner-space" %}
 {% endif %}
 <div class="o-section {{ lightBgClass }} {{ asHero ? 'is-full-width' : ''}}">
     <div class="o-group has-inner-gutter  {{ asHero ? 'is-full-width' : ''}}">
         <div class="o-carousel-wrapper o-component">
             <multi-carousel v-bind:transition-delay="350"
-                            v-bind:delay="{{ module.delay ?? '5000' }}"
-                            v-bind:autoplay="{{ module.autoplay ? 'true' : 'false' }}"
+                            v-bind:delay="{{ component.delay ?? '5000' }}"
+                            v-bind:autoplay="{{ component.autoplay ? 'true' : 'false' }}"
                             v-bind:as-hero="{{ asHero ? 'true' : 'false' }}"
                             v-bind:start-at="0"
-                            v-bind:render-type="'{{ module.renderType ?? 'slideshow' }}'"
-                            v-bind:orientation="'{{ module.orientation ?? 'horizontal' }}'"
+                            v-bind:render-type="'{{ component.renderType ?? 'slideshow' }}'"
+                            v-bind:orientation="'{{ component.orientation ?? 'horizontal' }}'"
                             v-bind:is-infinite="{{ isInfinite ? 'true' : 'false' }}"
                             {% if imageRatio|default %}v-bind:slide-ratio="{{imageRatio ?? 0}}"{% endif %}
-                            {% if module['columns'] %}v-bind:columns="{{module.columns ?? '0'}}"{% endif %}
-                            {% if module['minWidth'] is defined %}v-bind:min-width="{{module.minWidth ?? '0'}}"{% endif %}
-                            {% if module['maxWidth'] is defined %}v-bind:max-width="{{module.maxWidth ?? '0'}}"{% endif %}
+                            {% if component['columns'] %}v-bind:columns="{{component.columns ?? '0'}}"{% endif %}
+                            {% if component['minWidth'] is defined %}v-bind:min-width="{{component.minWidth ?? '0'}}"{% endif %}
+                            {% if component['maxWidth'] is defined %}v-bind:max-width="{{component.maxWidth ?? '0'}}"{% endif %}
                             class="o-carousel o-component {% if hasGutter %}has-inner-gutter{% endif %} {% if showBulletsDesktop %}show-bullets{% endif %}" {% if asHero == true %}style="height: 100vh"{% endif %}>
                 <template slot="slides">
-                    {% if module.modules.all() is not empty %}
-                        {% for child in module.modules.all() %}
-                            {{ carouselSlide(child, parameters) }}
+                    {% if component.modules.all() is not empty %}
+                        {% for module in component.modules.all() %}
+                            <div class="slide">
+                                <div class="slide-inner">
+                                    {% include "_modules/" ~ module.type %}
+                                </div>
+                            </div>
                         {% endfor %}
                     {% endif %}
                 </template>
