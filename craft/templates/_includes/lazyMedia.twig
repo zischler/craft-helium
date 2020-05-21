@@ -1,6 +1,21 @@
+{#-------
+    Lazy Media is a component for images and videos
+    to load them lazy (on scroll) and have many options
+    like ratio changes, or if the image has to cover the area.
+    Transforms are also loaded for the image depending
+    on the screen size.
+    Transforms (with width):
+        (Normal)           (Retina Display)
+        "375px": "small",  ("750px": "small2x")
+        "768px": "medium", ("1536px": "medium2x")
+        "1024px": "big",   ("2048px": "big2x")
+        "all": "max"
+    -> They need to be added to the craft settings in "Asset Settings"
+--------#}
 <div class="o-lazy-media o-component">
     {% set asset = module.media.one() %}
 
+    {#-- placeholder thumbnail until image is loaded --#}
     {% set thumb = {
         mode: 'crop',
         width: 100,
@@ -9,8 +24,6 @@
         position: 'center-center'
     } %}
 
-    {#-- rendition --#}
-    {% set maxRenditionWidth = 2560 %}
     {#-- for ratio --#}
     {% set ratioW = 2560 %}
     {% set ratioH = 1920 %}
@@ -19,12 +32,9 @@
     {% set imageHeight = 1920 %}
     {% set objectfit = "contain" %}
     {% set hasRatio = false %}
-    {% set cssRatio = "" %}
     {% set assetRatio = "" %}
-    {% set isInstantly = false %}
+    {#-- parameters can be inherited by other components, like Carousel and add config to the images --#}
     {% set parameters = parameters ?? {} %}
-    {#-- hasCaption --#}
-    {% set hasCaption = false %}
     {% set asHero = asHero ?? false %}
 
     {% if asset != null %}
@@ -35,6 +45,9 @@
             {% if imageWidth != 0 and imageHeight != 0 %}
                 {% set assetRatioCss = "calc(" ~ imageHeight ~ " / " ~ imageWidth ~ " * 100%)" %}
             {% endif %}
+        {% elseif asset.kind == 'video' %}
+            {% set isVideo = true %}
+            {% set isAutoplay = (module.isAutoplay is defined and module.isAutoplay == true) %}
         {% endif %}
 
         {#-- Params: assetRatio width W + H inputs --#}
@@ -70,13 +83,6 @@
         {% set asHero = (parameters.asHero is defined and parameters.asHero == true) %}
         {% set isCover = asHero %}
 
-        {#-- maxRendition --#}
-        {% if parameters.maxRenditionWidth is defined %}
-            {% set maxRenditionWidth = def.parameters.maxRenditionWidth?number%}
-        {% elseif imageWidth != null and imageWidth != 2560 %}
-            {% set maxRenditionWidth = imageWidth %}
-        {% endif %}
-
         {#-- objectfit --#}
         {% if isCover != null and isCover == true %}
             {% set objectfit = "cover" %}
@@ -110,7 +116,7 @@
         {% set cssRatioObj = '{}' %}
 
         {% if asHero == true %}
-            {% if hasRatio != false %}
+            {% if hasRatio == true %}
                 {% set ratioObj = "{w:" + ratioW + ",h:" + ratioH + "}" %}
                 {% set cssRatioObj = "calc(" + ratioH + " / " + ratioW + " * 100%)" %}
                 {% set assetRatioCss = cssRatioObj %}
@@ -120,33 +126,36 @@
         {% from "_includes/mediaJSON.twig" import mediaJSON %}
 
         {#-- Asset Rendering --#}
-        <lazy-media :ratio="{{ ratioObj ?? '' }}"
-                    :css-ratio="'{{ cssRatioObj ?? '' }}'"
-                    :position-class="'{{ positionClass ?? '' }}'"
-                    :data-json="'{{ mediaJSON(asset) ?? '' }}'"
-                    :as-hero="{{ asHero ?? '' }}"
-                    :is-cover="{{ isCover ?? '' }}"
-                    :has-ratio="{{ hasRatio ?? '' }}"
-                    :has-caption="{{ hasCaption ?? '' }}"
-                    :max-rendition="{{ maxRenditionWidth ?? '' }}"
-                    :max-width="{{ maxWidth ?? '' }}"
-                    :max-height="{{ maxHeight ?? '' }}"
-                    :natural-height="{{ imageHeight ?? '' }}"
-                    :natural-width="{{ imageWidth ?? '' }}"
-            >
+        <lazy-media
+                :media-object="{{ mediaJSON(asset) }}"
+                :ratio="{{ ratioObj ?? '' }}"
+                :css-ratio="'{{ cssRatioObj ?? '' }}'"
+                :position-class="'{{ positionClass ?? '' }}'"
+                :as-hero="{{ asHero ? 'true' : 'false' ?? '' }}"
+                :is-cover="{{ isCover ? 'true' : 'false' ?? '' }}"
+                :has-ratio="{{ hasRatio ? 'true' : 'false' ?? '' }}"
+                :max-width="'{{ maxWidth ?? '' }}'"
+                :max-height="'{{ maxHeight ?? '' }}'"
+                :natural-height="{{ imageHeight ?? '' }}"
+                :natural-width="{{ imageWidth ?? '' }}"
+                {% if isVideo is defined %}
+                    :video-poster="'{{ module.poster.one().url ?? '' }}'"
+                    :is-autoplay="'{{ isAutoPlay ?? 'false' }}'"
+                {% endif %}
+        >
             <figure class="figure" {% if assetRatioCss is defined %}style="padding-top: {{ assetRatioCss ?? '' }}; font-size: 0;"{% endif %}>
                 {% if asset.kind == 'image' %}
-                    <picture class="container js-loaded {% if assetRatioCss != null%}has-fixed-ratio{% endif %}">
+                    <picture class="container js-loaded {% if assetRatioCss is defined %}has-fixed-ratio{% endif %}">
                         <img class="media {{ positionClass ? ''}} is-{{ objectfit ? ''}}" width="{{ imageWidth ? ''}}" height="{{ imageHeight ? ''}}"
-                             src="{% if assetRatioCss is defined %}data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII={% else %}{{ asset.getUrl(thumb) }}{% endif %}" style="display: block; max-width: {{ maxWidth ?? '' }} ; max-height: {{ maxHeight ?? '' }} ;{% if hasRatio == null %} opacity: 0;{% endif %}" {% if assetMap is defined %}{# TODO: Add alt macro stuff #}{% endif %}>
+                             src="{% if assetRatioCss is defined %}data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII={% else %}{{ asset.getUrl(thumb) }}{% endif %}" style="display: block; max-width: {{ maxWidth ?? '' }} ; max-height: {{ maxHeight ?? '' }} ;{% if hasRatio == null %} opacity: 0;{% endif %}" {% if asset.altText is defined %}alt="{{ asset.altText }}"{% endif %}>
                     </picture>
                 {% else %}
-                    <video controls class="container media js-loaded {% if assetRatioCss != null%}has-fixed-ratio{% endif %}" src="" preload="metadata" style="display: block; max-width:{{ maxWidth ?? '' }}; max-height:{{ maxHeight ?? '' }}; visibility: hidden;">
+                    <video controls class="container media js-loaded {% if assetRatioCss is defined %}has-fixed-ratio{% endif %}" src="" preload="metadata" style="display: block; max-width:{{ maxWidth ?? '' }}; max-height:{{ maxHeight ?? '' }}; visibility: hidden;">
                     </video>
                 {% endif %}
             </figure>
         </lazy-media>
-        {% if hasCaption == true%}
+        {% if asset.caption is defined %}
             <div class="caption">{{ asset.caption ?? ''}}</div>
         {% endif %}
     {% endif %}

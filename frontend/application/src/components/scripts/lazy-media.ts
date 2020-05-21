@@ -1,6 +1,6 @@
 import {Component, Prop, Vue, Watch} from "vue-property-decorator";
 import verticalState from "../../helpers/vertical-state";
-
+import {Media} from "../../models/Media";
 
 // Edge doesn't support object-fit for video...
 // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/13603873/#comment-14
@@ -9,9 +9,8 @@ const isOutdatedBrowser = IEdgeMatches !== null; // && parseInt(IEdgeMatches[2],
 
 @Component
 export default class LazyMedia extends Vue {
-
-    @Prop({ type: String, default: "" })
-    dataJson!: string;
+    @Prop({ type: Object, default: {}})
+    mediaObject: string;
 
     @Prop({ type: Boolean, default: false })
     asHero!: boolean; // calculate height from top position, at render
@@ -27,9 +26,6 @@ export default class LazyMedia extends Vue {
 
     @Prop({ type: String, default: "unset" })
     cssRatio!: string;
-
-    @Prop({ type: Boolean, default: false })
-    hasCaption!: boolean;
 
     @Prop({ type: Boolean, default: false })
     isAutoplay!: boolean;
@@ -50,13 +46,10 @@ export default class LazyMedia extends Vue {
     maxHeight!: string;
 
     @Prop({ type: String, default: "" })
-    altAttribute!: string;
+    videoPoster: string;
 
     @Prop({ type: String, default: "" })
     titleAttribute!: string;
-
-    @Prop({ type: Number, default: -1 })
-    maxRendition!: number;
 
     @Prop({ type: Number, default: -1 })
     naturalWidth!: number;
@@ -64,24 +57,20 @@ export default class LazyMedia extends Vue {
     @Prop({ type: Number, default: -1 })
     naturalHeight!: number;
 
+    media: Media = {} as Media;
     source = "";
     width: string | number = "100%";
     height: string | number = "100%";
-    alt: string = "";
     title: string = "";
     poster: string = "";
     preload: string = "none";
     isLoaded = false;
+    isImage = false;
     isDelayedAutoplay = false;
     hasControls = true;
     videoPlaying = false;
     onePageConcept = false;
     observer: IntersectionObserver | null = null;
-
-    video: any = null;
-    picture: any = null;
-    domSvg: string = "";
-    metadata: any = {};
 
     mounted() {
         this.init();
@@ -105,6 +94,8 @@ export default class LazyMedia extends Vue {
      * @returns {Promise<void>}
      */
     async init(): Promise<void> {
+        this.media = this.mediaObject as unknown as Media;
+        this.isImage = this.media.kind === "image";
 
         if (this.asHero && this.isCover) {
             pageLoaded().then(() => {
@@ -115,44 +106,20 @@ export default class LazyMedia extends Vue {
             });
         }
 
-        const data = this.dataJson ? JSON.parse(decodeURIComponent(this.dataJson)) : "";
-
-        if (!data) {
-            throw new Error("json is void");
-        }
-
-        this.video = data.video || null;
-        this.picture = data.picture || null;
-        this.metadata = data.metadata || null;
-
-        if( this.metadata ){
-            this.alt = this.metadata.description ? this.metadata.description : '';
-        }
-
-        if (this.maxRendition && this.maxRendition > 0 && this.picture) {
-            this.picture.sources = restrictSources(
-                this.picture.sources,
-                this.maxRendition,
-            );
-        }
-
-        let source = "";
-        if( this.video  || this.picture ) {
-            source = this.video ? this.video.link || "" : await getPictureSource(this.picture.sources);
-        }
+        const source = this.isImage ? await getPictureSource(this.media.link) : this.media.link;
 
         if (this.hasRatio && this.ratio && this.ratio.w && this.ratio.h && (this.$refs.figure as any)) {
             (this.$refs.figure as any).style.paddingTop =
                 `calc(1 / (${this.ratio.w} / ${this.ratio.h}) * 100%)`;
         }
 
-        if (this.video) {
+        if (this.media.kind === "video") {
 
             this.videoPlaying = false;
 
             this.isDelayedAutoplay = this.isAutoplay;
-            this.poster = this.video.poster ? this.video.poster : "";
-            this.preload = this.video.poster ? "none" : "metadata";
+            this.poster = this.videoPoster ? this.videoPoster : "";
+            this.preload = this.videoPoster ? "none" : "metadata";
 
             if(window.matchMedia('(max-device-width: 1024px)').matches && this.onePageConcept) {
                 this.isDelayedAutoplay = false;
@@ -368,57 +335,32 @@ export default class LazyMedia extends Vue {
     }
 }
 
-function getNumber(value: string | number): number | undefined {
-    const result = /^(\d)+/.exec(value.toString());
-
-    return result ? parseInt(result[0], 10) : undefined;
-}
-
-function restrictSources(data: any, max: number | string): any {
-    const maxRendition = getNumber(max);
-
-    if (maxRendition == undefined || maxRendition === 0) {
-        return data;
-    }
-
-    const newSources: { [propName: string]: string } = {};
-    const sourcesKeys = Object.keys(data);
-    const sortedKeys = sourcesKeys.sort(
-        (a: string, b: string): number => {
-            const aNum = a === "all" ? Infinity : getNumber(a) || 0;
-            const bNum = b === "all" ? Infinity : getNumber(b) || 0;
-
-            return aNum <= bNum ? -1 : 1;
-        },
-    );
-
-    for (const key of sortedKeys) {
-        const keyNumber = getNumber(key) || Infinity;
-
-        if (keyNumber <= maxRendition) {
-            newSources[key] = data[key];
-        } else {
-            // tslint:disable-next-line:no-string-literal
-            newSources["all"] = data[key];
-            break;
-        }
-    }
-
-    return newSources;
-}
-
-async function getPictureSource(data: any): Promise<string> {
+async function getPictureSource(link: string): Promise<string> {
 
     const pixelRatio = window.devicePixelRatio || 1;
     const sourcesInfos: Array<{ pxr: number; src: string }> = [];
     let srcset: string = "";
+    const sizes = {
+        "375px": "small",
+        "768px": "medium",
+        "1024px": "big",
+        "all": "max",
+    };
 
     // Get the srcset that match the media query
-    for (const key of Object.keys(data)) {
+    for (const key of Object.keys(sizes)) {
         const media = key === "all" ? key : `(max-width:${key})`;
 
         if (window.matchMedia(media).matches) {
-            srcset = data[key];
+            const sizeName = "/_" + sizes[key];
+            const beforeSize = link.substring(0, link.lastIndexOf("/"));
+            const afterSize = link.substring(link.lastIndexOf("/"), link.length);
+            srcset = beforeSize + sizeName + afterSize;
+            if(key !== "all") {
+                const sizeName2x = sizeName + "2x";
+                const newFileName2x = beforeSize + sizeName2x + afterSize + " 2x";
+                srcset += "," + newFileName2x;
+            }
             break;
         }
     }
