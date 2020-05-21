@@ -1,4 +1,4 @@
-dateModified: 1590055771
+dateModified: 1590070591
 email:
   fromEmail: tobias@zischler.ch
   fromName: 'Craft Helium'
@@ -24,9 +24,41 @@ fieldGroups:
     name: Meta
   a61e403f-3fd4-4ce8-9513-5dce27201307:
     name: Common
+  d1f3b0d0-bb53-4580-b535-3574ed35136f:
+    name: Carousel
   d89526f0-270b-4f39-8afb-812fe0300304:
     name: Cookies
 fields:
+  0d9869f7-7677-4cb3-b142-3660d90d576c:
+    contentColumnType: boolean
+    fieldGroup: d1f3b0d0-bb53-4580-b535-3574ed35136f
+    handle: hasGutter
+    instructions: ''
+    name: 'Has Gutter'
+    searchable: true
+    settings:
+      default: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
+  0de45245-1f4e-40bb-a6ee-5bd3bf466701:
+    contentColumnType: integer(10)
+    fieldGroup: d1f3b0d0-bb53-4580-b535-3574ed35136f
+    handle: columns
+    instructions: ''
+    name: Columns
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: '1'
+      max: null
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
   0fc90f09-a084-4709-9bf3-c40cee277e73:
     contentColumnType: text
     fieldGroup: d89526f0-270b-4f39-8afb-812fe0300304
@@ -63,6 +95,62 @@ fields:
     translationKeyFormat: null
     translationMethod: language
     type: craft\fields\PlainText
+  174dbb59-9ec4-41d8-bb34-4ff50a88c694:
+    contentColumnType: string
+    fieldGroup: d1f3b0d0-bb53-4580-b535-3574ed35136f
+    handle: itemRatio
+    instructions: ''
+    name: 'Item Ratio'
+    searchable: false
+    settings:
+      options:
+        -
+          __assoc__:
+            -
+              - label
+              - none
+            -
+              - value
+              - none
+            -
+              - default
+              - '1'
+        -
+          __assoc__:
+            -
+              - label
+              - 16/9
+            -
+              - value
+              - '1.7777777778'
+            -
+              - default
+              - ''
+        -
+          __assoc__:
+            -
+              - label
+              - 4/3
+            -
+              - value
+              - '1.3333333338'
+            -
+              - default
+              - ''
+        -
+          __assoc__:
+            -
+              - label
+              - 3/2
+            -
+              - value
+              - '1.5'
+            -
+              - default
+              - ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\RadioButtons
   263baeb5-ef57-4ef2-8cdd-4a399f687a87:
     contentColumnType: text
     fieldGroup: d89526f0-270b-4f39-8afb-812fe0300304
@@ -95,6 +183,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Date
+  31a78a9a-2ab7-414a-bc5e-bbf21b31092d:
+    contentColumnType: text
+    fieldGroup: d1f3b0d0-bb53-4580-b535-3574ed35136f
+    handle: delay
+    instructions: ''
+    name: Delay
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: 'Delay in ms (ex. "5000" => 5s)'
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   3fd6881a-8adc-40ad-990a-ae8344de3362:
     contentColumnType: text
     fieldGroup: 857c99a4-ed8a-47a1-afc0-a9cba2a989c3
@@ -131,6 +237,18 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
+  5a72de37-5a52-4c64-ac04-16d19fd02ef2:
+    contentColumnType: boolean
+    fieldGroup: d1f3b0d0-bb53-4580-b535-3574ed35136f
+    handle: asHero
+    instructions: ''
+    name: 'as Hero'
+    searchable: true
+    settings:
+      default: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
   5e08f4dc-6179-4976-bef0-c3101e21b0bb:
     contentColumnType: string
     fieldGroup: a61e403f-3fd4-4ce8-9513-5dce27201307
@@ -201,6 +319,24 @@ fields:
     translationKeyFormat: null
     translationMethod: language
     type: craft\fields\PlainText
+  78733c9a-3026-48a3-9a2e-c1f5d3ffd2d8:
+    contentColumnType: text
+    fieldGroup: d1f3b0d0-bb53-4580-b535-3574ed35136f
+    handle: width
+    instructions: ''
+    name: Width
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: 'Width in pixels of the carousel'
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   8f4137a5-b419-47fb-acbe-2e482f903c52:
     contentColumnType: text
     fieldGroup: d89526f0-270b-4f39-8afb-812fe0300304
@@ -219,6 +355,18 @@ fields:
     translationKeyFormat: null
     translationMethod: language
     type: craft\fields\PlainText
+  8f50e70e-171a-413d-9675-189a61c3b153:
+    contentColumnType: boolean
+    fieldGroup: d1f3b0d0-bb53-4580-b535-3574ed35136f
+    handle: autoplay
+    instructions: ''
+    name: Autoplay
+    searchable: true
+    settings:
+      default: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
   a3edec2b-84b4-4260-a307-4025cae5288e:
     contentColumnType: text
     fieldGroup: d89526f0-270b-4f39-8afb-812fe0300304
@@ -237,6 +385,40 @@ fields:
     translationKeyFormat: null
     translationMethod: language
     type: craft\fields\PlainText
+  a9b1fe21-6b14-4f6d-aeb5-76c232e8a7a3:
+    contentColumnType: string
+    fieldGroup: d1f3b0d0-bb53-4580-b535-3574ed35136f
+    handle: orientation
+    instructions: ''
+    name: Orientation
+    searchable: false
+    settings:
+      options:
+        -
+          __assoc__:
+            -
+              - label
+              - Horizontal
+            -
+              - value
+              - horizontal
+            -
+              - default
+              - '1'
+        -
+          __assoc__:
+            -
+              - label
+              - Vertical
+            -
+              - value
+              - vertical
+            -
+              - default
+              - ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\RadioButtons
   aff46670-72d3-4242-baa5-ce06a7dc3952:
     contentColumnType: string
     fieldGroup: 857c99a4-ed8a-47a1-afc0-a9cba2a989c3
@@ -266,6 +448,58 @@ fields:
     translationKeyFormat: null
     translationMethod: site
     type: craft\fields\Assets
+  bcd95e58-4270-455a-ac1a-a2f34bc6806c:
+    contentColumnType: text
+    fieldGroup: d1f3b0d0-bb53-4580-b535-3574ed35136f
+    handle: height
+    instructions: ''
+    name: Height
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: 'Height of the carousel in pixels'
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  c226c532-086f-410f-a5d2-32e0854771bd:
+    contentColumnType: string
+    fieldGroup: d1f3b0d0-bb53-4580-b535-3574ed35136f
+    handle: renderType
+    instructions: "Slideshow = Runs through the whole thing infinitely\r\nSlider = Slides back to beginning when at the end"
+    name: 'Render Type'
+    searchable: true
+    settings:
+      options:
+        -
+          __assoc__:
+            -
+              - label
+              - Slideshow
+            -
+              - value
+              - slideshow
+            -
+              - default
+              - '1'
+        -
+          __assoc__:
+            -
+              - label
+              - Slider
+            -
+              - value
+              - slider
+            -
+              - default
+              - ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\RadioButtons
   c440ca33-dad3-41ca-ae0c-320eb80b63a4:
     contentColumnType: string
     fieldGroup: 760e9bf5-77f7-4568-a525-817eabd4af53
@@ -328,6 +562,18 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Checkboxes
+  dc80296e-6637-45d8-9b63-1eb7ecb8b0e1:
+    contentColumnType: boolean
+    fieldGroup: d1f3b0d0-bb53-4580-b535-3574ed35136f
+    handle: isInfinite
+    instructions: ''
+    name: 'Is Infinite'
+    searchable: true
+    settings:
+      default: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
   e4a284e3-2244-492e-89de-7fcbb7e392d8:
     contentColumnType: string
     fieldGroup: a61e403f-3fd4-4ce8-9513-5dce27201307
@@ -399,6 +645,22 @@ fields:
     translationKeyFormat: null
     translationMethod: language
     type: craft\fields\PlainText
+  f223541d-0057-4b42-8f60-11587c05dbf9:
+    contentColumnType: string
+    fieldGroup: a61e403f-3fd4-4ce8-9513-5dce27201307
+    handle: components
+    instructions: ''
+    name: components
+    searchable: true
+    settings:
+      maxBlocks: ''
+      maxTopBlocks: ''
+      minBlocks: ''
+      propagationMethod: all
+      wasModified: false
+    translationKeyFormat: null
+    translationMethod: site
+    type: benf\neo\Field
   f428ded1-1ef6-4866-a79a-fe7cbd4a6eca:
     contentColumnType: string
     fieldGroup: d89526f0-270b-4f39-8afb-812fe0300304
@@ -1174,6 +1436,60 @@ matrixBlockTypes:
     handle: moduleAccordeon
     name: 'Module Accordeon'
     sortOrder: 5
+neoBlockTypes:
+  25f006f0-0d1f-4fbe-a429-a897bbb2547a:
+    childBlocks: ''
+    field: f223541d-0057-4b42-8f60-11587c05dbf9
+    fieldLayouts:
+      f017f72c-cdd5-43e0-a8cf-cc5a320ee389:
+        tabs:
+          -
+            fields:
+              5e08f4dc-6179-4976-bef0-c3101e21b0bb:
+                required: false
+                sortOrder: 1
+            name: Main
+            sortOrder: 1
+          -
+            fields:
+              0d9869f7-7677-4cb3-b142-3660d90d576c:
+                required: false
+                sortOrder: 5
+              174dbb59-9ec4-41d8-bb34-4ff50a88c694:
+                required: false
+                sortOrder: 8
+              31a78a9a-2ab7-414a-bc5e-bbf21b31092d:
+                required: false
+                sortOrder: 7
+              5a72de37-5a52-4c64-ac04-16d19fd02ef2:
+                required: false
+                sortOrder: 3
+              78733c9a-3026-48a3-9a2e-c1f5d3ffd2d8:
+                required: false
+                sortOrder: 9
+              8f50e70e-171a-413d-9675-189a61c3b153:
+                required: false
+                sortOrder: 4
+              a9b1fe21-6b14-4f6d-aeb5-76c232e8a7a3:
+                required: false
+                sortOrder: 2
+              bcd95e58-4270-455a-ac1a-a2f34bc6806c:
+                required: false
+                sortOrder: 10
+              c226c532-086f-410f-a5d2-32e0854771bd:
+                required: false
+                sortOrder: 1
+              dc80296e-6637-45d8-9b63-1eb7ecb8b0e1:
+                required: false
+                sortOrder: 6
+            name: Settings
+            sortOrder: 2
+    handle: carousel
+    maxBlocks: 0
+    maxChildBlocks: 0
+    name: Carousel
+    sortOrder: 1
+    topLevel: true
 plugins:
   contact-form:
     edition: standard
@@ -1191,6 +1507,10 @@ plugins:
     schemaVersion: 1.0.0
     settings:
       honeypotParam: winnie
+  neo:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.3.0
   redactor:
     edition: standard
     enabled: true
@@ -1364,6 +1684,9 @@ sections:
                   e4a284e3-2244-492e-89de-7fcbb7e392d8:
                     required: false
                     sortOrder: 2
+                  f223541d-0057-4b42-8f60-11587c05dbf9:
+                    required: false
+                    sortOrder: 4
                 name: Main
                 sortOrder: 1
               -

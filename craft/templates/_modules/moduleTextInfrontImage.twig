@@ -1,0 +1,16 @@
+{% set parameters = {
+    asHero: true,
+    isAutoplay: false,
+    isCover: true
+} %}
+
+{% if (module.title is defined and module.title != null) or (module.text is defined and module.text != null) %}
+    <div class="foreground is-vertical o-section has-no-top-space has-no-bottom-space">
+        {% include "_includes/text.twig" %}
+    </div>
+{% endif %}
+{% if module.media is defined and module.media.one() != null %}
+    <div class="background">
+        {% include "_includes/lazyMedia.twig" %}
+    </div>
+{% endif %}

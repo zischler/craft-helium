@@ -89,6 +89,10 @@ class ComposerStaticInitce51c8b85e3e15d3ec43ac2eb91aa549
             'craft\\' => 6,
             'cebe\\markdown\\' => 14,
         ),
+        'b' => 
+        array (
+            'benf\\neo\\' => 9,
+        ),
         'X' => 
         array (
             'XdgBaseDir\\' => 11,
@@ -337,6 +341,10 @@ class ComposerStaticInitce51c8b85e3e15d3ec43ac2eb91aa549
         'cebe\\markdown\\' => 
         array (
             0 => __DIR__ . '/..' . '/cebe/markdown',
+        ),
+        'benf\\neo\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spicyweb/craft-neo/src',
         ),
         'XdgBaseDir\\' => 
         array (
@@ -3028,6 +3036,45 @@ class ComposerStaticInitce51c8b85e3e15d3ec43ac2eb91aa549
         'Twitter\\Text\\Validator' => __DIR__ . '/..' . '/nojimage/twitter-text-php/lib/Twitter/Text/Validator.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'XdgBaseDir\\Xdg' => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
+        'benf\\neo\\Field' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/Field.php',
+        'benf\\neo\\Plugin' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/Plugin.php',
+        'benf\\neo\\TwigExtension' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/TwigExtension.php',
+        'benf\\neo\\Variable' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/Variable.php',
+        'benf\\neo\\assets\\FieldAsset' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/assets/FieldAsset.php',
+        'benf\\neo\\controllers\\Conversion' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/controllers/Conversion.php',
+        'benf\\neo\\controllers\\Input' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/controllers/Input.php',
+        'benf\\neo\\converters\\Field' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/converters/Field.php',
+        'benf\\neo\\converters\\models\\BlockType' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/converters/models/BlockType.php',
+        'benf\\neo\\converters\\models\\BlockTypeGroup' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/converters/models/BlockTypeGroup.php',
+        'benf\\neo\\elements\\Block' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/elements/Block.php',
+        'benf\\neo\\elements\\db\\BlockQuery' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/elements/db/BlockQuery.php',
+        'benf\\neo\\errors\\BlockTypeNotFoundException' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/errors/BlockTypeNotFoundException.php',
+        'benf\\neo\\events\\BlockTypeEvent' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/events/BlockTypeEvent.php',
+        'benf\\neo\\gql\\arguments\\elements\\Block' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/gql/arguments/elements/Block.php',
+        'benf\\neo\\gql\\interfaces\\elements\\Block' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/gql/interfaces/elements/Block.php',
+        'benf\\neo\\gql\\resolvers\\elements\\Block' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/gql/resolvers/elements/Block.php',
+        'benf\\neo\\gql\\types\\elements\\Block' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/gql/types/elements/Block.php',
+        'benf\\neo\\gql\\types\\generators\\BlockType' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/gql/types/generators/BlockType.php',
+        'benf\\neo\\helpers\\Memoize' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/helpers/Memoize.php',
+        'benf\\neo\\integrations\\fieldlabels\\FieldLabels' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/integrations/fieldlabels/FieldLabels.php',
+        'benf\\neo\\migrations\\Install' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/migrations/Install.php',
+        'benf\\neo\\migrations\\m181022_123749_craft3_upgrade' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/migrations/m181022_123749_craft3_upgrade.php',
+        'benf\\neo\\migrations\\m190127_023247_soft_delete_compatibility' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/migrations/m190127_023247_soft_delete_compatibility.php',
+        'benf\\neo\\migrations\\m200313_015120_structure_update' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/migrations/m200313_015120_structure_update.php',
+        'benf\\neo\\models\\BlockStructure' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/models/BlockStructure.php',
+        'benf\\neo\\models\\BlockType' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/models/BlockType.php',
+        'benf\\neo\\models\\BlockTypeGroup' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/models/BlockTypeGroup.php',
+        'benf\\neo\\models\\Settings' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/models/Settings.php',
+        'benf\\neo\\records\\Block' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/records/Block.php',
+        'benf\\neo\\records\\BlockStructure' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/records/BlockStructure.php',
+        'benf\\neo\\records\\BlockType' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/records/BlockType.php',
+        'benf\\neo\\records\\BlockTypeGroup' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/records/BlockTypeGroup.php',
+        'benf\\neo\\services\\BlockTypes' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/services/BlockTypes.php',
+        'benf\\neo\\services\\Blocks' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/services/Blocks.php',
+        'benf\\neo\\services\\Conversion' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/services/Conversion.php',
+        'benf\\neo\\services\\Fields' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/services/Fields.php',
+        'benf\\neo\\tasks\\DuplicateNeoStructureTask' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/tasks/DuplicateNeoStructureTask.php',
+        'benf\\neo\\validators\\FieldValidator' => __DIR__ . '/..' . '/spicyweb/craft-neo/src/validators/FieldValidator.php',
         'cebe\\markdown\\GithubMarkdown' => __DIR__ . '/..' . '/cebe/markdown/GithubMarkdown.php',
         'cebe\\markdown\\Markdown' => __DIR__ . '/..' . '/cebe/markdown/Markdown.php',
         'cebe\\markdown\\MarkdownExtra' => __DIR__ . '/..' . '/cebe/markdown/MarkdownExtra.php',

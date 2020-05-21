@@ -84,4 +84,23 @@ return array (
       'manifest' => 'nystudio107\\twigpack\\services\\Manifest',
     ),
   ),
+  'spicyweb/craft-neo' => 
+  array (
+    'class' => 'benf\\neo\\Plugin',
+    'basePath' => $vendorDir . '/spicyweb/craft-neo/src',
+    'handle' => 'neo',
+    'aliases' => 
+    array (
+      '@benf/neo' => $vendorDir . '/spicyweb/craft-neo/src',
+    ),
+    'name' => 'Neo',
+    'version' => '2.7.11',
+    'schemaVersion' => '2.3.0',
+    'description' => 'A Matrix-like field type that uses existing fields',
+    'developer' => 'Spicy Web',
+    'developerUrl' => 'https://github.com/spicywebau',
+    'documentationUrl' => 'https://github.com/spicywebau/craft-neo/wiki',
+    'changelogUrl' => 'https://github.com/spicywebau/craft-neo/blob/master/CHANGELOG.md',
+    'downloadUrl' => 'https://github.com/spicywebau/craft-neo/archive/master.zip',
+  ),
 );
