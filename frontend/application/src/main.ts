@@ -197,6 +197,7 @@ Vue.component("toggle-field", () => import('./components/toggle-field.vue'));
 Vue.component("snap-gallery", () => import('./components/snap-gallery.vue'));
 Vue.component("anim-component", () => import('./components/scripts/anim-component'));
 Vue.component("lazy-media", () => import('./components/lazy-media.vue'));
+Vue.component("multi-carousel", () => import('./components/carousel.vue'));
 
 // Vue.config.errorHandler = function(err) { console.log("errorHandler", err) }
 

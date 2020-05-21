@@ -1,0 +1,7 @@
+{% macro carouselSlide(module) %}
+    <div class="slide">
+        <div class="slide-inner">
+            {% include "_modules/" ~ module.type %}
+        </div>
+    </div>
+{% endmacro %}
