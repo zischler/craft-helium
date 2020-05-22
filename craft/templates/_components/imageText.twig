@@ -1,0 +1,16 @@
+{% set media = module.image %}
+
+{% set isreversed = "" %}
+{% if module.imagePosition == "right" %}
+    {% set isreversed = "is-reverse" %}
+{% endif %}
+<div class="o-component module-image-text">
+    <div class="o-flex is-multiline has-gutter {{ isreversed }}">
+        <div class="image-wrapper cell-1of2 cell-1of1-sm-down">
+            {% include "_includes/lazyMedia.twig" %}
+        </div>
+        <div class="cell-1of2 cell-1of1-sm-down">
+            {% include "_includes/text.twig" %}
+        </div>
+    </div>
+</div>

@@ -1,12 +1,8 @@
-import {Component, Vue, Prop} from "vue-property-decorator";
+import {Component, Vue} from "vue-property-decorator";
 import verticalState, { VerticalState } from "../../helpers/vertical-state";
 
 @Component
 export default class AnimComponent extends Vue {
-    @Prop({type: Boolean, default: false})
-    hasImage!: boolean;
-
-    loadedImage: boolean = !this.hasImage;
     animate: boolean = false;
     topProgress: number = 0;
 
@@ -19,11 +15,7 @@ export default class AnimComponent extends Vue {
         const VState: VerticalState = verticalState(0,0)(component);
         this.topProgress = VState.topProgress;
         if(this.topProgress > 0.1) {
-            if (this.loadedImage) {
-                this.animate = true;
-            } else {
-                setTimeout(() => this.checkViewPort(component), 100);
-            }
+            this.animate = true;
         } else {
             setTimeout(() => this.checkViewPort(component), 100);
         }

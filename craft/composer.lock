@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f7131d190456c81a3af9f89430098614",
+    "content-hash": "72898165dff00beb1726efbe556f06fe",
     "packages": [
         {
             "name": "cebe/markdown",
@@ -2644,6 +2644,58 @@
                 "phar"
             ],
             "time": "2020-02-14T15:25:33+00:00"
+        },
+        {
+            "name": "spicyweb/craft-neo",
+            "version": "2.7.11",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spicywebau/craft-neo/zipball/527d556ba7ae291cd5521e26c202ed58d08963c0",
+                "reference": "527d556ba7ae291cd5521e26c202ed58d08963c0",
+                "shasum": ""
+            },
+            "require": {
+                "craftcms/cms": "^3.4.0"
+            },
+            "type": "craft-plugin",
+            "extra": {
+                "handle": "neo",
+                "name": "Neo",
+                "schemaVersion": "2.3.0",
+                "class": "benf\\neo\\Plugin",
+                "changelogUrl": "https://github.com/spicywebau/craft-neo/blob/master/CHANGELOG.md",
+                "downloadUrl": "https://github.com/spicywebau/craft-neo/archive/master.zip"
+            },
+            "autoload": {
+                "psr-4": {
+                    "benf\\neo\\": "src/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Spicy Web",
+                    "homepage": "https://github.com/spicywebau"
+                }
+            ],
+            "description": "A Matrix-like field type that uses existing fields",
+            "keywords": [
+                "cms",
+                "craftcms",
+                "field",
+                "matrix",
+                "neo",
+                "plugin"
+            ],
+            "support": {
+                "issues": "https://github.com/spicywebau/craft-neo/issues",
+                "source": "https://github.com/spicywebau/craft-neo",
+                "docs": "https://github.com/spicywebau/craft-neo/wiki",
+                "rss": "https://github.com/spicywebau/craft-neo/commits/master.atom"
+            },
+            "time": "2020-05-20T00:32:29+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

@@ -1,13 +1,13 @@
 @import url(../../variables.css);
 
 .page-footer .o-flex-space {
-  align-items: baseline;
+    align-items: baseline;
 }
 
 .footer-nav {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
-.page-footer .languages  > * {
-  margin-right: 2rem;
+.page-footer .languages > * {
+    margin-right: 2rem;
 } 
