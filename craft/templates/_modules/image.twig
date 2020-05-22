@@ -1,5 +1,10 @@
+{% set animateMedia = component["animateMedia"]|default(false) %}
+{% if animateMedia %}
 <anim-component inline-template>
-    <div class="o-component module-image anim-component" :class="{loaded: loadedImage, 'animate': animate}">
+{% endif %}
+    <div class="o-component module-image {% if animateMedia %}anim-component{% endif %}" :class="{loaded: loadedImage, 'animate': animate}">
         {% include "_includes/lazyMedia.twig" %}
     </div>
+{% if animateMedia %}
 </anim-component>
+{% endif %}

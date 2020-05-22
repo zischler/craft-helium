@@ -2,7 +2,7 @@
     <div>
         <div ref="figure" class="figure" :style="{paddingTop:cssRatio}" :class="[{'as-hero': asHero, 'is-cover': isCover}]">
 
-        <video v-if="!this.isImage" ref="video" :autoplay="isDelayedAutoplay" :loop="isDelayedAutoplay" :muted="isDelayedAutoplay" :playsinline="isDelayedAutoplay" :controls="hasControls"
+            <video v-if="!this.isImage" ref="video" :autoplay="isDelayedAutoplay" :loop="isDelayedAutoplay" :muted="isDelayedAutoplay" :playsinline="isDelayedAutoplay" :controls="hasControls"
                    class="container media" :class="[{'js-loaded': source, 'has-fixed-ratio': hasRatio, 'is-cover': isCover}, positionClass ? positionClass : '']"
                    :src="source" :preload="preload"
                    :title="media.title || ''"

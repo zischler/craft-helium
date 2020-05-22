@@ -2,8 +2,11 @@
 {% if module.imagePosition == "right" %}
     {% set isreversed = "is-reverse" %}
 {% endif %}
+{% set animateMedia = component["animateMedia"]|default(false) %}
+{% if animateMedia %}
 <anim-component inline-template>
-    <div class="o-component module-image-text anim-component" :class="{loaded: loadedImage, 'animate': animate}">
+{% endif %}
+    <div class="o-component module-image-text {% if animateMedia %}anim-component{% endif %}" :class="{loaded: loadedImage, 'animate': animate}">
         <div class="o-flex is-multiline has-gutter {{ isreversed }}">
             <div class="image-wrapper cell-1of2 cell-1of1-sm-down">
                 {% include "_includes/lazyMedia.twig" %}
@@ -13,4 +16,6 @@
             </div>
         </div>
     </div>
+{% if animateMedia %}
 </anim-component>
+{% endif %}
