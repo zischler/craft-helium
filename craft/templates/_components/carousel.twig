@@ -77,11 +77,13 @@
                 <template slot="slides">
                     {% if component.modules.all() is not empty %}
                         {% for module in component.modules.all() %}
-                            <div class="slide">
-                                <div class="slide-inner">
-                                    {% include "_modules/" ~ module.type %}
+                            <carousel-slide inline-template>
+                                <div class="slide">
+                                    <div class="slide-inner">
+                                        {% include "_modules/" ~ module.type %}
+                                    </div>
                                 </div>
-                            </div>
+                            </carousel-slide>
                         {% endfor %}
                     {% endif %}
                 </template>

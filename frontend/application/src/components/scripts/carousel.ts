@@ -2,7 +2,7 @@ import {Vue, Component, Prop, Watch} from "vue-property-decorator";
 import verticalState from "../../helpers/vertical-state";
 import debounce from "lodash-es/debounce";
 import Swipe from "./swipe";
-import LazyMedia from "./lazy-media";
+import CarouselSlide from "./carousel-slide";
 
 
 /*
@@ -258,30 +258,13 @@ export default class Carousel extends Vue {
             let minSlideHeight = 1000;
             if (this.$children) {
                 for (const _item of this.$children) {
-                    const item = _item as LazyMedia;
-                    let calcHeight = 0;
-                    // Scrollheight if image
-                    const image = item.$el.querySelector("img");
-                    if (image) {
-                        calcHeight = image.scrollHeight;
-                    }
-                    // Scrollheight if video
-                    const video = item.$el.querySelector("video");
-                    if (video) {
-                        calcHeight = video.scrollHeight;
-                    }
-
-                    // height if is isCover image
-                    if (calcHeight === 0) {
-                        const height = item.naturalHeight;
-                        const width = item.naturalWidth;
-                        calcHeight = this.carouselWidth / (width / height);
-                    }
+                    const item = _item as CarouselSlide;
+                    const calcHeight = item.getHeight();
 
                     // Take biggest image (in height) that is not isCover. If all are isCover take the smallest one.
-                    if (!item.isCover && calcHeight > maxSlideHeight) {
+                    if (calcHeight > maxSlideHeight) {
                         maxSlideHeight = calcHeight;
-                    } else if (item.isCover && calcHeight < minSlideHeight) {
+                    } else if (calcHeight < minSlideHeight) {
                         minSlideHeight = calcHeight;
                     }
                 }

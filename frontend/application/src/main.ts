@@ -198,6 +198,7 @@ Vue.component("snap-gallery", () => import('./components/snap-gallery.vue'));
 Vue.component("anim-component", () => import('./components/scripts/anim-component'));
 Vue.component("lazy-media", () => import('./components/lazy-media.vue'));
 Vue.component("multi-carousel", () => import('./components/carousel.vue'));
+Vue.component("carousel-slide", () => import('./components/scripts/carousel-slide'));
 
 // Vue.config.errorHandler = function(err) { console.log("errorHandler", err) }
 

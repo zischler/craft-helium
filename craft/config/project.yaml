@@ -1,4 +1,4 @@
-dateModified: 1590081572
+dateModified: 1590139858
 email:
   fromEmail: tobias@zischler.ch
   fromName: 'Craft Helium'
@@ -669,7 +669,7 @@ fields:
       maxTopBlocks: ''
       minBlocks: ''
       propagationMethod: all
-      wasModified: false
+      wasModified: true
     translationKeyFormat: null
     translationMethod: site
     type: benf\neo\Field
@@ -1443,7 +1443,8 @@ neoBlockTypes:
     sortOrder: 1
     topLevel: true
   3ea6e56b-5c6e-4bf4-ae63-bb6823999677:
-    childBlocks: ''
+    childBlocks:
+      - animWrapper
     field: f223541d-0057-4b42-8f60-11587c05dbf9
     fieldLayouts:
       e86ef0bc-02ad-48a9-85c0-690e4bde9d07:
@@ -1468,6 +1469,25 @@ neoBlockTypes:
     name: 'Module Group'
     sortOrder: 2
     topLevel: true
+  d83b7570-33c4-4694-bf2d-479ab1ce2df3:
+    childBlocks: ''
+    field: f223541d-0057-4b42-8f60-11587c05dbf9
+    fieldLayouts:
+      -
+        tabs:
+          -
+            fields:
+              5e08f4dc-6179-4976-bef0-c3101e21b0bb:
+                required: false
+                sortOrder: 1
+            name: Main
+            sortOrder: 1
+    handle: animWrapper
+    maxBlocks: 0
+    maxChildBlocks: 0
+    name: 'Anim Wrapper'
+    sortOrder: 3
+    topLevel: false
 plugins:
   contact-form:
     edition: standard

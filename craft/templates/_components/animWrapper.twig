@@ -1,0 +1,10 @@
+{% set animModule = module %}
+<anim-component inline-template>
+    <div class="anim-component" :class="{'animate': animate}">
+        {% if animModule.modules.all() is not empty %}
+            {% for module in animModule.modules.all() %}
+                {% include "_modules/" ~ module.type %}
+            {% endfor %}
+        {% endif %}
+    </div>
+</anim-component>

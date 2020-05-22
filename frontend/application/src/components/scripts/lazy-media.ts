@@ -87,6 +87,11 @@ export default class LazyMedia extends Vue {
         this.update();
     }
 
+    @Watch("source")
+    onSourceChanged() {
+        this.isLoaded = this.source !== "";
+    }
+
     beforeDestroy() {
         this.source = "";
     }
@@ -191,8 +196,6 @@ export default class LazyMedia extends Vue {
                 this.observer.observe((this.$refs.figure as any));
             }
         }
-
-        this.isLoaded = true;
     }
 
     update() {
@@ -210,8 +213,6 @@ export default class LazyMedia extends Vue {
 
             this.videoLoaded(video);
         }
-
-        this.isLoaded = true;
     }
 
     videoPlay() {
@@ -329,7 +330,7 @@ export default class LazyMedia extends Vue {
             !this.isCover
         ) {
             image.removeAttribute('style');
-            image.setAttribute("data-object-fit","contain")
+            image.setAttribute("data-object-fit","contain");
             window.objectFitPolyfill(image);
         }
     }

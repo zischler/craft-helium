@@ -1,8 +1,10 @@
 .anim-component {
-    opacity: 0;
-    transform: translateY(30px);
+    & picture {
+        opacity: 0;
+        transform: translateY(30px);
+    }
 
-    &.loaded.animate {
+    &.animate picture.js-loaded{
         opacity: 1;
         transition: opacity 0.25s ease-in-out, transform 0.3s ease-in-out;
         transform: translateY(0);
