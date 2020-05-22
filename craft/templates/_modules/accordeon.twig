@@ -1,17 +1,15 @@
 <toggle-field>
-	<div class="article-body">
-		<div class="o-component module-accordeon">
-			{% if module.header != null %}
-				<div class="editorial-header">
-					<h2>{{ module.header }}</h2>
-					{% if module.subtitle != null %}
-						<div class="subtitle">{{ module.subtitle }}</div>
-					{% endif %}
-				</div>
-			{% endif %}
-			<div class="module-accordeon-text">
-				{{ module.text }}
+	<div class="o-component module-accordeon">
+		{% if module.header != null %}
+			<div class="editorial-header">
+				<h2>{{ module.header }}</h2>
+				{% if module.subtitle != null %}
+					<div class="subtitle">{{ module.subtitle }}</div>
+				{% endif %}
 			</div>
+		{% endif %}
+		<div class="module-accordeon-text">
+			{{ module.text }}
 		</div>
 	</div>
 </toggle-field>

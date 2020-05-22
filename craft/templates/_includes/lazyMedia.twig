@@ -5,7 +5,7 @@
     Transforms are also loaded for the image depending
     on the screen size. (more infos in /mediaJSON.twig)
 --------#}
-<div class="o-lazy-media o-component">
+<div class="o-lazy-media">
     {% set asset = module.media.one() %}
 
     {#-- placeholder thumbnail until image is loaded --#}
@@ -26,6 +26,7 @@
     {% set objectfit = "contain" %}
     {% set hasRatio = false %}
     {% set assetRatio = "" %}
+    {% set isAutoplay = false %}
     {#-- parameters can be inherited by other components, like Carousel and add config to the images --#}
     {% set parameters = parameters ?? {} %}
     {% set asHero = asHero ?? false %}
@@ -40,7 +41,7 @@
             {% endif %}
         {% elseif asset.kind == 'video' %}
             {% set isVideo = true %}
-            {% set isAutoplay = (module.isAutoplay is defined and module.isAutoplay == true) %}
+            {% set isAutoplay = module['isAutoplay'] is defined and module['isAutoplay'] == true %}
         {% endif %}
 
         {#-- Params: assetRatio width W + H inputs --#}
@@ -132,9 +133,9 @@
                 :max-height="'{{ maxHeight ?? '' }}'"
                 :natural-height="{{ imageHeight ?? '' }}"
                 :natural-width="{{ imageWidth ?? '' }}"
-                {% if isVideo is defined %}
+                {% if isVideo is defined and isVideo %}
                     :video-poster="'{{ module.poster.one().url ?? '' }}'"
-                    :is-autoplay="'{{ isAutoPlay ?? 'false' }}'"
+                    :is-autoplay="{{ isAutoplay ? 'true' : 'false' }}"
                 {% endif %}
         >
             <figure class="figure" {% if assetRatioCss is defined %}style="padding-top: {{ assetRatioCss ?? '' }}; font-size: 0;"{% endif %}>
