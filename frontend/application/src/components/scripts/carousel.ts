@@ -259,7 +259,7 @@ export default class Carousel extends Vue {
             if (this.$children) {
                 for (const _item of this.$children) {
                     const item = _item as CarouselSlide;
-                    const calcHeight = item.getHeight();
+                    const calcHeight = item.calcHeight();
 
                     // Take biggest image (in height) that is not isCover. If all are isCover take the smallest one.
                     if (calcHeight > maxSlideHeight) {

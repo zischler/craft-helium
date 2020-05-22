@@ -3,25 +3,17 @@ import LazyMedia from "./lazy-media";
 
 @Component
 export default class CarouselSlide extends Vue {
-    hasMedia: boolean = false;
+    calcHeight(): number {
+        const calcHeightImg = this.calcHeightOfQuery("img");
+        const calcHeightVideo = this.calcHeightOfQuery("video");
 
-    mounted() {
-        let hasMedia = false;
-        this.$children.find(child => {
-            hasMedia = child.$options.name === "LazyMedia";
-        });
-        this.hasMedia = hasMedia;
-    }
-
-    getHeight(): number {
-        if(this.hasMedia) {
-            const calcHeightImg = this.getHeightOfQuery("img");
-            const calcHeightVideo = this.getHeightOfQuery("video");
-
+        if(!calcHeightImg && !calcHeightVideo) {
+            return this.$el.scrollHeight;
+        } else {
             let calcHeight = calcHeightImg > calcHeightVideo ? calcHeightImg : calcHeightVideo;
             // height if is isCover image
             if (calcHeight === 0) {
-                this.$children.find(child => {
+                this.$children.forEach(child => {
                     if(child.$options.name === "LazyMedia") {
                         const lazyMedia = child as LazyMedia;
                         const height = lazyMedia.naturalHeight;
@@ -31,12 +23,10 @@ export default class CarouselSlide extends Vue {
                 });
             }
             return calcHeight;
-        } else {
-            return this.$el.scrollHeight;
         }
     }
 
-    getHeightOfQuery(query): number {
+    calcHeightOfQuery(query): number {
         const element = this.$el.querySelector(query);
         if (element) {
             return element.scrollHeight;

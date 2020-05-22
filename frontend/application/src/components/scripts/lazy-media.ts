@@ -77,8 +77,8 @@ export default class LazyMedia extends Vue {
         window.addEventListener("load",this.update);
     }
 
-    @Watch("dataJson")
-    onDataJson() {
+    @Watch("mediaObject")
+    onMediaObject() {
         this.init();
         if(this.observer){
             this.observer.disconnect();
