@@ -6,7 +6,7 @@
     on the screen size. (more infos in /mediaJSON.twig)
 --------#}
 <div class="o-lazy-media">
-    {% set asset = module.media.one() %}
+    {% set asset = media.one() %}
 
     {#-- placeholder thumbnail until image is loaded --#}
     {% set thumb = {

@@ -50,6 +50,13 @@
     margin: 0;
 }
 
+.o-carousel .slide .slide-inner,
+.o-carousel .slide .o-component,
+.o-carousel .slide .o-lazy-media {
+    height: 100%;
+    width: 100%;
+}
+
 .o-carousel[data-render="slideshow"] .slide {
     opacity: 0;
 }

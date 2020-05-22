@@ -1,7 +1,7 @@
 <div class="o-component module-text">
     {% include "_includes/text.twig" %}
 
-    {% set buttonLink = module.buttonLink.one() %}
+    {% set buttonLink = module.buttonLink.one() ?? null %}
     {% if buttonLink != null %}
         <a class="button-wrapper" href="{{ buttonLink.url }}">
             <button class="button">

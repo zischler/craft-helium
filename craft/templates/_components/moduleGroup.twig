@@ -5,12 +5,6 @@
 <div class="o-section {{ lightBgClass }}">
     <div class="o-group has-inner-gutter">
         <div class="article-body">
-            {% if component.modules.all() is not empty %}
-                {% for module in component.modules.all() %}
-                    {% include "_modules/" ~ module.type %}
-                {% endfor %}
-            {% endif %}
-
             {% if component.children.all() is not empty %}
                 {% for module in component.children.all() %}
                     {% include "_components/" ~ module.type %}

@@ -75,10 +75,10 @@
                             {% if component['maxWidth'] is defined %}v-bind:max-width="{{component.maxWidth ?? '0'}}"{% endif %}
                             class="o-carousel o-component {% if hasGutter %}has-inner-gutter{% endif %} {% if showBulletsDesktop %}show-bullets{% endif %}" {% if asHero == true %}style="height: 100vh"{% endif %}>
                 <template slot="slides">
-                    {% if component.modules.all() is not empty %}
-                        {% for module in component.modules.all() %}
+                    {% if component.children.all() is not empty %}
+                        {% for module in component.children.all() %}
                             <carousel-slide>
-                                {% include "_modules/" ~ module.type %}
+                                {% include "_components/" ~ module.type %}
                             </carousel-slide>
                         {% endfor %}
                     {% endif %}

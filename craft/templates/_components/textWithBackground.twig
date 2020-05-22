@@ -4,6 +4,8 @@
     isCover: true
 } %}
 
+{% set media = module.media %}
+
 {% if (module.title is defined and module.title != null) or (module.text is defined and module.text != null) %}
     <div class="foreground is-vertical o-section has-no-top-space has-no-bottom-space">
         {% include "_includes/text.twig" %}
