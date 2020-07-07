@@ -117,6 +117,9 @@ export default class Carousel extends Vue {
     isVisible = false;
     isPending = false;
 
+    // Wheel State
+    isWheelBlocked = false;
+
     // Content
     items?: HTMLCollection | any[];
     itemsContainer: Element | null = null;
@@ -229,15 +232,7 @@ export default class Carousel extends Vue {
         this.onLastSlide = false;
         this.isSingleSlide = false;
 
-        this.itemsContainerStyles.width =
-            this.orientation === Orientation.Horizontal
-                ? `${this.slidesQuantity * 100}%`
-                : "100%";
-
-        this.itemsContainerStyles.height =
-            this.orientation === Orientation.Vertical
-                ? `${this.slidesQuantity * 100}%`
-                : "100%";
+        this.updateSlidesHeight();
 
         this.setItemStyles();
 
@@ -249,6 +244,18 @@ export default class Carousel extends Vue {
             Math.floor((this.currentItem < 0 ? this.startAt : this.currentItem) / this.itemsPerSlide)
         );
         this.isReverse = false;
+    }
+
+    updateSlidesHeight() {
+        this.itemsContainerStyles.width =
+            this.orientation === Orientation.Horizontal
+                ? `${this.slidesQuantity * 100}%`
+                : "100%";
+
+        this.itemsContainerStyles.height =
+            this.orientation === Orientation.Vertical
+                ? `${this.slidesQuantity * 100}%`
+                : "100%";
     }
 
     calcCarouselViewportHeight() {
@@ -290,6 +297,7 @@ export default class Carousel extends Vue {
 
             this.carouselViewportHeight = contentW * this.slideRatio / this.carouselWidth;
         }
+        this.updateSlidesHeight();
     }
 
     gotoSlide(slide: number) {
@@ -450,7 +458,7 @@ export default class Carousel extends Vue {
                 } else if (i === this.currentItem + 1 || this.onLastSlide && i === 0) {
                     item.classList.remove("js-previous");
                     item.classList.add("js-next");
-                } else if (this.onFirstSlide && i === this.itemsQuantity - 1 || i === this.currentItem - 1 && this.isReverse) {
+                } else if (this.onFirstSlide && i === this.itemsQuantity - 1 || i === this.currentItem - 1) {
                     item.classList.remove("js-next");
                     item.classList.add("js-previous");
                 } else {
@@ -558,16 +566,24 @@ export default class Carousel extends Vue {
         // Vertical Swipe
         if (this.orientation === Orientation.Vertical) {
             event.preventDefault();
-            if (!this.isTransitioning) {
+            if (!this.isTransitioning && !this.isWheelBlocked) {
                 if (event.deltaY && event.deltaY > 3) {
+                    this.blockWheel();
                     // swipe up
                     this.nextSlide(event);
                 } else if (event.deltaY && event.deltaY < -3) {
+                    this.blockWheel();
                     // swipe down
                     this.previousSlide(event);
                 }
             }
         }
+    }
+
+    /* Block Wheel to not get multiple inputs from one slide */
+    blockWheel() {
+        this.isWheelBlocked = true;
+        setTimeout(() => this.isWheelBlocked = false, this.transitionDelay);
     }
 
     setItemStyles() {
