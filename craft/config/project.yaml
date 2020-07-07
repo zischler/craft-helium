@@ -1,17 +1,17 @@
-dateModified: 1590157682
+dateModified: 1594105939
 email:
-  fromEmail: tobias@zischler.ch
-  fromName: 'Craft Helium'
-  replyToEmail: null
+  fromEmail: $SYSTEM_EMAIL
+  fromName: $SENDER_NAME
+  replyToEmail: $REPLY_TO_EMAIL
   template: null
   transportSettings:
     encryptionMethod: tls
-    host: smtp.google.com
-    password: ''
-    port: '587'
+    host: $SMTP_HOST_NAME
+    password: $SMTP_PASSWORD
+    port: $SMTP_PORT
     timeout: '10'
-    useAuthentication: ''
-    username: ''
+    useAuthentication: '1'
+    username: $SMTP_USERNAME
   transportType: craft\mail\transportadapters\Smtp
 fieldGroups:
   5d6a3f45-ee3c-4beb-9864-25ffce06a44d:
@@ -2063,12 +2063,10 @@ plugins:
       prependSubject: 'New message from Craft Helium'
       successFlashMessage: 'Your message has been sent.'
       toEmail: info@scytheofseraph.com
-  contact-form-honeypot:
+  contact-form-extensions:
     edition: standard
     enabled: true
-    schemaVersion: 1.0.0
-    settings:
-      honeypotParam: winnie
+    schemaVersion: 1.0.1
   neo:
     edition: standard
     enabled: true

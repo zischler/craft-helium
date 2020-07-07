@@ -283,3 +283,8 @@ input[type="radio"] + label {
 label span {
     white-space: nowrap;
 }
+
+.recaptcha-explanation {
+    margin-top: 5px;
+    font-size: 12px;
+}

@@ -110,13 +110,28 @@
 								<input name="message[privacy]" id="privacy" required type="checkbox">
 								<label class="checkbox-label" for="privacy">
 									{{ contactPrivacyText }}
-									<a href="{{ entry.dataPolicyPage.one().url }}" target="_blank">{{ contactPrivacy }}</a>.
+									{% if entry.dataPolicyPage is defined and entry.dataPolicyPage.one() != null %}
+										<a href="{{ entry.dataPolicyPage.one().url }}" target="_blank">{{ contactPrivacy }}</a>.
+									{% endif %}
+									{% if craft.app.language == 'de' %}
+										<div class="recaptcha-explanation">
+											Diese Website ist durch reCAPTCHA geschützt (es gelten die Google
+											<a class="link" href="https://policies.google.com/privacy" target="_blank">Datenschutzbestimmungen</a> und
+											<a class="link" href="https://policies.google.com/terms" target="_blank">Nutzungsbedingungen</a>).
+										</div>
+									{% else %}
+										<div class="recaptcha-explanation">
+											This site is protected by reCAPTCHA and the Google
+											<a class="link" href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a> and
+											<a class="link" href="https://policies.google.com/terms" target="_blank">Terms of Service</a> apply.
+										</div>
+									{% endif %}
 								</label>
 								{{ message is defined and message ? errorList(message.getErrors('message[privacy]')) }}
 							</div>
 						</div>
 
-						<input id="winnie" name="winnie" type="text">
+						{{ craft.contactFormExtensions.recaptcha | raw }}
 
 						<div class="form-row">
 							<input type="submit" value="{{ contactSubmit }}">
