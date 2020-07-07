@@ -1,4 +1,4 @@
-dateModified: 1594109036
+dateModified: 1594117757
 email:
   fromEmail: $SYSTEM_EMAIL
   fromName: $SENDER_NAME
@@ -22,6 +22,8 @@ fieldGroups:
     name: Footer
   857c99a4-ed8a-47a1-afc0-a9cba2a989c3:
     name: Meta
+  8d3aee83-3990-4b7e-984c-a93af1a5d317:
+    name: 'Google Maps'
   a61e403f-3fd4-4ce8-9513-5dce27201307:
     name: Common
   d1f3b0d0-bb53-4580-b535-3574ed35136f:
@@ -31,6 +33,36 @@ fieldGroups:
   e98a010c-e670-4cfc-83e5-f06c3876d200:
     name: Media
 fields:
+  03dca4c0-2afa-461b-be54-c116b4183458:
+    contentColumnType: string
+    fieldGroup: 8d3aee83-3990-4b7e-984c-a93af1a5d317
+    handle: googleMapsMarker
+    instructions: ''
+    name: 'Google Maps Marker'
+    searchable: false
+    settings:
+      allowSelfRelations: ''
+      allowedKinds:
+        - image
+      defaultUploadLocationSource: 'volume:93c3ea35-a059-402f-a51b-1eaf3d12b299'
+      defaultUploadLocationSubpath: ''
+      limit: '1'
+      localizeRelations: ''
+      restrictFiles: '1'
+      selectionLabel: ''
+      showUnpermittedFiles: false
+      showUnpermittedVolumes: false
+      singleUploadLocationSource: 'volume:93c3ea35-a059-402f-a51b-1eaf3d12b299'
+      singleUploadLocationSubpath: ''
+      source: null
+      sources: '*'
+      targetSiteId: null
+      useSingleFolder: false
+      validateRelatedElements: ''
+      viewMode: list
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Assets
   0d9869f7-7677-4cb3-b142-3660d90d576c:
     contentColumnType: boolean
     fieldGroup: d1f3b0d0-bb53-4580-b535-3574ed35136f
@@ -200,6 +232,42 @@ fields:
     translationKeyFormat: null
     translationMethod: language
     type: craft\fields\PlainText
+  2ad2c7f5-b2bd-4612-a7e0-3eff1f2b7f3a:
+    contentColumnType: text
+    fieldGroup: 8d3aee83-3990-4b7e-984c-a93af1a5d317
+    handle: googleMapsLong
+    instructions: 'Longitute of the coordinate on Google Maps.'
+    name: 'Google Maps Long'
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  2cdb40be-2324-479c-9c81-d9969a8209ad:
+    contentColumnType: text
+    fieldGroup: 8d3aee83-3990-4b7e-984c-a93af1a5d317
+    handle: googleMapsCookieMessageLink
+    instructions: 'Link Text that will open Cookie Settings'
+    name: 'Cookie Message Link'
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: here
+    translationKeyFormat: null
+    translationMethod: language
+    type: craft\fields\PlainText
   316d47d3-1590-4fad-9c4c-4b0a59c0c903:
     contentColumnType: datetime
     fieldGroup: a61e403f-3fd4-4ce8-9513-5dce27201307
@@ -250,6 +318,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
+  3d10cb37-41d0-4665-88e3-6f6175c968be:
+    contentColumnType: text
+    fieldGroup: d89526f0-270b-4f39-8afb-812fe0300304
+    handle: cookieThirdPartyLabel
+    instructions: ''
+    name: 'Cookie Third Party Label'
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: 'Third Party Cookies'
+    translationKeyFormat: null
+    translationMethod: language
+    type: craft\fields\PlainText
   3fd6881a-8adc-40ad-990a-ae8344de3362:
     contentColumnType: text
     fieldGroup: 857c99a4-ed8a-47a1-afc0-a9cba2a989c3
@@ -267,6 +353,24 @@ fields:
       placeholder: ''
     translationKeyFormat: null
     translationMethod: language
+    type: craft\fields\PlainText
+  40704421-15a9-47a3-ae0b-9a493b494ba6:
+    contentColumnType: text
+    fieldGroup: 8d3aee83-3990-4b7e-984c-a93af1a5d317
+    handle: googleMapsApiKey
+    instructions: 'API-Key from the Google Maps Javascript API. Credit Card needs to be setup. More information: https://developers.google.com/maps/documentation/javascript/get-api-key'
+    name: 'Google Maps API Key'
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
     type: craft\fields\PlainText
   43891f46-b3d8-4adf-b1fd-1b6f440deb2f:
     contentColumnType: text
@@ -389,13 +493,36 @@ fields:
     name: 'Cookie Banner Explanations'
     searchable: true
     settings:
+      availableTransforms: '*'
+      availableVolumes: '*'
+      cleanupHtml: true
+      columnType: text
+      purifierConfig: ''
+      purifyHtml: '1'
+      redactorConfig: ''
+      removeEmptyTags: '1'
+      removeInlineStyles: '1'
+      removeNbsp: '1'
+      showUnpermittedFiles: false
+      showUnpermittedVolumes: false
+    translationKeyFormat: null
+    translationMethod: language
+    type: craft\redactor\Field
+  6f33d263-59a7-448b-ac97-0cae67e6407b:
+    contentColumnType: text
+    fieldGroup: d89526f0-270b-4f39-8afb-812fe0300304
+    handle: cookieAnalyticsLabel
+    instructions: ''
+    name: 'Cookie Analytics Label'
+    searchable: false
+    settings:
       byteLimit: null
       charLimit: null
       code: ''
-      columnType: text
+      columnType: null
       initialRows: '4'
       multiline: ''
-      placeholder: 'Do you like cookies then accept here!'
+      placeholder: 'Analytics Cookies'
     translationKeyFormat: null
     translationMethod: language
     type: craft\fields\PlainText
@@ -547,6 +674,42 @@ fields:
     translationKeyFormat: null
     translationMethod: site
     type: craft\fields\Assets
+  9c982c7d-2cf8-4aa7-97b3-942a58eae4c3:
+    contentColumnType: text
+    fieldGroup: 8d3aee83-3990-4b7e-984c-a93af1a5d317
+    handle: googleMapsCookieMessageStart
+    instructions: 'Cookie Message Start'
+    name: 'Cookie Message Start'
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: 'Click '
+    translationKeyFormat: null
+    translationMethod: language
+    type: craft\fields\PlainText
+  a113a8b3-4496-4568-a853-5c570df872f5:
+    contentColumnType: text
+    fieldGroup: 8d3aee83-3990-4b7e-984c-a93af1a5d317
+    handle: googleMapsCookieMessageEnd
+    instructions: 'End of Enable Cookies Message'
+    name: 'Cookie Message End'
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: 'to enable cookies.'
+    translationKeyFormat: null
+    translationMethod: language
+    type: craft\fields\PlainText
   a3edec2b-84b4-4260-a307-4025cae5288e:
     contentColumnType: text
     fieldGroup: d89526f0-270b-4f39-8afb-812fe0300304
@@ -562,6 +725,24 @@ fields:
       initialRows: '4'
       multiline: ''
       placeholder: ''
+    translationKeyFormat: null
+    translationMethod: language
+    type: craft\fields\PlainText
+  a3fcf381-6d0b-42f3-bb92-ca903cd44444:
+    contentColumnType: text
+    fieldGroup: d89526f0-270b-4f39-8afb-812fe0300304
+    handle: cookieFunctionalLabel
+    instructions: ''
+    name: 'Cookie Functional Label'
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: 'Functional Cookies'
     translationKeyFormat: null
     translationMethod: language
     type: craft\fields\PlainText
@@ -878,6 +1059,54 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\RadioButtons
+  e5648baf-4d97-4494-979b-83d20590f499:
+    contentColumnType: text
+    fieldGroup: 8d3aee83-3990-4b7e-984c-a93af1a5d317
+    handle: googleMapsCookieMsgSpecific
+    instructions: 'Detailed description why Google Maps needs Cookies.'
+    name: 'Cookie Message Specific'
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: 'Google Maps needs Cookies to work.'
+    translationKeyFormat: null
+    translationMethod: language
+    type: craft\fields\PlainText
+  e6759eb9-e696-415e-b3f3-a4937ef0b486:
+    contentColumnType: string
+    fieldGroup: 8d3aee83-3990-4b7e-984c-a93af1a5d317
+    handle: googleMapsStyles
+    instructions: 'Styles JSON File from Google'
+    name: 'Google Maps Styles'
+    searchable: false
+    settings:
+      allowSelfRelations: ''
+      allowedKinds:
+        - json
+      defaultUploadLocationSource: 'volume:93c3ea35-a059-402f-a51b-1eaf3d12b299'
+      defaultUploadLocationSubpath: ''
+      limit: '1'
+      localizeRelations: ''
+      restrictFiles: '1'
+      selectionLabel: ''
+      showUnpermittedFiles: false
+      showUnpermittedVolumes: false
+      singleUploadLocationSource: 'volume:93c3ea35-a059-402f-a51b-1eaf3d12b299'
+      singleUploadLocationSubpath: ''
+      source: null
+      sources: '*'
+      targetSiteId: null
+      useSingleFolder: false
+      validateRelatedElements: ''
+      viewMode: list
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Assets
   e8013185-75cb-4cc3-83df-74bc8f4c3a64:
     contentColumnType: text
     fieldGroup: 5d6a3f45-ee3c-4beb-9864-25ffce06a44d
@@ -970,6 +1199,24 @@ fields:
       initialRows: '4'
       multiline: ''
       placeholder: 'https://google.com'
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  f94cdc90-b38d-4b88-86fd-973ecb58cf62:
+    contentColumnType: text
+    fieldGroup: 8d3aee83-3990-4b7e-984c-a93af1a5d317
+    handle: googleMapsLat
+    instructions: 'Latitude of the coordinate in Google Maps.'
+    name: 'Google Maps Lat'
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
@@ -1379,7 +1626,7 @@ plugins:
       enableDatabase: '1'
       enableTemplateOverwrite: '1'
       notificationTemplate: _mail/notification.twig
-      recaptcha: '1'
+      recaptcha: ''
       recaptchaDataBadge: bottomright
       recaptchaDebug: ''
       recaptchaHideBadge: ''
@@ -1488,6 +1735,37 @@ sections:
                     sortOrder: 3
                 name: Meta
                 sortOrder: 2
+              -
+                fields:
+                  03dca4c0-2afa-461b-be54-c116b4183458:
+                    required: false
+                    sortOrder: 8
+                  2ad2c7f5-b2bd-4612-a7e0-3eff1f2b7f3a:
+                    required: false
+                    sortOrder: 2
+                  2cdb40be-2324-479c-9c81-d9969a8209ad:
+                    required: false
+                    sortOrder: 4
+                  40704421-15a9-47a3-ae0b-9a493b494ba6:
+                    required: false
+                    sortOrder: 7
+                  9c982c7d-2cf8-4aa7-97b3-942a58eae4c3:
+                    required: false
+                    sortOrder: 3
+                  a113a8b3-4496-4568-a853-5c570df872f5:
+                    required: false
+                    sortOrder: 5
+                  e5648baf-4d97-4494-979b-83d20590f499:
+                    required: false
+                    sortOrder: 6
+                  e6759eb9-e696-415e-b3f3-a4937ef0b486:
+                    required: false
+                    sortOrder: 9
+                  f94cdc90-b38d-4b88-86fd-973ecb58cf62:
+                    required: false
+                    sortOrder: 1
+                name: 'Google Maps'
+                sortOrder: 3
         handle: contact
         hasTitleField: true
         name: Contact

@@ -4,10 +4,6 @@ import BrowserStorage from "../../helpers/browser-storage";
 
 @Component
 export default class CookieBanner extends Vue {
-
-    @Prop({type: String, default: 'Cookies Compliance'})
-    bannerTitle!: string;
-
     @Prop({type: String, default: 'By continuing your visit to this site, you accept the use of cookies to make visits statistics.'})
     bannerText!: string;
 
@@ -152,7 +148,6 @@ export default class CookieBanner extends Vue {
 
     closeCookieBanner() {
         this.isShow = false;
-        this.isOpen = false;
         this.emitEvents();
     }
 

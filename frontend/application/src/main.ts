@@ -180,6 +180,7 @@ const vm = new Vue({
                                     function gtag(){dataLayer.push(arguments);}
                                     gtag('js', new Date());
                                     gtag('config', 'UA-********-1', {'anonymize_ip': true});`;
+                // Also change GA ID at the bottom of _layout.twig
                 document.body.appendChild(script);
             }
         }

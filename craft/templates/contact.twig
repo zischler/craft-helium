@@ -48,17 +48,23 @@
 
 {% block content %}
 	<div class="main has-main-vertical-padding has-no-top-space has-top-inner-space">
-		<section class="o-section">
+		<div class="o-section">
 			<div class="o-group">
             	<h1>{{ entry.title }}</h1>
 			</div>
-		</section>
+		</div>
+
+		<div class="o-section">
+			<div class="o-group is-large">
+				{% include "_includes/googleMap.twig" %}
+			</div>
+		</div>
 
 		{% for component in entry.components.level(1).all() %}
 			{% include "_components/" ~ component.type %}
 		{% endfor %}
 
-		<section class="o-section">
+		<div class="o-section">
 			<div class="o-group">
 				<h2>{{ contactTitle }}</h2>
 				<form method="post" action="" accept-charset="UTF-8">

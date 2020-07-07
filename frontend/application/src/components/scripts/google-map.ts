@@ -1,6 +1,7 @@
 import {Component, Prop, Vue, Watch} from "vue-property-decorator";
 import {loadJS} from '../../helpers/async-loader';
 import EventBus from "../../helpers/eventbus";
+import BrowserStorage from "../../helpers/browser-storage";
 
 @Component
 export default class GoogleMap extends Vue {
@@ -72,6 +73,9 @@ export default class GoogleMap extends Vue {
     }
 
     created() {
+        if(BrowserStorage.getBooleanCookie(this.cookieNameType)){
+            this.launch();
+        }
         EventBus.$on('cookieConsent', (payload) => {
             if(payload[this.cookieNameType] === true) {
                 this.launch();

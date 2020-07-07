@@ -99,10 +99,7 @@
             {% include "_includes/footer.twig" %}
 
             {% set cookies = craft.app.globals.getSetByHandle('cookies') %}
-            <cookie-banner 
-                {% if cookies.cookieBannerExplanations is defined and cookies.cookieBannerExplanations != null %}
-                :banner-text="'{{ cookies.cookieBannerExplanations }}'"
-                {% endif %}
+            <cookie-banner
                 {% if cookies.cookieBannerReadMorePage is defined and cookies.cookieBannerReadMorePage.one() != null %}
                 :read-more="'{{ cookies.cookieBannerReadMorePage.one().url }}'"
                 {% endif %}
@@ -115,6 +112,15 @@
                 {% if cookies.cookieAcceptLabel is defined and cookies.cookieAcceptLabel != null %}
                 :accept-label="'{{ cookies.cookieAcceptLabel }}'"
                 {% endif %}
+                {% if cookies.cookieAnalyticsLabel is defined and cookies.cookieAnalyticsLabel != null %}
+                :analytics-label="'{{ cookies.cookieAnalyticsLabel }}'"
+                {% endif %}
+                {% if cookies.cookieFunctionalLabel is defined and cookies.cookieFunctionalLabel != null %}
+                :functional-label="'{{ cookies.cookieFunctionalLabel }}'"
+                {% endif %}
+                {% if cookies.cookieThirdPartyLabel is defined and cookies.cookieThirdPartyLabel != null %}
+                :thirdparty-label="'{{ cookies.cookieThirdPartyLabel }}'"
+                {% endif %}
                 {% if cookies.cookieBackLabel is defined and cookies.cookieBackLabel != null %}
                 :back-label="'{{ cookies.cookieBackLabel }}'"
                 {% endif %}
@@ -124,7 +130,11 @@
                 {% if cookies.cookieSettingsExplanations is defined and cookies.cookieSettingsExplanations != null %}
                 :settings-explanations="'{{ cookies.cookieSettingsExplanations }}'"
                 {% endif %}
-                :analytics-cookies="true"></cookie-banner>
+                :analytics-cookies="true" :thirdparty-cookies="true">
+                {% if cookies.cookieBannerExplanations is defined and cookies.cookieBannerExplanations != null %}
+                    {{ cookies.cookieBannerExplanations }}
+                {% endif %}
+                </cookie-banner>
         </div>
 
         <!-- JS -->

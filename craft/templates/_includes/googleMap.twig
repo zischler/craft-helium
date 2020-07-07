@@ -1,0 +1,13 @@
+<div class="google-map-wrapper">
+    {% set marker = entry["googleMapsMarker"] is defined ? (entry.googleMapsMarker.one().url ?? '') : '' %}
+    {% set styles = entry["googleMapsStyles"] is defined ? (entry.googleMapsStyles.one().url ?? '') : '' %}
+    {% set apiKey = entry["googleMapsApiKey"] ?? null %}
+    <google-map :lat="{{ entry["googleMapsLat"] ?? 47.3655534 }}" :long="{{ entry["googleMapsLong"] ?? 8.5235988 }}"
+                {% if apiKey %}:api-key="'{{ apiKey }}'"{% endif %}
+                {% if marker %} :marker-icon="'{{ marker }}'" :marker-width="30" :marker-height="30"{% endif %}
+                {% if styles %} :styles-path="'{{ styles }}'"{% endif %}
+                {% if marker or styles %} :personalized="true"{% endif %}
+                :cookiemsg-specific="'{{ entry["googleMapsCookieMsgSpecific"] ?? 'Google Maps needs Cookies to work.' }}'" :cookiemsg-start="'{{ entry["googleMapsCookieMsgStart"] ?? 'Click ' }}'"
+                :cookiemsg-link="'{{ entry["googleMapsCookieMsgLink"] ?? 'here' }}'" :cookiemsg-end="'{{ entry["googleMapsCookieMsgEnd"] ?? 'to enable Third Party Cookies.' }}'">
+    </google-map>
+</div>
