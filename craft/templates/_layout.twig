@@ -98,30 +98,31 @@
 
             {% include "_includes/footer.twig" %}
 
+            {% set cookies = craft.app.globals.getSetByHandle('cookies') %}
             <cookie-banner 
-                {% if homepage.cookieBannerExplanations is defined and homepage.cookieBannerExplanations != null %}
-                :banner-text="'{{ homepage.cookieBannerExplanations }}'"
+                {% if cookies.cookieBannerExplanations is defined and cookies.cookieBannerExplanations != null %}
+                :banner-text="'{{ cookies.cookieBannerExplanations }}'"
                 {% endif %}
-                {% if homepage.cookieBannerReadMorePage is defined and homepage.cookieBannerReadMorePage.one() != null %}
-                :read-more="'{{ homepage.cookieBannerReadMorePage.one().url }}'"
+                {% if cookies.cookieBannerReadMorePage is defined and cookies.cookieBannerReadMorePage.one() != null %}
+                :read-more="'{{ cookies.cookieBannerReadMorePage.one().url }}'"
                 {% endif %}
-                {% if homepage.cookieBannerReadMoreLabel is defined and homepage.cookieBannerReadMoreLabel != null %}
-                :read-more-label="'{{ homepage.cookieBannerReadMoreLabel }}'"
+                {% if cookies.cookieBannerReadMoreLabel is defined and cookies.cookieBannerReadMoreLabel != null %}
+                :read-more-label="'{{ cookies.cookieBannerReadMoreLabel }}'"
                 {% endif %}
-                {% if homepage.cookieSettings is defined and homepage.cookieSettings != null %}
-                :settings-label="'{{ homepage.cookieSettings }}'"
+                {% if cookies.cookieSettings is defined and cookies.cookieSettings != null %}
+                :settings-label="'{{ cookies.cookieSettings }}'"
                 {% endif %}
-                {% if homepage.cookieAcceptLabel is defined and homepage.cookieAcceptLabel != null %}
-                :accept-label="'{{ homepage.cookieAcceptLabel }}'"
+                {% if cookies.cookieAcceptLabel is defined and cookies.cookieAcceptLabel != null %}
+                :accept-label="'{{ cookies.cookieAcceptLabel }}'"
                 {% endif %}
-                {% if homepage.cookieBackLabel is defined and homepage.cookieBackLabel != null %}
-                :back-label="'{{ homepage.cookieBackLabel }}'"
+                {% if cookies.cookieBackLabel is defined and cookies.cookieBackLabel != null %}
+                :back-label="'{{ cookies.cookieBackLabel }}'"
                 {% endif %}
-                {% if homepage.cookieConfirmLabel is defined and homepage.cookieConfirmLabel != null %}
-                :confirm-label="'{{ homepage.cookieConfirmLabel }}'"
+                {% if cookies.cookieConfirmLabel is defined and cookies.cookieConfirmLabel != null %}
+                :confirm-label="'{{ cookies.cookieConfirmLabel }}'"
                 {% endif %}
-                {% if homepage.cookieSettingsExplanations is defined and homepage.cookieSettingsExplanations != null %}
-                :settings-explanations="'{{ homepage.cookieSettingsExplanations }}'"
+                {% if cookies.cookieSettingsExplanations is defined and cookies.cookieSettingsExplanations != null %}
+                :settings-explanations="'{{ cookies.cookieSettingsExplanations }}'"
                 {% endif %}
                 :analytics-cookies="true"></cookie-banner>
         </div>

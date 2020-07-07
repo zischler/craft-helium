@@ -1,4 +1,4 @@
-dateModified: 1594107393
+dateModified: 1594108242
 email:
   fromEmail: $SYSTEM_EMAIL
   fromName: $SENDER_NAME
@@ -18,8 +18,6 @@ fieldGroups:
     name: Text
   70fb31f1-038f-469d-89a6-cf02323d4630:
     name: 'Social Video'
-  73ceac6a-dd0e-4f4e-a689-ecd8edab0edc:
-    name: Homepage
   760e9bf5-77f7-4568-a525-817eabd4af53:
     name: Footer
   857c99a4-ed8a-47a1-afc0-a9cba2a989c3:
@@ -992,13 +990,14 @@ fields:
     type: craft\fields\PlainText
   fb92e632-d628-44ad-a668-2b07a066a8ba:
     contentColumnType: text
-    fieldGroup: 73ceac6a-dd0e-4f4e-a689-ecd8edab0edc
+    fieldGroup: 760e9bf5-77f7-4568-a525-817eabd4af53
     handle: copyright
     instructions: ''
     name: Copyright
     searchable: true
     settings:
-      charLimit: ''
+      byteLimit: null
+      charLimit: null
       code: ''
       columnType: text
       initialRows: '4'
@@ -1007,6 +1006,57 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
+globalSets:
+  8224512d-2a7b-43e1-a080-cd920136693e:
+    fieldLayouts:
+      2fe74213-6aa3-42b4-8535-39b033ce7ad2:
+        tabs:
+          -
+            fields:
+              0fc90f09-a084-4709-9bf3-c40cee277e73:
+                required: false
+                sortOrder: 6
+              263baeb5-ef57-4ef2-8cdd-4a399f687a87:
+                required: false
+                sortOrder: 2
+              6ed38a35-b31d-492a-9070-f4a2bb379825:
+                required: false
+                sortOrder: 1
+              77f99a99-5e49-4915-a418-33b67b7d20d5:
+                required: false
+                sortOrder: 8
+              8f4137a5-b419-47fb-acbe-2e482f903c52:
+                required: false
+                sortOrder: 3
+              a3edec2b-84b4-4260-a307-4025cae5288e:
+                required: false
+                sortOrder: 7
+              cb06e3bc-1d11-4e78-8028-115347e61a61:
+                required: false
+                sortOrder: 4
+              f428ded1-1ef6-4866-a79a-fe7cbd4a6eca:
+                required: false
+                sortOrder: 5
+            name: Cookies
+            sortOrder: 1
+    handle: cookies
+    name: Cookies
+  d3376bb6-0c20-4964-96f6-5cc4c593cbf6:
+    fieldLayouts:
+      ed743151-bcf2-4d9b-ad3f-712764c0923b:
+        tabs:
+          -
+            fields:
+              c440ca33-dad3-41ca-ae0c-320eb80b63a4:
+                required: false
+                sortOrder: 1
+              fb92e632-d628-44ad-a668-2b07a066a8ba:
+                required: false
+                sortOrder: 2
+            name: Footer
+            sortOrder: 1
+    handle: footer
+    name: Footer
 imageTransforms:
   000b257f-20ae-4957-b45b-77fe2eb79d8c:
     format: null
@@ -2113,9 +2163,6 @@ sections:
                     sortOrder: 2
                   f223541d-0057-4b42-8f60-11587c05dbf9:
                     required: false
-                    sortOrder: 4
-                  fb92e632-d628-44ad-a668-2b07a066a8ba:
-                    required: false
                     sortOrder: 3
                 name: Main
                 sortOrder: 1
@@ -2132,41 +2179,6 @@ sections:
                     sortOrder: 3
                 name: Meta
                 sortOrder: 2
-              -
-                fields:
-                  0fc90f09-a084-4709-9bf3-c40cee277e73:
-                    required: false
-                    sortOrder: 8
-                  263baeb5-ef57-4ef2-8cdd-4a399f687a87:
-                    required: false
-                    sortOrder: 6
-                  6ed38a35-b31d-492a-9070-f4a2bb379825:
-                    required: false
-                    sortOrder: 3
-                  77f99a99-5e49-4915-a418-33b67b7d20d5:
-                    required: false
-                    sortOrder: 2
-                  8f4137a5-b419-47fb-acbe-2e482f903c52:
-                    required: false
-                    sortOrder: 7
-                  a3edec2b-84b4-4260-a307-4025cae5288e:
-                    required: false
-                    sortOrder: 1
-                  cb06e3bc-1d11-4e78-8028-115347e61a61:
-                    required: false
-                    sortOrder: 4
-                  f428ded1-1ef6-4866-a79a-fe7cbd4a6eca:
-                    required: false
-                    sortOrder: 5
-                name: Cookies
-                sortOrder: 3
-              -
-                fields:
-                  c440ca33-dad3-41ca-ae0c-320eb80b63a4:
-                    required: false
-                    sortOrder: 1
-                name: Footer
-                sortOrder: 4
         handle: homepage
         hasTitleField: false
         name: Home

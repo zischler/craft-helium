@@ -14,11 +14,12 @@
 				{% else %}
 					<span class="h2">More links</span>
 				{% endif %}
-				{% set footerLinks = homepage.footerLinks %}
+
+				{% set footerGlobal = craft.app.globals.getSetByHandle('footer') %}
 				<div class="footer-nav o-flex-inline is-left">
-					{% if footerLinks %}
+					{% if footerGlobal.footerLinks %}
 						<ul>
-							{% for footerLink in footerLinks.all() %}
+							{% for footerLink in footerGlobal.footerLinks.all() %}
 								<li>
 									<a class="link {% if entry.id == footerLink.id %}is-active{% endif %}" href="{{ footerLink.url }}">
 										<span>{{ footerLink.title }}</span>
@@ -30,7 +31,7 @@
 				</div>
 			</div>
 			<div class="cell-1of3 cell-1of1-sm-down">©
-				{{ homepage.copyright }}</div>
+				{{ footerGlobal.copyright }}</div>
 			<div class="cell-1of3 languages">
 				{% set currentSite = craft.app.sites.currentSite %}
 				{% for siteInGroup in currentSite.getGroup.getSites() %}
