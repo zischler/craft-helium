@@ -29,6 +29,7 @@
     {#-- parameters can be inherited by other components, like Carousel and add config to the images --#}
     {% set parameters = parameters ?? {} %}
     {% set asHero = asHero ?? false %}
+    {% set isInstantly = parameters.isInstantly ?? false %}
 
     {% if asset != null %}
 
@@ -127,6 +128,7 @@
                 :position-class="'{{ positionClass ?? '' }}'"
                 :as-hero="{{ asHero ? 'true' : 'false' ?? '' }}"
                 :is-cover="{{ isCover ? 'true' : 'false' ?? '' }}"
+                :is-instantly="{{ isInstantly ? 'true' : 'false' ?? '' }}"
                 :has-ratio="{{ hasRatio ? 'true' : 'false' ?? '' }}"
                 :max-width="'{{ maxWidth ?? '' }}'"
                 :max-height="'{{ maxHeight ?? '' }}'"

@@ -2,6 +2,7 @@ import {Vue, Component, Prop, Watch} from "vue-property-decorator";
 import verticalState from "../../helpers/vertical-state";
 import debounce from "lodash-es/debounce";
 import Swipe from "./swipe";
+import {isMobile, isTablet} from "../../helpers/page-state-checker";
 import CarouselSlide from "./carousel-slide";
 
 
@@ -73,7 +74,7 @@ export default class Carousel extends Vue {
     })
     minWidth!: number; // items minimum width
 
-    @Prop({ type: Number, default: 75 })
+    @Prop({ type: Number, default: -1 })
     slideRatio!: number;
 
     @Prop({ type: String, default: RenderType.Slideshow })
@@ -90,6 +91,14 @@ export default class Carousel extends Vue {
 
     @Prop({ type: Number, default: 350 })
     transitionDelay!: number; // duration of the transition animation
+
+    /* If Slide Width should be changed to allow multiple slides
+     * being visible at the same time.
+     * This is different than columns because here we want to
+     * have navigation to each slide.
+     */
+    @Prop({ type: Number, default: 100 })
+    slideWidthPercentageDesktop!: number;
 
     // Variables
     carouselWidth = 0; // used to control the resize event
@@ -118,6 +127,7 @@ export default class Carousel extends Vue {
     isPending = false;
 
     // Wheel State
+    blockWheelTimer;
     isWheelBlocked = false;
 
     // Content
@@ -136,6 +146,24 @@ export default class Carousel extends Vue {
     @Watch("swipe.hasCursorDown")
     onCursorChange() {
         this.hasCursorDown = !this.hasCursorDown;
+    }
+
+    get slideWidthPercentage() {
+        if(isMobile()) {
+            if(this.slideWidthPercentageDesktop < 100) {
+                return 80;
+            } else {
+                return 100;
+            }
+        } else if (isTablet()){
+            if(this.slideWidthPercentageDesktop < 100) {
+                return 40;
+            } else {
+                return 100;
+            }
+        } else {
+            return this.slideWidthPercentageDesktop;
+        }
     }
 
     created() {
@@ -249,17 +277,19 @@ export default class Carousel extends Vue {
     updateSlidesHeight() {
         this.itemsContainerStyles.width =
             this.orientation === Orientation.Horizontal
-                ? `${this.slidesQuantity * 100}%`
+                ? `${this.slidesQuantity * this.slideWidthPercentage}%`
                 : "100%";
 
         this.itemsContainerStyles.height =
             this.orientation === Orientation.Vertical
-                ? `${this.slidesQuantity * 100}%`
+                ? `${this.slidesQuantity * this.slideWidthPercentage}%`
                 : "100%";
     }
 
     calcCarouselViewportHeight() {
-        if (!this.asHero && this.renderType !== RenderType.Slider) {
+        if(!this.asHero && this.slideRatio !== -1) {
+            this.carouselViewportHeight = this.slideRatio;
+        } else if (!this.asHero) {
             // Calculate Slideshow Height
             let maxSlideHeight = 0;
             let minSlideHeight = 1000;
@@ -282,20 +312,6 @@ export default class Carousel extends Vue {
             } else {
                 this.carouselViewportHeight = minSlideHeight / this.carouselWidth * 100;
             }
-        } else if (!this.asHero && this.renderType === RenderType.Slider) {
-            // Calculate Slider Height
-            let slidesPadding = 0;
-
-            if (this.items && this.items.length > 0) {
-                const slideStyle = this.items[0].currentStyle || window.getComputedStyle(this.items[0]);
-                const slidePadding = parseFloat(slideStyle.paddingLeft) + parseFloat(slideStyle.paddingRight);
-
-                slidesPadding = slidePadding * this.itemsPerSlide;
-            }
-
-            const contentW = (this.carouselWidth - slidesPadding) / Math.min(this.itemsPerSlide, this.itemsQuantity);
-
-            this.carouselViewportHeight = contentW * this.slideRatio / this.carouselWidth;
         }
         this.updateSlidesHeight();
     }
@@ -634,6 +650,7 @@ export default class Carousel extends Vue {
 function setHeroHeight(element: HTMLElement) {
     const carouselTop = verticalState()(element).topPosition;
 
+    /* Get inner height of window because of iOS Safari bottom navigation */
     element.style.height = `${window.innerHeight - carouselTop}px`;
 }
 

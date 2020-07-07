@@ -1,13 +1,28 @@
 {#-- initializing variables --#}
-{% set hasGutter = component["hasGutter"] is defined and component.hasGutter == true %}
+{% set hasGutter = component["hasGutter"] ?? parameters.hasGutter ?? false %}
 {% set asHero = parameters.asHero | default(false) %}
 {% set isCover = parameters.isCover | default(false) %}
 {% set showBulletsDesktop = parameters.showBulletsDesktop ?? false %}
+{% set isSmallWidth = component["isSmallWidth"] ?? false %}
 {% set itemWidth = "" %}
 {% set itemHeight = "" %}
 {% set hasRatio = false %}
-{% set isInfinite = (component["isInfinite"] is defined and component.isInfinite) or
-(component["renderType"] is defined and component.renderType == "slideshow") %}
+{% set carouselClass = parameters.carouselClass | default("") %}
+{% set columns =  component["columns"] ?? parameters.columns ?? null %}
+{% set minWidth = component["minWidth"] ?? parameters.minWidth ?? null %}
+{% set maxWidth = component["maxWidth"] ?? parameters.maxWidth ?? null %}
+{% set autoplay = component["autoplay"] ?? parameters.autoplay ?? false %}
+{% set renderType = component["renderType"] ?? parameters.renderType ?? "slideshow" %}
+{% set slidesVisible = component["slidesVisible"] ?? parameters.slidesVisible ?? null %}
+{% set slideWidthPercentage = null %}
+{% if slidesVisible %}
+    {% set slideWidthPercentage = 100 / slidesVisible %}
+{% endif %}
+{% set isInfinite = (component["isInfinite"] is defined and component.isInfinite) or renderType == "slideshow" %}
+{% if not isInfinite %}
+    {# Check if isInfinite can get inherited #}
+    {% set isInfinite = parameters.isInfinite ?? false %}
+{% endif %}
 
 {% if component["asHero"] is defined and component.asHero == true %}
     {% set asHero = true %}
@@ -43,37 +58,40 @@
 {% endif %}
 
 {#-- initializing parameters, which get inherited by children --#}
-{% set parameters = {
-    asHero: false,
-    isAutoplay: false,
-    isCover: true,
-    showBulletsDesktop: false,
-    hasRatio: hasRatio,
-    itemRatio: itemRatio ?? null,
-    assetRatio: imageRatio ?? null
-} %}
+{% if parameters is not defined %}
+    {% set parameters = {
+        asHero: false,
+        isAutoplay: false,
+        isCover: true,
+        showBulletsDesktop: false,
+        hasRatio: hasRatio,
+        itemRatio: itemRatio ?? null,
+        assetRatio: imageRatio ?? null
+    } %}
+{% endif %}
 
 {#-- Light Background for Section --#}
 {% set lightBgClass = "" %}
 {% if component["isLight"] is defined and component.isLight %}
     {% set lightBgClass = "has-background -gray has-top-inner-space has-bottom-inner-space" %}
 {% endif %}
-<div class="o-section {{ lightBgClass }} {{ asHero ? 'is-full-width' : ''}}">
-    <div class="o-group has-inner-gutter  {{ asHero ? 'is-full-width' : ''}}">
+<div class="o-section {{ lightBgClass }} {{ asHero ? 'is-full-width' : 'is-large'}}">
+    <div class="o-group has-inner-gutter  {{ asHero ? 'is-full-width' : 'is-large'}}">
         <div class="o-carousel-wrapper o-component">
             <multi-carousel v-bind:transition-delay="350"
                             v-bind:delay="{{ component.delay ?? '5000' }}"
-                            v-bind:autoplay="{{ component.autoplay ? 'true' : 'false' }}"
+                            v-bind:autoplay="{{ autoplay ? 'true' : 'false' }}"
                             v-bind:as-hero="{{ asHero ? 'true' : 'false' }}"
                             v-bind:start-at="0"
-                            v-bind:render-type="'{{ component.renderType ?? 'slideshow' }}'"
+                            v-bind:render-type="'{{ renderType ?? 'slideshow' }}'"
                             v-bind:orientation="'{{ component.orientation ?? 'horizontal' }}'"
                             v-bind:is-infinite="{{ isInfinite ? 'true' : 'false' }}"
+                            {% if slideWidthPercentage %}v-bind:slide-width-percentage-desktop="{{ slideWidthPercentage }}"{% endif %}
                             {% if imageRatio|default %}v-bind:slide-ratio="{{imageRatio ?? 0}}"{% endif %}
-                            {% if component['columns'] %}v-bind:columns="{{component.columns ?? '0'}}"{% endif %}
-                            {% if component['minWidth'] is defined %}v-bind:min-width="{{component.minWidth ?? '0'}}"{% endif %}
-                            {% if component['maxWidth'] is defined %}v-bind:max-width="{{component.maxWidth ?? '0'}}"{% endif %}
-                            class="o-carousel o-component {% if hasGutter %}has-inner-gutter{% endif %} {% if showBulletsDesktop %}show-bullets{% endif %}" {% if asHero == true %}style="height: 100vh"{% endif %}>
+                            {% if columns %}v-bind:columns="{{ columns ?? '0'}}"{% endif %}
+                            {% if minWidth %}v-bind:min-width="{{ minWidth ?? '0'}}"{% endif %}
+                            {% if maxWidth %}v-bind:max-width="{{ maxWidth ?? '0'}}"{% endif %}
+                            class="o-carousel o-component {{ carouselClass }} {% if hasGutter %}has-inner-gutter{% endif %} {% if showBulletsDesktop %}show-bullets{% endif %}" {% if asHero == true %}style="height: 100vh"{% endif %}>
                 <template slot="slides">
                     {% if component.children.all() is not empty %}
                         {% for module in component.children.all() %}

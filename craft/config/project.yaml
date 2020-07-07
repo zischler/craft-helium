@@ -1,4 +1,4 @@
-dateModified: 1594117757
+dateModified: 1594122886
 email:
   fromEmail: $SYSTEM_EMAIL
   fromName: $SENDER_NAME
@@ -300,6 +300,18 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
+  32f312f9-f788-46e9-a60e-9dea685ededb:
+    contentColumnType: boolean
+    fieldGroup: d1f3b0d0-bb53-4580-b535-3574ed35136f
+    handle: isSmallWidth
+    instructions: ''
+    name: 'Is Small Width'
+    searchable: false
+    settings:
+      default: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
   3533ea37-217e-47ab-b49c-87512871c123:
     contentColumnType: text
     fieldGroup: 70fb31f1-038f-469d-89a6-cf02323d4630
@@ -971,6 +983,24 @@ fields:
     translationKeyFormat: null
     translationMethod: site
     type: craft\fields\Assets
+  db03ff3a-df92-453f-9e20-35bc8667d83d:
+    contentColumnType: smallint(1)
+    fieldGroup: d1f3b0d0-bb53-4580-b535-3574ed35136f
+    handle: slidesVisible
+    instructions: 'Slides Visible at the same time'
+    name: 'Slides Visible'
+    searchable: false
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: '6'
+      min: '0'
+      prefix: ''
+      size: null
+      suffix: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
   db3ee226-4e02-49ca-8497-ee2c6b17ad35:
     contentColumnType: boolean
     fieldGroup: e98a010c-e670-4cfc-83e5-f06c3876d200
@@ -1160,7 +1190,7 @@ fields:
       maxTopBlocks: ''
       minBlocks: ''
       propagationMethod: all
-      wasModified: false
+      wasModified: true
     translationKeyFormat: null
     translationMethod: site
     type: benf\neo\Field
@@ -1398,34 +1428,43 @@ neoBlockTypes:
             fields:
               0d9869f7-7677-4cb3-b142-3660d90d576c:
                 required: false
-                sortOrder: 5
-              174dbb59-9ec4-41d8-bb34-4ff50a88c694:
+                sortOrder: 6
+              0de45245-1f4e-40bb-a6ee-5bd3bf466701:
                 required: false
                 sortOrder: 8
+              174dbb59-9ec4-41d8-bb34-4ff50a88c694:
+                required: false
+                sortOrder: 11
               31a78a9a-2ab7-414a-bc5e-bbf21b31092d:
                 required: false
-                sortOrder: 7
+                sortOrder: 10
+              32f312f9-f788-46e9-a60e-9dea685ededb:
+                required: false
+                sortOrder: 4
               5a72de37-5a52-4c64-ac04-16d19fd02ef2:
                 required: false
                 sortOrder: 3
               78733c9a-3026-48a3-9a2e-c1f5d3ffd2d8:
                 required: false
-                sortOrder: 9
+                sortOrder: 12
               8f50e70e-171a-413d-9675-189a61c3b153:
                 required: false
-                sortOrder: 4
+                sortOrder: 5
               a9b1fe21-6b14-4f6d-aeb5-76c232e8a7a3:
                 required: false
                 sortOrder: 2
               bcd95e58-4270-455a-ac1a-a2f34bc6806c:
                 required: false
-                sortOrder: 10
+                sortOrder: 13
               c226c532-086f-410f-a5d2-32e0854771bd:
                 required: false
                 sortOrder: 1
+              db03ff3a-df92-453f-9e20-35bc8667d83d:
+                required: false
+                sortOrder: 9
               dc80296e-6637-45d8-9b63-1eb7ecb8b0e1:
                 required: false
-                sortOrder: 6
+                sortOrder: 7
             name: Settings
             sortOrder: 1
     handle: carousel
