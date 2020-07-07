@@ -1,0 +1,14 @@
+<div>
+    <h1>Contact-Form Craft Helium</h1><br>
+    <b>Email </b><br>
+    <span>{{ submission.fromEmail }}</span><br>
+    <br>
+    <b>Message </b><br>
+    <p>
+        {{ submission.message.body|raw }}
+    </p><br>
+
+    {% set privacy = submission.message.privacy ?? '' %}
+    <b>Privacy Policy </b><br>
+    <span>{{ privacy == "on" ? "Accepted": "Denied" }}</span>
+</div>

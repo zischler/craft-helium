@@ -1,4 +1,4 @@
-dateModified: 1594105939
+dateModified: 1594107393
 email:
   fromEmail: $SYSTEM_EMAIL
   fromName: $SENDER_NAME
@@ -2062,11 +2062,27 @@ plugins:
       prependSender: 'On behalf of'
       prependSubject: 'New message from Craft Helium'
       successFlashMessage: 'Your message has been sent.'
-      toEmail: info@scytheofseraph.com
+      toEmail: $SYSTEM_EMAIL
   contact-form-extensions:
     edition: standard
     enabled: true
     schemaVersion: 1.0.1
+    settings:
+      confirmationSubject: 'Craft Helium - Contact Form'
+      confirmationTemplate: _mail/confirmation.twig
+      enableConfirmationEmail: '1'
+      enableDatabase: '1'
+      enableTemplateOverwrite: '1'
+      notificationTemplate: _mail/notification.twig
+      recaptcha: '1'
+      recaptchaDataBadge: bottomright
+      recaptchaDebug: ''
+      recaptchaHideBadge: ''
+      recaptchaSecretKey: $RECAPTCHA_SECRET
+      recaptchaSiteKey: $RECAPTCHA_SITE
+      recaptchaThreshold: '0.5'
+      recaptchaTimeout: '5'
+      recaptchaVersion: '3'
   neo:
     edition: standard
     enabled: true
