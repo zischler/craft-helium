@@ -2060,7 +2060,7 @@ plugins:
     settings:
       allowAttachments: ''
       prependSender: 'On behalf of'
-      prependSubject: 'New message from SoS-Website'
+      prependSubject: 'New message from Craft Helium'
       successFlashMessage: 'Your message has been sent.'
       toEmail: info@scytheofseraph.com
   contact-form-honeypot:
