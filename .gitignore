@@ -2,11 +2,12 @@
 
 # --- Craft ---
 craft/web/webresources/build/
-craft/web/cpresources
-craft/web/assets
+craft/web/cpresources/
+craft/web/assets/
 craft/storage/backups/
 craft/storage/runtime/
 craft/storage/userphotos/
+craft/vendor/
 
 # --- Temp ---
 tmp/
