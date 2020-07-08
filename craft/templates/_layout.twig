@@ -58,9 +58,6 @@
         <meta property="og:locale" content="{{ craft.app.locale }}">
         <meta property="og:type" content="website">
 
-        <meta name="twitter:title" content="{% if entry.metaTitle is defined and entry.metaTitle is not empty  %}{{ entry.metaTitle }}{% elseif homepage.metaTitle %}{{ homepage.metaTitle }}{% else %}{{ siteName }}{% endif %}">
-        <meta name="twitter:description" content="{% if entry.metaDescription is defined and entry.metaDescription is not empty %}{{ entry.metaDescription }}{% elseif homepage.metaDescription %}{{ homepage.metaDescription }}{% endif %}">
-
         {% set pageMetaImage = null %}
         {% if entry.metaImage is defined and entry.metaImage.one() %}
             {% set pageMetaImage = entry.metaImage.one() %}
@@ -70,13 +67,11 @@
             {% set pageMetaImage = homepage.metaImage.one() %}
         {% endif %}
         {% if pageMetaImage is not null %}
-            <meta property="og:image" content="{{ pageMetaImage.url }}">
+            <meta property="og:image" content="{{ url()|slice(0,-1) }}{{ pageMetaImage.url }}">
             <meta property="og:image:width" content="{{ pageMetaImage.width }}">
             <meta property="og:image:height" content="{{ pageMetaImage.height }}">
             <meta name="og:image:alt" content="{{ pageMetaImage.altText }}">
             <meta name="twitter:card" content="summary_large_image">
-            <meta name="twitter:image" content="{{ pageMetaImage.url }}">
-            <meta name="twitter:image:alt" content="{{ pageMetaImage.altText }}">
         {% endif %}
     </head>
     <body>
