@@ -158,23 +158,14 @@
 
 .flyout {
     position: fixed;
-    top: -100vh;
-    bottom: auto;
+    bottom: unset;
+    top: 0;
     left: 0;
     width: 100%;
     max-width: 100vw;
     overflow-x: hidden;
     height: 100vh;
     background: var(--flyout-bgcolor);
-}
-
-.flyout.js-animate {
-    transition: top 0.15s linear 0.15s;
-}
-
-.flyout.js-open {
-    transition: top 0.15s linear 0s;
-    top: 0;
 }
 
 .flyout-scrollbox {
@@ -190,21 +181,7 @@
     left: 0;
     width: 100%;
     overflow-y: scroll;
-    opacity: 0;
-    transition: opacity 0.15s 0s, top 0.15s 0s, visibility 0s 0s;
     -webkit-overflow-scrolling: touch;
-    visibility: hidden;
-}
-
-.flyout.js-open > .flyout-scrollbox {
-    top: calc(
-            var(--header-margin-height) + var(--header-margin-height) +
-            var(--header-content-height)
-    );
-    opacity: 1;
-    transition: opacity 0.15s 0.25s ease-in-out, top 0.15s 0.25s,
-    visibility 0s 0.25s;
-    visibility: visible;
 }
 
 .flyout-inner {
@@ -226,7 +203,7 @@
 }
 
 @media (--for-burger-nav) {
-    .flyout.js-open .flyout-scrollbox {
+    .flyout .flyout-scrollbox {
         top: calc(
                 var(--header-margin-height-burger) + var(--header-margin-height-burger) +
                 var(--header-content-height)
@@ -264,7 +241,7 @@
 }
 
 @media (--for-sm-down) {
-    .flyout.js-open .flyout-scrollbox {
+    .flyout .flyout-scrollbox {
         top: calc(
                 var(--header-margin-height-burger-sm) +
                 var(--header-margin-height-burger-sm) + var(--header-content-height)
@@ -303,7 +280,7 @@
 
 @media (--for-sm-down) and (orientation: portrait) {
     @supports (-webkit-overflow-scrolling: touch) {
-        .flyout.js-open .flyout-scrollbox {
+        .flyout .flyout-scrollbox {
             height: calc(
                     100vh - var(--header-margin-height-burger-sm) -
                     var(--header-content-height) - var(--header-margin-height-burger-sm) -

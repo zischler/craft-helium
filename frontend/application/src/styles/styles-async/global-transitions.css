@@ -13,3 +13,19 @@
 .fade-leave {
     opacity: 1;
 }
+
+/* Swipe in Top */
+.swipe-in-top-enter,
+.swipe-in-top-leave-to {
+    transform: translateY(-100vh);
+}
+
+.swipe-in-top-enter-active,
+.swipe-in-top-leave-active {
+    transition: transform 0.3s ease-in-out;
+}
+
+.swipe-in-top-enter-to,
+.swipe-in-top-leave {
+    transform: translateY(0);
+}
