@@ -61,3 +61,14 @@
 - go to /frontend
 - "npm run watch" (for local frontend building)
 - "npm run build" (for deployment or production testing)
+
+## CI/CD
+### Necessary Steps
+- composer install (for example: composer install -d craft --no-interaction --prefer-dist)
+- npm ci
+- npm run build
+
+### Optional
+- Automatically load Project.yaml changes: ./craft project-config/sync
+- If you change some Craft Admin Central stuff with an own plugin: composer dump-autoload
+- Clear Craft Caches: ./craft clear-caches/all

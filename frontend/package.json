@@ -6,11 +6,10 @@
     "url": "https://https://github.com/zischler/craft-helium.git"
   },
   "license": "ISC",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "scripts": {
-    "watch": "DEBUG=1 webpack --mode=development --config ./application/webpack.config.js --hide-modules --watch",
-    "build": "webpack --mode=production --config ./application/webpack.config.js --hide-modules && LEGACY=1 webpack --mode=production --config ./application/webpack.config.js --hide-modules",
-    "build:web-workers": "tsc --project ./web-workers/tsconfig.json"
+    "watch": "cross-env process.env.DEBUG=1 webpack --mode=development --config ./application/webpack.config.js --hide-modules --watch",
+    "build": "webpack --mode=production --config ./application/webpack.config.js --hide-modules && cross-env process.env.LEGACY=1 webpack --mode=production --config ./application/webpack.config.js --hide-modules"
   },
   "dependencies": {
     "@kazupon/vue-i18n-loader": "^0.3.0",
@@ -21,6 +20,7 @@
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^6.0.1",
     "core-js": "^3.6.4",
+    "cross-env": "^7.0.2",
     "css-loader": "^3.4.2",
     "cssnano": "^4.1.10",
     "file-loader": "^6.0.0",

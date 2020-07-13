@@ -103,7 +103,7 @@
     --menu-toggle-height-reduced: 26px;
 
     /* Form */
-    --form-default-color: #ffffff;
+    --form-default-color: var(--dark);
     --form-border-color: var(--dark);
     --form-error-color: var(--dark-red);
     --form-active-color: var(--blue);

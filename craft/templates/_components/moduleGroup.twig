@@ -2,9 +2,18 @@
 {% if component.isLight %}
     {% set lightBgClass = "has-background -gray has-top-inner-space has-bottom-inner-space" %}
 {% endif %}
+{% set sectionAnchorTitle = entry.title == component.sectionTitle|striptags ? "" : entry.title ~ " – " %}
 <div class="o-section {{ lightBgClass }}">
     <div class="o-group has-inner-gutter">
         <div class="article-body">
+            {% if component.sectionTitle != null %}
+                <div class="section-anchor" id="{{ component.id }}">{{ sectionAnchorTitle ~ component.sectionTitle|striptags|replace({'&amp;':'&'}) }}</div>
+            {% endif %}
+            {% if component.sectionTitle != null and component.showTitle %}
+                <div class="editorial-header">
+                    <h2>{{ component.sectionTitle }}</h2>
+                </div>
+            {% endif %}
             {% if component.children.all() is not empty %}
                 {% for module in component.children.all() %}
                     {% include "_components/" ~ module.type %}

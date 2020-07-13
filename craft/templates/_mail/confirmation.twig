@@ -1,0 +1,27 @@
+{% set homepage = craft.entries.section('homepage').one() %}
+<div>
+    {% set confirmationText = homepage["confirmationMailText"] ?? null %}
+    {% if confirmationText %}
+        <div>{{ confirmationText }}</div>
+    {% endif %}
+    <br>
+
+    <p>{{ "now"|date("d.m.Y") }} - {{ "now"|date("H:i") }}<br>
+        {{ submission.fromEmail }}:</p>
+    <p>
+        {{ submission.message.body|raw }}
+    </p><br>
+
+    {% set privacy = submission.message.privacy ?? '' %}
+    {% if submission.message.language == "de" %}
+        <p>
+            Datenschutzbestimmungen:<br>
+            {{ privacy == "on" ? "Angenommen": "Abgelehnt" }}
+        </p>
+    {% else %}
+        <p>
+            Privacy Policy:<br>
+            {{ privacy == "on" ? "Accepted": "Rejected" }}
+        </p>
+    {% endif %}
+</div>

@@ -168,8 +168,9 @@ module.exports = {
                     {
                         loader: "file-loader",
 
-                        // We add a `*.cache.*` so that Magnolia cache it for a very long time
-                        options: { name: "[name].[hash].cache.[ext]" },
+                        options: {
+                            esModule: false,
+                        },
                     },
                 ],
             },

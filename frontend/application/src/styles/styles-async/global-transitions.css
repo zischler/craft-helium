@@ -1,0 +1,49 @@
+/* Fade */
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.3s;
+}
+
+.fade-enter-to,
+.fade-leave {
+    opacity: 1;
+}
+
+/* Swipe in Top */
+.swipe-in-top-enter,
+.swipe-in-top-leave-to {
+    transform: translateY(-100vh);
+}
+
+.swipe-in-top-enter-active,
+.swipe-in-top-leave-active {
+    transition: transform 0.3s ease-in-out;
+}
+
+.swipe-in-top-enter-to,
+.swipe-in-top-leave {
+    transform: translateY(0);
+}
+
+/* Fade in with Transform */
+.fade-in-top-enter,
+.fade-in-top-leave-to {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.fade-in-top-enter-active,
+.fade-in-top-leave-active {
+    transition: opacity 0.25s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.fade-in-top-enter-to,
+.fade-in-top-leave {
+    opacity: 1;
+    transform: translateY(0);
+}

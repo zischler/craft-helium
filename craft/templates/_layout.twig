@@ -58,9 +58,6 @@
         <meta property="og:locale" content="{{ craft.app.locale }}">
         <meta property="og:type" content="website">
 
-        <meta name="twitter:title" content="{% if entry.metaTitle is defined and entry.metaTitle is not empty  %}{{ entry.metaTitle }}{% elseif homepage.metaTitle %}{{ homepage.metaTitle }}{% else %}{{ siteName }}{% endif %}">
-        <meta name="twitter:description" content="{% if entry.metaDescription is defined and entry.metaDescription is not empty %}{{ entry.metaDescription }}{% elseif homepage.metaDescription %}{{ homepage.metaDescription }}{% endif %}">
-
         {% set pageMetaImage = null %}
         {% if entry.metaImage is defined and entry.metaImage.one() %}
             {% set pageMetaImage = entry.metaImage.one() %}
@@ -70,13 +67,11 @@
             {% set pageMetaImage = homepage.metaImage.one() %}
         {% endif %}
         {% if pageMetaImage is not null %}
-            <meta property="og:image" content="{{ pageMetaImage.url }}">
+            <meta property="og:image" content="{{ url()|slice(0,-1) }}{{ pageMetaImage.url }}">
             <meta property="og:image:width" content="{{ pageMetaImage.width }}">
             <meta property="og:image:height" content="{{ pageMetaImage.height }}">
             <meta name="og:image:alt" content="{{ pageMetaImage.altText }}">
             <meta name="twitter:card" content="summary_large_image">
-            <meta name="twitter:image" content="{{ pageMetaImage.url }}">
-            <meta name="twitter:image:alt" content="{{ pageMetaImage.altText }}">
         {% endif %}
     </head>
     <body>
@@ -98,32 +93,43 @@
 
             {% include "_includes/footer.twig" %}
 
-            <cookie-banner 
-                {% if homepage.cookieBannerExplanations is defined and homepage.cookieBannerExplanations != null %}
-                :banner-text="'{{ homepage.cookieBannerExplanations }}'"
+            {% set cookies = craft.app.globals.getSetByHandle('cookies') %}
+            <cookie-banner
+                {% if cookies.cookieBannerReadMorePage is defined and cookies.cookieBannerReadMorePage.one() != null %}
+                :read-more="'{{ cookies.cookieBannerReadMorePage.one().url }}'"
                 {% endif %}
-                {% if homepage.cookieBannerReadMorePage is defined and homepage.cookieBannerReadMorePage.one() != null %}
-                :read-more="'{{ homepage.cookieBannerReadMorePage.one().url }}'"
+                {% if cookies.cookieBannerReadMoreLabel is defined and cookies.cookieBannerReadMoreLabel != null %}
+                :read-more-label="'{{ cookies.cookieBannerReadMoreLabel }}'"
                 {% endif %}
-                {% if homepage.cookieBannerReadMoreLabel is defined and homepage.cookieBannerReadMoreLabel != null %}
-                :read-more-label="'{{ homepage.cookieBannerReadMoreLabel }}'"
+                {% if cookies.cookieSettings is defined and cookies.cookieSettings != null %}
+                :settings-label="'{{ cookies.cookieSettings }}'"
                 {% endif %}
-                {% if homepage.cookieSettings is defined and homepage.cookieSettings != null %}
-                :settings-label="'{{ homepage.cookieSettings }}'"
+                {% if cookies.cookieAcceptLabel is defined and cookies.cookieAcceptLabel != null %}
+                :accept-label="'{{ cookies.cookieAcceptLabel }}'"
                 {% endif %}
-                {% if homepage.cookieAcceptLabel is defined and homepage.cookieAcceptLabel != null %}
-                :accept-label="'{{ homepage.cookieAcceptLabel }}'"
+                {% if cookies.cookieAnalyticsLabel is defined and cookies.cookieAnalyticsLabel != null %}
+                :analytics-label="'{{ cookies.cookieAnalyticsLabel }}'"
                 {% endif %}
-                {% if homepage.cookieBackLabel is defined and homepage.cookieBackLabel != null %}
-                :back-label="'{{ homepage.cookieBackLabel }}'"
+                {% if cookies.cookieFunctionalLabel is defined and cookies.cookieFunctionalLabel != null %}
+                :functional-label="'{{ cookies.cookieFunctionalLabel }}'"
                 {% endif %}
-                {% if homepage.cookieConfirmLabel is defined and homepage.cookieConfirmLabel != null %}
-                :confirm-label="'{{ homepage.cookieConfirmLabel }}'"
+                {% if cookies.cookieThirdPartyLabel is defined and cookies.cookieThirdPartyLabel != null %}
+                :thirdparty-label="'{{ cookies.cookieThirdPartyLabel }}'"
                 {% endif %}
-                {% if homepage.cookieSettingsExplanations is defined and homepage.cookieSettingsExplanations != null %}
-                :settings-explanations="'{{ homepage.cookieSettingsExplanations }}'"
+                {% if cookies.cookieBackLabel is defined and cookies.cookieBackLabel != null %}
+                :back-label="'{{ cookies.cookieBackLabel }}'"
                 {% endif %}
-                :analytics-cookies="true"></cookie-banner>
+                {% if cookies.cookieConfirmLabel is defined and cookies.cookieConfirmLabel != null %}
+                :confirm-label="'{{ cookies.cookieConfirmLabel }}'"
+                {% endif %}
+                {% if cookies.cookieSettingsExplanations is defined and cookies.cookieSettingsExplanations != null %}
+                :settings-explanations="'{{ cookies.cookieSettingsExplanations }}'"
+                {% endif %}
+                :analytics-cookies="true" :thirdparty-cookies="true">
+                {% if cookies.cookieBannerExplanations is defined and cookies.cookieBannerExplanations != null %}
+                    {{ cookies.cookieBannerExplanations }}
+                {% endif %}
+                </cookie-banner>
         </div>
 
         <!-- JS -->

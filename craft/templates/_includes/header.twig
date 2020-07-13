@@ -27,18 +27,20 @@
             </div>
         </div>
     </div>
-    <div class="flyout -bg-pattern-ant" :class="{'js-animate': isMenuAnimate, 'js-open': isMenuOpen}">
-        <div id="flyoutScrollbox" class="flyout-scrollbox">
-            <div class="flyout-inner o-section">
-                <div class="o-group-first-child" style="display: inline;"></div>
-                <div class="o-group">
-                    <div class="menu-panel -relative">
-                        <nav id="mainNavigation" class="o-navigation" v-bind:class="{'js-open': isMenuOpen}">
-                            {% include "_includes/navigation.twig" %}
-                        </nav>
+    <transition name="swipe-in-top">
+        <div class="flyout -bg-pattern-ant" v-show="isMenuOpen">
+            <div id="flyoutScrollbox" class="flyout-scrollbox">
+                <div class="flyout-inner o-section">
+                    <div class="o-group-first-child" style="display: inline;"></div>
+                    <div class="o-group">
+                        <div class="menu-panel -relative">
+                            <nav id="mainNavigation" class="o-navigation" v-bind:class="{'js-open': isMenuOpen}">
+                                {% include "_includes/navigation.twig" %}
+                            </nav>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </transition>
 </header>

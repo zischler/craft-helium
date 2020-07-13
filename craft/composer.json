@@ -1,11 +1,12 @@
 {
   "require": {
-    "craftcms/cms": "3.4.20",
+    "craftcms/cms": "3.4.27",
     "craftcms/contact-form": "2.2.7",
-    "craftcms/contact-form-honeypot": "1.0.2",
     "craftcms/redactor": "2.6.1",
-    "nystudio107/craft-twigpack": "1.2.1",
-    "spicyweb/craft-neo": "2.7.11",
+    "hybridinteractive/craft-contact-form-extensions": "1.2.1",
+    "miranj/craft-obfuscator": "1.0.4",
+    "nystudio107/craft-twigpack": "1.2.3",
+    "spicyweb/craft-neo": "2.7.21",
     "vlucas/phpdotenv": "^2.4.0"
   },
   "autoload": {
