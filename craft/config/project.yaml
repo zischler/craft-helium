@@ -1,4 +1,4 @@
-dateModified: 1594122886
+dateModified: 1594636308
 email:
   fromEmail: $SYSTEM_EMAIL
   fromName: $SENDER_NAME
@@ -616,6 +616,24 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Lightswitch
+  919e8f48-730b-4dc2-af72-a3bfe42d65f1:
+    contentColumnType: text
+    fieldGroup: a61e403f-3fd4-4ce8-9513-5dce27201307
+    handle: sectionTitle
+    instructions: ''
+    name: 'Section Title'
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: language
+    type: craft\fields\PlainText
   93e318a1-9a35-4cf7-b3e8-582916bfb7ef:
     contentColumnType: text
     fieldGroup: 5d6a3f45-ee3c-4beb-9864-25ffce06a44d
@@ -792,6 +810,18 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\RadioButtons
+  ae6b394b-ff73-4594-97d8-4ad851b9a4e9:
+    contentColumnType: boolean
+    fieldGroup: a61e403f-3fd4-4ce8-9513-5dce27201307
+    handle: showTitle
+    instructions: ''
+    name: 'Show Title'
+    searchable: false
+    settings:
+      default: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
   aff46670-72d3-4242-baa5-ce06a7dc3952:
     contentColumnType: string
     fieldGroup: 857c99a4-ed8a-47a1-afc0-a9cba2a989c3
@@ -1190,7 +1220,7 @@ fields:
       maxTopBlocks: ''
       minBlocks: ''
       propagationMethod: all
-      wasModified: true
+      wasModified: false
     translationKeyFormat: null
     translationMethod: site
     type: benf\neo\Field
@@ -1489,7 +1519,13 @@ neoBlockTypes:
             fields:
               804ec350-22ec-4d47-8cb1-647b34d1b4f9:
                 required: false
+                sortOrder: 3
+              919e8f48-730b-4dc2-af72-a3bfe42d65f1:
+                required: false
                 sortOrder: 1
+              ae6b394b-ff73-4594-97d8-4ad851b9a4e9:
+                required: false
+                sortOrder: 2
             name: Settings
             sortOrder: 1
     handle: moduleGroup

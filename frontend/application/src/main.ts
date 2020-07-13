@@ -3,12 +3,15 @@ import Vue from "vue";
 import VueScroll from "./plugins/vue-scroll";
 import scrollIntoViewport from "./helpers/scroll-into-viewport";
 import EventBus from "./helpers/eventbus";
-import {disableBodyScroll, enableBodyScroll} from 'body-scroll-lock';
+import {Section} from "./models/Section";
+import store from './store';
 
 Vue.use(VueScroll);
 
 // Create the vue instance
 const vm = new Vue({
+    delimiters: ['${', '}'],
+    store,
     data() {
         return {
             isMounted: false,
@@ -16,24 +19,35 @@ const vm = new Vue({
             isMenuAnimate: false,
             isHomeNavigationHover: false,
             flyoutScrollbox: document.querySelector("#flyoutScrollbox") as HTMLElement,
-            sectionAnchors: document.querySelectorAll(".section-anchor") as NodeListOf<HTMLElement>,
-            activeSectionId: "",
             doc: document.documentElement as HTMLElement,
             navScrollPosition: 0,
-            blockScrollWatch: false,
             blockNavWatch: false,
-            isNavHidden: false,
-            sectionAnchorsPositions: [] as any
+            isNavHidden: false
         }
+    },
+    computed: {
+        sectionAnchors(): Section[] {
+            return this.$store.getters.sectionAnchors;
+        },
+        activeSectionName(): string {
+            return this.$store.getters.activeSectionName;
+        },
+        blockScrollWatch(): string {
+            return this.$store.getters.blockScrollWatch;
+        },
+        activeSectionId(): string {
+            return this.$store.getters.activeSectionId;
+        },
     },
     mounted() {
         this.flyoutScrollbox = document.querySelector("#flyoutScrollbox") as HTMLElement;
-        this.sectionAnchors = document.querySelectorAll(".section-anchor") as NodeListOf<HTMLElement>;
+
+        this.$store.commit("updateSectionAnchors");
 
         // Helpful for css revealing effects
         setTimeout(() => {
             this.isMounted = true;
-            this.setSectionPositions();
+            this.$store.commit("updateSectionPositions");
 
             if(((window as any).location as any).hash) {
                 this.scrollTo(((window as any).location as any).hash);
@@ -41,7 +55,7 @@ const vm = new Vue({
         },100);
 
         (window as any).addEventListener("resize",()=> {
-            this.setSectionPositions();
+            this.$store.commit("updateSectionPositions");
         });
 
         window.requestAnimationFrame(this.handleOnScroll);
@@ -60,105 +74,47 @@ const vm = new Vue({
             }
         });
 
-        EventBus.$on('home-navigation-hover', this.handleHomeNavigationHover);
-
         EventBus.$on('cookieConsent', this.addGoogleAnalyticsScript);
     },
     methods: {
         toggleFlyout() {
-            this.isMenuAnimate = true;
-            setTimeout(()=> {
-                this.isMenuAnimate = false;
-            }, 750);
-
             this.isMenuOpen = !this.isMenuOpen;
 
             if (this.isMenuOpen) {
-                this.isMenuAnimate = true;
-                this.doc.classList.add("is-not-scrollable");
-                disableBodyScroll(this.flyoutScrollbox);
+                this.$store.dispatch("blockScroll", this.flyoutScrollbox);
             } else {
-                this.doc.classList.remove("is-not-scrollable");
-                enableBodyScroll(this.flyoutScrollbox);
+                this.$store.dispatch("clearScroll", this.flyoutScrollbox);
             }
         },
         scrollToTop() {
             scrollIntoViewport()(document.body);
         },
         scrollTo(elemSelector: string) {
-            this.blockScrollWatch = true;
+            this.$store.dispatch("setBlockScrollWatch", true);
+            const section = document.querySelector(elemSelector) as HTMLElement;
             clearTimeout((window as any).timout);
-            (window as any).timout = setTimeout(()=> { this.blockScrollWatch = false; } ,3000);
+            (window as any).timout = setTimeout(()=> {
+                this.$store.dispatch("setBlockScrollWatch", false);
+                this.$store.dispatch("updateCurrentSection", section.getBoundingClientRect().top);
+            } ,3000);
 
             if(this.isMenuOpen) {
                 this.toggleFlyout();
             }
 
-            this.activeSectionId = elemSelector.substring(1);
-            const section = document.querySelector(elemSelector) as HTMLElement;
             scrollIntoViewport()(section);
         },
+        /* Handler after each scroll ending */
         scrollClose() {
             if(!this.blockScrollWatch && !this.isMenuOpen) {
                 const currentScrollPosition = window.scrollY || window.pageYOffset;
-                if (this.navScrollPosition <= 1) {
-                    this.isNavHidden = false;
-                } else if (this.navScrollPosition < currentScrollPosition) {
-                    this.isNavHidden = true;
-                } else if (this.navScrollPosition > currentScrollPosition) {
-                    this.isNavHidden = false;
-                }
 
                 if(currentScrollPosition !== this.navScrollPosition) {
-                    let activeSection = "";
-                    this.sectionAnchorsPositions.forEach((section)=> {
-                        if(this.navScrollPosition > section[1]){
-                            activeSection = section[0];
-                        }
-                    });
-                    this.activeSectionId = activeSection;
+                    this.$store.dispatch("updateCurrentSection", this.navScrollPosition);
                 }
-                let activeSection = "";
-                this.sectionAnchorsPositions.forEach((section)=> {
-                    if(this.navScrollPosition > section[1]){
-                        activeSection = section[0];
-                    }
-                });
-                this.activeSectionId = activeSection;
 
                 this.navScrollPosition = window.scrollY || window.pageYOffset;
             }
-        },
-        isWindow( obj ) {
-            return obj !== null && obj === obj.window;
-        },
-        getWindow( elem ) {
-            return this.isWindow( elem ) ? elem : elem.nodeType === 9 && elem.defaultView;
-        },
-        offset( elem ) {
-            let docElem;
-            let win;
-            let box = { top: 0, left: 0 };
-            const doc = elem && elem.ownerDocument;
-
-            docElem = doc.documentElement;
-
-            if ( typeof elem.getBoundingClientRect !== typeof undefined ) {
-                box = elem.getBoundingClientRect();
-            }
-            win = this.getWindow( doc );
-            return {
-                top: box.top + win.pageYOffset - docElem.clientTop,
-                left: box.left + win.pageXOffset - docElem.clientLeft
-            };
-        },
-        setSectionPositions() {
-            this.sectionAnchorsPositions = [] as any;
-            this.sectionAnchors.forEach((section)=> {
-                const sectionId:String = (section as HTMLElement).id || "0";
-                const sectionPos:Number = sectionId === "contact" ? Math.floor(this.offset(section).top) - (section as HTMLElement).offsetHeight - (window.innerHeight / 2) : Math.floor(this.offset(section).top) - (section as HTMLElement).offsetHeight;
-                this.sectionAnchorsPositions.push([sectionId, sectionPos]);
-            });
         },
         handleOnScroll() {
             this.scrollClose();
@@ -166,12 +122,6 @@ const vm = new Vue({
         },
         openCookieBanner() {
             EventBus.$emit('openCookieBanner',{});
-        },
-        checkScrollNavClasses(id){
-            return {'js-active': id === this.activeSectionId };
-        },
-        handleHomeNavigationHover(child) {
-            this.isHomeNavigationHover = child !== -1;
         },
         addGoogleAnalyticsScript(payload) {
             if(payload.hasAnalyticsConsent) {
@@ -185,6 +135,9 @@ const vm = new Vue({
             }
         }
     },
+    beforeDestroy() {
+        this.isMounted = false;
+    }
 });
 
 /* --- Components --- */
