@@ -1,8 +1,6 @@
 <template>
-    <div class="slide">
-        <div class="slide-inner">
-            <slot></slot>
-        </div>
+    <div class="slide-inner">
+        <slot></slot>
     </div>
 </template>
 

@@ -72,13 +72,10 @@
     width: calc(100% + var(--layout-gutter-width));
 }
 
-.o-carousel.has-inner-gutter .slide {
-    padding-left: calc(var(--layout-gutter-width) / 2);
-    padding-right: calc(var(--layout-gutter-width) / 2);
-}
-
 .o-carousel.has-inner-gutter .slide-inner {
     position: relative;
+    padding-left: calc(var(--layout-gutter-width) / 2);
+    padding-right: calc(var(--layout-gutter-width) / 2);
 }
 
 /*

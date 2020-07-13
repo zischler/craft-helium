@@ -95,9 +95,11 @@
                 <template slot="slides">
                     {% if component.children.all() is not empty %}
                         {% for module in component.children.all() %}
-                            <carousel-slide>
-                                {% include "_components/" ~ module.type %}
-                            </carousel-slide>
+                            <div class="slide">
+                                <carousel-slide>
+                                    {% include "_components/" ~ module.type %}
+                                </carousel-slide>
+                            </div>
                         {% endfor %}
                     {% endif %}
                 </template>
