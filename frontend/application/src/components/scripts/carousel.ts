@@ -187,7 +187,6 @@ export default class Carousel extends Vue {
             if (this.isLoaded) {
                 this.isLoaded = false;
                 this.init();
-                this.carouselViewportHeight = 0;
                 this.$nextTick(() => { this.calcCarouselViewportHeight() });
             }
         }

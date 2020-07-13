@@ -320,9 +320,11 @@
     }
 }
 
-.o-carousel.js-first-slide.infinite .previous-button,
-.o-carousel.js-last-slide.infinite .next-button {
-    display: inline-block;
+@media(--for-md-up) {
+    .o-carousel.js-first-slide.infinite .previous-button,
+    .o-carousel.js-last-slide.infinite .next-button {
+        display: inline-block;
+    }
 }
 
 .o-carousel.js-first-slide .previous-button,
