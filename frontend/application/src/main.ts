@@ -1,6 +1,5 @@
 /* --- Application --- */
 import { createApp } from "vue";
-import VueScroll from "./plugins/vue-scroll";
 import scrollIntoViewport from "./helpers/scroll-into-viewport";
 import {Section} from "./models/Section";
 import store from './store';
@@ -56,8 +55,7 @@ const vm = createApp({
 
         window.requestAnimationFrame(this.handleOnScroll);
 
-
-        const images = this.$el.querySelectorAll('img') as NodeListOf<HTMLImageElement>;
+        const images = document.querySelectorAll('img') as NodeListOf<HTMLImageElement>;
 
         images.forEach((img)=> {
             let dataSrc:string = (img as HTMLImageElement).dataset.src || "";
@@ -123,7 +121,6 @@ const vm = createApp({
     }
 });
 
-vm.use(VueScroll);
 vm.use(store);
 
 /* --- Components --- */

@@ -109,7 +109,7 @@ module.exports = {
     resolve: {
         extensions: [".ts", ".js", ".css"],
         alias: {
-            vue$: "vue/dist/vue.esm.js",
+            "vue": "vue/dist/vue.esm-bundler.js",
         },
     },
     plugins: [
