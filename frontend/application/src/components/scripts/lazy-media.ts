@@ -1,4 +1,5 @@
-import {Component, Prop, Vue, Watch} from "vue-property-decorator";
+import {Vue} from "vue-class-component";
+import {Prop, Watch} from "vue-property-decorator";
 import verticalState from "../../helpers/vertical-state";
 import {Media} from "../../models/Media";
 
@@ -7,7 +8,6 @@ import {Media} from "../../models/Media";
 const IEdgeMatches = /(Edge|Trident)\/(\d.)/i.exec(navigator.userAgent);
 const isOutdatedBrowser = IEdgeMatches !== null; // && parseInt(IEdgeMatches[2], 10) < 17;
 
-@Component
 export default class LazyMedia extends Vue {
     @Prop({ type: Object, default: {}})
     mediaObject: string;

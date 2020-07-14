@@ -1,6 +1,6 @@
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import {Vue} from "vue-class-component";
+import {Prop, Watch} from "vue-property-decorator";
 
-@Component
 export default class ToggleField extends Vue {
   @Prop({ type: String, default: "" })
   defaultValue!: string;

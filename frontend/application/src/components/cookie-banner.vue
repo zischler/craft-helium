@@ -58,7 +58,7 @@
                         </div>
                     </div>
                     <div class="cell-1of1-sm-down right" v-if="!isOpen">
-                        <a class="link" @click="openSettings()" v-html="settingsLabel"></a>
+                        <a class="link" @click="openCookieSettings()" v-html="settingsLabel"></a>
                         <a class="link accept" @click="setAllCookiesConsent(true)" v-html="acceptLabel"></a>
                     </div>
                     <div class="cell-1of1-sm-down right" v-if="isOpen">

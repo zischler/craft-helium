@@ -33,12 +33,11 @@
 </template>
 
 <script lang="ts">
-    import {Vue, Component, Prop} from "vue-property-decorator";
-    import EventBus from "../helpers/eventbus";
+    import {Vue} from "vue-class-component";
+    import {Prop} from "vue-property-decorator";
     import findKey from "lodash-es/findKey";
     import BrowserStorage from "../helpers/browser-storage";
 
-    @Component
     export default class customSelect extends Vue {
         @Prop({ type: String, default: "" })
         dataJson!: string;
@@ -70,6 +69,7 @@
         public selectLabel: string = "";
         public placeholder: string = "";
         public dataObj: any;
+        public selectedObj: {};
 
         public created() {
             this.dataObj = this.dataJson ? JSON.parse(decodeURIComponent(this.dataJson)) : "";
@@ -124,7 +124,7 @@
             }
 
             if(this.eventEmit) {
-                EventBus.$emit('form-' + this.selectId, {"value": this.selectValue,"label": this.selectLabel});
+                this.selectedObj = {"value": this.selectValue,"label": this.selectLabel};
             }
 
         }

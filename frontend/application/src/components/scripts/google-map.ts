@@ -1,9 +1,8 @@
-import {Component, Prop, Vue, Watch} from "vue-property-decorator";
+import {Vue} from "vue-class-component";
+import {Prop, Watch} from "vue-property-decorator";
 import {loadJS} from '../../helpers/async-loader';
-import EventBus from "../../helpers/eventbus";
-import BrowserStorage from "../../helpers/browser-storage";
+import {Action, Getter} from "vuex-class";
 
-@Component
 export default class GoogleMap extends Vue {
     @Prop({ type: Number, default: 0 })
     lat!: number;
@@ -56,7 +55,10 @@ export default class GoogleMap extends Vue {
     marker?: google.maps.Marker;
 
     showCookieMessage: boolean = false;
-    cookieNameType = 'hasThirdPartyConsent';
+
+    @Action("openCookieSettings") openCookieSettings;
+
+    @Getter("cookieConsentThirdparty") cookieConsentThirdparty;
 
     @Watch("lat")
     onLatChanged(newVal: number) {
@@ -72,17 +74,19 @@ export default class GoogleMap extends Vue {
         }
     }
 
+    @Watch("cookieConsentThirdparty")
+    onConsentAnalytics(isActive) {
+        if(isActive) {
+            this.launch();
+        } else {
+            this.destroy();
+        }
+    }
+
     created() {
-        if(BrowserStorage.getBooleanCookie(this.cookieNameType)){
+        if(this.cookieConsentThirdparty){
             this.launch();
         }
-        EventBus.$on('cookieConsent', (payload) => {
-            if(payload[this.cookieNameType] === true) {
-                this.launch();
-            } else {
-                this.destroy();
-            }
-        });
     }
 
     async launch () {
@@ -198,9 +202,5 @@ export default class GoogleMap extends Vue {
             return;
         }
         this.showCookieMessage = true;
-    }
-
-    openCookieSettings() {
-        EventBus.$emit('openCookieSettings',{});
     }
 }

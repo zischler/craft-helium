@@ -1,7 +1,6 @@
-import {Component, Vue} from "vue-property-decorator";
+import {Vue} from "vue-class-component";
 import LazyMedia from "./lazy-media";
 
-@Component
 export default class CarouselSlide extends Vue {
     calcHeight(): number {
         const calcHeightImg = this.calcHeightOfQuery("img");

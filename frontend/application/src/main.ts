@@ -1,15 +1,12 @@
 /* --- Application --- */
-import Vue from "vue";
+import { createApp } from "vue";
 import VueScroll from "./plugins/vue-scroll";
 import scrollIntoViewport from "./helpers/scroll-into-viewport";
-import EventBus from "./helpers/eventbus";
 import {Section} from "./models/Section";
 import store from './store';
 
-Vue.use(VueScroll);
-
 // Create the vue instance
-const vm = new Vue({
+const vm = createApp({
     delimiters: ['${', '}'],
     store,
     data() {
@@ -73,8 +70,6 @@ const vm = new Vue({
                 }, 200);
             }
         });
-
-        EventBus.$on('cookieConsent', this.addGoogleAnalyticsScript);
     },
     methods: {
         toggleFlyout() {
@@ -121,18 +116,7 @@ const vm = new Vue({
             window.requestAnimationFrame(this.handleOnScroll);
         },
         openCookieBanner() {
-            EventBus.$emit('openCookieBanner',{});
-        },
-        addGoogleAnalyticsScript(payload) {
-            if(payload.hasAnalyticsConsent) {
-                const script = document.createElement('script');
-                script.innerHTML = `window.dataLayer = window.dataLayer || [];
-                                    function gtag(){dataLayer.push(arguments);}
-                                    gtag('js', new Date());
-                                    gtag('config', 'UA-********-1', {'anonymize_ip': true});`;
-                // Also change GA ID at the bottom of _layout.twig
-                document.body.appendChild(script);
-            }
+            this.$store.dispatch('openCookieBanner');
         }
     },
     beforeDestroy() {
@@ -140,22 +124,24 @@ const vm = new Vue({
     }
 });
 
+vm.use(VueScroll);
+
 /* --- Components --- */
 // If a Vue (*.vue) component exists, import only it.
 // The related CSS and TS are linked into the Vue component
-Vue.component("cookie-banner", () => import('./components/cookie-banner.vue'));
-Vue.component("tag-manager", () => import('./components/tag-manager.vue'));
-Vue.component("google-map", () => import('./components/google-map.vue'));
-Vue.component("custom-select", () => import('./components/customSelect.vue'));
-Vue.component("toggle-field", () => import('./components/toggle-field.vue'));
-Vue.component("snap-gallery", () => import('./components/snap-gallery.vue'));
-Vue.component("anim-component", () => import('./components/scripts/anim-component'));
-Vue.component("lazy-media", () => import('./components/lazy-media.vue'));
-Vue.component("multi-carousel", () => import('./components/carousel.vue'));
-Vue.component("carousel-slide", () => import('./components/carousel-slide.vue'));
+vm.component("cookie-banner", () => import('./components/cookie-banner.vue'));
+vm.component("tag-manager", () => import('./components/tag-manager.vue'));
+vm.component("google-map", () => import('./components/google-map.vue'));
+vm.component("custom-select", () => import('./components/customSelect.vue'));
+vm.component("toggle-field", () => import('./components/toggle-field.vue'));
+vm.component("snap-gallery", () => import('./components/snap-gallery.vue'));
+vm.component("anim-component", () => import('./components/scripts/anim-component'));
+vm.component("lazy-media", () => import('./components/lazy-media.vue'));
+vm.component("multi-carousel", () => import('./components/carousel.vue'));
+vm.component("carousel-slide", () => import('./components/carousel-slide.vue'));
 
 // Vue.config.errorHandler = function(err) { console.log("errorHandler", err) }
 
 // Connect the Vue instance to the whole <main id="view"> container
 // Avoid to use the standard DOM API as a virtual-dom will handle it
-vm.$mount("#view");
+vm.mount("#view");

@@ -1,8 +1,8 @@
-import {Component, Prop, Vue} from "vue-property-decorator";
-import EventBus from "../../helpers/eventbus";
+import {Vue} from "vue-class-component";
+import {Prop} from "vue-property-decorator";
 import BrowserStorage from "../../helpers/browser-storage";
+import {Action, Getter, Mutation} from "vuex-class";
 
-@Component
 export default class CookieBanner extends Vue {
     @Prop({type: String, default: 'By continuing your visit to this site, you accept the use of cookies to make visits statistics.'})
     bannerText!: string;
@@ -43,30 +43,23 @@ export default class CookieBanner extends Vue {
     @Prop({type: String, default: 'Thirdparty Cookies'})
     thirdpartyLabel!: string;
 
-    cookieNameFunctional = 'hasFunctionalConsent';
-    cookieNameAnalytics = 'hasAnalyticsConsent';
-    cookieNameThirdParty = 'hasThirdPartyConsent';
+    @Action("openCookieBanner") openCookieBanner;
+    @Action("closeCookieBanner") closeCookieBanner;
+    @Action("openCookieSettings") openCookieSettings;
+    @Action("closeCookieSettings") closeCookieSettings;
 
-    isShow = false;
-    isOpen = false;
+    @Mutation("setCookieConsentFunctional") setCookieConsentFunctional;
+    @Mutation("setCookieConsentAnalytics") setCookieConsentAnalytics;
+    @Mutation("setCookieConsentThirdparty") setCookieConsentThirdparty;
 
-    consentFunctional = false;
-    consentAnalytics = false;
-    consentThirdparty = false;
-
-    created() {
-        EventBus.$on('openCookieBanner', () => {
-            this.openCookieBanner();
-        });
-
-        EventBus.$on('openCookieSettings', () => {
-            this.openCookieSettings();
-        });
-
-        EventBus.$on('closeCookieSettings', () => {
-            this.closeCookieSettings();
-        });
-    }
+    @Getter("cookieNameFunctional") cookieNameFunctional;
+    @Getter("cookieNameAnalytics") cookieNameAnalytics;
+    @Getter("cookieNameThirdParty") cookieNameThirdParty;
+    @Getter("cookieConsentFunctional") consentFunctional;
+    @Getter("cookieConsentAnalytics") consentAnalytics;
+    @Getter("cookieConsentThirdparty") consentThirdparty;
+    @Getter("showCookieBanner") isShow;
+    @Getter("showCookieSettings") isOpen;
 
     mounted() {
         this.consentFunctional = BrowserStorage.getBooleanCookie(this.cookieNameFunctional) || false;
@@ -74,57 +67,39 @@ export default class CookieBanner extends Vue {
         if(this.consentFunctional) {
             this.$nextTick(() => { this.initCookiesConsent(); });
         } else {
-            this.emitEvents();
-            this.isShow = true;
+            this.openCookieBanner();
         }
-    }
-
-    emitEvents() {
-        const payload = {};
-        payload[this.cookieNameFunctional] = BrowserStorage.getBooleanCookie(this.cookieNameFunctional);
-
-        if(this.analyticsCookies) {
-            payload[this.cookieNameAnalytics] = BrowserStorage.getBooleanCookie(this.cookieNameAnalytics);
-        }
-        if(this.thirdpartyCookies) {
-            payload[this.cookieNameThirdParty] = BrowserStorage.getBooleanCookie(this.cookieNameThirdParty);
-        }
-
-        EventBus.$emit('cookieConsent',payload);
     }
 
     initCookiesConsent() {
-
         BrowserStorage.setCookie(this.cookieNameFunctional, true, 365);
 
         if(this.analyticsCookies) {
-            this.consentAnalytics = BrowserStorage.getBooleanCookie(this.cookieNameAnalytics) || false;
+            this.setCookieConsentAnalytics(BrowserStorage.getBooleanCookie(this.cookieNameAnalytics) || false);
         }
         if(this.thirdpartyCookies) {
-            this.consentThirdparty = BrowserStorage.getBooleanCookie(this.cookieNameThirdParty) || false;
+            this.setCookieConsentThirdparty(BrowserStorage.getBooleanCookie(this.cookieNameThirdParty) || false);
         }
 
         this.closeCookieBanner();
     }
 
     setAllCookiesConsent() {
-
         BrowserStorage.setCookie(this.cookieNameFunctional, true, 365);
 
         if(this.analyticsCookies) {
             BrowserStorage.setCookie(this.cookieNameAnalytics, true, 365);
-            this.consentAnalytics = true;
+            this.setCookieConsentAnalytics(true);
         }
         if(this.thirdpartyCookies) {
             BrowserStorage.setCookie(this.cookieNameThirdParty, true, 365);
-            this.consentThirdparty = true;
+            this.setCookieConsentThirdparty(true);
         }
 
         this.closeCookieBanner();
     }
 
     confirmCookiesChoice() {
-
         BrowserStorage.setCookie(this.cookieNameFunctional, true, 365);
 
         if(this.analyticsCookies) {
@@ -136,41 +111,5 @@ export default class CookieBanner extends Vue {
         }
 
         this.closeCookieBanner();
-    }
-
-    openBanner() {
-        EventBus.$emit('openCookieBanner',{});
-    }
-
-    openCookieBanner() {
-        this.isShow = true;
-    }
-
-    closeCookieBanner() {
-        this.isShow = false;
-        this.emitEvents();
-    }
-
-    openSettings() {
-        EventBus.$emit('openCookieSettings',{});
-    }
-
-    openCookieSettings() {
-        if(this.analyticsCookies) {
-            this.consentAnalytics = BrowserStorage.getBooleanCookie(this.cookieNameAnalytics) || false;
-        }
-        if(this.thirdpartyCookies) {
-            this.consentThirdparty = BrowserStorage.getBooleanCookie(this.cookieNameThirdParty) || false;
-        }
-        this.isShow = true;
-        this.isOpen = true;
-    }
-
-    closeSettings() {
-        EventBus.$emit('closeCookieSettings',{});
-    }
-
-    closeCookieSettings() {
-        this.isOpen = false;
     }
 }

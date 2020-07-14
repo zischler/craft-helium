@@ -1,4 +1,4 @@
-import { Vue, Component } from "vue-property-decorator";
+import {Vue} from "vue-class-component";
 
 /**
  * Swipe Element
@@ -6,7 +6,6 @@ import { Vue, Component } from "vue-property-decorator";
  * @example
  * <swipe @swipeup="doSomething()" class="o-swipe"></swipe>
  */
-@Component
 export default class Swipe extends Vue {
     public blockClickEventDistance = 0;
     public swipe = {

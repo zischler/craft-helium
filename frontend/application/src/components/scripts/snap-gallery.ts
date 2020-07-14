@@ -1,7 +1,7 @@
-import { Prop, Vue, Component } from "vue-property-decorator";
+import {Vue} from "vue-class-component";
+import { Prop } from "vue-property-decorator";
 import "scroll-behavior-polyfill";
 
-@Component
 export default class SnapGallery extends Vue {
     @Prop({ type: String, default: "" })
     projectTitle!: string;

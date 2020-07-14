@@ -1,4 +1,5 @@
-import {Vue, Component, Prop, Watch} from "vue-property-decorator";
+import {Vue} from "vue-class-component";
+import {Prop, Watch} from "vue-property-decorator";
 import verticalState from "../../helpers/vertical-state";
 import debounce from "lodash-es/debounce";
 import Swipe from "./swipe";
@@ -42,7 +43,6 @@ enum Orientation {
     Vertical = "vertical",
 }
 
-@Component
 export default class Carousel extends Vue {
     @Prop({ type: Boolean, default: false })
     asHero!: boolean; // calculate height from top position, at render

@@ -1,30 +1,31 @@
-import {Component, Prop, Vue} from "vue-property-decorator";
-import EventBus from "../../helpers/eventbus";
+import {Vue} from "vue-class-component";
+import {Prop, Watch} from "vue-property-decorator";
 import BrowserStorage from "../../helpers/browser-storage";
+import {Getter} from "vuex-class";
 
-@Component
 export default class CookieBanner extends Vue {
 
     @Prop({type: Boolean, default: true})
     isProduction!: boolean;
 
-    cookieNameType = 'hasAnalyticsConsent';
+    @Getter("cookieConsentAnalytics") cookieConsentAnalytics;
+
     trackingAllowed = false;
     isBot = false;
 
-    created() {
+    @Watch("cookieConsentAnalytics")
+    onConsentAnalytics(isActive) {
+        if(isActive) {
+            this.launch();
+        } else {
+            this.destroy();
+        }
+    }
 
+    created() {
         this.isBot = /bot|googlebot|crawler|facebookexternalhit|spider|robot|crawling/i.test(navigator.userAgent);
 
         this.trackingAllowed = (!this.isBot && !this.doNotTrack());
-
-        EventBus.$on('cookieConsent', (payload) => {
-            if(payload[this.cookieNameType]) {
-                this.launch();
-            } else {
-                this.destroy();
-            }
-        });
     }
 
     /**
