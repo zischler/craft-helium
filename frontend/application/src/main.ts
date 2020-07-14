@@ -8,7 +8,6 @@ import store from './store';
 // Create the vue instance
 const vm = createApp({
     delimiters: ['${', '}'],
-    store,
     data() {
         return {
             isMounted: false,
@@ -125,6 +124,7 @@ const vm = createApp({
 });
 
 vm.use(VueScroll);
+vm.use(store);
 
 /* --- Components --- */
 // If a Vue (*.vue) component exists, import only it.
