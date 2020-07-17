@@ -1,7 +1,6 @@
-
 {% set heroMedia = newsPage.heroMedia.one() %}
 <anim-component {% if heroMedia != null %}:has-image="true"{% endif %}>
-	<a href="{{ newsPage.url }}" class="news-teaser anim-component" v-show="animate">
+	<a href="{{ newsPage.url }}" class="news-teaser anim-component">
 		<div class="o-flex has-gutter is-multiline">
 			{% if heroMedia != null %}
 				<div class="cell-1of3 cell-1of1-sm-down">

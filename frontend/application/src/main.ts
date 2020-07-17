@@ -134,8 +134,6 @@ vm.component("lazy-media", () => import('./components/lazy-media.vue'));
 vm.component("multi-carousel", () => import('./components/carousel.vue'));
 vm.component("carousel-slide", () => import('./components/carousel-slide.vue'));
 
-// Vue.config.errorHandler = function(err) { console.log("errorHandler", err) }
-
 // Connect the Vue instance to the whole <main id="view"> container
 // Avoid to use the standard DOM API as a virtual-dom will handle it
 vm.mount("#view");

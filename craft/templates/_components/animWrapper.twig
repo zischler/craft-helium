@@ -1,6 +1,6 @@
 {% set animModule = module %}
 <anim-component>
-    <div class="anim-component o-component" v-show="animate">
+    <div class="anim-component o-component">
         {% if animModule.children.all() is not empty %}
             {% for module in animModule.children.all() %}
                 {% include "_components/" ~ module.type %}
