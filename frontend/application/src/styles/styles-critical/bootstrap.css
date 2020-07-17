@@ -240,11 +240,6 @@ div[role="button"] { cursor: pointer; }
     transition: opacity 0.2s linear;
 }
 
-.o-view:not(.js-mounted) {
-    opacity: 0;
-}
-
-
 .o-view.is-absolute {
     position: absolute;
     top: 0;

@@ -7,19 +7,17 @@ import store from './store';
 // Create the vue instance
 const vm = createApp({
     delimiters: ['${', '}'],
-    data() {
-        return {
-            isMounted: false,
-            isMenuOpen: false,
-            isMenuAnimate: false,
-            isHomeNavigationHover: false,
-            flyoutScrollbox: document.querySelector("#flyoutScrollbox") as HTMLElement,
-            doc: document.documentElement as HTMLElement,
-            navScrollPosition: 0,
-            blockNavWatch: false,
-            isNavHidden: false
-        }
-    },
+    data: () => ({
+        isMounted: false,
+        isMenuOpen: false,
+        isMenuAnimate: false,
+        isHomeNavigationHover: false,
+        flyoutScrollbox: document.querySelector("#flyoutScrollbox") as HTMLElement,
+        doc: document.documentElement as HTMLElement,
+        navScrollPosition: 0,
+        blockNavWatch: false,
+        isNavHidden: false
+    }),
     computed: {
         sectionAnchors(): Section[] {
             return this.$store.getters.sectionAnchors;

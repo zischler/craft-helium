@@ -1,25 +1,23 @@
 
 {% set heroMedia = newsPage.heroMedia.one() %}
-<anim-component inline-template {% if heroMedia != null %}:has-image="true"{% endif %}>
-	<transition name="fade-in-top">
-		<a href="{{ newsPage.url }}" class="news-teaser anim-component" v-show="animate">
-			<div class="o-flex has-gutter is-multiline">
-				{% if heroMedia != null %}
-					<div class="cell-1of3 cell-1of1-sm-down">
-						<div class="news-teaser-wrapper">
-							<img class="news-teaser-heroMedia" src="{{ heroMedia.url }}" alt="{{ heroMedia.title }}" v-on:load="loadedImage = true"/>
-						</div>
+<anim-component {% if heroMedia != null %}:has-image="true"{% endif %}>
+	<a href="{{ newsPage.url }}" class="news-teaser anim-component" v-show="animate">
+		<div class="o-flex has-gutter is-multiline">
+			{% if heroMedia != null %}
+				<div class="cell-1of3 cell-1of1-sm-down">
+					<div class="news-teaser-wrapper">
+						<img class="news-teaser-heroMedia" src="{{ heroMedia.url }}" alt="{{ heroMedia.title }}" v-on:load="loadedImage = true"/>
 					</div>
-				{% endif %}
-				<div class="cell-2of3 cell-1of1-sm-down">
-					<h3>{{ newsPage.title }}</h3>
-					{% set introText = newsPage.components.level(1).one().children.one() %}
-					{% if introText != null %}
-						{% set intro = introText.text|replace('<br />', ' ')|replace('/<[^>]*>/', '') %}
-						<div>{{ (intro|length > 120 ? intro|slice(0, 120) ~ '...' : intro) }}</div>
-					{% endif %}
 				</div>
+			{% endif %}
+			<div class="cell-2of3 cell-1of1-sm-down">
+				<h3>{{ newsPage.title }}</h3>
+				{% set introText = newsPage.components.level(1).one().children.one() %}
+				{% if introText != null %}
+					{% set intro = introText.text|replace('<br />', ' ')|replace('/<[^>]*>/', '') %}
+					<div>{{ (intro|length > 120 ? intro|slice(0, 120) ~ '...' : intro) }}</div>
+				{% endif %}
 			</div>
-		</a>
-	</transition>
+		</div>
+	</a>
 </anim-component>

@@ -6,6 +6,9 @@ export default class AnimComponent extends Vue {
     @Prop({type: Boolean, default: false})
     hasImage!: boolean;
 
+    @Prop({type: String, default: "fade-in-top"})
+    animName!: string;
+
     loadedImage: boolean = !this.hasImage;
     animate: boolean = false;
     topProgress: number = 0;
