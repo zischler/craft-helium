@@ -96,7 +96,7 @@
                     {% if component.children.all() is not empty %}
                         {% for module in component.children.all() %}
                             <div class="slide">
-                                <carousel-slide>
+                                <carousel-slide ref="carouselSlide">
                                     {% include "_components/" ~ module.type %}
                                 </carousel-slide>
                             </div>

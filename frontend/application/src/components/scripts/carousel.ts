@@ -141,6 +141,7 @@ export default class Carousel extends Vue {
 
 
     // Swipe
+    // @ts-ignore
     swipe = new Swipe();
     hasCursorDown = false;
     @Watch("swipe.hasCursorDown")
@@ -292,8 +293,8 @@ export default class Carousel extends Vue {
             // Calculate Slideshow Height
             let maxSlideHeight = 0;
             let minSlideHeight = 1000;
-            if (this.$children) {
-                for (const _item of this.$children) {
+            if (this.$refs.carouselSlide) {
+                for (const _item of (this.$refs.carouselSlide as CarouselSlide[])) {
                     const item = _item as CarouselSlide;
                     const calcHeight = item.calcHeight();
 

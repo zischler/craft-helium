@@ -130,7 +130,6 @@ vm.component("cookie-banner", () => import('./components/cookie-banner.vue'));
 vm.component("tag-manager", () => import('./components/tag-manager.vue'));
 vm.component("google-map", () => import('./components/google-map.vue'));
 vm.component("custom-select", () => import('./components/customSelect.vue'));
-vm.component("toggle-field", () => import('./components/toggle-field.vue'));
 vm.component("snap-gallery", () => import('./components/snap-gallery.vue'));
 vm.component("anim-component", () => import('./components/scripts/anim-component'));
 vm.component("lazy-media", () => import('./components/lazy-media.vue'));

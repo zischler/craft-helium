@@ -12,6 +12,7 @@ export default class CarouselSlide extends Vue {
             let calcHeight = calcHeightImg > calcHeightVideo ? calcHeightImg : calcHeightVideo;
             // height if is isCover image
             if (calcHeight === 0) {
+                // @ts-ignore
                 this.$children.forEach(child => {
                     if(child.$options.name === "LazyMedia") {
                         const lazyMedia = child as LazyMedia;
