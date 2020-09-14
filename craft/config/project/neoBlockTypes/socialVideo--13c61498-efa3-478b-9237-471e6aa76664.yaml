@@ -1,0 +1,21 @@
+childBlocks: ''
+field: f223541d-0057-4b42-8f60-11587c05dbf9
+fieldLayouts:
+  9b5b2329-4d36-4751-9198-8d918de34d33:
+    tabs:
+      -
+        fields:
+          3533ea37-217e-47ab-b49c-87512871c123:
+            required: false
+            sortOrder: 2
+          e4f1572e-779c-43b1-a4d1-3ff65c746a50:
+            required: false
+            sortOrder: 1
+        name: Main
+        sortOrder: 1
+handle: socialVideo
+maxBlocks: 0
+maxChildBlocks: 0
+name: 'Social Video'
+sortOrder: 5
+topLevel: false

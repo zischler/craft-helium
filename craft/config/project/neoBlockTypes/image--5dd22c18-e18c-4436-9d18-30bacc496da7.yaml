@@ -1,0 +1,18 @@
+childBlocks: ''
+field: f223541d-0057-4b42-8f60-11587c05dbf9
+fieldLayouts:
+  084d0dad-d818-45e2-a210-8572c9c18844:
+    tabs:
+      -
+        fields:
+          da0152ae-2c5c-4580-90c9-19a135efd32e:
+            required: false
+            sortOrder: 1
+        name: Main
+        sortOrder: 1
+handle: image
+maxBlocks: 0
+maxChildBlocks: 0
+name: Image
+sortOrder: 6
+topLevel: false

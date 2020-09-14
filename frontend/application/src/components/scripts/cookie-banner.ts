@@ -1,48 +1,76 @@
-import {Vue} from "vue-class-component";
-import {Prop} from "vue-property-decorator";
+import {mixins, props} from "vue-class-component";
 import BrowserStorage from "../../helpers/browser-storage";
 import {Action, Getter, Mutation} from "vuex-class";
 
-export default class CookieBanner extends Vue {
-    @Prop({type: String, default: 'By continuing your visit to this site, you accept the use of cookies to make visits statistics.'})
-    bannerText!: string;
+const Props = props({
+    bannerText: {
+        type: String,
+        default: 'By continuing your visit to this site, you accept the use of cookies to make visits statistics.',
+        required: false,
+    },
+    readMore: {
+        type: String,
+        default: '',
+        required: false,
+    },
+    readMoreLabel: {
+        type: String,
+        default: 'Read More',
+        required: false,
+    },
+    settingsLabel: {
+        type: String,
+        default: 'Cookie Settings',
+        required: false,
+    },
+    acceptLabel: {
+        type: String,
+        default: 'Accept',
+        required: false,
+    },
+    confirmLabel: {
+        type: String,
+        default: 'Confirm',
+        required: false,
+    },
+    backLabel: {
+        type: String,
+        default: 'Back',
+        required: false,
+    },
+    settingsExplanations: {
+        type: String,
+        default: 'Define the cookies you want to allow.',
+        required: false,
+    },
+    functionalLabel: {
+        type: String,
+        default: 'Functional Cookies',
+        required: false,
+    },
+    analyticsCookies: {
+        type: Boolean,
+        default: false,
+        required: false,
+    },
+    analyticsLabel: {
+        type: String,
+        default: 'Analytics Cookies',
+        required: false,
+    },
+    thirdpartyCookies: {
+        type: Boolean,
+        default: false,
+        required: false,
+    },
+    thirdpartyLabel: {
+        type: String,
+        default: 'Thirdparty Cookies',
+        required: false,
+    },
+})
 
-    @Prop({type: String, default: ''})
-    readMore!: string;
-
-    @Prop({type: String, default: 'Read More'})
-    readMoreLabel!: string;
-
-    @Prop({type: String, default: 'Cookie Settings'})
-    settingsLabel!: string;
-
-    @Prop({type: String, default: 'Accept'})
-    acceptLabel!: string;
-
-    @Prop({type: String, default: 'Confirm'})
-    confirmLabel!: string;
-
-    @Prop({type: String, default: 'Back'})
-    backLabel!: string;
-
-    @Prop({type: String, default: 'Define the cookies you want to allow.'})
-    settingsExplanations!: string;
-
-    @Prop({type: String, default: 'Functional Cookies'})
-    functionalLabel!: string;
-
-    @Prop({type: Boolean, default: false})
-    analyticsCookies!: boolean;
-
-    @Prop({type: String, default: 'Analytics Cookies'})
-    analyticsLabel!: string;
-
-    @Prop({type: Boolean, default: false})
-    thirdpartyCookies!: boolean;
-
-    @Prop({type: String, default: 'Thirdparty Cookies'})
-    thirdpartyLabel!: string;
-
+export default class CookieBanner extends mixins(Props) {
     @Action("openCookieBanner") openCookieBanner;
     @Action("closeCookieBanner") closeCookieBanner;
     @Action("openCookieSettings") openCookieSettings;

@@ -1,0 +1,29 @@
+contentColumnType: string
+fieldGroup: a61e403f-3fd4-4ce8-9513-5dce27201307
+handle: heroMedia
+instructions: ''
+name: 'Hero Media'
+searchable: true
+settings:
+  allowedKinds:
+    - image
+    - video
+  defaultUploadLocationSource: 'volume:93c3ea35-a059-402f-a51b-1eaf3d12b299'
+  defaultUploadLocationSubpath: ''
+  limit: '1'
+  localizeRelations: false
+  restrictFiles: '1'
+  selectionLabel: ''
+  showUnpermittedFiles: false
+  showUnpermittedVolumes: false
+  singleUploadLocationSource: 'volume:93c3ea35-a059-402f-a51b-1eaf3d12b299'
+  singleUploadLocationSubpath: ''
+  source: null
+  sources: '*'
+  targetSiteId: null
+  useSingleFolder: false
+  validateRelatedElements: ''
+  viewMode: list
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Assets

@@ -1,0 +1,17 @@
+contentColumnType: text
+fieldGroup: 760e9bf5-77f7-4568-a525-817eabd4af53
+handle: copyright
+instructions: ''
+name: Copyright
+searchable: true
+settings:
+  byteLimit: null
+  charLimit: null
+  code: ''
+  columnType: text
+  initialRows: '4'
+  multiline: ''
+  placeholder: ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

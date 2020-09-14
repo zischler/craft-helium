@@ -1,0 +1,17 @@
+contentColumnType: smallint(1)
+fieldGroup: d1f3b0d0-bb53-4580-b535-3574ed35136f
+handle: slidesVisible
+instructions: 'Slides Visible at the same time'
+name: 'Slides Visible'
+searchable: false
+settings:
+  decimals: 0
+  defaultValue: null
+  max: '6'
+  min: '0'
+  prefix: ''
+  size: null
+  suffix: ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Number

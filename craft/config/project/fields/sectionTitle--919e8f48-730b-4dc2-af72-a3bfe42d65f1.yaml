@@ -1,0 +1,17 @@
+contentColumnType: text
+fieldGroup: a61e403f-3fd4-4ce8-9513-5dce27201307
+handle: sectionTitle
+instructions: ''
+name: 'Section Title'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: ''
+  columnType: null
+  initialRows: '4'
+  multiline: ''
+  placeholder: ''
+translationKeyFormat: null
+translationMethod: language
+type: craft\fields\PlainText

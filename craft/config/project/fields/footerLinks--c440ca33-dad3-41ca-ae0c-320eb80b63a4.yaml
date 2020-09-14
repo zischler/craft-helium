@@ -1,0 +1,20 @@
+contentColumnType: string
+fieldGroup: 760e9bf5-77f7-4568-a525-817eabd4af53
+handle: footerLinks
+instructions: ''
+name: 'Footer Links'
+searchable: true
+settings:
+  limit: ''
+  localizeRelations: false
+  selectionLabel: ''
+  source: null
+  sources:
+    - 'section:4fc80367-4ace-43e6-91ee-1e08b6b1ce15'
+    - singles
+  targetSiteId: null
+  validateRelatedElements: ''
+  viewMode: null
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Entries

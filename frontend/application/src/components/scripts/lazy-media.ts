@@ -1,62 +1,95 @@
-import {Vue} from "vue-class-component";
-import {Prop, Watch} from "vue-property-decorator";
+import {mixins, props} from "vue-class-component";
 import verticalState from "../../helpers/vertical-state";
 import {Media} from "../../models/Media";
+
+const Props = props({
+    mediaObject: {
+        type: Object,
+        default: {}
+    },
+    asHero: { // calculate height from top position, at render
+        type: Boolean,
+        default: false,
+        required: false
+    },
+    isInstantly: {
+        type: Boolean,
+        default: false,
+        required: false
+    },
+    isCover: {
+        type: Boolean,
+        default: false,
+        required: false
+    },
+    hasRatio: {
+        type: Boolean,
+        default: false,
+        required: false
+    },
+    cssRatio: {
+        type: String,
+        default: "unset",
+        required: false
+    },
+    isAutoplay: {
+        type: Boolean,
+        default: false,
+        required: false
+    },
+    positionClass: {
+        type: String,
+        default: "is-center",
+        required: false
+    },
+    ratio: {
+        type: Object,
+        default: null,
+        required: false
+    },
+    scaled: {
+        type: Boolean,
+        default: false,
+        required: false
+    },
+    maxWidth: {
+        type: String,
+        default: "unset",
+        required: false
+    },
+    maxHeight: {
+        type: String,
+        default: "unset",
+        required: false
+    },
+    videoPoster: {
+        type: String,
+        default: ""
+    },
+    titleAttribute: {
+        type: String,
+        default: "",
+        required: false
+    },
+    naturalWidth: {
+        type: Number,
+        default: -1,
+        required: false
+    },
+    naturalHeight: {
+        type: Number,
+        default: -1,
+        required: false
+    },
+})
+
 
 // Edge doesn't support object-fit for video...
 // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/13603873/#comment-14
 const IEdgeMatches = /(Edge|Trident)\/(\d.)/i.exec(navigator.userAgent);
 const isOutdatedBrowser = IEdgeMatches !== null; // && parseInt(IEdgeMatches[2], 10) < 17;
 
-export default class LazyMedia extends Vue {
-    @Prop({ type: Object, default: {}})
-    mediaObject: string;
-
-    @Prop({ type: Boolean, default: false })
-    asHero!: boolean; // calculate height from top position, at render
-
-    @Prop({ type: Boolean, default: false })
-    isInstantly!: boolean;
-
-    @Prop({ type: Boolean, default: false })
-    isCover!: boolean;
-
-    @Prop({ type: Boolean, default: false })
-    hasRatio!: boolean;
-
-    @Prop({ type: String, default: "unset" })
-    cssRatio!: string;
-
-    @Prop({ type: Boolean, default: false })
-    isAutoplay!: boolean;
-
-    @Prop({ type: String, default: "is-center" })
-    positionClass!: string;
-
-    @Prop({ type: Object, default: null })
-    ratio!: any;
-
-    @Prop({ type: Boolean, default: false })
-    scaled!: boolean;
-
-    @Prop({ type: String, default: "unset" })
-    maxWidth!: string;
-
-    @Prop({ type: String, default: "unset" })
-    maxHeight!: string;
-
-    @Prop({ type: String, default: "" })
-    videoPoster: string;
-
-    @Prop({ type: String, default: "" })
-    titleAttribute!: string;
-
-    @Prop({ type: Number, default: -1 })
-    naturalWidth!: number;
-
-    @Prop({ type: Number, default: -1 })
-    naturalHeight!: number;
-
+export default class LazyMedia extends mixins(Props) {
     media: Media = {} as Media;
     source = "";
     width: string | number = "100%";
@@ -64,8 +97,8 @@ export default class LazyMedia extends Vue {
     title: string = "";
     poster: string = "";
     preload: string = "none";
-    isLoaded = false;
     isImage = false;
+    _isLoaded = false;
     isDelayedAutoplay = false;
     hasControls = true;
     videoPlaying = false;
@@ -74,17 +107,21 @@ export default class LazyMedia extends Vue {
 
     mounted() {
         this.init();
-        window.addEventListener("load",this.update);
+        window.addEventListener("load", this.update);
     }
 
-    @Watch("source")
-    onSourceChanged() {
-        this.isLoaded = this.source !== "";
+    get isLoaded() {
+        return this.source !== "" || this._isLoaded;
+    }
+
+    set isLoaded(isLoaded: boolean) {
+        this._isLoaded = isLoaded;
     }
 
     beforeDestroy() {
         this.source = "";
     }
+
     /**
      * @returns {Promise<void>}
      */
@@ -116,13 +153,13 @@ export default class LazyMedia extends Vue {
             this.poster = this.videoPoster ? this.videoPoster : "";
             this.preload = this.videoPoster ? "none" : "metadata";
 
-            if(window.matchMedia('(max-device-width: 1024px)').matches && this.onePageConcept) {
+            if (window.matchMedia('(max-device-width: 1024px)').matches && this.onePageConcept) {
                 this.isDelayedAutoplay = false;
                 this.hasControls = true;
             }
 
             if (window.matchMedia('(min-device-width: 1025px)').matches) {
-                if(this.isAutoplay) {
+                if (this.isAutoplay) {
                     this.hasControls = false;
                 }
             }
@@ -147,19 +184,16 @@ export default class LazyMedia extends Vue {
                         }
                         this.videoPlay();
                     },
-                    {
-                    },
+                    {},
                 );
 
                 if ((this.$refs.figure as any)) {
                     this.observer.observe((this.$refs.figure as any));
                 }
             }
-        }
-        else if (this.isInstantly) {
+        } else if (this.isInstantly) {
             this.source = source;
-        }
-        else {
+        } else {
             this.source = "";
 
             if (this.observer !== null) {
@@ -182,7 +216,7 @@ export default class LazyMedia extends Vue {
                 },
             );
 
-            if((this.$refs.figure as any)) {
+            if ((this.$refs.figure as any)) {
                 this.observer.observe((this.$refs.figure as any));
             }
         }
@@ -227,7 +261,9 @@ export default class LazyMedia extends Vue {
                             // Show a "Play" button so that user can start playback.
                             video.removeAttribute("controls");
                             video.setAttribute("autoplay", true);
-                            setTimeout(() => { this.videoPlay(); }, 1000);
+                            setTimeout(() => {
+                                this.videoPlay();
+                            }, 1000);
                         });
                     }
                 }
@@ -293,7 +329,7 @@ export default class LazyMedia extends Vue {
                 const scale =
                     Math.round(
                         ((1 - areaRatio) * (1 - minScale) + minScale) *
-                            100,
+                        100,
                     ) / 100;
 
                 image.style.transform = `scale(${scale})`;
@@ -320,7 +356,7 @@ export default class LazyMedia extends Vue {
             !this.isCover
         ) {
             image.removeAttribute('style');
-            image.setAttribute("data-object-fit","contain");
+            image.setAttribute("data-object-fit", "contain");
             window.objectFitPolyfill(image);
         }
     }

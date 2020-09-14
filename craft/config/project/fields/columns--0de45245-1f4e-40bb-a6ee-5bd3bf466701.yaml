@@ -1,0 +1,17 @@
+contentColumnType: integer(10)
+fieldGroup: d1f3b0d0-bb53-4580-b535-3574ed35136f
+handle: columns
+instructions: ''
+name: Columns
+searchable: true
+settings:
+  decimals: 0
+  defaultValue: '1'
+  max: null
+  min: '0'
+  prefix: ''
+  size: null
+  suffix: ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Number

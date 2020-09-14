@@ -1,0 +1,24 @@
+childBlocks: ''
+field: f223541d-0057-4b42-8f60-11587c05dbf9
+fieldLayouts:
+  7d188b69-5b65-421b-b86a-d84a99373918:
+    tabs:
+      -
+        fields:
+          19d32bb7-7568-4543-9031-22820c51c0e1:
+            required: false
+            sortOrder: 1
+          94e53f21-4e9e-4e2f-b7a2-dc4ee1d792fe:
+            required: false
+            sortOrder: 2
+          db3ee226-4e02-49ca-8497-ee2c6b17ad35:
+            required: false
+            sortOrder: 3
+        name: Main
+        sortOrder: 1
+handle: video
+maxBlocks: 0
+maxChildBlocks: 0
+name: Video
+sortOrder: 7
+topLevel: false

@@ -1,0 +1,17 @@
+contentColumnType: text
+fieldGroup: 8d3aee83-3990-4b7e-984c-a93af1a5d317
+handle: googleMapsCookieMessageLink
+instructions: 'Link Text that will open Cookie Settings'
+name: 'Cookie Message Link'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: ''
+  columnType: null
+  initialRows: '4'
+  multiline: ''
+  placeholder: here
+translationKeyFormat: null
+translationMethod: language
+type: craft\fields\PlainText

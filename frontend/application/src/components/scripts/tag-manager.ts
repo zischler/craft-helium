@@ -1,31 +1,33 @@
-import {Vue} from "vue-class-component";
-import {Prop, Watch} from "vue-property-decorator";
+import {mixins, props} from "vue-class-component";
 import BrowserStorage from "../../helpers/browser-storage";
 import {Getter} from "vuex-class";
 
-export default class CookieBanner extends Vue {
-
-    @Prop({type: Boolean, default: true})
-    isProduction!: boolean;
-
+const Props = props({
+    isProduction: {
+        type: Boolean,
+        default: true,
+        required: false
+    },
+})
+export default class CookieBanner extends mixins(Props) {
     @Getter("cookieConsentAnalytics") cookieConsentAnalytics;
 
     trackingAllowed = false;
     isBot = false;
 
-    @Watch("cookieConsentAnalytics")
-    onConsentAnalytics(isActive) {
-        if(isActive) {
-            this.launch();
-        } else {
-            this.destroy();
-        }
-    }
-
     created() {
         this.isBot = /bot|googlebot|crawler|facebookexternalhit|spider|robot|crawling/i.test(navigator.userAgent);
 
         this.trackingAllowed = (!this.isBot && !this.doNotTrack());
+    }
+
+    mounted() {
+        // TODO Check if still works
+        if(this.isProduction) {
+            this.launch();
+        } else {
+            this.destroy();
+        }
     }
 
     /**

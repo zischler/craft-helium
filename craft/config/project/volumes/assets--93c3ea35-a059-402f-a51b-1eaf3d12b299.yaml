@@ -1,0 +1,21 @@
+fieldLayouts:
+  e070864b-dec6-4a21-a7dd-e52aa739fd7f:
+    tabs:
+      -
+        fields:
+          43891f46-b3d8-4adf-b1fd-1b6f440deb2f:
+            required: false
+            sortOrder: 1
+          f0f128d0-aa3d-4530-87c2-0471cb009257:
+            required: false
+            sortOrder: 2
+        name: Main
+        sortOrder: 1
+handle: assets
+hasUrls: true
+name: assets
+settings:
+  path: '@webroot/assets'
+sortOrder: 1
+type: craft\volumes\Local
+url: /assets/

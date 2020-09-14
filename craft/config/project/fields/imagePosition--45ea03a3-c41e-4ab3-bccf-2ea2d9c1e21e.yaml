@@ -1,0 +1,33 @@
+contentColumnType: string
+fieldGroup: e98a010c-e670-4cfc-83e5-f06c3876d200
+handle: imagePosition
+instructions: ''
+name: 'Image Position'
+searchable: false
+settings:
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - left
+        -
+          - value
+          - left
+        -
+          - default
+          - '1'
+    -
+      __assoc__:
+        -
+          - label
+          - right
+        -
+          - value
+          - right
+        -
+          - default
+          - ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\RadioButtons

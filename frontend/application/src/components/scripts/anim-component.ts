@@ -1,14 +1,20 @@
-import {Vue} from "vue-class-component";
-import {Prop} from "vue-property-decorator";
+import {mixins, props} from "vue-class-component";
 import verticalState, { VerticalState } from "../../helpers/vertical-state";
 
-export default class AnimComponent extends Vue {
-    @Prop({type: Boolean, default: false})
-    hasImage!: boolean;
+const Props = props({
+    hasImage: {
+        type: Boolean,
+        default: false,
+        required: false,
+    },
+    animName: {
+        type: String,
+        default: 'fade-in-top',
+        required: false,
+    },
+})
 
-    @Prop({type: String, default: "fade-in-top"})
-    animName!: string;
-
+export default class AnimComponent extends mixins(Props) {
     loadedImage: boolean = !this.hasImage;
     animate: boolean = false;
     topProgress: number = 0;

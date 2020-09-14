@@ -1,5 +1,5 @@
-import {Vue} from "vue-class-component";
-import {Prop, Watch} from "vue-property-decorator";
+import {mixins, props} from "vue-class-component";
+import {Watch} from "vue-property-decorator";
 import verticalState from "../../helpers/vertical-state";
 import debounce from "lodash-es/debounce";
 import Swipe from "./swipe";
@@ -43,64 +43,87 @@ enum Orientation {
     Vertical = "vertical",
 }
 
-export default class Carousel extends Vue {
-    @Prop({ type: Boolean, default: false })
-    asHero!: boolean; // calculate height from top position, at render
 
-    @Prop({ type: Boolean, default: false })
-    autoplay!: boolean; // play automatically
-
-    @Prop({ type: Number, default: 0 })
-    columns!: number; // number of columns, overwrite minWidth
-
-    @Prop({ type: Number, default: 5000 })
-    delay!: number; // time to show a slide
-
-    @Prop({
+const Props = props({
+    asHero: { // calculate height from top position, at render
+        type: Boolean,
+        default: false,
+        required: false,
+    },
+    autoplay: { // play automatically
+        type: Boolean,
+        default: false,
+        required: false,
+    },
+    columns: { // number of columns, overwrite minWidth
         type: Number,
         default: 0,
+        required: false,
+    },
+    delay: { // time to show a slide
+        type: Number,
+        default: 5000,
+        required: false,
+    },
+    maxWidth: { // items maximum width
+        type: Number,
+        default: 0,
+        required: false,
         validator(value: number) {
             return value >= 0;
         },
-    })
-    maxWidth!: number; // items maximum width
-
-    @Prop({
+    },
+    minWidth: { // items minimum width
         type: Number,
         default: 0,
+        required: false,
         validator(value: number) {
             return value >= 0;
         },
-    })
-    minWidth!: number; // items minimum width
-
-    @Prop({ type: Number, default: -1 })
-    slideRatio!: number;
-
-    @Prop({ type: String, default: RenderType.Slideshow })
-    renderType!: RenderType;
-
-    @Prop({ type: String, default: Orientation.Horizontal })
-    orientation!: Orientation;
-
-    @Prop({ type: Number, default: 0 })
-    startAt!: number; // first item to show
-
-    @Prop({ type: Boolean, default: true })
-    isInfinite!: boolean; // If slider is infinite
-
-    @Prop({ type: Number, default: 350 })
-    transitionDelay!: number; // duration of the transition animation
-
+    },
+    slideRatio: {
+        type: Number,
+        default: -1,
+        required: false,
+    },
+    renderType: {
+        type: String,
+        default: RenderType.Slideshow,
+        required: false,
+    },
+    orientation: {
+        type: String,
+        default: Orientation.Horizontal,
+        required: false,
+    },
+    startAt: { // first item to show
+        type: Number,
+        default: 0,
+        required: false,
+    },
+    isInfinite: { // If slider is infinite
+        type: Boolean,
+        default: true,
+        required: false,
+    },
+    transitionDelay: { // duration of the transition animation
+        type: Number,
+        default: 350,
+        required: false,
+    },
     /* If Slide Width should be changed to allow multiple slides
-     * being visible at the same time.
-     * This is different than columns because here we want to
-     * have navigation to each slide.
-     */
-    @Prop({ type: Number, default: 100 })
-    slideWidthPercentageDesktop!: number;
+    * being visible at the same time.
+    * This is different than columns because here we want to
+    * have navigation to each slide.
+    */
+    slideWidthPercentageDesktop: {
+        type: Number,
+        default: 100,
+        required: false,
+    },
+})
 
-    // Variables
+export default class Carousel extends mixins(Props) {
     carouselWidth = 0; // used to control the resize event
     currentItem = -1; // currently shown item, currently badly used
     currentSlide = 1; // currently shown slide
@@ -144,6 +167,7 @@ export default class Carousel extends Vue {
     // @ts-ignore
     swipe = new Swipe();
     hasCursorDown = false;
+    // TODO Change Watch
     @Watch("swipe.hasCursorDown")
     onCursorChange() {
         this.hasCursorDown = !this.hasCursorDown;

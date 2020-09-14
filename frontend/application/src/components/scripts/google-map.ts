@@ -1,54 +1,87 @@
-import {Vue} from "vue-class-component";
-import {Prop, Watch} from "vue-property-decorator";
+import {mixins, props} from "vue-class-component";
+import {Watch} from "vue-property-decorator";
 import {loadJS} from '../../helpers/async-loader';
 import {Action, Getter} from "vuex-class";
 
-export default class GoogleMap extends Vue {
-    @Prop({ type: Number, default: 0 })
-    lat!: number;
+const Props = props({
+    lat: {
+        type: Number,
+        default: 0,
+        required: false
+    },
+    long: {
+        type: Number,
+        default: 0,
+        required: false
+    },
+    scale: {
+        type: Number,
+        default: 50,
+        required: false
+    },
+    zoom: {
+        type: Number,
+        default: 15,
+        required: false
+    },
+    apiKey: {
+        type: String,
+        default: null,
+        required: false
+    },
+    markerIcon: {
+        type: String,
+        default: null,
+        required: false
+    },
+    markerWidth: {
+        type: Number,
+        default: 0,
+        required: false
+    },
+    markerHeight: {
+        type: Number,
+        default: 0,
+        required: false
+    },
+    personalized: {
+        type: Boolean,
+        default: false,
+        required: false
+    },
+    stylesPath: {
+        type: String,
+        default: "",
+        required: false
+    },
+    cookiemsgSpecific: {
+        type: String,
+        default: "",
+        required: false
+    },
+    cookiemsgStart: {
+        type: String,
+        default: "",
+        required: false
+    },
+    cookiemsgLink: {
+        type: String,
+        default: "",
+        required: false
+    },
+    cookiemsgEnd: {
+        type: String,
+        default: "",
+        required: false
+    },
+    info: {
+        type: String,
+        default: "",
+        required: false
+    },
+})
 
-    @Prop({ type: Number, default: 0 })
-    long!: number;
-
-    @Prop({ type: Number, default: 50 })
-    scale!: number;
-
-    @Prop({ type: Number, default: 15 })
-    zoom!: number;
-
-    @Prop({ type: String, default: null })
-    apiKey!: string | null;
-
-    @Prop({ type: String, default: null })
-    markerIcon!: string | null;
-
-    @Prop({ type: Number, default: 0 })
-    markerWidth!: number;
-
-    @Prop({ type: Number, default: 0 })
-    markerHeight!: number;
-
-    @Prop({ type: Boolean, default: false })
-    personalized!: boolean;
-
-    @Prop({ type: String, default: "" })
-    stylesPath!: string;
-
-    @Prop({ type: String, default: "" })
-    cookiemsgSpecific!: string;
-
-    @Prop({ type: String, default: "" })
-    cookiemsgStart!: string;
-
-    @Prop({ type: String, default: "" })
-    cookiemsgLink!: string;
-
-    @Prop({ type: String, default: "" })
-    cookiemsgEnd!: string;
-
-    @Prop({ type: String, default: "" })
-    info!: string;
-
+export default class GoogleMap extends mixins(Props) {
     isInitialized: boolean = false;
     isLoaded: boolean = false;
     map?: google.maps.Map;
@@ -60,6 +93,7 @@ export default class GoogleMap extends Vue {
 
     @Getter("cookieConsentThirdparty") cookieConsentThirdparty;
 
+    // TODO Change Watchers
     @Watch("lat")
     onLatChanged(newVal: number) {
         if (this.isLoaded && newVal !== 0 && this.long !== 0) {
@@ -76,7 +110,7 @@ export default class GoogleMap extends Vue {
 
     @Watch("cookieConsentThirdparty")
     onConsentAnalytics(isActive) {
-        if(isActive) {
+        if (isActive) {
             this.launch();
         } else {
             this.destroy();
@@ -84,12 +118,12 @@ export default class GoogleMap extends Vue {
     }
 
     created() {
-        if(this.cookieConsentThirdparty){
+        if (this.cookieConsentThirdparty) {
             this.launch();
         }
     }
 
-    async launch () {
+    async launch() {
         if (!this.apiKey) {
             // no API key provided. https://console.developers.google.com/apis/
             return;
@@ -133,9 +167,10 @@ export default class GoogleMap extends Vue {
 
         // Get personalized styles
         if (this.personalized) {
-            styles = await fetch(this.stylesPath, { credentials: "include" })
+            styles = await fetch(this.stylesPath, {credentials: "include"})
                 .then(response => response.json())
-                .catch(() => { /* empty */ });
+                .catch(() => { /* empty */
+                });
         }
 
         // Create Map
@@ -143,7 +178,7 @@ export default class GoogleMap extends Vue {
             gestureHandling: "cooperative",
             clickableIcons: false,
             zoom: this.zoom,
-            center: { lat: 0, lng: 0 },
+            center: {lat: 0, lng: 0},
             // Custom styling from https://mapstyle.withgoogle.com/
             styles,
         });
@@ -152,35 +187,35 @@ export default class GoogleMap extends Vue {
         const icon =
             this.markerIcon && typeof this.markerIcon === "string"
                 ? ({
-                      url: this.markerIcon,
-                      scaledSize: new google.maps.Size(
-                          this.markerWidth,
-                          this.markerHeight,
-                      ),
-                      anchor: new google.maps.Point(
-                          this.markerWidth / 2,
-                          this.markerHeight,
-                      ),
-                  } as google.maps.Icon)
+                    url: this.markerIcon,
+                    scaledSize: new google.maps.Size(
+                        this.markerWidth,
+                        this.markerHeight,
+                    ),
+                    anchor: new google.maps.Point(
+                        this.markerWidth / 2,
+                        this.markerHeight,
+                    ),
+                } as google.maps.Icon)
                 : undefined;
 
         this.marker = new google.maps.Marker({
-            position: { lat: 0, lng: 0 },
+            position: {lat: 0, lng: 0},
             icon,
             map: this.map,
             optimized: false,
         });
 
         // Create Info Window
-        if ( this.$slots && this.$slots.default) {
-            if(this.$slots.default[0] && this.$slots.default[0].elm) {
+        if (this.$slots && this.$slots.default) {
+            if (this.$slots.default[0] && this.$slots.default[0].elm) {
                 const infoElement = this.$slots.default[0].elm as HTMLElement;
 
                 if (infoElement && infoElement.innerText.trim() !== "") {
                     const content = infoElement.cloneNode(true) as HTMLElement;
                     content.removeAttribute("hidden");
 
-                    const infoWindow = new google.maps.InfoWindow({ content });
+                    const infoWindow = new google.maps.InfoWindow({content});
                     google.maps.event.addListener(this.marker, "click", () =>
                         infoWindow.open(this.map, this.marker),
                     );
@@ -194,10 +229,10 @@ export default class GoogleMap extends Vue {
         }
     }
 
-    destroy () {
+    destroy() {
         // Remove all component-specific Cookies
         // BrowserStorage.clearCookie('specific cookies');
-        if(this.isInitialized) {
+        if (this.isInitialized) {
             location.reload();
             return;
         }
