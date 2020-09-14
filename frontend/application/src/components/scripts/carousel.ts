@@ -1,5 +1,4 @@
 import {mixins, props} from "vue-class-component";
-import {Watch} from "vue-property-decorator";
 import verticalState from "../../helpers/vertical-state";
 import debounce from "lodash-es/debounce";
 import Swipe from "./swipe";
@@ -168,10 +167,10 @@ export default class Carousel extends mixins(Props) {
     swipe = new Swipe();
     hasCursorDown = false;
     // TODO Change Watch
-    @Watch("swipe.hasCursorDown")
+/*    @Watch("swipe.hasCursorDown")
     onCursorChange() {
         this.hasCursorDown = !this.hasCursorDown;
-    }
+    }*/
 
     get slideWidthPercentage() {
         if(isMobile()) {

@@ -1,5 +1,4 @@
 import {mixins, props} from "vue-class-component";
-import {Watch} from "vue-property-decorator";
 import {loadJS} from '../../helpers/async-loader';
 import {Action, Getter} from "vuex-class";
 
@@ -94,7 +93,7 @@ export default class GoogleMap extends mixins(Props) {
     @Getter("cookieConsentThirdparty") cookieConsentThirdparty;
 
     // TODO Change Watchers
-    @Watch("lat")
+/*    @Watch("lat")
     onLatChanged(newVal: number) {
         if (this.isLoaded && newVal !== 0 && this.long !== 0) {
             this.moveMap();
@@ -115,7 +114,7 @@ export default class GoogleMap extends mixins(Props) {
         } else {
             this.destroy();
         }
-    }
+    }*/
 
     created() {
         if (this.cookieConsentThirdparty) {

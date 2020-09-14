@@ -5,7 +5,7 @@ import {Section} from "./models/Section";
 import store from './store';
 
 // Create the vue instance
-const vm = createApp({
+const app = createApp({
     data: () => ({
         isMounted: false,
         isMenuOpen: false,
@@ -118,21 +118,22 @@ const vm = createApp({
     }
 });
 
-vm.use(store);
-
 /* --- Components --- */
 // If a Vue (*.vue) component exists, import only it.
 // The related CSS and TS are linked into the Vue component
-vm.component("cookie-banner", () => import('./components/cookie-banner.vue'));
-vm.component("tag-manager", () => import('./components/tag-manager.vue'));
-vm.component("google-map", () => import('./components/google-map.vue'));
-vm.component("custom-select", () => import('./components/custom-select.vue'));
-vm.component("snap-gallery", () => import('./components/snap-gallery.vue'));
-vm.component("anim-component", () => import('./components/scripts/anim-component'));
-vm.component("lazy-media", () => import('./components/lazy-media.vue'));
-vm.component("multi-carousel", () => import('./components/carousel.vue'));
-vm.component("carousel-slide", () => import('./components/carousel-slide.vue'));
+app.component("cookie-banner", () => import('./components/cookie-banner.vue'));
+app.component("tag-manager", () => import('./components/tag-manager.vue'));
+app.component("google-map", () => import('./components/google-map.vue'));
+app.component("custom-select", () => import('./components/custom-select.vue'));
+app.component("snap-gallery", () => import('./components/snap-gallery.vue'));
+app.component("anim-component", () => import('./components/anim-component.vue'));
+app.component("lazy-media", () => import('./components/lazy-media.vue'));
+app.component("multi-carousel", () => import('./components/carousel.vue'));
+app.component("carousel-slide", () => import('./components/carousel-slide.vue'));
+app.component("test-comp", () => import('./components/test-comp.vue'));
+
+app.use(store);
 
 // Connect the Vue instance to the whole <main id="view"> container
 // Avoid to use the standard DOM API as a virtual-dom will handle it
-vm.mount("#view");
+app.mount("#view");
