@@ -113,7 +113,7 @@ const app = createApp({
             this.$store.dispatch('openCookieBanner');
         }
     },
-    beforeDestroy() {
+    beforeUnmount() {
         this.isMounted = false;
     }
 });
@@ -130,7 +130,7 @@ app.component("anim-component", () => import('./components/anim-component.vue'))
 app.component("lazy-media", () => import('./components/lazy-media.vue'));
 app.component("multi-carousel", () => import('./components/carousel.vue'));
 app.component("carousel-slide", () => import('./components/carousel-slide.vue'));
-app.component("test-comp", () => import('./components/test-comp.vue'));
+app.component("testcomp", () => import('./components/test-comp.vue'));
 
 app.use(store);
 

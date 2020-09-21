@@ -118,7 +118,7 @@ export default class LazyMedia extends mixins(Props) {
         this._isLoaded = isLoaded;
     }
 
-    beforeDestroy() {
+    beforeUnmount() {
         this.source = "";
     }
 
