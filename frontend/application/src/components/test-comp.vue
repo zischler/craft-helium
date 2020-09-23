@@ -1,11 +1,13 @@
 <template>
-    {{ message }} juhu
+    <div>
+        {{ message }} juhu
+    </div>
 </template>
 
 <script>
     // TODO Remove Test Comp
     export default {
-        name: "Test Comp",
+        name: "test-comp",
         data() {
             return {
                 message: "test Message"

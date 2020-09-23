@@ -4,6 +4,18 @@ import scrollIntoViewport from "./helpers/scroll-into-viewport";
 import {Section} from "./models/Section";
 import store from './store';
 
+/* --- Components --- */
+import * as TestComp from './components/test-comp.vue';
+import * as TagManager from './components/tag-manager.vue';
+import * as CookieBanner from './components/cookie-banner.vue';
+import * as GoogleMap from './components/google-map.vue';
+import * as CustomSelect from './components/custom-select.vue';
+import * as SnapGallery from './components/snap-gallery.vue';
+import * as AnimComponent from './components/anim-component.vue';
+import * as LazyMedia from './components/lazy-media.vue';
+import * as Carousel from './components/carousel.vue';
+import * as CarouselSlide from './components/carousel-slide.vue';
+
 // Create the vue instance
 const app = createApp({
     data: () => ({
@@ -121,16 +133,16 @@ const app = createApp({
 /* --- Components --- */
 // If a Vue (*.vue) component exists, import only it.
 // The related CSS and TS are linked into the Vue component
-app.component("cookie-banner", () => import('./components/cookie-banner.vue'));
-app.component("tag-manager", () => import('./components/tag-manager.vue'));
-app.component("google-map", () => import('./components/google-map.vue'));
-app.component("custom-select", () => import('./components/custom-select.vue'));
-app.component("snap-gallery", () => import('./components/snap-gallery.vue'));
-app.component("anim-component", () => import('./components/anim-component.vue'));
-app.component("lazy-media", () => import('./components/lazy-media.vue'));
-app.component("multi-carousel", () => import('./components/carousel.vue'));
-app.component("carousel-slide", () => import('./components/carousel-slide.vue'));
-app.component("testcomp", () => import('./components/test-comp.vue'));
+app.component("cookie-banner", CookieBanner);
+app.component("tag-manager", TagManager);
+app.component("google-map", GoogleMap);
+app.component("custom-select", CustomSelect);
+app.component("snap-gallery", SnapGallery);
+app.component("anim-component", AnimComponent);
+app.component("lazy-media", LazyMedia);
+app.component("multi-carousel", Carousel);
+app.component("carousel-slide", CarouselSlide);
+app.component("test-comp", TestComp);
 
 app.use(store);
 
