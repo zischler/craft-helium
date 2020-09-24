@@ -4,7 +4,7 @@ import ActiveSection from './modules/activeSection';
 import CookieBanner from './modules/cookieBanner';
 
 // Create store
-export default createStore({
+export const store = createStore({
     modules: {
         ScrollLock,
         ActiveSection,

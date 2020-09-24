@@ -2,7 +2,7 @@
 import { createApp } from "vue";
 import scrollIntoViewport from "./helpers/scroll-into-viewport";
 import {Section} from "./models/Section";
-import store from './store';
+import { store } from './store';
 
 /* --- Components --- */
 import * as TestComp from './components/test-comp.vue';
