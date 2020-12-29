@@ -92,7 +92,7 @@
                             {% if minWidth %}v-bind:min-width="{{ minWidth ?? '0'}}"{% endif %}
                             {% if maxWidth %}v-bind:max-width="{{ maxWidth ?? '0'}}"{% endif %}
                             class="o-carousel o-component {{ carouselClass }} {% if hasGutter %}has-inner-gutter{% endif %} {% if showBulletsDesktop %}show-bullets{% endif %}" {% if asHero == true %}style="height: 100vh"{% endif %}>
-                <template slot="slides">
+                <template v-slot:slides>
                     {% if component.children.all() is not empty %}
                         {% for module in component.children.all() %}
                             <div class="slide">

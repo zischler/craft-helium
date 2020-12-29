@@ -68,8 +68,8 @@ export default class LazyMedia extends Vue.with(Props) {
     title: string = "";
     poster: string = "";
     preload: string = "none";
-    isImage = false;
-    _isLoaded = false;
+    isImage: boolean = false;
+    isLoaded0 = false;
     isDelayedAutoplay = false;
     hasControls = true;
     videoPlaying = false;
@@ -82,11 +82,11 @@ export default class LazyMedia extends Vue.with(Props) {
     }
 
     get isLoaded() {
-        return this.source !== "" || this._isLoaded;
+        return this.source !== "" || this.isLoaded0;
     }
 
     set isLoaded(isLoaded: boolean) {
-        this._isLoaded = isLoaded;
+        this.isLoaded0 = isLoaded;
     }
 
     beforeUnmount() {

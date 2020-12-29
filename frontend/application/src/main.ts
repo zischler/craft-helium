@@ -14,6 +14,7 @@ import AnimComponent from './components/anim-component.vue';
 import LazyMedia from './components/lazy-media.vue';
 import Carousel from './components/carousel.vue';
 import CarouselSlide from './components/carousel-slide.vue';
+import Swipe from "./components/swipe.vue";
 
 // Create the vue instance
 const app = createApp({
@@ -63,6 +64,7 @@ const app = createApp({
 
         window.requestAnimationFrame(this.handleOnScroll);
 
+        // TODO look if should be removed
         const images = document.querySelectorAll('img') as NodeListOf<HTMLImageElement>;
 
         images.forEach((img)=> {
@@ -141,6 +143,7 @@ app.component('anim-component', AnimComponent as any);
 app.component('lazy-media', LazyMedia as any);
 app.component('multi-carousel', Carousel as any);
 app.component('carousel-slide', CarouselSlide as any);
+app.component('swipe', Swipe as any);
 
 app.use(store);
 

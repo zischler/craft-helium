@@ -1,7 +1,6 @@
-import {Vue, prop} from "vue-class-component";
+import {Vue, prop } from "vue-class-component";
 import verticalState from "../../helpers/vertical-state";
 import debounce from "lodash-es/debounce";
-import Swipe from "./swipe";
 import {isMobile, isTablet} from "../../helpers/page-state-checker";
 import CarouselSlide from "./carousel-slide";
 
@@ -136,14 +135,7 @@ export default class Carousel extends Vue.with(Props) {
 
 
     // Swipe
-    // @ts-ignore
-    swipe = new Swipe();
     hasCursorDown = false;
-    // TODO Change Watch
-/*    @Watch("swipe.hasCursorDown")
-    onCursorChange() {
-        this.hasCursorDown = !this.hasCursorDown;
-    }*/
 
     get slideWidthPercentage() {
         if(isMobile()) {
@@ -518,6 +510,8 @@ export default class Carousel extends Vue.with(Props) {
     }
 
     /* --- Swipe --- */
+    // TODO add Swipe event handling
+    /*
     blockClick(event: MouseEvent) {
         this.swipe.blockClick(event);
     }
@@ -591,6 +585,7 @@ export default class Carousel extends Vue.with(Props) {
             }
         }
     }
+    */
 
     /* Block Wheel to not get multiple inputs from one slide */
     blockWheel() {

@@ -1,4 +1,4 @@
-import {Vue} from "vue-class-component";
+import {Options, Vue} from "vue-class-component";
 
 /**
  * Swipe Element
@@ -6,6 +6,9 @@ import {Vue} from "vue-class-component";
  * @example
  * <swipe @swipeup="doSomething()" class="o-swipe"></swipe>
  */
+@Options({
+    emits: ['swipeend', 'swipemove', 'swiperight', 'swipeleft', 'swipedown', 'swipeup']
+})
 export default class Swipe extends Vue {
     public blockClickEventDistance = 0;
     public swipe = {
