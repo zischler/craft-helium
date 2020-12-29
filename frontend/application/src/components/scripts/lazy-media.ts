@@ -6,66 +6,51 @@ import {MediaRatio} from "../../models/MediaRatio";
 class Props {
     mediaObject = prop<Object>({
         default: {},
-        required: false,
     });
     asHero = prop<boolean>({ // calculate height from top position, at render
         default: false,
-        required: false,
     });
     isInstantly = prop<boolean>({
         default: false,
-        required: false,
     });
     isCover = prop<boolean>({
         default: false,
-        required: false,
     });
     hasRatio = prop<boolean>({
         default: false,
-        required: false,
     });
     cssRatio = prop<string>({
         default: 'unset',
-        required: false,
     });
     isAutoplay = prop<boolean>({
         default: false,
-        required: false,
     });
     positionClass = prop<string>({
         default: 'is-center',
-        required: false,
     });
     ratio = prop<MediaRatio>({
         default: null,
-        required: false,
     });
     scaled = prop<boolean>({
         default: false,
-        required: false,
     });
     maxWidth = prop<string>({
         default: 'unset',
-        required: false,
     });
     maxHeight = prop<string>({
         default: 'unset',
-        required: false,
     });
     videoPoster = prop<string>({
         default: '',
     });
     titleAttribute = prop<string>({
         default: '',
-        required: false,
     });
     naturalWidth = prop<number>({
         default: -1,
-        required: false,
     });
     naturalHeight = prop<number>({
         default: -1,
-        required: false,
     });
 }
 

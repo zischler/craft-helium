@@ -5,35 +5,27 @@ import BrowserStorage from "../../helpers/browser-storage";
 class Props {
     dataJson = prop<string>({
         default: '',
-        required: false,
     });
     selectId = prop<string>({
         default: '',
-        required: false,
     });
     label = prop<string>({
         default: '',
-        required: false,
     });
     defaultPlaceholder = prop<string>({
         default: '',
-        required: false,
     });
     defaultValue = prop<string>({
         default: '',
-        required: false,
     });
     required = prop<boolean>({
         default: false,
-        required: false,
     });
     cookieStorage = prop<boolean>({
         default: false,
-        required: false,
     });
     eventEmit = prop<boolean>({
         default: false,
-        required: false,
     });
 }
 

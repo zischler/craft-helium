@@ -4,11 +4,9 @@ import verticalState, { VerticalState } from "../../helpers/vertical-state";
 class Props {
     hasImage = prop<boolean>({
         default: false,
-        required: false,
     });
     animName = prop<string>({
         default: 'fade-in-top',
-        required: false,
     });
 }
 

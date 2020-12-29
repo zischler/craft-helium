@@ -5,7 +5,6 @@ import {Getter} from "vuex-class";
 class Props {
     isProduction = prop<boolean>({
         default: true,
-        required: false,
     });
 }
 

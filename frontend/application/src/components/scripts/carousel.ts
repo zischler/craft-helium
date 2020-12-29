@@ -45,57 +45,45 @@ enum Orientation {
 class Props {
     asHero = prop<boolean>({ // calculate height from top position, at render
         default: false,
-        required: false,
     });
     autoplay = prop<boolean>({ // play automatically
         default: false,
-        required: false,
     });
     columns = prop<number>({ // number of columns, overwrite minWidth
         default: 0,
-        required: false,
     });
     delay = prop<number>({ // time to show a slide
         default: 5000,
-        required: false,
     });
     maxWidth = prop<number>({ // items maximum width
         default: 0,
-        required: false,
         validator(value: number) {
             return value >= 0;
         },
     });
     minWidth = prop<number>({ // items minimum width
         default: 0,
-        required: false,
         validator(value: number) {
             return value >= 0;
         },
     });
     slideRatio = prop<number>({
         default: -1,
-        required: false,
     });
     renderType = prop<string>({
         default: RenderType.Slideshow,
-        required: false,
     });
     orientation = prop<string>({
         default: Orientation.Horizontal,
-        required: false,
     });
     startAt = prop<number>({ // first item to show
         default: 0,
-        required: false,
     });
     isInfinite = prop<boolean>({ // If slider is infinite
         default: true,
-        required: false,
     });
     transitionDelay = prop<number>({ // duration of the transition animation
         default: 350,
-        required: false,
     });
     /* If Slide Width should be changed to allow multiple slides
     * being visible at the same time.
@@ -104,7 +92,6 @@ class Props {
     */
     slideWidthPercentageDesktop = prop<number>({
         default: 100,
-        required: false,
     });
 }
 

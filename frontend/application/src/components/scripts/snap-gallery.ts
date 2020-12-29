@@ -4,11 +4,9 @@ import "scroll-behavior-polyfill";
 class Props {
     projectTitle = prop<string>({
         default: '',
-        required: false,
     });
     projectDescription = prop<string>({
         default: '',
-        required: false,
     });
 }
 

@@ -4,64 +4,49 @@ import {Action, Getter} from "vuex-class";
 
 class Props {
     lat = prop<number>({
-        default: 0,
-        required: false
+        default: 0
     });
     long = prop<number>({
-        default: 0,
-        required: false
+        default: 0
     });
     scale = prop<number>({
-        default: 50,
-        required: false
+        default: 50
     });
     zoom = prop<number>({
-        default: 15,
-        required: false
+        default: 15
     });
     apiKey = prop<string>({
-        default: null,
-        required: false,
+        default: null
     });
     markerIcon = prop<string>({
-        default: null,
-        required: false,
+        default: null
     });
     markerWidth = prop<number>({
-        default: 0,
-        required: false
+        default: 0
     });
     markerHeight = prop<number>({
-        default: 0,
-        required: false
+        default: 0
     });
     personalized = prop<boolean>({
-        default: false,
-        required: false,
+        default: false
     });
     stylesPath = prop<string>({
-        default: '',
-        required: false,
+        default: ''
     });
     cookiemsgSpecific = prop<string>({
-        default: '',
-        required: false,
+        default: ''
     });
     cookiemsgStart = prop<string>({
-        default: '',
-        required: false,
+        default: ''
     });
     cookiemsgLink = prop<string>({
-        default: '',
-        required: false,
+        default: ''
     });
     cookiemsgEnd = prop<string>({
-        default: '',
-        required: false,
+        default: ''
     });
     info = prop<string>({
-        default: '',
-        required: false,
+        default: ''
     });
 }
 

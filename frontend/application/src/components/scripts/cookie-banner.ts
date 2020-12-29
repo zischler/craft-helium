@@ -5,55 +5,42 @@ import {Action, Getter, Mutation} from "vuex-class";
 class Props {
     bannerText = prop<string>({
         default: 'By continuing your visit to this site, you accept the use of cookies to make visits statistics.',
-        required: false,
     });
     readMore = prop<string>({
         default: '',
-        required: false,
     });
     readMoreLabel = prop<string>({
         default: 'Read More',
-        required: false,
     });
     settingsLabel = prop<string>({
         default: 'Cookie Settings',
-        required: false,
     });
     acceptLabel = prop<string>({
         default: 'Accept',
-        required: false,
     });
     confirmLabel = prop<string>({
         default: 'Confirm',
-        required: false,
     });
     backLabel = prop<string>({
         default: 'Back',
-        required: false,
     });
     settingsExplanations = prop<string>({
         default: 'Define the cookies you want to allow.',
-        required: false,
     });
     functionalLabel = prop<string>({
         default: 'Functional Cookies',
-        required: false,
     });
     analyticsCookies = prop<boolean>({
         default: false,
-        required: false,
     });
     analyticsLabel = prop<string>({
         default: 'Analytics Cookies',
-        required: false,
     });
     thirdpartyCookies = prop<boolean>({
         default: false,
-        required: false,
     });
     thirdpartyLabel = prop<string>({
         default: 'Thirdparty Cookies',
-        required: false,
     });
 }
 
