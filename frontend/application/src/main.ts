@@ -1,20 +1,19 @@
 /* --- Application --- */
-import { createApp } from "vue";
-import scrollIntoViewport from "./helpers/scroll-into-viewport";
-import {Section} from "./models/Section";
+import { createApp } from 'vue';
+import scrollIntoViewport from './helpers/scroll-into-viewport';
+import {Section} from './models/Section';
 import { store } from './store';
 
 /* --- Components --- */
-import * as TestComp from './components/test-comp.vue';
-import * as TagManager from './components/tag-manager.vue';
-import * as CookieBanner from './components/cookie-banner.vue';
-import * as GoogleMap from './components/google-map.vue';
-import * as CustomSelect from './components/custom-select.vue';
-import * as SnapGallery from './components/snap-gallery.vue';
-import * as AnimComponent from './components/anim-component.vue';
-import * as LazyMedia from './components/lazy-media.vue';
-import * as Carousel from './components/carousel.vue';
-import * as CarouselSlide from './components/carousel-slide.vue';
+import TagManager from './components/tag-manager.vue';
+import CookieBanner from './components/cookie-banner.vue';
+import GoogleMap from './components/google-map.vue';
+import CustomSelect from './components/custom-select.vue';
+import SnapGallery from './components/snap-gallery.vue';
+import AnimComponent from './components/anim-component.vue';
+import LazyMedia from './components/lazy-media.vue';
+import Carousel from './components/carousel.vue';
+import CarouselSlide from './components/carousel-slide.vue';
 
 // Create the vue instance
 const app = createApp({
@@ -23,7 +22,7 @@ const app = createApp({
         isMenuOpen: false,
         isMenuAnimate: false,
         isHomeNavigationHover: false,
-        flyoutScrollbox: document.querySelector("#flyoutScrollbox") as HTMLElement,
+        flyoutScrollbox: document.querySelector('#flyoutScrollbox') as HTMLElement,
         doc: document.documentElement as HTMLElement,
         navScrollPosition: 0,
         blockNavWatch: false,
@@ -44,22 +43,22 @@ const app = createApp({
         },
     },
     mounted() {
-        this.flyoutScrollbox = document.querySelector("#flyoutScrollbox") as HTMLElement;
+        this.flyoutScrollbox = document.querySelector('#flyoutScrollbox') as HTMLElement;
 
-        this.$store.commit("updateSectionAnchors");
+        this.$store.commit('updateSectionAnchors');
 
         // Helpful for css revealing effects
         setTimeout(() => {
             this.isMounted = true;
-            this.$store.commit("updateSectionPositions");
+            this.$store.commit('updateSectionPositions');
 
             if(((window as any).location as any).hash) {
                 this.scrollTo(((window as any).location as any).hash);
             }
         },100);
 
-        (window as any).addEventListener("resize",()=> {
-            this.$store.commit("updateSectionPositions");
+        (window as any).addEventListener('resize',()=> {
+            this.$store.commit('updateSectionPositions');
         });
 
         window.requestAnimationFrame(this.handleOnScroll);
@@ -67,12 +66,12 @@ const app = createApp({
         const images = document.querySelectorAll('img') as NodeListOf<HTMLImageElement>;
 
         images.forEach((img)=> {
-            let dataSrc:string = (img as HTMLImageElement).dataset.src || "";
+            let dataSrc:string = (img as HTMLImageElement).dataset.src || '';
             if(dataSrc) {
-                (img as HTMLImageElement).setAttribute("src", dataSrc);
+                (img as HTMLImageElement).setAttribute('src', dataSrc);
                 setTimeout(()=> {
-                    (img as HTMLElement).removeAttribute("width");
-                    (img as HTMLElement).removeAttribute("height");
+                    (img as HTMLElement).removeAttribute('width');
+                    (img as HTMLElement).removeAttribute('height');
                 }, 200);
             }
         });
@@ -82,21 +81,21 @@ const app = createApp({
             this.isMenuOpen = !this.isMenuOpen;
 
             if (this.isMenuOpen) {
-                this.$store.dispatch("blockScroll", this.flyoutScrollbox);
+                this.$store.dispatch('blockScroll', this.flyoutScrollbox);
             } else {
-                this.$store.dispatch("clearScroll", this.flyoutScrollbox);
+                this.$store.dispatch('clearScroll', this.flyoutScrollbox);
             }
         },
         scrollToTop() {
             scrollIntoViewport()(document.body);
         },
         scrollTo(elemSelector: string) {
-            this.$store.dispatch("setBlockScrollWatch", true);
+            this.$store.dispatch('setBlockScrollWatch', true);
             const section = document.querySelector(elemSelector) as HTMLElement;
             clearTimeout((window as any).timout);
             (window as any).timout = setTimeout(()=> {
-                this.$store.dispatch("setBlockScrollWatch", false);
-                this.$store.dispatch("updateCurrentSection", section.getBoundingClientRect().top);
+                this.$store.dispatch('setBlockScrollWatch', false);
+                this.$store.dispatch('updateCurrentSection', section.getBoundingClientRect().top);
             } ,3000);
 
             if(this.isMenuOpen) {
@@ -111,7 +110,7 @@ const app = createApp({
                 const currentScrollPosition = window.scrollY || window.pageYOffset;
 
                 if(currentScrollPosition !== this.navScrollPosition) {
-                    this.$store.dispatch("updateCurrentSection", this.navScrollPosition);
+                    this.$store.dispatch('updateCurrentSection', this.navScrollPosition);
                 }
 
                 this.navScrollPosition = window.scrollY || window.pageYOffset;
@@ -133,19 +132,18 @@ const app = createApp({
 /* --- Components --- */
 // If a Vue (*.vue) component exists, import only it.
 // The related CSS and TS are linked into the Vue component
-app.component("cookie-banner", CookieBanner);
-app.component("tag-manager", TagManager);
-app.component("google-map", GoogleMap);
-app.component("custom-select", CustomSelect);
-app.component("snap-gallery", SnapGallery);
-app.component("anim-component", AnimComponent);
-app.component("lazy-media", LazyMedia);
-app.component("multi-carousel", Carousel);
-app.component("carousel-slide", CarouselSlide);
-app.component("test-comp", TestComp);
+app.component('cookie-banner', CookieBanner as any);
+app.component('tag-manager', TagManager as any);
+app.component('google-map', GoogleMap as any);
+app.component('custom-select', CustomSelect as any);
+app.component('snap-gallery', SnapGallery as any);
+app.component('anim-component', AnimComponent as any);
+app.component('lazy-media', LazyMedia as any);
+app.component('multi-carousel', Carousel as any);
+app.component('carousel-slide', CarouselSlide as any);
 
 app.use(store);
 
-// Connect the Vue instance to the whole <main id="view"> container
+// Connect the Vue instance to the whole <main id='view'> container
 // Avoid to use the standard DOM API as a virtual-dom will handle it
-app.mount("#view");
+app.mount('#view');
