@@ -237,7 +237,6 @@ div[role="button"] { cursor: pointer; }
     min-height: 100vh;
     z-index: 3;
     overflow: hidden;
-    transition: opacity 0.2s linear;
 }
 
 .o-view.is-absolute {

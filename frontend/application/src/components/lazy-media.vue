@@ -29,4 +29,3 @@
 </template>
 
 <script lang="ts" src="./scripts/lazy-media.ts"></script>
-<style scoped src="../styles/styles-components/lazy-media.css"></style>
