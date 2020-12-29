@@ -3,7 +3,14 @@
          :data-orientation="orientation"
          :class="{ 'js-loaded': isLoaded, 'js-first-slide': onFirstSlide, 'js-last-slide': onLastSlide, 'js-single-slide': isSingleSlide, 'js-reverse': isReverse,'infinite': isInfinite, 'js-transition': isTransitioning, 'js-two-slides': isTwoSlides, 'js-pending': isPending }">
         <swipe class="carousel-viewport"
-               :style="updateCarouselViewportHeight">
+               :style="updateCarouselViewportHeight"
+                @swiperight="swipeRight"
+                @swipeleft="swipeLeft"
+                @swipeup="swipeUp"
+                @swipedown="swipeDown"
+                @wheeldown="wheelDown"
+                @wheelup="wheelUp"
+                >
             <template v-slot:content>
                 <div class="slides o-flex" :style="itemsContainerStyles">
                     <slot name="slides"></slot>
@@ -31,4 +38,3 @@
 </template>
 
 <script lang="ts" src="./scripts/carousel.ts"></script>
-<style scoped src="../styles/styles-components/carousel.css"></style>

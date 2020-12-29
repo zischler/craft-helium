@@ -92,6 +92,9 @@ class Props {
     slideWidthPercentageDesktop = prop<number>({
         default: 100,
     });
+    wheelEnabled = prop<boolean>({ // If Wheel usage changes slides
+        default: false,
+    });
 }
 
 export default class Carousel extends Vue.with(Props) {
@@ -510,82 +513,44 @@ export default class Carousel extends Vue.with(Props) {
     }
 
     /* --- Swipe --- */
-    // TODO add Swipe event handling
-    /*
-    blockClick(event: MouseEvent) {
-        this.swipe.blockClick(event);
+    swipeLeft(event) {
+        this.handleSwipe(event, Orientation.Horizontal, true);
     }
 
-    touchStart(event: MouseEvent | Touch) {
-        this.swipe.touchStart(event);
+    swipeRight(event) {
+        this.handleSwipe(event, Orientation.Horizontal, false);
     }
 
-    touchMove(event: MouseEvent | Touch) {
-        this.swipe.touchMove(event);
+    swipeUp(event) {
+        this.handleSwipe(event, Orientation.Vertical, true);
     }
 
-    touchEnd(event: MouseEvent | Touch) {
-        this.swipe.hasCursorDown = false;
-        const swipeMove = this.swipe.swipe;
+    swipeDown(event) {
+        this.handleSwipe(event, Orientation.Vertical, false);
+    }
 
-        if (swipeMove.move) {
-            const endEvent = this.getTouchEvent(event);
-            const now = Date.now();
-            const detail = {
-                x: endEvent.clientX - swipeMove.x,
-                y: endEvent.clientY - swipeMove.y,
-            };
-
-            // Horizontal swipe
-            if (this.orientation === Orientation.Horizontal) {
-                if (Math.abs(endEvent.clientY - swipeMove.y) < 30 && now - swipeMove.time < 1000) {
-                    if (detail.x > 30) {
-                        // swipe left
-                        this.isAutoplay = false;
-                        this.previousSlide(event);
-                    } else if (detail.x < -30) {
-                        // swipe right
-                        this.isAutoplay = false;
-                        this.nextSlide(event);
-                    }
-                }
-            }
-
-            // Vertical Swipe
-            if (this.orientation === Orientation.Vertical) {
-                if (Math.abs(endEvent.clientX - swipeMove.x) < 30 && now - swipeMove.time < 1000) {
-                    if (detail.y > 30) {
-                        // swipe down
-                        this.previousSlide(event);
-                    } else if (detail.y < -30) {
-                        // swipe up
-                        this.nextSlide(event);
-                    }
-                }
-            }
-
-            this.swipe.swipe.move = false;
+    handleSwipe(event, necessaryOrientation, toNextSlide) {
+        if (this.orientation === necessaryOrientation) {
+            this.isAutoplay = false;
+            toNextSlide ? this.nextSlide(event) : this.previousSlide(event);
         }
     }
 
-    onWheel(event: WheelEvent) {
-        // Vertical Swipe
-        if (this.orientation === Orientation.Vertical) {
-            event.preventDefault();
-            if (!this.isTransitioning && !this.isWheelBlocked) {
-                if (event.deltaY && event.deltaY > 3) {
-                    this.blockWheel();
-                    // swipe up
-                    this.nextSlide(event);
-                } else if (event.deltaY && event.deltaY < -3) {
-                    this.blockWheel();
-                    // swipe down
-                    this.previousSlide(event);
-                }
-            }
+    wheelUp(event) {
+        if (this.wheelEnabled && !this.isTransitioning && !this.isWheelBlocked) {
+            this.blockWheel();
+            // swipe up
+            this.nextSlide(event);
         }
     }
-    */
+
+    wheelDown(event) {
+        if (this.wheelEnabled && !this.isTransitioning && !this.isWheelBlocked) {
+            this.blockWheel();
+            // swipe up
+            this.previousSlide(event);
+        }
+    }
 
     /* Block Wheel to not get multiple inputs from one slide */
     blockWheel() {

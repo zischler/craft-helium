@@ -5,4 +5,4 @@
 </template>
 
 <script lang="ts" src="./scripts/carousel-slide.ts"></script>
-<style scoped src="../styles/styles-components/carousel.css"></style>
+<style scoped src="../styles/styles-async/carousel.css"></style>
