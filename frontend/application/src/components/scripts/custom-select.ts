@@ -1,43 +1,43 @@
-import {mixins, props} from "vue-class-component";
+import {Vue, prop} from "vue-class-component";
 import findKey from "lodash-es/findKey";
 import BrowserStorage from "../../helpers/browser-storage";
 
-const Props = props({
-    dataJson: {
-        type: String,
-        default: ""
-    },
-    selectId: {
-        type: String,
-        default: ""
-    },
-    label: {
-        type: String,
-        default: ""
-    },
-    defaultPlaceholder: {
-        type: String,
-        default: ""
-    },
-    defaultValue: {
-        type: String,
-        default: ""
-    },
-    required: {
-        type: Boolean,
-        default: false
-    },
-    cookieStorage: {
-        type: Boolean,
-        default: false
-    },
-    eventEmit: {
-        type: Boolean,
-        default: false
-    }
-})
+class Props {
+    dataJson = prop<string>({
+        default: '',
+        required: false,
+    });
+    selectId = prop<string>({
+        default: '',
+        required: false,
+    });
+    label = prop<string>({
+        default: '',
+        required: false,
+    });
+    defaultPlaceholder = prop<string>({
+        default: '',
+        required: false,
+    });
+    defaultValue = prop<string>({
+        default: '',
+        required: false,
+    });
+    required = prop<boolean>({
+        default: false,
+        required: false,
+    });
+    cookieStorage = prop<boolean>({
+        default: false,
+        required: false,
+    });
+    eventEmit = prop<boolean>({
+        default: false,
+        required: false,
+    });
+}
 
-export default class CustomSelect extends mixins(Props) {
+export default class CustomSelect extends Vue.with(Props) {
     public isOpen = false;
     public isHidden = true;
     public selectValue: string = "";

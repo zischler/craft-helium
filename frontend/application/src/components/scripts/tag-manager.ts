@@ -1,15 +1,15 @@
-import {mixins, props} from "vue-class-component";
+import {Vue, prop} from "vue-class-component";
 import BrowserStorage from "../../helpers/browser-storage";
 import {Getter} from "vuex-class";
 
-const Props = props({
-    isProduction: {
-        type: Boolean,
+class Props {
+    isProduction = prop<boolean>({
         default: true,
-        required: false
-    },
-})
-export default class CookieBanner extends mixins(Props) {
+        required: false,
+    });
+}
+
+export default class CookieBanner extends Vue.with(Props) {
     @Getter("cookieConsentAnalytics") cookieConsentAnalytics;
 
     trackingAllowed = false;

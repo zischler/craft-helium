@@ -1,76 +1,63 @@
-import {mixins, props} from "vue-class-component";
+import {Vue, prop} from "vue-class-component";
 import BrowserStorage from "../../helpers/browser-storage";
 import {Action, Getter, Mutation} from "vuex-class";
 
-const Props = props({
-    bannerText: {
-        type: String,
+class Props {
+    bannerText = prop<string>({
         default: 'By continuing your visit to this site, you accept the use of cookies to make visits statistics.',
         required: false,
-    },
-    readMore: {
-        type: String,
+    });
+    readMore = prop<string>({
         default: '',
         required: false,
-    },
-    readMoreLabel: {
-        type: String,
+    });
+    readMoreLabel = prop<string>({
         default: 'Read More',
         required: false,
-    },
-    settingsLabel: {
-        type: String,
+    });
+    settingsLabel = prop<string>({
         default: 'Cookie Settings',
         required: false,
-    },
-    acceptLabel: {
-        type: String,
+    });
+    acceptLabel = prop<string>({
         default: 'Accept',
         required: false,
-    },
-    confirmLabel: {
-        type: String,
+    });
+    confirmLabel = prop<string>({
         default: 'Confirm',
         required: false,
-    },
-    backLabel: {
-        type: String,
+    });
+    backLabel = prop<string>({
         default: 'Back',
         required: false,
-    },
-    settingsExplanations: {
-        type: String,
+    });
+    settingsExplanations = prop<string>({
         default: 'Define the cookies you want to allow.',
         required: false,
-    },
-    functionalLabel: {
-        type: String,
+    });
+    functionalLabel = prop<string>({
         default: 'Functional Cookies',
         required: false,
-    },
-    analyticsCookies: {
-        type: Boolean,
+    });
+    analyticsCookies = prop<boolean>({
         default: false,
         required: false,
-    },
-    analyticsLabel: {
-        type: String,
+    });
+    analyticsLabel = prop<string>({
         default: 'Analytics Cookies',
         required: false,
-    },
-    thirdpartyCookies: {
-        type: Boolean,
+    });
+    thirdpartyCookies = prop<boolean>({
         default: false,
         required: false,
-    },
-    thirdpartyLabel: {
-        type: String,
+    });
+    thirdpartyLabel = prop<string>({
         default: 'Thirdparty Cookies',
         required: false,
-    },
-})
+    });
+}
 
-export default class CookieBanner extends mixins(Props) {
+export default class CookieBanner extends Vue.with(Props) {
     @Action("openCookieBanner") openCookieBanner;
     @Action("closeCookieBanner") closeCookieBanner;
     @Action("openCookieSettings") openCookieSettings;

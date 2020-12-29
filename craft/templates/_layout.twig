@@ -133,24 +133,8 @@
         </div>
 
         <!-- JS -->
-        <script nomodule>window.__nomodule__ = true;</script>
-        <script>
-            (function() {
-                var script = document.createElement("script");
-                script.async = true;
-                script.crossOrigin = "use-credentials";
-
-                if (window.__nomodule__) {
-                    script.noModule = true;
-                    script.defer = true;
-                    script.src = "/webresources/build/legacy/main.js";
-                } else {
-                    script.type = "module";
-                    script.src = "/webresources/build/module/main.js";
-                }
-                document.body.appendChild(script);
-            })();
-        </script>
+        <script nomodule src="/webresources/build/legacy/main.js"></script>
+        <script type="module" src="/webresources/build/module/main.js"></script>
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-********-1"></script>
     </body>
 </html>

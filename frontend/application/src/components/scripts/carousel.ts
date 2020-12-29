@@ -1,4 +1,4 @@
-import {mixins, props} from "vue-class-component";
+import {Vue, prop} from "vue-class-component";
 import verticalState from "../../helpers/vertical-state";
 import debounce from "lodash-es/debounce";
 import Swipe from "./swipe";
@@ -42,87 +42,73 @@ enum Orientation {
     Vertical = "vertical",
 }
 
-
-const Props = props({
-    asHero: { // calculate height from top position, at render
-        type: Boolean,
+class Props {
+    asHero = prop<boolean>({ // calculate height from top position, at render
         default: false,
         required: false,
-    },
-    autoplay: { // play automatically
-        type: Boolean,
+    });
+    autoplay = prop<boolean>({ // play automatically
         default: false,
         required: false,
-    },
-    columns: { // number of columns, overwrite minWidth
-        type: Number,
+    });
+    columns = prop<number>({ // number of columns, overwrite minWidth
         default: 0,
         required: false,
-    },
-    delay: { // time to show a slide
-        type: Number,
+    });
+    delay = prop<number>({ // time to show a slide
         default: 5000,
         required: false,
-    },
-    maxWidth: { // items maximum width
-        type: Number,
+    });
+    maxWidth = prop<number>({ // items maximum width
         default: 0,
         required: false,
         validator(value: number) {
             return value >= 0;
         },
-    },
-    minWidth: { // items minimum width
-        type: Number,
+    });
+    minWidth = prop<number>({ // items minimum width
         default: 0,
         required: false,
         validator(value: number) {
             return value >= 0;
         },
-    },
-    slideRatio: {
-        type: Number,
+    });
+    slideRatio = prop<number>({
         default: -1,
         required: false,
-    },
-    renderType: {
-        type: String,
+    });
+    renderType = prop<string>({
         default: RenderType.Slideshow,
         required: false,
-    },
-    orientation: {
-        type: String,
+    });
+    orientation = prop<string>({
         default: Orientation.Horizontal,
         required: false,
-    },
-    startAt: { // first item to show
-        type: Number,
+    });
+    startAt = prop<number>({ // first item to show
         default: 0,
         required: false,
-    },
-    isInfinite: { // If slider is infinite
-        type: Boolean,
+    });
+    isInfinite = prop<boolean>({ // If slider is infinite
         default: true,
         required: false,
-    },
-    transitionDelay: { // duration of the transition animation
-        type: Number,
+    });
+    transitionDelay = prop<number>({ // duration of the transition animation
         default: 350,
         required: false,
-    },
+    });
     /* If Slide Width should be changed to allow multiple slides
     * being visible at the same time.
     * This is different than columns because here we want to
     * have navigation to each slide.
     */
-    slideWidthPercentageDesktop: {
-        type: Number,
+    slideWidthPercentageDesktop = prop<number>({
         default: 100,
         required: false,
-    },
-})
+    });
+}
 
-export default class Carousel extends mixins(Props) {
+export default class Carousel extends Vue.with(Props) {
     carouselWidth = 0; // used to control the resize event
     currentItem = -1; // currently shown item, currently badly used
     currentSlide = 1; // currently shown slide

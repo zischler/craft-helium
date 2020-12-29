@@ -1,20 +1,18 @@
-import {mixins, props,} from "vue-class-component";
+import {Vue, prop} from "vue-class-component";
 import "scroll-behavior-polyfill";
 
-const Props = props({
-    projectTitle: {
-        type: String,
-        default: "",
-        required: false
-    },
-    projectDescription: {
-        type: String,
-        default: "",
-        required: false
-    },
-})
+class Props {
+    projectTitle = prop<string>({
+        default: '',
+        required: false,
+    });
+    projectDescription = prop<string>({
+        default: '',
+        required: false,
+    });
+}
 
-export default class SnapGallery extends mixins(Props) {
+export default class SnapGallery extends Vue.with(Props) {
     images: NodeListOf<HTMLImageElement> = {} as any;
     groupBlock = {} as any;
     mask = {} as any;

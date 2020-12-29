@@ -1,87 +1,73 @@
-import {mixins, props} from "vue-class-component";
+import {Vue, prop} from "vue-class-component";
 import verticalState from "../../helpers/vertical-state";
 import {Media} from "../../models/Media";
+import {MediaRatio} from "../../models/MediaRatio";
 
-const Props = props({
-    mediaObject: {
-        type: Object,
-        default: {}
-    },
-    asHero: { // calculate height from top position, at render
-        type: Boolean,
+class Props {
+    mediaObject = prop<Object>({
+        default: {},
+        required: false,
+    });
+    asHero = prop<boolean>({ // calculate height from top position, at render
         default: false,
-        required: false
-    },
-    isInstantly: {
-        type: Boolean,
+        required: false,
+    });
+    isInstantly = prop<boolean>({
         default: false,
-        required: false
-    },
-    isCover: {
-        type: Boolean,
+        required: false,
+    });
+    isCover = prop<boolean>({
         default: false,
-        required: false
-    },
-    hasRatio: {
-        type: Boolean,
+        required: false,
+    });
+    hasRatio = prop<boolean>({
         default: false,
-        required: false
-    },
-    cssRatio: {
-        type: String,
-        default: "unset",
-        required: false
-    },
-    isAutoplay: {
-        type: Boolean,
+        required: false,
+    });
+    cssRatio = prop<string>({
+        default: 'unset',
+        required: false,
+    });
+    isAutoplay = prop<boolean>({
         default: false,
-        required: false
-    },
-    positionClass: {
-        type: String,
-        default: "is-center",
-        required: false
-    },
-    ratio: {
-        type: Object,
+        required: false,
+    });
+    positionClass = prop<string>({
+        default: 'is-center',
+        required: false,
+    });
+    ratio = prop<MediaRatio>({
         default: null,
-        required: false
-    },
-    scaled: {
-        type: Boolean,
+        required: false,
+    });
+    scaled = prop<boolean>({
         default: false,
-        required: false
-    },
-    maxWidth: {
-        type: String,
-        default: "unset",
-        required: false
-    },
-    maxHeight: {
-        type: String,
-        default: "unset",
-        required: false
-    },
-    videoPoster: {
-        type: String,
-        default: ""
-    },
-    titleAttribute: {
-        type: String,
-        default: "",
-        required: false
-    },
-    naturalWidth: {
-        type: Number,
+        required: false,
+    });
+    maxWidth = prop<string>({
+        default: 'unset',
+        required: false,
+    });
+    maxHeight = prop<string>({
+        default: 'unset',
+        required: false,
+    });
+    videoPoster = prop<string>({
+        default: '',
+    });
+    titleAttribute = prop<string>({
+        default: '',
+        required: false,
+    });
+    naturalWidth = prop<number>({
         default: -1,
-        required: false
-    },
-    naturalHeight: {
-        type: Number,
+        required: false,
+    });
+    naturalHeight = prop<number>({
         default: -1,
-        required: false
-    },
-})
+        required: false,
+    });
+}
 
 
 // Edge doesn't support object-fit for video...
@@ -89,7 +75,7 @@ const Props = props({
 const IEdgeMatches = /(Edge|Trident)\/(\d.)/i.exec(navigator.userAgent);
 const isOutdatedBrowser = IEdgeMatches !== null; // && parseInt(IEdgeMatches[2], 10) < 17;
 
-export default class LazyMedia extends mixins(Props) {
+export default class LazyMedia extends Vue.with(Props) {
     media: Media = {} as Media;
     source = "";
     width: string | number = "100%";

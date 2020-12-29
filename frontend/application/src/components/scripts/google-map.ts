@@ -1,86 +1,71 @@
-import {mixins, props} from "vue-class-component";
+import {Vue, prop} from "vue-class-component";
 import {loadJS} from '../../helpers/async-loader';
 import {Action, Getter} from "vuex-class";
 
-const Props = props({
-    lat: {
-        type: Number,
+class Props {
+    lat = prop<number>({
         default: 0,
         required: false
-    },
-    long: {
-        type: Number,
+    });
+    long = prop<number>({
         default: 0,
         required: false
-    },
-    scale: {
-        type: Number,
+    });
+    scale = prop<number>({
         default: 50,
         required: false
-    },
-    zoom: {
-        type: Number,
+    });
+    zoom = prop<number>({
         default: 15,
         required: false
-    },
-    apiKey: {
-        type: String,
+    });
+    apiKey = prop<string>({
         default: null,
-        required: false
-    },
-    markerIcon: {
-        type: String,
+        required: false,
+    });
+    markerIcon = prop<string>({
         default: null,
-        required: false
-    },
-    markerWidth: {
-        type: Number,
+        required: false,
+    });
+    markerWidth = prop<number>({
         default: 0,
         required: false
-    },
-    markerHeight: {
-        type: Number,
+    });
+    markerHeight = prop<number>({
         default: 0,
         required: false
-    },
-    personalized: {
-        type: Boolean,
+    });
+    personalized = prop<boolean>({
         default: false,
-        required: false
-    },
-    stylesPath: {
-        type: String,
-        default: "",
-        required: false
-    },
-    cookiemsgSpecific: {
-        type: String,
-        default: "",
-        required: false
-    },
-    cookiemsgStart: {
-        type: String,
-        default: "",
-        required: false
-    },
-    cookiemsgLink: {
-        type: String,
-        default: "",
-        required: false
-    },
-    cookiemsgEnd: {
-        type: String,
-        default: "",
-        required: false
-    },
-    info: {
-        type: String,
-        default: "",
-        required: false
-    },
-})
+        required: false,
+    });
+    stylesPath = prop<string>({
+        default: '',
+        required: false,
+    });
+    cookiemsgSpecific = prop<string>({
+        default: '',
+        required: false,
+    });
+    cookiemsgStart = prop<string>({
+        default: '',
+        required: false,
+    });
+    cookiemsgLink = prop<string>({
+        default: '',
+        required: false,
+    });
+    cookiemsgEnd = prop<string>({
+        default: '',
+        required: false,
+    });
+    info = prop<string>({
+        default: '',
+        required: false,
+    });
+}
 
-export default class GoogleMap extends mixins(Props) {
+export default class GoogleMap extends Vue.with(Props) {
     isInitialized: boolean = false;
     isLoaded: boolean = false;
     map?: google.maps.Map;
