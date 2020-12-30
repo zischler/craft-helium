@@ -38,3 +38,4 @@
 </template>
 
 <script lang="ts" src="./scripts/carousel.ts"></script>
+<style scoped src="../styles/styles-components/carousel.css"></style>
