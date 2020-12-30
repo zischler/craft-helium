@@ -62,20 +62,6 @@ const app = createApp({
         });
 
         window.requestAnimationFrame(this.handleOnScroll);
-
-        // TODO look if should be removed
-        const images = document.querySelectorAll('img') as NodeListOf<HTMLImageElement>;
-
-        images.forEach((img)=> {
-            let dataSrc:string = (img as HTMLImageElement).dataset.src || '';
-            if(dataSrc) {
-                (img as HTMLImageElement).setAttribute('src', dataSrc);
-                setTimeout(()=> {
-                    (img as HTMLElement).removeAttribute('width');
-                    (img as HTMLElement).removeAttribute('height');
-                }, 200);
-            }
-        });
     },
     methods: {
         toggleFlyout() {
