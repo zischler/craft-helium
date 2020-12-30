@@ -64,9 +64,9 @@ export default class CookieBanner extends Vue.with(Props) {
     @Getter("showCookieSettings") isOpen;
 
     mounted() {
-        this.consentFunctional = BrowserStorage.getBooleanCookie(this.cookieNameFunctional) || false;
+        const hasCookies = BrowserStorage.getBooleanCookie(this.cookieNameFunctional);
 
-        if(this.consentFunctional) {
+        if(hasCookies) {
             this.$nextTick(() => { this.initCookiesConsent(); });
         } else {
             this.openCookieBanner();
