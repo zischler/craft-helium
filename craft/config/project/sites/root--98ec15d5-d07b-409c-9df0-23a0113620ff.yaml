@@ -1,0 +1,8 @@
+baseUrl: $DEFAULT_SITE_URL
+handle: root
+hasUrls: true
+language: en-GB
+name: craft-helium
+primary: true
+siteGroup: 7e9110ae-cc69-41ef-adb8-cefe263c4565
+sortOrder: 1

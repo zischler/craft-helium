@@ -1,0 +1,17 @@
+contentColumnType: text
+fieldGroup: 70fb31f1-038f-469d-89a6-cf02323d4630
+handle: videoId
+instructions: ''
+name: 'Video ID'
+searchable: true
+settings:
+  byteLimit: null
+  charLimit: null
+  code: ''
+  columnType: null
+  initialRows: '4'
+  multiline: ''
+  placeholder: ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

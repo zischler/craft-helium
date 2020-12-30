@@ -14,7 +14,9 @@
         @dragstart.prevent
 
         :class='{ "js-cursor-down": hasCursorDown }'
-    ></div>
+    >
+        <slot name="content"></slot>
+    </div>
 </template>
 
 <script lang="ts" src="./scripts/swipe.ts"></script>

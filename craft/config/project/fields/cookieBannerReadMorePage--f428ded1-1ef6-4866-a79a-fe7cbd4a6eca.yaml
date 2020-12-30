@@ -1,0 +1,19 @@
+contentColumnType: string
+fieldGroup: d89526f0-270b-4f39-8afb-812fe0300304
+handle: cookieBannerReadMorePage
+instructions: ''
+name: 'Cookie Banner Read More Page'
+searchable: true
+settings:
+  limit: '1'
+  localizeRelations: false
+  selectionLabel: 'Add Page'
+  source: null
+  sources:
+    - 'section:4fc80367-4ace-43e6-91ee-1e08b6b1ce15'
+    - singles
+  targetSiteId: null
+  viewMode: null
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Entries

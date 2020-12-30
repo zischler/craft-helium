@@ -1,0 +1,11 @@
+contentColumnType: boolean
+fieldGroup: d1f3b0d0-bb53-4580-b535-3574ed35136f
+handle: isSmallWidth
+instructions: ''
+name: 'Is Small Width'
+searchable: false
+settings:
+  default: ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Lightswitch

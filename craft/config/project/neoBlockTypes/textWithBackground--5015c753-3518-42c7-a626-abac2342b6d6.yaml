@@ -1,0 +1,27 @@
+childBlocks: ''
+field: f223541d-0057-4b42-8f60-11587c05dbf9
+fieldLayouts:
+  7330f962-7bb3-4a38-9fc6-77fe98c92c08:
+    tabs:
+      -
+        fields:
+          523f2953-52fd-4cdb-9846-6f0b1e96cd06:
+            required: false
+            sortOrder: 4
+          93e318a1-9a35-4cf7-b3e8-582916bfb7ef:
+            required: false
+            sortOrder: 1
+          93f66945-268c-495f-bd44-4e4f8343a4f9:
+            required: false
+            sortOrder: 2
+          e8013185-75cb-4cc3-83df-74bc8f4c3a64:
+            required: false
+            sortOrder: 3
+        name: Main
+        sortOrder: 1
+handle: textWithBackground
+maxBlocks: 0
+maxChildBlocks: 0
+name: 'Text With Background'
+sortOrder: 9
+topLevel: false

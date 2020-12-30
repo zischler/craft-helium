@@ -1,0 +1,33 @@
+fieldLayouts:
+  2fe74213-6aa3-42b4-8535-39b033ce7ad2:
+    tabs:
+      -
+        fields:
+          0fc90f09-a084-4709-9bf3-c40cee277e73:
+            required: false
+            sortOrder: 6
+          263baeb5-ef57-4ef2-8cdd-4a399f687a87:
+            required: false
+            sortOrder: 2
+          6ed38a35-b31d-492a-9070-f4a2bb379825:
+            required: false
+            sortOrder: 1
+          77f99a99-5e49-4915-a418-33b67b7d20d5:
+            required: false
+            sortOrder: 8
+          8f4137a5-b419-47fb-acbe-2e482f903c52:
+            required: false
+            sortOrder: 3
+          a3edec2b-84b4-4260-a307-4025cae5288e:
+            required: false
+            sortOrder: 7
+          cb06e3bc-1d11-4e78-8028-115347e61a61:
+            required: false
+            sortOrder: 4
+          f428ded1-1ef6-4866-a79a-fe7cbd4a6eca:
+            required: false
+            sortOrder: 5
+        name: Cookies
+        sortOrder: 1
+handle: cookies
+name: Cookies

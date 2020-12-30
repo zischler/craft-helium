@@ -1,0 +1,17 @@
+contentColumnType: text
+fieldGroup: d89526f0-270b-4f39-8afb-812fe0300304
+handle: cookieSettings
+instructions: 'Label for Cookie Settings in Footer'
+name: 'Cookie Settings'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: ''
+  columnType: null
+  initialRows: '4'
+  multiline: ''
+  placeholder: ''
+translationKeyFormat: null
+translationMethod: language
+type: craft\fields\PlainText

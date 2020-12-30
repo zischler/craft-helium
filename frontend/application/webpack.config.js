@@ -109,7 +109,7 @@ module.exports = {
     resolve: {
         extensions: [".ts", ".js", ".css"],
         alias: {
-            vue$: "vue/dist/vue.esm.js",
+            "vue": "vue/dist/vue.esm-bundler.js",
         },
     },
     plugins: [
@@ -121,6 +121,10 @@ module.exports = {
             filename: "[name].css",
         }),
         new VueLoaderPlugin(),
+        new webpack.DefinePlugin({
+            __VUE_OPTIONS_API__: true,
+            __VUE_PROD_DEVTOOLS__: false,
+        })
     ],
     module: {
         rules: [

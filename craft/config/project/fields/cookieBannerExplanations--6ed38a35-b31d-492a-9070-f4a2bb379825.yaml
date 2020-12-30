@@ -1,0 +1,22 @@
+contentColumnType: text
+fieldGroup: d89526f0-270b-4f39-8afb-812fe0300304
+handle: cookieBannerExplanations
+instructions: ''
+name: 'Cookie Banner Explanations'
+searchable: true
+settings:
+  availableTransforms: '*'
+  availableVolumes: '*'
+  cleanupHtml: true
+  columnType: text
+  purifierConfig: ''
+  purifyHtml: '1'
+  redactorConfig: ''
+  removeEmptyTags: '1'
+  removeInlineStyles: '1'
+  removeNbsp: '1'
+  showUnpermittedFiles: false
+  showUnpermittedVolumes: false
+translationKeyFormat: null
+translationMethod: language
+type: craft\redactor\Field

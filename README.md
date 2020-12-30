@@ -69,6 +69,6 @@
 - npm run build
 
 ### Optional
-- Automatically load Project.yaml changes: ./craft project-config/sync
+- Automatically load Project.yaml changes: ./craft project-config/apply
 - If you change some Craft Admin Central stuff with an own plugin: composer dump-autoload
 - Clear Craft Caches: ./craft clear-caches/all

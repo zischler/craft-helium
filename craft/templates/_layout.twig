@@ -28,6 +28,7 @@
         {# CSS #}
         {{ craft.twigpack.includeInlineCssTags("@webroot/webresources/build/module/critical.css") }}
         {{ craft.twigpack.includeInlineCssTags("@webroot/webresources/build/module/helium.css") }}
+        {{ craft.twigpack.includeInlineCssTags("@webroot/webresources/build/module/main.css") }}
 
         <!-- Android / Standard: 192x192px -->
         <meta name="application-name" content="{{ applicationName }}">
@@ -74,11 +75,10 @@
             <meta name="twitter:card" content="summary_large_image">
         {% endif %}
     </head>
-    <body>
+    <body class="no-js">
         {% include "_includes/symbols.svg" %}
         
-        <div id="view" class="o-view" :class="{'js-mounted':isMounted}">
-
+        <div id="view" class="o-view">
             {% include "_includes/header.twig" %}
 
             {% block hero %}
@@ -93,63 +93,54 @@
 
             {% include "_includes/footer.twig" %}
 
-            {% set cookies = craft.app.globals.getSetByHandle('cookies') %}
-            <cookie-banner
-                {% if cookies.cookieBannerReadMorePage is defined and cookies.cookieBannerReadMorePage.one() != null %}
-                :read-more="'{{ cookies.cookieBannerReadMorePage.one().url }}'"
-                {% endif %}
-                {% if cookies.cookieBannerReadMoreLabel is defined and cookies.cookieBannerReadMoreLabel != null %}
-                :read-more-label="'{{ cookies.cookieBannerReadMoreLabel }}'"
-                {% endif %}
-                {% if cookies.cookieSettings is defined and cookies.cookieSettings != null %}
-                :settings-label="'{{ cookies.cookieSettings }}'"
-                {% endif %}
-                {% if cookies.cookieAcceptLabel is defined and cookies.cookieAcceptLabel != null %}
-                :accept-label="'{{ cookies.cookieAcceptLabel }}'"
-                {% endif %}
-                {% if cookies.cookieAnalyticsLabel is defined and cookies.cookieAnalyticsLabel != null %}
-                :analytics-label="'{{ cookies.cookieAnalyticsLabel }}'"
-                {% endif %}
-                {% if cookies.cookieFunctionalLabel is defined and cookies.cookieFunctionalLabel != null %}
-                :functional-label="'{{ cookies.cookieFunctionalLabel }}'"
-                {% endif %}
-                {% if cookies.cookieThirdPartyLabel is defined and cookies.cookieThirdPartyLabel != null %}
-                :thirdparty-label="'{{ cookies.cookieThirdPartyLabel }}'"
-                {% endif %}
-                {% if cookies.cookieBackLabel is defined and cookies.cookieBackLabel != null %}
-                :back-label="'{{ cookies.cookieBackLabel }}'"
-                {% endif %}
-                {% if cookies.cookieConfirmLabel is defined and cookies.cookieConfirmLabel != null %}
-                :confirm-label="'{{ cookies.cookieConfirmLabel }}'"
-                {% endif %}
-                {% if cookies.cookieSettingsExplanations is defined and cookies.cookieSettingsExplanations != null %}
-                :settings-explanations="'{{ cookies.cookieSettingsExplanations }}'"
-                {% endif %}
-                :analytics-cookies="true" :thirdparty-cookies="true">
-                {% if cookies.cookieBannerExplanations is defined and cookies.cookieBannerExplanations != null %}
-                    {{ cookies.cookieBannerExplanations }}
-                {% endif %}
+
+            <transition name="fade">
+                {% set cookies = craft.app.globals.getSetByHandle('cookies') %}
+                <cookie-banner
+                        {% if cookies.cookieBannerReadMorePage is defined and cookies.cookieBannerReadMorePage.one() != null %}
+                            :read-more="'{{ cookies.cookieBannerReadMorePage.one().url }}'"
+                        {% endif %}
+                        {% if cookies.cookieBannerReadMoreLabel is defined and cookies.cookieBannerReadMoreLabel != null %}
+                            :read-more-label="'{{ cookies.cookieBannerReadMoreLabel }}'"
+                        {% endif %}
+                        {% if cookies.cookieSettings is defined and cookies.cookieSettings != null %}
+                            :settings-label="'{{ cookies.cookieSettings }}'"
+                        {% endif %}
+                        {% if cookies.cookieAcceptLabel is defined and cookies.cookieAcceptLabel != null %}
+                            :accept-label="'{{ cookies.cookieAcceptLabel }}'"
+                        {% endif %}
+                        {% if cookies.cookieAnalyticsLabel is defined and cookies.cookieAnalyticsLabel != null %}
+                            :analytics-label="'{{ cookies.cookieAnalyticsLabel }}'"
+                        {% endif %}
+                        {% if cookies.cookieFunctionalLabel is defined and cookies.cookieFunctionalLabel != null %}
+                            :functional-label="'{{ cookies.cookieFunctionalLabel }}'"
+                        {% endif %}
+                        {% if cookies.cookieThirdPartyLabel is defined and cookies.cookieThirdPartyLabel != null %}
+                            :thirdparty-label="'{{ cookies.cookieThirdPartyLabel }}'"
+                        {% endif %}
+                        {% if cookies.cookieBackLabel is defined and cookies.cookieBackLabel != null %}
+                            :back-label="'{{ cookies.cookieBackLabel }}'"
+                        {% endif %}
+                        {% if cookies.cookieConfirmLabel is defined and cookies.cookieConfirmLabel != null %}
+                            :confirm-label="'{{ cookies.cookieConfirmLabel }}'"
+                        {% endif %}
+                        {% if cookies.cookieSettingsExplanations is defined and cookies.cookieSettingsExplanations != null %}
+                            :settings-explanations="'{{ cookies.cookieSettingsExplanations }}'"
+                        {% endif %}
+                        :analytics-cookies="true" :thirdparty-cookies="true" :is-production="{{ devMode ? 'false' : 'true' }}">
+                    {% if cookies.cookieBannerExplanations is defined and cookies.cookieBannerExplanations != null %}
+                        {{ cookies.cookieBannerExplanations }}
+                    {% endif %}
                 </cookie-banner>
+            </transition>
         </div>
 
         <!-- JS -->
-        <script nomodule>window.__nomodule__ = true;</script>
+        <script nomodule src="/webresources/build/legacy/main.js"></script>
+        <script type="module" src="/webresources/build/module/main.js"></script>
         <script>
-            (function() {
-                var script = document.createElement("script");
-                script.async = true;
-                script.crossOrigin = "use-credentials";
-
-                if (window.__nomodule__) {
-                    script.noModule = true;
-                    script.defer = true;
-                    script.src = "/webresources/build/legacy/main.js";
-                } else {
-                    script.type = "module";
-                    script.src = "/webresources/build/module/main.js";
-                }
-                document.body.appendChild(script);
-            })();
+            // Remove no js class
+            document.body.classList.remove('no-js');
         </script>
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-********-1"></script>
     </body>

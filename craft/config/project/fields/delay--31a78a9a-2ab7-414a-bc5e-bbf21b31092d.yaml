@@ -1,0 +1,17 @@
+contentColumnType: text
+fieldGroup: d1f3b0d0-bb53-4580-b535-3574ed35136f
+handle: delay
+instructions: ''
+name: Delay
+searchable: true
+settings:
+  byteLimit: null
+  charLimit: null
+  code: ''
+  columnType: null
+  initialRows: '4'
+  multiline: ''
+  placeholder: 'Delay in ms (ex. "5000" => 5s)'
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

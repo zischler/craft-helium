@@ -1,0 +1,163 @@
+@import url(../../variables.css);
+
+.custom-select {
+    position: relative;
+}
+
+select,
+option {
+    font-weight: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    border: 0;
+    border-radius: 0;
+    appearance: none;
+}
+
+select {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+    border: 1px solid var(--dark);
+    border-radius: 4px;
+}
+
+select:focus {
+    border-color: hsl(var(--form-active-color));
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+select::-ms-value {
+    background: none;
+}
+
+.select-input {
+    line-height: 48px;
+    position: relative;
+    background-color: var(--light);
+    min-height: 50px;
+    display: inline-block;
+    width: 100%;
+    cursor: pointer;
+}
+
+.select-placeholder {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 0;
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid var(--dark);
+    box-shadow: 0 0 0 1000px var(--light) inset!important;
+}
+
+select:focus + .select-placeholder,
+.select-placeholder.js-open {
+    outline: 0;
+    border-color: hsl(var(--form-active-color));
+    background: hsla(var(--form-active-color), 0);
+    box-shadow: 0 0 4px hsla(var(--form-active-color), 0.7), 0 0 0 1000px white inset!important;
+}
+
+.-once-submitted select:required:invalid + .select-placeholder {
+    outline: 0;
+    border-color: hsl(var(--form-error-border-color));
+    box-shadow: 0 0 0 1000px hsla(var(--form-error-background), 1) inset!important;
+    background: hsla(var(--form-error-border-color), 0.07)!important;
+    color: hsl(var(--form-error-text-color));
+}
+
+@media (--for-md-up) {
+    select, .select-placeholder {
+        padding: 0.75em 2em 0.85em 1em;
+    }
+}
+
+@media (--for-sm-down) {
+
+    select, .select-placeholder {
+        padding: 0.5em 1em 0.6em;
+    }
+}
+
+.select-placeholder > span {
+    padding-right: 25px;
+    line-height: 1.25em;
+    display: inline-block;
+    hyphens: auto;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translate(0, -50%);
+    transition: transform 0.2s ease-out;
+}
+
+.arrow.js-active {
+    transform: translate(0, -50%) rotate(180deg);
+}
+
+.select-list {
+    background-color: var(--light);
+    border: 1px solid var(--dark);
+    border-radius: 4px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: calc(100% + 10px);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 4;
+    max-height: 250px;
+    overflow-y: auto;
+    transition: opacity 0.2s ease-in-out;
+    padding: 0.25em 0;
+}
+
+.select-list > ul > li {
+    list-style: none;
+    padding: 0.5rem 1em;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    margin: 0;
+}
+
+.select-list > ul > li:before {
+    content: none;
+}
+
+.select-list > ul > li.js-selected {
+    background-color: var(--light-gray);
+}
+
+@media (--for-pointing-device) {
+    select.hidden {
+        position: absolute !important;
+        width: 1px !important;
+        height: 1px !important;
+        margin: -1px !important;
+        border: 0 !important;
+        padding: 0 !important;
+        white-space: nowrap !important;
+        clip-path: inset(100%) !important;
+        clip: rect(0 0 0 0) !important;
+        overflow: hidden !important;
+        opacity: 0;
+    }
+    .select-list > ul > li:hover {
+        background-color: var(--light-gray);
+    }
+    .select-list.js-open {
+        opacity: 1;
+        visibility: visible;
+    }
+}

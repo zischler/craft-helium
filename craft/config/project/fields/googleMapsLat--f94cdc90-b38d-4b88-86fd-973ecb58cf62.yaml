@@ -1,0 +1,17 @@
+contentColumnType: text
+fieldGroup: 8d3aee83-3990-4b7e-984c-a93af1a5d317
+handle: googleMapsLat
+instructions: 'Latitude of the coordinate in Google Maps.'
+name: 'Google Maps Lat'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: ''
+  columnType: null
+  initialRows: '4'
+  multiline: ''
+  placeholder: ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText
