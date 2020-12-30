@@ -1,6 +1,7 @@
 import {Vue, prop} from "vue-class-component";
 import BrowserStorage from "../../helpers/browser-storage";
 import {Action, Getter, Mutation} from "vuex-class";
+import TagManager from "../../helpers/tag-manager";
 
 class Props {
     bannerText = prop<string>({
@@ -42,6 +43,9 @@ class Props {
     thirdpartyLabel = prop<string>({
         default: 'Thirdparty Cookies',
     });
+    isProduction = prop<boolean>({
+        default: false,
+    });
 }
 
 export default class CookieBanner extends Vue.with(Props) {
@@ -78,6 +82,8 @@ export default class CookieBanner extends Vue.with(Props) {
 
         if(this.analyticsCookies) {
             this.setCookieConsentAnalytics(BrowserStorage.getBooleanCookie(this.cookieNameAnalytics) || false);
+            const tagManager = new TagManager();
+            tagManager.init(this.isProduction);
         }
         if(this.thirdpartyCookies) {
             this.setCookieConsentThirdparty(BrowserStorage.getBooleanCookie(this.cookieNameThirdParty) || false);

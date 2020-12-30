@@ -127,7 +127,7 @@
                         {% if cookies.cookieSettingsExplanations is defined and cookies.cookieSettingsExplanations != null %}
                             :settings-explanations="'{{ cookies.cookieSettingsExplanations }}'"
                         {% endif %}
-                        :analytics-cookies="true" :thirdparty-cookies="true">
+                        :analytics-cookies="true" :thirdparty-cookies="true" :is-production="{{ devMode ? 'false' : 'true' }}">
                     {% if cookies.cookieBannerExplanations is defined and cookies.cookieBannerExplanations != null %}
                         {{ cookies.cookieBannerExplanations }}
                     {% endif %}

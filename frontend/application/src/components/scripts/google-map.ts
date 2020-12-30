@@ -1,4 +1,4 @@
-import {Vue, prop} from "vue-class-component";
+import {Vue, prop, Options} from "vue-class-component";
 import {loadJS} from '../../helpers/async-loader';
 import {Action, Getter} from "vuex-class";
 
@@ -50,6 +50,28 @@ class Props {
     });
 }
 
+@Options({
+    // Define component options
+    watch: {
+        lat(value) {
+            if (this.isLoaded && value !== 0 && this.long !== 0) {
+                this.moveMap();
+            }
+        },
+        long(value) {
+            if (this.isLoaded && value !== 0 && this.lat !== 0) {
+                this.moveMap();
+            }
+        },
+        cookieConsentThirdparty(isActive) {
+            if (isActive) {
+                this.launch();
+            } else {
+                this.destroy();
+            }
+        }
+    }
+})
 export default class GoogleMap extends Vue.with(Props) {
     isInitialized: boolean = false;
     isLoaded: boolean = false;
@@ -61,30 +83,6 @@ export default class GoogleMap extends Vue.with(Props) {
     @Action("openCookieSettings") openCookieSettings;
 
     @Getter("cookieConsentThirdparty") cookieConsentThirdparty;
-
-    // TODO Change Watchers
-/*    @Watch("lat")
-    onLatChanged(newVal: number) {
-        if (this.isLoaded && newVal !== 0 && this.long !== 0) {
-            this.moveMap();
-        }
-    }
-
-    @Watch("long")
-    onLongChanged(newVal: number) {
-        if (this.isLoaded && newVal !== 0 && this.lat !== 0) {
-            this.moveMap();
-        }
-    }
-
-    @Watch("cookieConsentThirdparty")
-    onConsentAnalytics(isActive) {
-        if (isActive) {
-            this.launch();
-        } else {
-            this.destroy();
-        }
-    }*/
 
     created() {
         if (this.cookieConsentThirdparty) {

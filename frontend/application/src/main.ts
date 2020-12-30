@@ -5,7 +5,6 @@ import {Section} from './models/Section';
 import { store } from './store';
 
 /* --- Components --- */
-import TagManager from './components/tag-manager.vue';
 import CookieBanner from './components/cookie-banner.vue';
 import GoogleMap from './components/google-map.vue';
 import CustomSelect from './components/custom-select.vue';
@@ -135,7 +134,6 @@ const app = createApp({
 // If a Vue (*.vue) component exists, import only it.
 // The related CSS and TS are linked into the Vue component
 app.component('cookie-banner', CookieBanner as any);
-app.component('tag-manager', TagManager as any);
 app.component('google-map', GoogleMap as any);
 app.component('custom-select', CustomSelect as any);
 app.component('snap-gallery', SnapGallery as any);
