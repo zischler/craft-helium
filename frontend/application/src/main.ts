@@ -4,6 +4,9 @@ import scrollIntoViewport from './helpers/scroll-into-viewport';
 import {Section} from './models/Section';
 import { store } from './store';
 
+/* --- Styles --- */
+import 'tailwindcss/tailwind.css';
+
 /* --- Components --- */
 import CookieBanner from './components/cookie-banner.vue';
 import GoogleMap from './components/google-map.vue';

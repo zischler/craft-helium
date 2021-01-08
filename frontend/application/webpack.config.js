@@ -18,6 +18,8 @@ const debug =
     process.env.DEBUG &&
     (process.env.DEBUG === "true" || process.env.DEBUG === "1");
 
+process.env.NODE_ENV = debug ? 'debug' : 'production';
+
 // Paths
 let publicPath = `/webresources/build/module/`;
 if(legacy) {
@@ -50,22 +52,21 @@ const cssLoaderConfig = [
             sourceMap: debug ? "inline" : false,
             plugins: [
                 require("postcss-import"),
+                require("tailwindcss")({ config: './application/tailwind.config.js' }),
                 require("postcss-preset-env")({
-                    stage: 2,
+                    stage: 1,
                     sourceMap: true,
                     features: {
                         "custom-properties": {
                             preserve: false,
                         },
                         "custom-media-queries": true,
-                        "nesting-rules": true,
+                        "focus-within-pseudo-class": false,
                     },
                     browsers: "> 0.5% in CH, Firefox ESR, not dead",
-                    autoprefixer: {
-                        grid: true,
-                    },
                 }),
-            ],
+                require("autoprefixer"),
+            ]
         },
     },
 ];
