@@ -1,13 +1,13 @@
 <footer id="pageFooter" class="page-footer o-section o-footer is-full-width has-no-top-space has-no-bottom-space has-top-inner-space has-bottom-inner-space">
 	<div class="o-group has-inner-gutter">
-		<div class="o-flex-space is-multiline has-gutter">
-			<div class="cell-1of3 cell-1of1-sm-down">
+		<div class="flex flex-wrap has-gutter">
+			<div class="flex-1of1 lg:flex-1of3">
 				<span class="h2">Navigation</span>
-				<div class="footer-nav o-flex-inline is-left">
+				<div class="footer-nav flex is-left">
 					{% include "_includes/navigation.twig" %}
 				</div>
 			</div>
-			<div class="cell-1of3 cell-1of1-sm-down">
+			<div class="flex-1of1 lg:flex-1of3">
 
 				{% if craft.app.language == 'de' %}
 					<span class="h2">Mehr links</span>
@@ -16,7 +16,7 @@
 				{% endif %}
 
 				{% set footerGlobal = craft.app.globals.getSetByHandle('footer') %}
-				<div class="footer-nav o-flex-inline is-left">
+				<div class="footer-nav flex is-left">
 					{% if footerGlobal.footerLinks %}
 						<ul>
 							{% for footerLink in footerGlobal.footerLinks.all() %}
@@ -30,9 +30,9 @@
 					{% endif %}
 				</div>
 			</div>
-			<div class="cell-1of3 cell-1of1-sm-down">©
+			<div class="flex-1of1 lg:flex-1of3">©
 				{{ footerGlobal.copyright }}</div>
-			<div class="cell-1of3 languages">
+			<div class="flex-1of1 lg:flex-1of3 languages">
 				{% set currentSite = craft.app.sites.currentSite %}
 				{% for siteInGroup in currentSite.getGroup.getSites() %}
 					{% if siteInGroup.language == 'de' %}
