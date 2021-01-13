@@ -7,6 +7,10 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     flex: {
+      '1': '1 1 0%',
+      auto: '1 1 auto',
+      initial: '0 1 auto',
+      none: 'none',
       '1of1': '0 1 100%',
       '1of2': '0 1 50%',
       '1of3': '0 1 33.33%',

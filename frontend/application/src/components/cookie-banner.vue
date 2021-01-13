@@ -1,6 +1,6 @@
 <template>
-    <div class="banner o-section is-full-width has-no-gutter" v-show="isShow">
-        <div class="o-group has-inner-gutter">
+    <div class="banner o-section w-full m-0" v-show="isShow">
+        <div class="o-group p-4">
             <svg class="cookie-icon" width="50px" height="51px" viewBox="0 0 50 51" xmlns="http://www.w3.org/2000/svg">
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                     <g transform="translate(-313.000000, -965.000000)">
@@ -35,13 +35,13 @@
                     </g>
                 </g>
             </svg>
-            <div class="o-flex-space has-gutter is-multiline">
-                <div class="cell-3of4 cell-1of1-sm-down -relative" v-if="!isOpen">
+            <div class="flex flex-wrap justify-between has-gutter">
+                <div class="flex-1of1 lg:flex-3of4 -relative" v-if="!isOpen">
                     <p class="banner-text">
                         <slot></slot>
                     </p>
                 </div>
-                <div class="cell-3of4 cell-1of1-sm-down" v-if="isOpen">
+                <div class="flex-1of1 lg:flex-3of4" v-if="isOpen">
                     <p class="banner-text" v-html="settingsExplanations" v-if="settingsExplanations"></p>
                     <div class="cookie-form-row">
                         <input name="functional" id="functional" type="checkbox" checked disabled>
@@ -56,12 +56,12 @@
                         <label for="Thirdparty" v-html="thirdpartyLabel"></label>
                     </div>
                 </div>
-                <div class="cell-1of1-sm-down right" v-if="!isOpen">
-                    <a class="link" @click="openCookieSettings()" v-html="settingsLabel"></a>
+                <div class="flex-1of1 lg:flex-1of4 is-right" v-if="!isOpen">
+                    <a class="link mr-4" @click="openCookieSettings()" v-html="settingsLabel"></a>
                     <a class="link accept" @click="setAllCookiesConsent(true)" v-html="acceptLabel"></a>
                 </div>
-                <div class="cell-1of1-sm-down right" v-if="isOpen">
-                    <a :href="readMore" target="_blank" class="link" v-html="readMoreLabel"></a>
+                <div class="flex-1of1 lg:flex-1of4 is-right" v-if="isOpen">
+                    <a class="link mr-4" :href="readMore" target="_blank" v-html="readMoreLabel"></a>
                     <a class="link accept" @click="confirmCookiesChoice()" v-html="acceptLabel"></a>
                 </div>
             </div>

@@ -1,12 +1,12 @@
 {% set isHomeClass = entry.type == "homepage" ? "is-home" : "" %}
 
 <header id="page-header" class="o-view-header {{ isHomeClass }}" :class="{'js-open': isMenuOpen, 'is-hidden': isHomeNavigationHover}">
-    <div class="o-section header-spacing o-view-header-collapsed has-no-top-space has-no-bottom-space">
+    <div class="o-section header-spacing o-view-header-collapsed my-0">
         <div class="o-group has-inner-gutter">
-            <div class="flex align-content-center justify-between -relative">
+            <div class="flex align-content-center justify-between relative">
                 <div class="flex-1of3 is-left">
-                    <div class="logo has-hidden-links">
-                        <a href="{{ homepage.url }}" class="hidden-links">
+                    <div class="logo">
+                        <a href="{{ homepage.url }}" class="no-underline">
                             <svg width="50px" height="50px">
                                 <use xlink:href="#logo" />
                             </svg>
@@ -16,7 +16,7 @@
                 <div class="flex-1of3">
                 </div>
                 <div class="flex-1of3 is-right">
-                    <button v-on:click="toggleFlyout" class="burger" v-bind:class="{'js-open': isMenuOpen}" aria-label="open menu" accesskey="1">
+                    <button v-on:click="toggleFlyout" class="burger focus:outline-none" v-bind:class="{'js-open': isMenuOpen}" aria-label="open menu" accesskey="1">
                         <div class="burger-bars">
                             <span class="burger-bar burger-bar-top" aria-hidden="true"></span>
                             <span class="burger-bar burger-bar-middle" aria-hidden="true"></span>
@@ -33,7 +33,7 @@
                 <div class="flyout-inner o-section">
                     <div class="o-group-first-child" style="display: inline;"></div>
                     <div class="o-group">
-                        <div class="menu-panel -relative">
+                        <div class="menu-panel relative">
                             <nav id="mainNavigation" class="o-navigation" v-bind:class="{'js-open': isMenuOpen}">
                                 {% include "_includes/navigation.twig" %}
                             </nav>

@@ -92,8 +92,6 @@ const entry = {
         "./application/polyfills",
         "./application/src/main.ts",
     ],
-    critical: "./application/src/styles/bundles/styles-critical.css",
-    helium: "./application/src/styles/bundles/styles-async.css",
 };
 
 if (legacy) {

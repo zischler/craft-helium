@@ -12,7 +12,7 @@
                 @wheelup="wheelUp"
                 >
             <template v-slot:content>
-                <div class="slides o-flex" :style="itemsContainerStyles">
+                <div class="slides flex" :style="itemsContainerStyles">
                     <slot name="slides"></slot>
                 </div>
             </template>

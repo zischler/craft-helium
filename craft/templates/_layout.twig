@@ -1,5 +1,5 @@
 {% set homepage = craft.entries.section('homepage').one() %}
-{% set applicationName = 'Craft Helium' %}
+{% set applicationName = 'Craft Helium' %} {# TODO: Fill correct Application Name #}
 <!DOCTYPE html>
 <html lang="{{ craft.app.locale }}">
     <head>
@@ -26,9 +26,9 @@
         {% endif %}
 
         {# CSS #}
-        {{ craft.twigpack.includeInlineCssTags("@webroot/webresources/build/module/critical.css") }}
-        {{ craft.twigpack.includeInlineCssTags("@webroot/webresources/build/module/helium.css") }}
-        {{ craft.twigpack.includeInlineCssTags("@webroot/webresources/build/module/main.css") }}
+        <link rel="stylesheet" href="/webresources/build/module/main.css">
+        {# TODO: Look if there is other possibility to have good cache control for css #}
+        {#{{ craft.twigpack.includeInlineCssTags("@webroot/webresources/build/module/main.css") }}#}
 
         <!-- Android / Standard: 192x192px -->
         <meta name="application-name" content="{{ applicationName }}">
@@ -85,7 +85,7 @@
             {% endblock %}
 
             <div id="pageContent" class="page-content" :class="{'js-mounted':isMounted}">
-                <article>
+                <article class="inline-block w-full">
                     {% block content %}
                     {% endblock %}
                 </article>

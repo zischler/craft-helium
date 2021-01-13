@@ -16,7 +16,9 @@
             {% endif %}
             {% if component.children.all() is not empty %}
                 {% for module in component.children.all() %}
-                    {% include "_components/" ~ module.type %}
+                    <div class="my-12">
+                        {% include "_components/" ~ module.type %}
+                    </div>
                 {% endfor %}
             {% endif %}
         </div>

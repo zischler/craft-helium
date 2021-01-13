@@ -6,6 +6,8 @@ import { store } from './store';
 
 /* --- Styles --- */
 import 'tailwindcss/tailwind.css';
+import './styles/bundles/styles-async.css';
+import './styles/bundles/styles-critical.css';
 
 /* --- Components --- */
 import CookieBanner from './components/cookie-banner.vue';

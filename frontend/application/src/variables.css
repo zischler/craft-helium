@@ -79,8 +79,8 @@
     --media-margin-height: 2em;
 
     /* Page - default, layout */
-    --page-maxwidth: 96rem;
-    --page-maxwidth-large: 106rem;
+    --page-maxwidth: 64rem;
+    --page-maxwidth-large: 72rem;
     --page-gutter-width: 4rem;
     --page-gutter-width-sm: 2rem;
 

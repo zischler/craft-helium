@@ -309,7 +309,8 @@
     right: 0;
     color: var(--burger-color-closed);
     z-index: 3;
-    outline: 0;
+    @apply outline-none;
+    -webkit-appearance: none;
     margin-top: 0;
     padding-left: calc(
             (var(--burger-placeholder-width) - var(--burger-width)) / 2
