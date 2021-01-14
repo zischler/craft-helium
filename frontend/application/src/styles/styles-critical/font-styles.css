@@ -1,8 +1,16 @@
 @layer base {
     h1, .h1 {
-        @apply text-2xl;
+        @apply text-3xl;
+        @apply font-bold;
+        @apply leading-loose;
     }
     h2, .h2 {
+        @apply text-2xl;
+        @apply font-bold;
+        @apply leading-loose;
+    }
+    h3, .h3 {
         @apply text-xl;
+        @apply leading-relaxed;
     }
 }

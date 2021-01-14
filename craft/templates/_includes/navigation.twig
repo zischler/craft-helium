@@ -1,7 +1,7 @@
 <ul>
     {# Homepage link #}
     <li>
-        <a class="link is-level-0 {% if entry.id == homepage.id %}is-active{% endif %}" href="{{ homepage.url }}">
+        <a class="leading-normal {% if entry.id == homepage.id %}text-red-400{% endif %}" href="{{ homepage.url }}">
             {{ homepage.title }}
         </a>
     </li>
@@ -11,7 +11,7 @@
     {% nav navPage in navPages %}
         {% if not navPage.hideInNavigation.contains('hide') %}
             <li>
-                <a class="link is-level-0 {% if entry.id == navPage.id %}is-active{% endif %}" href="{{ navPage.url }}">
+                <a class="leading-normal {% if entry.id == navPage.id %}text-red-400{% endif %}" href="{{ navPage.url }}">
                     {{ navPage.title }}
                 </a>
             </li>

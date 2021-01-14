@@ -1,15 +1,15 @@
 {% set heroMedia = newsPage.heroMedia.one() %}
 <anim-component {% if heroMedia != null %}:has-image="true"{% endif %}>
-	<a href="{{ newsPage.url }}" class="news-teaser anim-component">
-		<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+	<a href="{{ newsPage.url }}" class="inline-block no-underline mb-4 w-full anim-component">
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 md:gap-8">
 			{% if heroMedia != null %}
 				<div>
-					<div class="news-teaser-wrapper">
-						<img class="news-teaser-heroMedia" src="{{ heroMedia.url }}" alt="{{ heroMedia.title }}" v-on:load="loadedImage = true"/>
+					<div class="relative h-48 overflow-hidden shadow-none transition-shadow duration-300 hover:shadow-lg">
+						<img class="w-full h-full object-cover" src="{{ heroMedia.url }}" alt="{{ heroMedia.title }}" v-on:load="loadedImage = true"/>
 					</div>
 				</div>
 			{% endif %}
-			<div class="col-span-2">
+			<div class="col-span-1 lg:col-span-2">
 				<h3>{{ newsPage.title }}</h3>
 				{% set introText = newsPage.components.level(1).one().children.one() %}
 				{% if introText != null %}

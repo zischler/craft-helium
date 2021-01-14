@@ -427,10 +427,6 @@
     opacity: 1;
 }
 
-.o-navigation a.is-active {
-    color: var(--red);
-}
-
 @media (--for-md-up) {
     .o-navigation ul {
         text-align: left;

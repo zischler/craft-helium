@@ -128,6 +128,10 @@ a {
         @apply py-12;
         @apply px-4;
     }
+
+    &.is-full-width {
+        @apply mx-0;
+    }
 }
 
 .o-section:first-of-type {
