@@ -1,4 +1,30 @@
 /* --- Reset --- */
+html, body {
+    /* Text */
+    text-size-adjust: none;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    word-wrap: normal;
+    hyphens: none;
+    overflow-wrap: break-word;
+
+    /* Page */
+    background: var(--page-background) fixed;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+    /* Blocks */
+    box-sizing: border-box;
+
+    /* App */
+    /* -webkit-touch-callout: none; */
+    /* -webkit-user-select: none; */
+
+    /* -ms-overflow-style: -ms-autohiding-scrollbar; */
+    -ms-overflow-x: hidden;
+}
+
 body {
     line-height: 1;
 }
@@ -8,11 +34,13 @@ table {
     border-spacing: 0;
 }
 
-svg { max-width: 100%; height: auto; }
+svg {
+    max-width: 100%;
+    height: auto;
+}
 
 
 /* --- Default --- */
-
 /* Default settings */
 *, *::before, *::after {
     box-sizing: inherit;
@@ -56,7 +84,6 @@ a {
 }
 
 /* --- Accessibility --- */
-
 /* .is-visually-hidden:not(:focus):not(:active) */
 .is-visually-hidden {
     position: absolute !important;
@@ -101,7 +128,6 @@ a {
 
 
 /* --- Layout --- */
-
 .o-view {
     position: relative;
     width: 100%;
@@ -129,7 +155,7 @@ a {
         @apply px-4;
     }
 
-    &.is-full-width {
+    &.w-full {
         @apply mx-0;
     }
 }
@@ -146,35 +172,56 @@ a {
 }
 
 /* Layout Modifiers */
-.has-no-bottom-space { margin-bottom: 0 !important; }
-.has-no-bottom-space:not(.has-bottom-inner-space) { padding-bottom: 0 !important; }
-.has-no-top-space { margin-top: 0 !important; }
-.has-no-top-space:not(.has-top-inner-space) { padding-top: 0 !important; }
+.has-no-bottom-space {
+    margin-bottom: 0 !important;
+}
+
+.has-no-bottom-space:not(.has-bottom-inner-space) {
+    padding-bottom: 0 !important;
+}
+
+.has-no-top-space {
+    margin-top: 0 !important;
+}
+
+.has-no-top-space:not(.has-top-inner-space) {
+    padding-top: 0 !important;
+}
 
 /* --- Alignement --- */
-
 .is-left:not(.is-vertical) {
     @apply justify-start;
     @apply text-left;
     @apply object-left;
 }
-.is-left.is-vertical { @apply items-start; }
+
+.is-left.is-vertical {
+    @apply items-start;
+}
 
 .is-center:not(.is-vertical) {
     @apply justify-center;
     @apply text-center;
     @apply object-center;
 }
-.is-center.is-vertical { @apply items-center; }
+
+.is-center.is-vertical {
+    @apply items-center;
+}
 
 .is-right:not(.is-vertical) {
     @apply justify-end;
     @apply text-right;
     @apply object-right;
 }
-.is-right.is-vertical { @apply items-end; }
 
-.flex.is-bottom { @apply items-end; }
+.is-right.is-vertical {
+    @apply items-end;
+}
+
+.flex.is-bottom {
+    @apply items-end;
+}
 
 .is-top {
     @apply self-start;
@@ -197,8 +244,13 @@ p:not(:last-child) {
     @apply mb-4;
 }
 
-strong { font-weight: 700; }
-em { font-style: italic; }
+strong {
+    font-weight: 700;
+}
+
+em {
+    font-style: italic;
+}
 
 .is-not-selectable {
     -webkit-touch-callout: none;
@@ -208,39 +260,19 @@ em { font-style: italic; }
     user-select: none;
 }
 
-sup, sub { font-size: smaller; }
-sup { vertical-align: super; }
-sub { vertical-align: sub; }
-
-
-/* --- Images --- */
-
-.svg-icon {
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    fill: currentColor;
-    vertical-align: middle;
+sup, sub {
+    font-size: smaller;
 }
 
-.has-svg-icon {
-    line-height: 0;
-    display: block;
-    overflow: visible; /* fix overflow cut */
+sup {
+    vertical-align: super;
 }
 
-.has-svg-icon > svg {
-    vertical-align: middle;
-    position: relative;
-    bottom: 1px;
-}
-
-.has-svg-icon > img {
-    display: block;
+sub {
+    vertical-align: sub;
 }
 
 /* --- Scroll --- */
-
 /* Block scroll on Desktop */
 html.is-not-scrollable,
 html.is-not-scrollable > body,

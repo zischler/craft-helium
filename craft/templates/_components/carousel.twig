@@ -75,8 +75,8 @@
 {% if component["isLight"] is defined and component.isLight %}
     {% set lightBgClass = "has-background -gray has-top-inner-space has-bottom-inner-space" %}
 {% endif %}
-<div class="o-section {{ lightBgClass }} {{ asHero ? 'is-full-width' : 'is-large'}}">
-    <div class="o-group has-inner-gutter  {{ asHero ? 'is-full-width' : 'is-large'}}">
+<div class="o-section {{ lightBgClass }} {{ asHero ? 'w-full' : 'is-large'}}">
+    <div class="o-group has-inner-gutter  {{ asHero ? 'w-full' : 'is-large'}}">
         <div class="o-carousel-wrapper o-component">
             <multi-carousel v-bind:transition-delay="350"
                             v-bind:delay="{{ component.delay ?? '5000' }}"

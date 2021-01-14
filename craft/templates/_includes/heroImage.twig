@@ -1,7 +1,7 @@
 {% if entry.heroMedia is defined %}
 	{% set heroMedia = entry.heroMedia.one() %}
 	{% if heroMedia != null %}
-		<div class="header-image-wrapper">
+		<div class="header-image-wrapper overflow-hidden">
 			<div class="relative w-full h-full">
 				<div class="relative max-w-full h-full overflow-hidden">
 					<div class="inline-block w-full h-full">
@@ -15,7 +15,7 @@
 			</div>
 		</div>
 	{% else %}
-		<div class="header-image-fill">
+		<div class="mt-32 sm:mt-40">
 		</div>
 	{% endif %}
 {% endif %}

@@ -1,5 +1,5 @@
 <footer id="pageFooter" class="page-footer o-section o-footer w-full my-0 py-12">
-	<div class="o-group has-inner-gutter">
+	<div class="o-group">
 		<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 			<div>
 				<span class="h2">Navigation</span>
@@ -21,7 +21,7 @@
 						<ul>
 							{% for footerLink in footerGlobal.footerLinks.all() %}
 								<li>
-									<a class="link {% if entry.id == footerLink.id %}is-active{% endif %}" href="{{ footerLink.url }}">
+									<a class="leading-normal {% if entry.id == footerLink.id %}text-red-400{% endif %}" href="{{ footerLink.url }}">
 										<span>{{ footerLink.title }}</span>
 									</a>
 								</li>
@@ -41,7 +41,7 @@
 						{% set languageName = 'English' %}
 					{% endif %}
 					{% if siteInGroup.id == entry.siteId %}
-						<a href="" class="is-active">{{ languageName }}</a>
+						<a href="" class="text-red-400">{{ languageName }}</a>
 					{% else %}
 						{% set entryForOtherSite = craft.entries.id(entry.id).site(siteInGroup).one() %}
 						{% if entryForOtherSite != null %}

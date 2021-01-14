@@ -2,22 +2,11 @@
     position: relative;
 }
 
-.o-section.is-full-width.o-hero {
+.o-section.o-hero.w-full {
     margin-bottom: var(--layout-gutter-height);
 }
 
 .o-hero .header-image-wrapper {
     max-height: 600px;
     height: 69vw;
-    overflow: hidden;
-}
-
-.o-hero .header-image-fill {
-    margin-top: 160px;
-}
-
-@media (--for-sm-down) {
-    .o-hero .header-image-fill {
-        margin-top: 120px;
-    }
 }
