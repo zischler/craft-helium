@@ -13,4 +13,7 @@
         @apply text-xl;
         @apply leading-relaxed;
     }
+    p {
+        @apply leading-snug;
+    }
 }

@@ -78,7 +78,7 @@ export default class GoogleMap extends Vue.with(Props) {
     map?: google.maps.Map;
     marker?: google.maps.Marker;
 
-    showCookieMessage: boolean = false;
+    showCookieMessage: boolean = true;
 
     @Action("openCookieSettings") openCookieSettings;
 

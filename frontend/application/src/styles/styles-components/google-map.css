@@ -1,31 +1,3 @@
-@import url(../../variables.css);
-
-.o-google-map {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-}
-
 .o-google-map.js-initialized {
     padding-top: 61%;
-    opacity: 1;
-    transition: opacity 0.25s linear 0.25s;
-}
-
-.o-google-map.js-loaded {
-    opacity: 1;
-}
-
-.o-google-map > .map {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-@media (--for-sm-down) {
-    .o-google-map {
-        height: 480px;
-    }
 }

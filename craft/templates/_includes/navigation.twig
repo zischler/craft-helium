@@ -6,7 +6,7 @@
         </a>
     </li>
 
-    {# Navigation Seiten#}
+    {# Navigation Pages #}
     {% set navPages = craft.entries.section('page').level(1).all() %}
     {% nav navPage in navPages %}
         {% if not navPage.hideInNavigation.contains('hide') %}

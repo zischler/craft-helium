@@ -1,5 +1,7 @@
 @import url(../../variables.css);
 
+/* TODO: Fix with tailwind */
+
 /* --- Default settings --- */
 form {
     width: 100%;
