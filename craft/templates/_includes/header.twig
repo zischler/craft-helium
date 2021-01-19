@@ -1,13 +1,13 @@
 {% set isHomeClass = entry.type == "homepage" ? "is-home" : "" %}
 
-<header id="page-header" class="o-view-header {{ isHomeClass }}" :class="{'js-open': isMenuOpen, 'is-hidden': isHomeNavigationHover}">
+<header id="page-header" class="absolute visible left-0 top-0 w-full text-black z-50 transition {{ isHomeClass }}" :class="{'js-open': isMenuOpen, 'opacity-0 invisible': isHomeNavigationHover}">
     <div class="o-section header-spacing o-view-header-collapsed my-0">
         <div class="o-group">
             <div class="flex align-content-center justify-between relative">
                 <div class="flex-1of3 is-left">
                     <div class="logo">
                         <a href="{{ homepage.url }}" class="no-underline">
-                            <svg width="50px" height="50px">
+                            <svg width="50px" height="50px" class="w-12 w-12 sm:w-10 sm:w-10">
                                 <use xlink:href="#logo" />
                             </svg>
                         </a>
@@ -28,12 +28,12 @@
         </div>
     </div>
     <transition name="swipe-in-top">
-        <div class="flyout" style="display: none" v-show="isMenuOpen">
-            <div id="flyoutScrollbox" class="flyout-scrollbox">
-                <div class="flyout-inner o-section">
+        <div class="fixed top-0 left-0 w-full max-w-screen overflow-x-hidden h-screen bg-white" style="display: none" v-show="isMenuOpen">
+            <div id="flyoutScrollbox" class="absolute z-40 top-0 left-0 w-full h-screen overflow-y-scroll">
+                <div class="pt-32 md:pt-44 pb-10 o-section">
                     <div class="o-group-first-child" style="display: inline;"></div>
                     <div class="o-group">
-                        <div class="menu-panel relative">
+                        <div class="relative">
                             <nav id="mainNavigation" class="o-navigation" v-bind:class="{'js-open': isMenuOpen}">
                                 {% include "_includes/navigation.twig" %}
                             </nav>

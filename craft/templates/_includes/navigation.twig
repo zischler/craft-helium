@@ -1,6 +1,6 @@
-<ul>
+<ul class="block">
     {# Homepage link #}
-    <li>
+    <li class="block">
         <a class="leading-normal {% if entry.id == homepage.id %}text-red-400{% endif %}" href="{{ homepage.url }}">
             {{ homepage.title }}
         </a>
@@ -10,7 +10,7 @@
     {% set navPages = craft.entries.section('page').level(1).all() %}
     {% nav navPage in navPages %}
         {% if not navPage.hideInNavigation.contains('hide') %}
-            <li>
+            <li class="block">
                 <a class="leading-normal {% if entry.id == navPage.id %}text-red-400{% endif %}" href="{{ navPage.url }}">
                     {{ navPage.title }}
                 </a>
