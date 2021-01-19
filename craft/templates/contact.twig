@@ -73,6 +73,18 @@
 						<input type="hidden" name="action" value="contact-form/send">
 
 						<div class="relative mb-6">
+							{% set customSelectVal = "[
+								{\'value\': \'sir\', \'label\': \'Sir\'},
+								{\'value\': \'madam\', \'label\': \'Madam\'}]"
+							%}
+
+							<custom-select
+									:data-json="{{ customSelectVal|raw }}"
+									select-id="salutation" label="salutation"
+									default-placeholder="Salutation"></custom-select>
+						</div>
+
+						<div class="relative mb-6">
 							<div class="input-wrapper">
 								<input id="from-name" type="text" name="fromName" value="{{ message.fromName ?? '' }}" placeholder="{{ contactName }}">
 								<label for="from-name">{{ contactName }}</label>

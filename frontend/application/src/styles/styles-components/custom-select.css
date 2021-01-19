@@ -1,9 +1,5 @@
 @import url(../../variables.css);
 
-.custom-select {
-    position: relative;
-}
-
 select,
 option {
     font-weight: inherit;

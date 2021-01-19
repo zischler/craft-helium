@@ -27,10 +27,6 @@
     --burger-background: transparent;
     --burger-color-closed: inherit;
 
-    --ios-menubar-height: 5rem;
-
-    --flyout-bgcolor: var(--white);
-
     --default-navigation-timing: 0.15s;
 }
 
@@ -140,7 +136,9 @@
     width: var(--burger-width);
     height: var(--burger-bar-height);
     background: currentColor;
-    transition: all var(--default-navigation-timing);
+    transition: opacity var(--default-navigation-timing),
+    transform var(--default-navigation-timing),
+    width var(--default-navigation-timing);
     will-change: opacity, transform, width;
 }
 
@@ -200,7 +198,7 @@
     bottom: -6px;
     left: 0;
     opacity: 0;
-    transition: opacity 0.15s linear, bottom 0.2s ease-in-out;
+    transition: opacity var(--default-navigation-timing) linear, bottom 0.2s ease-in-out;
 }
 
 .o-navigation a:hover::after {

@@ -27,7 +27,7 @@ input[type="radio"],
 input[type="checkbox"],
 input[type="submit"],
 input[type="button"] {
-    cursor: pointer;
+    @apply cursor-pointer;
 }
 
 input, textarea {

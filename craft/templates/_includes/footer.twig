@@ -3,7 +3,7 @@
 		<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 			<div>
 				<span class="h2">Navigation</span>
-				<div class="footer-nav flex is-left">
+				<div class="mt-2 flex is-left">
 					{% include "_includes/navigation.twig" %}
 				</div>
 			</div>
@@ -16,7 +16,7 @@
 				{% endif %}
 
 				{% set footerGlobal = craft.app.globals.getSetByHandle('footer') %}
-				<div class="footer-nav flex is-left">
+				<div class="mt-2 flex is-left">
 					{% if footerGlobal.footerLinks %}
 						<ul>
 							{% for footerLink in footerGlobal.footerLinks.all() %}
@@ -41,11 +41,11 @@
 						{% set languageName = 'English' %}
 					{% endif %}
 					{% if siteInGroup.id == entry.siteId %}
-						<a href="" class="text-red-400">{{ languageName }}</a>
+						<a href="" class="text-red-400 mr-8">{{ languageName }}</a>
 					{% else %}
 						{% set entryForOtherSite = craft.entries.id(entry.id).site(siteInGroup).one() %}
 						{% if entryForOtherSite != null %}
-							<a href="{{ entryForOtherSite.getUrl() }}">{{ languageName }}</a>
+							<a href="{{ entryForOtherSite.getUrl() }}" class="mr-8">{{ languageName }}</a>
 						{% endif %}
 					{% endif %}
 				{% endfor %}

@@ -54,7 +54,7 @@ const cssLoaderConfig = [
                 require("postcss-import"),
                 require("tailwindcss")({ config: './application/tailwind.config.js' }),
                 require("postcss-preset-env")({
-                    stage: 1,
+                    stage: 2,
                     sourceMap: true,
                     features: {
                         "custom-properties": {
@@ -62,6 +62,7 @@ const cssLoaderConfig = [
                         },
                         "custom-media-queries": true,
                         "focus-within-pseudo-class": false,
+                        "nesting-rules": true,
                     },
                     browsers: "> 0.5% in CH, Firefox ESR, not dead",
                 }),
