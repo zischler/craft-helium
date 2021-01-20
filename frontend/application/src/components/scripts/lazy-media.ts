@@ -63,8 +63,8 @@ const isOutdatedBrowser = IEdgeMatches !== null; // && parseInt(IEdgeMatches[2],
 export default class LazyMedia extends Vue.with(Props) {
     media: Media = {} as Media;
     source = "";
-    width: string | number = "100%";
-    height: string | number = "100%";
+    width: string | number = this.naturalWidth;
+    height: string | number = this.naturalHeight;
     title: string = "";
     poster: string = "";
     preload: string = "none";
@@ -273,14 +273,14 @@ export default class LazyMedia extends Vue.with(Props) {
         this.width = width;
         this.height = height;
 
-        if (this.maxWidth !== "unset") {
+        /*if (this.maxWidth !== "unset") {
             this.width = this.hasRatio ? "100%" : this.width;
             this.height = "auto";
         }
         if (this.maxHeight !== "unset") {
             this.width = "auto";
             this.height = this.hasRatio ? "100%" : this.height;
-        }
+        }*/
 
         if (this.scaled) {
             const imageParent = image.parentElement;

@@ -13,7 +13,7 @@
                 >
             <template v-slot:content>
                 <div class="slides flex" :style="itemsContainerStyles">
-                    <slot name="slides"></slot>
+                    <slot name="slides" :carousel-id="carouselId"></slot>
                 </div>
             </template>
         </swipe>

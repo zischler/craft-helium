@@ -2,7 +2,8 @@ import {Vue, prop } from "vue-class-component";
 import verticalState from "../../helpers/vertical-state";
 import debounce from "lodash-es/debounce";
 import {isMobile, isTablet} from "../../helpers/page-state-checker";
-import CarouselSlide from "./carousel-slide";
+import {Action, Getter, Mutation} from "vuex-class";
+import {CarouselMetadata} from "../../models/CarouselMetadata";
 
 
 /*
@@ -136,9 +137,14 @@ export default class Carousel extends Vue.with(Props) {
         transform: "",
     };
 
-
     // Swipe
     hasCursorDown = false;
+
+    // Carousel Vuex
+    carouselId = "";
+    @Getter("carousels") carousels;
+    @Action("getCarouselHeight") getCarouselHeight;
+    @Mutation("addCarousel") addCarousel;
 
     get slideWidthPercentage() {
         if(isMobile()) {
@@ -159,14 +165,13 @@ export default class Carousel extends Vue.with(Props) {
     }
 
     created() {
-        // block bounce scroll on ios
-        /*
-        const view = document.querySelector("#view");
-
-        if (view && /ip(ad|op|hone)/i.exec(navigator.userAgent)) {
-            view.addEventListener("touchmove", e => e.preventDefault());
-        }
-        */
+        const carouselsSize = this.carousels.length;
+        this.carouselId = "carousel-" + (carouselsSize+1);
+        const carouselMetadata = {
+            id: this.carouselId,
+            height: 0,
+        } as CarouselMetadata;
+        this.addCarousel(carouselMetadata);
     }
 
     mounted() {
@@ -282,27 +287,13 @@ export default class Carousel extends Vue.with(Props) {
             this.carouselViewportHeight = this.slideRatio;
         } else if (!this.asHero) {
             // Calculate Slideshow Height
-            let maxSlideHeight = 0;
-            let minSlideHeight = 1000;
-            if (this.$refs.carouselSlide) {
-                for (const _item of (this.$refs.carouselSlide as CarouselSlide[])) {
-                    const item = _item as CarouselSlide;
-                    const calcHeight = item.calcHeight();
-
-                    // Take biggest image (in height) that is not isCover. If all are isCover take the smallest one.
-                    if (calcHeight > maxSlideHeight) {
-                        maxSlideHeight = calcHeight;
-                    } else if (calcHeight < minSlideHeight) {
-                        minSlideHeight = calcHeight;
-                    }
+            this.getCarouselHeight(this.carouselId).then(height => {
+                if (height !== 0) {
+                    this.carouselViewportHeight = height / this.carouselWidth * 100;
+                } else {
+                    this.carouselViewportHeight = 1000 / this.carouselWidth * 100;
                 }
-            }
-
-            if (maxSlideHeight !== 0) {
-                this.carouselViewportHeight = maxSlideHeight / this.carouselWidth * 100;
-            } else {
-                this.carouselViewportHeight = minSlideHeight / this.carouselWidth * 100;
-            }
+            });
         }
         this.updateSlidesHeight();
     }

@@ -74,10 +74,6 @@
         {#-- isCover --#}
         {% set isCover = (parameters.isCover is defined and parameters.isCover) and (hasRatio is defined and hasRatio) %}
 
-        {#-- asHero --#}
-        {% set asHero = (parameters.asHero is defined and parameters.asHero == true) %}
-        {#% set isCover = asHero %#}
-
         {#-- objectfit --#}
         {% if isCover != null and isCover == true %}
             {% set objectfit = "cover" %}
