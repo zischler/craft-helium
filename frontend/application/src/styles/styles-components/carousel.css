@@ -22,7 +22,7 @@
 
 .o-carousel.js-loaded {
     opacity: 1;
-    transition: opacity var(--default-timing) 50ms;
+    transition: opacity var(--carousel-transition-timing) 50ms;
 }
 
 .o-carousel,
@@ -408,7 +408,7 @@
     height: 100%;
     background: currentColor;
     opacity: 0;
-    transition: opacity var(--default-timing);
+    transition: opacity var(--carousel-transition-timing);
     position: absolute;
     top: 0;
     left: 0;

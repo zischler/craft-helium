@@ -32,7 +32,7 @@ input[type="button"] {
 
 input, textarea {
     color: inherit;
-    font-size: var(--default-font-size);
+    @apply text-base;
     @apply max-w-full;
     @apply w-full;
     @apply p-4;
@@ -80,7 +80,7 @@ a.button-wrapper {
 .button:focus,
 input[type="submit"]:focus,
 input[type="button"]:focus {
-    outline: 0;
+    @apply outline-none;
     @apply bg-red-500;
     box-shadow: 0 0 0 1px var(--page-background), 0 0 0 4px var(--form-active-color);
 }
@@ -99,7 +99,7 @@ input[type="button"]:hover {
     .button,
     input[type="submit"],
     input[type="button"] {
-        max-width: 100%;
+        @apply max-w-full;
     }
 }
 
@@ -134,11 +134,6 @@ input[type="radio"] {
     @apply p-2;
 }
 
-input[type="checkbox"]:focus,
-input[type="radio"]:focus {
-    @apply border-black;
-}
-
 input[type="radio"] {
     @apply rounded-full;
 }
@@ -170,7 +165,7 @@ textarea:invalid {
 }
 
 /* --- Label --- */
-label:not(.is-static) {
+label:not(.static) {
     @apply absolute;
 }
 
@@ -185,19 +180,10 @@ label {
     will-change: opacity, transform;
 }
 
-textarea + label {
-    left: calc(var(--layout-gutter-width) / 2 + 15px);
-    opacity: 0;
-}
-
+textarea:not(:placeholder-shown) + label,
 input:not(:placeholder-shown) + label {
-    transform: translate3d(0, -1.9em, 0) scale(0.7);
-    opacity: 1;
-}
-
-textarea:not(:placeholder-shown) + label {
-    transform: translate3d(-15px, -2em, 0) scale(0.7);
-    opacity: 1;
+    transform: translate3d(0, -2em, 0) scale(0.7);
+    @apply opacity-100;
 }
 
 input:focus + label,
@@ -211,8 +197,8 @@ input:invalid + label {
 
 input[type="checkbox"] + label,
 input[type="radio"] + label {
-    position: static;
     transform: unset;
+    @apply static;
     @apply ml-4;
     @apply opacity-100;
 }

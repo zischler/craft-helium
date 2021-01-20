@@ -66,16 +66,3 @@
 .o-lazy-media .o-editorial .title {
     color: inherit;
 }
-
-/* --- Editorial Header --- */
-.editorial-header {
-    margin-bottom: var(--h2-margin-bottom);
-}
-
-.editorial-header h2 {
-    margin-bottom: 0;
-}
-
-.editorial-header .subtitle {
-    font-size: 0.9em;
-}

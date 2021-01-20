@@ -10,8 +10,8 @@
                 <div class="section-anchor" id="{{ component.id }}">{{ sectionAnchorTitle ~ component.sectionTitle|striptags|replace({'&amp;':'&'}) }}</div>
             {% endif %}
             {% if component.sectionTitle != null and component.showTitle %}
-                <div class="editorial-header">
-                    <h2>{{ component.sectionTitle }}</h2>
+                <div class="mb-4">
+                    <h2 class="mb-0">{{ component.sectionTitle }}</h2>
                 </div>
             {% endif %}
             {% if component.children.all() is not empty %}
