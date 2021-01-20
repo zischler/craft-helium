@@ -184,9 +184,9 @@
     text-decoration: none;
     display: inline-block;
     line-height: 1.2em;
-    font-size: var(--h1-font-size-xl);
     color: currentColor;
     font-weight: bold;
+    @apply text-3xl;
 }
 
 .o-navigation a::after {
