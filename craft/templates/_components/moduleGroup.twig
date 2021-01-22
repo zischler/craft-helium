@@ -1,6 +1,6 @@
 {% set lightBgClass = "" %}
 {% if component.isLight %}
-    {% set lightBgClass = "has-background -gray has-top-inner-space has-bottom-inner-space" %}
+    {% set lightBgClass = "has-background bg-gray-300 has-top-inner-space has-bottom-inner-space" %}
 {% endif %}
 {% set sectionAnchorTitle = entry.title == component.sectionTitle|striptags ? "" : entry.title ~ " – " %}
 <div class="o-section {{ lightBgClass }}">

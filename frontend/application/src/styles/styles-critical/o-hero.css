@@ -1,9 +1,6 @@
-.o-hero {
-    position: relative;
-}
-
-.o-section.o-hero.w-full {
-    margin-bottom: var(--layout-gutter-height);
+.o-section.o-hero {
+    @apply my-0;
+    @apply w-full
 }
 
 .o-hero .header-image-wrapper {
