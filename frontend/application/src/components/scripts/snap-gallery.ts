@@ -1,5 +1,6 @@
 import {Vue, prop} from "vue-class-component";
 import "scroll-behavior-polyfill";
+import _ from "lodash";
 
 class Props {
     projectTitle = prop<string>({
@@ -64,20 +65,14 @@ export default class SnapGallery extends Vue.with(Props) {
                 setTimeout(()=> { this.setCarouselPositions() },1000);
             });
 
-            let tmt;
             this.getCurrentPosition();
-            (this.$refs.stripe as HTMLElement).addEventListener("scroll",()=> {
-                clearTimeout(tmt);
-                tmt = setTimeout(()=>{
-                    this.getCurrentPosition();
-                },500);
-            });
         }, 200);
 
     }
 
-    getCurrentPosition() {
+    onStripeScroll = _.debounce(this.getCurrentPosition, 500);
 
+    getCurrentPosition() {
         const currentScrollLeft = (this.$refs.stripe as HTMLElement).scrollLeft + this.middlePosition;
         this.currentItem = 0;
         for (let i = 0; i < this.carouselPositions.length; i++) {
@@ -93,7 +88,7 @@ export default class SnapGallery extends Vue.with(Props) {
 
     setPlaceholder(){
         const vw = (window as any).innerWidth;
-        const groupW = (this.$refs.group as HTMLElement).offsetWidth;
+        const groupW = this.groupBlock.offsetWidth;
 
         const maskW = window.innerWidth > 767 ? 30 : 15;
         this.mask.style.width = maskW + "px";

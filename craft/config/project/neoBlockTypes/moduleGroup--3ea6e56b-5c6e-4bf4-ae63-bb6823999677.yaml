@@ -7,24 +7,43 @@ childBlocks:
   - imageText
 field: f223541d-0057-4b42-8f60-11587c05dbf9
 fieldLayouts:
-  e86ef0bc-02ad-48a9-85c0-690e4bde9d07:
+  -
     tabs:
       -
-        fields:
-          804ec350-22ec-4d47-8cb1-647b34d1b4f9:
-            required: false
-            sortOrder: 3
-          919e8f48-730b-4dc2-af72-a3bfe42d65f1:
-            required: false
-            sortOrder: 1
-          ae6b394b-ff73-4594-97d8-4ad851b9a4e9:
-            required: false
-            sortOrder: 2
+        elements:
+          -
+            fieldUid: 919e8f48-730b-4dc2-af72-a3bfe42d65f1
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: ae6b394b-ff73-4594-97d8-4ad851b9a4e9
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 804ec350-22ec-4d47-8cb1-647b34d1b4f9
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Settings
         sortOrder: 1
 handle: moduleGroup
 maxBlocks: 0
 maxChildBlocks: 0
+maxSiblingBlocks: 0
 name: 'Module Group'
-sortOrder: 2
+sortOrder: 3
 topLevel: true

@@ -21,13 +21,13 @@
     padding-bottom: 20px;
 }
 
-.stripe > * {
+.stripe >>> * {
     scroll-snap-align: center;
     min-height: 200px;
     height: 34vw;
 }
 
-.stripe img {
+.stripe >>> img {
     height: 34vw;
     min-height: 200px;
     border-right: 20px solid;
@@ -37,6 +37,7 @@
 
 .stripe img.placeholder {
     opacity: 0;
+    max-width: none;
 }
 
 .text {
@@ -171,10 +172,6 @@
 }
 
 @media (--for-xl) {
-    .stripe > *, .stripe img {
-        height: 456px;
-    }
-
     .arrow {
         top: 390px;
     }
@@ -193,13 +190,7 @@
 }
 
 @media (--for-sm-down) {
-
-    .stripe > * {
-        height: 200px;
-    }
-
     .stripe img {
-        height: 200px;
         border-right: 15px solid var(--light);
     }
 
