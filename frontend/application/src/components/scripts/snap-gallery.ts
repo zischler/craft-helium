@@ -14,7 +14,6 @@ class Props {
 export default class SnapGallery extends Vue.with(Props) {
     images: NodeListOf<HTMLImageElement> = {} as any;
     groupBlock = {} as any;
-    mask = {} as any;
     prevArrow = {} as any;
     carouselPositions = [] as any;
     middlePosition = 0;
@@ -31,7 +30,6 @@ export default class SnapGallery extends Vue.with(Props) {
     mounted() {
         this.images = (this.$refs.stripe as HTMLElement).querySelectorAll('img') as NodeListOf<HTMLImageElement>;
         this.groupBlock = (this.$refs.group as HTMLElement) as HTMLElement;
-        this.mask = (this.$refs.mask as HTMLElement) as HTMLElement;
         this.prevArrow = (this.$refs.prevArrow as HTMLElement) as HTMLElement;
 
 
@@ -90,8 +88,6 @@ export default class SnapGallery extends Vue.with(Props) {
         const vw = (window as any).innerWidth;
         const groupW = this.groupBlock.offsetWidth;
 
-        const maskW = window.innerWidth > 767 ? 30 : 15;
-        this.mask.style.width = maskW + "px";
         let placeholderW = ( vw - groupW ) / 2;
         placeholderW = placeholderW < 15 ? 15 : placeholderW;
         this.images[0].style.width = placeholderW + "px";
