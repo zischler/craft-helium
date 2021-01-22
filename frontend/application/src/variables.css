@@ -15,7 +15,7 @@
     --violet: #cc99cc;
     --magenta: #d27b53;
 
-    --page-background: var(--light);
+    --page-background: var(--white);
 
     /* Page - default, layout */
     --page-gutter-width: 4rem;
@@ -33,12 +33,6 @@
     --form-error-border-color: var(--dark-red);
     --form-error-text-color: var(--dark);
     --form-error-background: transparent;
-
-    /* Breakpoints */
-    --bp-sm: 544px;
-    --bp-md: 768px;
-    --bp-lg: 992px;
-    --bp-xl: 1200px;
 }
 
 /* Media queries */

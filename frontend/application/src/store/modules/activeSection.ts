@@ -44,7 +44,7 @@ const mutations = {
     setActiveSectionName: (state, activeSectionName) => state.activeSectionName = activeSectionName,
     updateSectionAnchors: (state) => {
         const sections: Section[] = [];
-        const htmlSections = document.querySelectorAll(".section-anchor") as NodeListOf<HTMLElement>;
+        const htmlSections = document.querySelectorAll(".js-section-anchor") as NodeListOf<HTMLElement>;
         for(const htmlSection of htmlSections) {
             const section = {} as Section;
             section.id = htmlSection.id;

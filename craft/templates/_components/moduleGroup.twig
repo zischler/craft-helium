@@ -7,7 +7,7 @@
     <div class="o-group has-inner-gutter">
         <div class="article-body">
             {% if component.sectionTitle != null %}
-                <div class="section-anchor" id="{{ component.id }}">{{ sectionAnchorTitle ~ component.sectionTitle|striptags|replace({'&amp;':'&'}) }}</div>
+                <div class="js-section-anchor" id="{{ component.id }}">{{ sectionAnchorTitle ~ component.sectionTitle|striptags|replace({'&amp;':'&'}) }}</div>
             {% endif %}
             {% if component.sectionTitle != null and component.showTitle %}
                 <div class="mb-4">

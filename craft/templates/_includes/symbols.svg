@@ -1,6 +1,6 @@
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-        <symbol id="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;">
-            <g color="currentColor">
+        <symbol id="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+            <g fill="currentColor">
                 <path d="M383.4,706.4c-25.5,11.8-71.8,21.6-135.2,21.6c-118.9,0-224-59.4-224-201.8c0-103.2,52.9-177.7,130-218.2
 		C202.5,283.1,256,272,321.4,272c55.5,0,95.4,11.8,111.7,19.6l-30,92.8c-12.4-4.6-46.4-14.4-89.5-14.4c-39.8,0-73.8,7.8-99.9,24.8
 		c-37.9,24.2-62.1,66-62.1,121.5c0,72.5,50.3,113.7,128.7,113.7c35.3,0,66.6-5.2,90.8-15L383.4,706.4z"/>

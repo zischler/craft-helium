@@ -1,21 +1,22 @@
 {% set isHomeClass = entry.type == "homepage" ? "is-home" : "" %}
 
-<header id="page-header" class="absolute visible left-0 top-0 w-full text-black z-50 transition {{ isHomeClass }}" :class="{'js-open': isMenuOpen, 'opacity-0 invisible': isHomeNavigationHover}">
-    <div class="o-section header-spacing o-view-header-collapsed my-0">
-        <div class="o-group">
+<header id="page-header" class="absolute visible left-0 top-0 w-full text-white z-50 transition bg-gray-900 {{ isHomeClass }}" :class="{'js-open': isMenuOpen, 'opacity-0 invisible': isHomeNavigationHover}">
+    <div class="mx-4">
+        <div class="o-group header-spacing">
             <div class="flex align-content-center justify-between relative">
-                <div class="flex-1of3 is-left">
-                    <div class="logo">
+                <div class="flex-1of2 md:flex-1 is-left flex items-center">
+                    <div class="logo inline-block">
                         <a href="{{ homepage.url }}" class="no-underline">
                             <svg width="50px" height="50px" class="w-12 w-12 sm:w-10 sm:w-10">
                                 <use xlink:href="#logo" />
                             </svg>
                         </a>
                     </div>
+                    <nav class="header-navigation hidden md:inline-block ml-8">
+                        {% include "_includes/navigation.twig" %}
+                    </nav>
                 </div>
-                <div class="flex-1of3">
-                </div>
-                <div class="flex-1of3 is-right">
+                <div class="flex-1of2 block md:hidden is-right transition-colors" v-bind:class="{'text-black': isMenuOpen}">
                     <button v-on:click="toggleFlyout" class="burger focus:outline-none" v-bind:class="{'js-open': isMenuOpen}" aria-label="open menu" accesskey="1">
                         <div class="burger-bars">
                             <span class="burger-bar burger-bar-top" aria-hidden="true"></span>
@@ -28,13 +29,13 @@
         </div>
     </div>
     <transition name="swipe-in-top">
-        <div class="fixed top-0 left-0 w-full max-w-screen overflow-x-hidden h-screen bg-white" style="display: none" v-show="isMenuOpen">
+        <div class="fixed top-0 left-0 w-full max-w-screen overflow-x-hidden h-screen bg-white text-black md:hidden" style="display: none" v-show="isMenuOpen">
             <div id="flyoutScrollbox" class="absolute z-40 top-0 left-0 w-full h-screen overflow-y-scroll">
                 <div class="pt-32 md:pt-44 pb-10 o-section">
                     <div class="o-group-first-child" style="display: inline;"></div>
                     <div class="o-group">
                         <div class="relative">
-                            <nav id="mainNavigation" class="o-navigation" v-bind:class="{'js-open': isMenuOpen}">
+                            <nav class="flyout-navigation" v-bind:class="{'js-open': isMenuOpen}">
                                 {% include "_includes/navigation.twig" %}
                             </nav>
                         </div>
