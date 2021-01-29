@@ -1,0 +1,27 @@
+<div class="o-section w-full">
+    <snap-gallery
+            v-bind:project-title="'{{ component.textHeader ?? '' }}'"
+            v-bind:project-description="'{{ component.plainDescription ?? ''}}'">
+        {% if component.images.all() is not empty %}
+            {% for image in component.images.all() %}
+                {% set imageWidth = image.width %}
+                {% set imageHeight = image.height %}
+                {% if imageWidth != 0 and imageHeight != 0 %}
+                    {% set assetRatioCss = "calc(" ~ imageHeight ~ " / " ~ imageWidth ~ " * 100%)" %}
+                {% endif %}
+                {#-- placeholder thumbnail until image is loaded --#}
+                {% set thumb = {
+                    mode: 'crop',
+                    width: 400,
+                    quality: 75,
+                    position: 'center-center'
+                } %}
+                <img width="{{ imageWidth ?? ''}}" height="{{ imageHeight ?? ''}}"
+                     class="h-48 lg:h-80"
+                     src="{% if assetRatioCss is defined %}data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII={% else %}{{ image.getUrl(thumb) }}{% endif %}"
+                     {% if image.altText is defined %}alt="{{ image.altText }}"{% endif %}
+                     data-src="{{ image.getUrl() }}">
+            {% endfor %}
+        {% endif %}
+    </snap-gallery>
+</div>

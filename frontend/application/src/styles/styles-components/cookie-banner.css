@@ -1,46 +1,27 @@
-@import url(../../variables.css);
-
 .banner {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 999;
-    border-top: 2px solid var(--white);
-    background-color: var(--light-gray);
+    @apply fixed;
+    @apply bottom-0;
+    @apply left-0;
+    @apply w-full;
+    @apply z-50;
+    @apply border-t-2 border-white;
+    @apply bg-gray-300;
 }
 
 .banner.o-section {
-    padding: 2rem 0;
-    margin: 0;
+    @apply m-0;
+    @apply py-4 px-0;
 }
 
 .cookie-icon {
-    position: absolute;
-    top: -60px;
-    left: var(--page-gutter-width);
-}
-
-button.button {
-    width: 100%;
-    max-width: 100%;
+    @apply absolute;
+    @apply -top-12;
 }
 
 form button:hover,
 .button-wrapper .button:hover,
 input[type="submit"]:hover {
-    color: var(--black);
-    border-color: var(--white);
-    background-color: var(--white);
-}
-
-.cookie-form-row {
-    margin-bottom: calc(var(--layout-gutter-height) / 2);
-}
-
-@media (--for-sm-down) {
-    .cookie-icon {
-        top: -60px;
-        left: var(--page-gutter-width-sm);
-    }
+    @apply text-black;
+    @apply border-white;
+    @apply bg-white;
 }

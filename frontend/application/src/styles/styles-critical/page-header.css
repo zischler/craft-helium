@@ -3,9 +3,16 @@
 :root {
     /* Header */
     --header-content-height: 44px;
-    --header-margin-height: 3.5rem;
-    --header-margin-height-burger: 3.5rem;
-    --header-margin-height-burger-sm: 4.5vw;
+    --header-margin-height: 3rem;
+    --header-margin-height-burger: 1.5rem;
+    --header-height: calc(
+            2 * var(--header-margin-height) +
+            var(--header-content-height)
+    );
+    --header-height-small: calc(
+            2 * var(--header-margin-height-burger) +
+            var(--header-content-height)
+    );
 
     /* Burger */
     --burger-placeholder-width: 44px;
@@ -17,284 +24,56 @@
     --burger-background: transparent;
     --burger-color-closed: inherit;
 
-    --ios-menubar-height: 5rem;
-
-    --flyout-bgcolor: var(--white);
-
     --default-navigation-timing: 0.15s;
 }
 
-.logo svg {
-    width: 50px;
-    height: 50px;
-}
-
-.o-view-header {
-    position: absolute;
-    visibility: visible;
-    top: 0;
-    width: 100%;
-    z-index: 999;
-    color: var(--black);
-    transition: transform 0.15s linear, opacity 0.2s linear 0.2s;
-}
-
-.o-view-header.js-hide {
-    transform: translateY(-100%);
-}
-
-.o-view-header.is-hidden {
-    opacity: 0;
-    visibility: hidden;
-    transition: transform 0.15s linear, opacity 0.2s linear;
-}
-
-.o-view-header.js-open,
-.o-view-header.js-open .logo a {
-    color: var(--black);
-}
-
-.o-section.header-spacing > .o-group {
+/* Section Anchor and Header Margin */
+.header-spacing {
     padding-top: var(--header-margin-height);
     padding-bottom: var(--header-margin-height);
 }
 
-.page-header-sentinel {
-    height: calc(
-            var(--header-margin-height) + var(--header-margin-height) +
-            var(--header-content-height)
-    );
-}
-
-.section-anchor {
+.js-section-anchor {
     position: absolute;
     visibility: hidden;
     top: 0;
     margin-top: calc(
-            (var(--header-margin-height) + var(--header-margin-height) +
-            var(--header-content-height)) * -1
+            var(--header-height) * -1
     );
-    height: calc(
-            var(--header-margin-height) + var(--header-margin-height) +
-            var(--header-content-height)
-    );
+    height: var(--header-height);
 }
 
 @media (--for-standard-nav) {
-    .section-anchor {
+    .js-section-anchor {
         position: absolute;
         top: 0;
         margin-top: calc(
-                (var(--header-margin-height) + var(--header-margin-height) +
-                var(--header-content-height)) * -1
+                var(--header-height) * -1
         );
-        height: calc(
-                var(--header-margin-height) + var(--header-margin-height) +
-                var(--header-content-height)
-        );
+        height: var(--header-height)
     }
 }
 
 @media (--for-burger-nav) {
-    .o-section.header-spacing > .o-group {
+    .header-spacing {
         padding-top: var(--header-margin-height-burger);
         padding-bottom: var(--header-margin-height-burger);
     }
 
-    .page-header-sentinel {
-        height: calc(
-                var(--header-margin-height-burger) + var(--header-margin-height-burger) +
-                var(--header-content-height)
-        );
-    }
-
-    .section-anchor {
+    .js-section-anchor {
         margin-top: calc(
-                (var(--header-margin-height-burger) +
-                var(--header-margin-height-burger) + var(--header-content-height)) * -1
+                var(--header-height-small) * -1
         );
-        height: calc(
-                var(--header-margin-height-burger) + var(--header-margin-height-burger) +
-                var(--header-content-height)
-        );
+        height: var(--header-height-small);
     }
 }
 
 @media (--for-sm-down) {
-    .o-section.header-spacing > .o-group {
-        padding-top: var(--header-margin-height-burger-sm);
-        padding-bottom: var(--header-margin-height-burger-sm);
-    }
-
-    .page-header-sentinel {
-        height: calc(
-                var(--header-margin-height-burger-sm) +
-                var(--header-margin-height-burger-sm) + var(--header-content-height)
-        );
-    }
-
-    .section-anchor {
+    .js-section-anchor {
         margin-top: calc(
-                (var(--header-margin-height-burger-sm) +
-                var(--header-margin-height-burger-sm) + var(--header-content-height)) * -1
+                var(--header-height-small) * -1
         );
-        height: calc(
-                var(--header-margin-height-burger-sm) +
-                var(--header-margin-height-burger-sm) + var(--header-content-height)
-        );
-    }
-
-    .logo svg {
-        height: 60px;
-        width: 60px;
-    }
-}
-
-.page-nav {
-    z-index: 1000 !important;
-}
-
-/* flyout */
-
-.flyout {
-    position: fixed;
-    bottom: unset;
-    top: 0;
-    left: 0;
-    width: 100%;
-    max-width: 100vw;
-    overflow-x: hidden;
-    height: 100vh;
-    background: var(--flyout-bgcolor);
-}
-
-.flyout-scrollbox {
-    position: absolute;
-    top: calc(
-            var(--header-margin-height) + var(--header-margin-height) +
-            var(--header-content-height)
-    );
-    height: calc(
-            100vh - var(--header-margin-height) - var(--header-content-height) -
-            var(--header-margin-height)
-    );
-    left: 0;
-    width: 100%;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-}
-
-.flyout-inner {
-    min-height: calc(
-            100vh - var(--header-margin-height) - var(--header-content-height) -
-            var(--header-margin-height)
-    );
-    padding-top: 100px;
-    padding-bottom: 50px;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-}
-
-.flyout-content {
-    min-height: calc(
-            100vh - var(--header-margin-height) - var(--header-content-height) -
-            var(--header-margin-height) - var(--section-margin-height) - 70px - 70px
-    );
-}
-
-@media (--for-burger-nav) {
-    .flyout .flyout-scrollbox {
-        top: calc(
-                var(--header-margin-height-burger) + var(--header-margin-height-burger) +
-                var(--header-content-height)
-        );
-        height: calc(
-                100vh - var(--header-margin-height-burger) - var(--header-content-height) -
-                var(--header-margin-height-burger)
-        );
-    }
-
-    .flyout-scrollbox {
-        top: 0;
-        height: calc(
-                100vh - var(--header-margin-height-burger) - var(--header-content-height) -
-                var(--header-margin-height-burger)
-        );
-    }
-
-    .flyout-inner {
-        min-height: calc(
-                100vh - var(--header-margin-height-burger) - var(--header-content-height) -
-                var(--header-margin-height-burger)
-        );
-        padding-top: 8vw; /* 60px; */
-        padding-bottom: 8vw; /* 30px; */
-    }
-
-    .flyout-content {
-        min-height: calc(
-                100vh - var(--header-margin-height-burger) -
-                var(--header-margin-height-burger) - var(--header-content-height) -
-                var(--section-margin-height) - 15vw - 15vw
-        );
-    }
-}
-
-@media (--for-sm-down) {
-    .flyout .flyout-scrollbox {
-        top: calc(
-                var(--header-margin-height-burger-sm) +
-                var(--header-margin-height-burger-sm) + var(--header-content-height)
-        );
-        height: calc(
-                100vh - var(--header-margin-height-burger-sm) -
-                var(--header-content-height) - var(--header-margin-height-burger-sm)
-        );
-    }
-
-    .flyout-scrollbox {
-        top: 0;
-        height: calc(
-                100vh - var(--header-margin-height-burger-sm) -
-                var(--header-content-height) - var(--header-margin-height-burger-sm)
-        );
-    }
-
-    .flyout-inner {
-        min-height: calc(
-                100vh - var(--header-margin-height-burger-sm) -
-                var(--header-content-height) - var(--header-margin-height-burger-sm)
-        );
-        padding-top: 8vw; /* 60px; */
-        padding-bottom: 8vw; /* 30px; */
-    }
-
-    .flyout-content {
-        min-height: calc(
-                100vh - var(--header-margin-height-burger-sm) -
-                var(--header-margin-height-burger-sm) - var(--header-content-height) -
-                var(--section-margin-height) - 15vw - 15vw
-        );
-    }
-}
-
-@media (--for-sm-down) and (orientation: portrait) {
-    @supports (-webkit-overflow-scrolling: touch) {
-        .flyout .flyout-scrollbox {
-            height: calc(
-                    100vh - var(--header-margin-height-burger-sm) -
-                    var(--header-content-height) - var(--header-margin-height-burger-sm) -
-                    var(--ios-menubar-height)
-            );
-        }
-
-        .flyout-inner {
-            min-height: calc(
-                    100vh - var(--header-margin-height-burger-sm) -
-                    var(--header-content-height) - var(--header-margin-height-burger-sm) -
-                    var(--ios-menubar-height)
-            );
-        }
+        height: var(--header-height-small);
     }
 }
 
@@ -304,12 +83,13 @@
     width: var(--burger-placeholder-width);
     min-width: var(--burger-placeholder-width);
     height: var(--burger-placeholder-height);
-    background: var(--burger-background);
+    background: transparent;
     position: relative;
     right: 0;
     color: var(--burger-color-closed);
     z-index: 3;
-    outline: 0;
+    @apply outline-none;
+    -webkit-appearance: none;
     margin-top: 0;
     padding-left: calc(
             (var(--burger-placeholder-width) - var(--burger-width)) / 2
@@ -375,84 +155,37 @@
 }
 
 /* Navigation */
-
-.o-navigation-wrapper {
-    margin-top: 18px;
+.header-navigation li {
+    @apply inline-block;
+    @apply mx-3;
+    @apply text-lg;
 }
 
-.o-navigation ul {
-    display: block;
-}
-
-.o-navigation li {
-    margin-top: calc(var(--layout-gutter-width) / 2);
-    margin-bottom: calc(var(--layout-gutter-width) / 2);
-}
-
-.o-navigation li {
-    display: block;
-}
-
-.o-navigation a {
-    position: relative;
-    white-space: nowrap;
-    text-decoration: none;
-    display: inline-block;
+.header-navigation a,
+.flyout-navigation a {
     line-height: 1.2em;
-    font-size: var(--h1-font-size-xl);
-    color: currentColor;
-    font-weight: bold;
-}
+    @apply whitespace-nowrap;
+    @apply font-bold;
+    transition: color 0.15s linear;
 
-.o-navigation a::after {
-    content: "";
-    width: 100%;
-    height: 4px;
-    background-color: currentColor;
-    position: absolute;
-    bottom: -6px;
-    left: 0;
-    opacity: 0;
-    transition: opacity 0.15s linear, bottom 0.2s ease-in-out;
-}
-
-.o-navigation a:hover::after {
-    content: "";
-    width: 100%;
-    background-color: currentColor;
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    opacity: 1;
-}
-
-.o-navigation a.is-active {
-    color: var(--red);
-}
-
-@media (--for-md-up) {
-    .o-navigation ul {
-        text-align: left;
-    }
-
-    .o-navigation li {
-        line-height: 1em;
+    &:hover {
+        @apply text-red-500;
     }
 }
 
 @media (--for-sm-down) {
-    .o-navigation ul,
-    .o-navigation li {
+    .flyout-navigation li {
+        @apply my-4;
+        @apply text-3xl;
+    }
+
+    .flyout-navigation ul,
+    .flyout-navigation li {
         display: block;
         text-align: left;
     }
 
-    .o-navigation li {
-        line-height: 2em;
-    }
-
-    .o-footer .o-navigation ul,
-    .o-footer .o-navigation li {
-        text-align: center;
+    .flyout-navigation li {
+        line-height: 1.5em;
     }
 }

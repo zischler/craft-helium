@@ -1,5 +1,5 @@
 <template>
-    <div class="custom-select">
+    <div class="relative">
         <label v-if="label" :for="selectId" :class="{'js-open': isOpen}">
             {{label}} <dfn title="required" v-if="required">*</dfn>
         </label>
@@ -14,7 +14,7 @@
                 v-model="selectValue"
                 :required="required">
                 <option value="" :selected="{'selected': selectValue === defaultValue}" v-if="!required">{{ placeholder }}</option>
-                <option v-for="option in this.dataObj" :value="option.value">{{ option.label }}</option>
+                <option v-for="option in dataObj" :value="option.value">{{ option.label }}</option>
             </select>
             <div class="select-placeholder" :class="{'js-open': isOpen}">
                 <span v-html="selectLabel"></span>
@@ -26,7 +26,7 @@
         <div class="select-list" :class="{'js-open': isOpen}">
             <ul>
                 <li v-on:click="setSelected('', placeholder)" :class="{'js-selected': selectValue === defaultValue}" v-if="!required">{{ placeholder }}</li>
-                <li v-for="option in this.dataObj" v-on:click="setSelected(option.value, option.label)" :class="{'js-selected': (selectValue === option.value)}">{{ option.label }}</li>
+                <li v-for="option in dataObj" v-on:click="setSelected(option.value, option.label)" :class="{'js-selected': (selectValue === option.value)}">{{ option.label }}</li>
             </ul>
         </div>
     </div>

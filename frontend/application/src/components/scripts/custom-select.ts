@@ -39,7 +39,7 @@ export default class CustomSelect extends Vue.with(Props) {
     public selectedObj: {};
 
     public created() {
-        this.dataObj = this.dataJson ? JSON.parse(decodeURIComponent(this.dataJson)) : "";
+        this.dataObj = this.dataJson;
         if (!this.dataObj) {
             throw new Error("json is void");
         }

@@ -1,0 +1,18 @@
+contentColumnType: text
+fieldGroup: 5d6a3f45-ee3c-4beb-9864-25ffce06a44d
+handle: plainDescription
+instructions: ''
+name: 'Plain Description'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: ''
+  columnType: null
+  initialRows: '4'
+  multiline: ''
+  placeholder: ''
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: language
+type: craft\fields\PlainText

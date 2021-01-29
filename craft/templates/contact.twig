@@ -13,7 +13,7 @@
 {% from _self import errorList %}
 
 {% set title = entry.title %}
-{% set bodyClass = '-bg-cream -color-anthracit' %}
+
 
 
 {% if craft.app.language == 'de' %}
@@ -40,14 +40,14 @@
 
 {% block hero %}
 	{#Hero#}
-	<div class="o-section o-hero has-no-top-space is-full-width -bg-pattern">
+	<div class="o-section o-hero">
 		{% include "_includes/heroImage.twig" %}
 		<div class="o-view-header-sentinel"></div>
 	</div>
 {% endblock %}
 
 {% block content %}
-	<div class="main has-main-vertical-padding has-no-top-space has-top-inner-space">
+	<div class="main mt-0 pt-12">
 		<div class="o-section">
 			<div class="o-group">
             	<h1>{{ entry.title }}</h1>
@@ -67,12 +67,24 @@
 		<div class="o-section">
 			<div class="o-group">
 				<h2>{{ contactTitle }}</h2>
-				<form method="post" action="" accept-charset="UTF-8">
-					<fieldset class="o-flex is-vertical has-gutter is-multiline">
+				<form method="post" action="" accept-charset="UTF-8" class="relative w-full mt-8">
+					<fieldset>
 						{{ csrfInput() }}
 						<input type="hidden" name="action" value="contact-form/send">
 
-						<div class="form-row">
+						<div class="relative mb-6">
+							{% set customSelectVal = "[
+								{\'value\': \'sir\', \'label\': \'Sir\'},
+								{\'value\': \'madam\', \'label\': \'Madam\'}]"
+							%}
+
+							<custom-select
+									:data-json="{{ customSelectVal|raw }}"
+									select-id="salutation" label="salutation"
+									default-placeholder="Salutation"></custom-select>
+						</div>
+
+						<div class="relative mb-6">
 							<div class="input-wrapper">
 								<input id="from-name" type="text" name="fromName" value="{{ message.fromName ?? '' }}" placeholder="{{ contactName }}">
 								<label for="from-name">{{ contactName }}</label>
@@ -80,7 +92,7 @@
 							</div>
 						</div>
 
-						<div class="form-row">
+						<div class="relative mb-6">
 							<div class="input-wrapper">
 								<input id="surname" type="text" name="message[Surname]" value="{{ message.message.Surname ?? '' }}" placeholder="{{ contactSurname }}">
 								<label for="surname">{{ contactSurname }}</label>
@@ -88,14 +100,14 @@
 							</div>
 						</div>
 
-						<div class="form-row">
+						<div class="relative mb-6">
 							<div class="input-wrapper">
 								<input id="from-email" type="email" name="fromEmail" value="{{ message.fromEmail ?? '' }}" placeholder="{{ contactEmail }}">
 								<label for="from-email">{{ contactEmail }}</label>
 							</div>
 						</div>
 
-						<div class="form-row">
+						<div class="relative mb-6">
 							<div class="input-wrapper">
 								<input id="subject" type="text" name="subject" value="{{ message.subject ?? '' }}" placeholder="{{ contactSubject }}">
 								<label for="subject">{{ contactSubject }}</label>
@@ -103,15 +115,13 @@
 							</div>
 						</div>
 
-						<div class="form-row">
-							<div class="text-area-wrapper">
-								<textarea rows="10" cols="40" id="message" name="message[body]" placeholder="{{ contactMessage }}">{{ message.message.body ?? '' }}</textarea>
-								<label for="message">{{ contactMessage }}</label>
-								{{ message is defined and message ? errorList(message.getErrors('message[body]')) }}
-							</div>
+						<div class="relative mt-8 mb-6">
+							<textarea class="block" rows="10" cols="40" id="message" name="message[body]" placeholder="{{ contactMessage }}">{{ message.message.body ?? '' }}</textarea>
+							<label for="message">{{ contactMessage }}</label>
+							{{ message is defined and message ? errorList(message.getErrors('message[body]')) }}
 						</div>
 
-						<div class="form-row">
+						<div class="relative">
 							<div class="checkbox-wrapper">
 								<input name="message[privacy]" id="privacy" required type="checkbox">
 								<label class="checkbox-label" for="privacy">
@@ -120,13 +130,13 @@
 										<a href="{{ entry.dataPolicyPage.one().url }}" target="_blank">{{ contactPrivacy }}</a>.
 									{% endif %}
 									{% if craft.app.language == 'de' %}
-										<div class="recaptcha-explanation">
+										<div class="mt-1 text-sm">
 											Diese Website ist durch reCAPTCHA geschützt (es gelten die Google
 											<a class="link" href="https://policies.google.com/privacy" target="_blank">Datenschutzbestimmungen</a> und
 											<a class="link" href="https://policies.google.com/terms" target="_blank">Nutzungsbedingungen</a>).
 										</div>
 									{% else %}
-										<div class="recaptcha-explanation">
+										<div class="mt-1 text-sm">
 											This site is protected by reCAPTCHA and the Google
 											<a class="link" href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a> and
 											<a class="link" href="https://policies.google.com/terms" target="_blank">Terms of Service</a> apply.
@@ -139,11 +149,11 @@
 
 						{{ craft.contactFormExtensions.recaptcha | raw }}
 
-						<div class="form-row">
+						<div class="relative mt-8">
 							<input type="submit" value="{{ contactSubmit }}">
 						</div>
 
-						<div class="form-row">
+						<div class="relative">
 							{% if craft.app.session.hasFlash('notice') %}
 								<p class="message notice">{{ craft.app.session.getFlash('notice') }}</p>
 							{% elseif craft.app.session.hasFlash('error') %}

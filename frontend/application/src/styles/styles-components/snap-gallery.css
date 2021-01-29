@@ -21,21 +21,23 @@
     padding-bottom: 20px;
 }
 
-.stripe > * {
+.stripe >>> * {
     scroll-snap-align: center;
     min-height: 200px;
     height: 34vw;
 }
 
-.stripe img {
+.stripe >>> img {
     height: 34vw;
     min-height: 200px;
-    border-right: 20px solid var(--light);
+    border-right: 20px solid;
+    @apply border-gray-50;
     box-sizing: border-box;
 }
 
 .stripe img.placeholder {
     opacity: 0;
+    max-width: none;
 }
 
 .text {
@@ -48,7 +50,7 @@
 
 .arrow {
     position: absolute;
-    top: calc(34vw - 66px);
+    top: calc(100% - 66px);
     bottom: auto;
     left: 0;
     outline: 0;
@@ -62,7 +64,7 @@
 
 .arrow path {
     fill: none;
-    stroke: var(--white);
+    stroke: white;
     stroke-width: 5;
     stroke-miterlimit: 10;
 }
@@ -115,95 +117,9 @@
     transform: translateX(-1px);
 }
 
-.mask {
-    position: absolute;
-    top: -1px;
-    bottom: -1px;
-    left: 0;
-    width: 100%;
-    background-color: inherit;
-    overflow: hidden;
-    transition: width 0.25s ease-in-out;
-}
-
-.triangle-static {
-    position: absolute;
-    top: auto;
-    bottom: 0;
-    left: 100%;
-    right: auto;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 6.25vw 34vw 0;
-    border-color: transparent transparent var(--light) transparent;
-    transition: transform 0.15s linear;
-    display: none;
-}
-
-.triangle-mobile {
-    position: absolute;
-    right: 0;
-    bottom: -1px;
-    left: auto;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 0 34vw 6.25vw;
-    border-color: transparent transparent var(--light) transparent;
-    transition: transform 0.15s linear;
-    display: none;
-}
-
-.triangle-fix {
-    position: absolute;
-    top: auto;
-    bottom: -1px;
-    left: 30px;
-    right: auto;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 6.25vw 34vw 0;
-    border-color: transparent transparent var(--light) transparent;
-    display: none;
-}
-
-@media (--for-xl) {
-    .stripe > *, .stripe img {
-        height: 456px;
-    }
-
-    .arrow {
-        top: 390px;
-    }
-
-    .triangle-static {
-        border-width: 0 85px 456px 0;
-    }
-
-    .triangle-mobile {
-        border-width: 0 0 456px 85px;
-    }
-
-    .triangle-fix {
-        border-width: 0 85px 34vw 0;
-    }
-}
-
 @media (--for-sm-down) {
-
-    .stripe > * {
-        height: 200px;
-    }
-
     .stripe img {
-        height: 200px;
         border-right: 15px solid var(--light);
-    }
-
-    .arrow {
-        top: 150px;
     }
 
     .arrow.prev {
@@ -214,22 +130,4 @@
     .arrow > svg {
         max-width: 24px;
     }
-
-    .mask {
-        display: none;
-    }
-
-    .triangle-static {
-        border-width: 0 26px 200px 0;
-    }
-
-    .triangle-mobile {
-        border-width: 0 0 200px 26px;
-    }
-
-    .triangle-fix {
-        border-width: 0 26px 200px 0;
-        display: none;
-    }
-
 }
