@@ -21,13 +21,13 @@
     padding-bottom: 20px;
 }
 
-.stripe >>> * {
+.stripe ::v-deep(*) {
     scroll-snap-align: center;
     min-height: 200px;
     height: 34vw;
 }
 
-.stripe >>> img {
+.stripe ::v-deep(img) {
     height: 34vw;
     min-height: 200px;
     border-right: 20px solid;
