@@ -1,4 +1,4 @@
-dateModified: 1611321041
+dateModified: 1611934730
 email:
   fromEmail: $SYSTEM_EMAIL
   fromName: $SENDER_NAME
@@ -51,7 +51,8 @@ plugins:
   neo:
     edition: standard
     enabled: true
-    schemaVersion: 2.8.0
+    licenseKey: W743MMCNQBQOMDZC2SRESSJB
+    schemaVersion: 2.8.16
   redactor:
     edition: standard
     enabled: true
@@ -64,7 +65,7 @@ system:
   edition: solo
   live: true
   name: craft-helium
-  schemaVersion: 3.5.13
+  schemaVersion: 3.6.1
   timeZone: Europe/Zurich
 users:
   allowPublicRegistration: false

@@ -50,7 +50,7 @@
         <meta name="msapplication-tap-highlight" content="no">
 
         <!-- Social networks -->
-        <meta property="og:title" content="{% if entry.metaTitle is defined and entry.metaTitle is not empty %}{{ entry.metaTitle }}{% elseif homepage.metaTitle %}{{ homepage.metaTitle }}{% else %}{{ siteName }}{% endif %}">
+        <meta property="og:title" content="{% if entry.metaTitle is defined and entry.metaTitle is not empty %}{{ entry.metaTitle }}{% elseif homepage.metaTitle %}{{ homepage.metaTitle }}{% else %}{{ applicationName }}{% endif %}">
         <meta property="og:description" content="{% if entry.metaDescription is defined and entry.metaDescription is not empty %}{{ entry.metaDescription }}{% elseif homepage.metaDescription %}{{ homepage.metaDescription }}{% endif %}">
         <meta property="og:url" content="{{ entry.url }}">
         <meta property="og:site_name" content="{{ applicationName }}">
