@@ -1,5 +1,6 @@
+/* --- Vue Transitions --- */
 /* Fade */
-.fade-enter,
+.fade-enter-from,
 .fade-leave-to {
     opacity: 0;
 }
@@ -10,12 +11,12 @@
 }
 
 .fade-enter-to,
-.fade-leave {
+.fade-leave-from {
     opacity: 1;
 }
 
 /* Swipe in Top */
-.swipe-in-top-enter,
+.swipe-in-top-enter-from,
 .swipe-in-top-leave-to {
     transform: translateY(-100vh);
 }
@@ -26,12 +27,12 @@
 }
 
 .swipe-in-top-enter-to,
-.swipe-in-top-leave {
+.swipe-in-top-leave-from {
     transform: translateY(0);
 }
 
 /* Fade in with Transform */
-.fade-in-top-enter,
+.fade-in-top-enter-from,
 .fade-in-top-leave-to {
     opacity: 0;
     transform: translateY(30px);
@@ -43,7 +44,7 @@
 }
 
 .fade-in-top-enter-to,
-.fade-in-top-leave {
+.fade-in-top-leave-from {
     opacity: 1;
     transform: translateY(0);
 }

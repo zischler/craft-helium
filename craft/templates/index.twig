@@ -1,17 +1,17 @@
 {% extends '_layout' %}
 
 {% set title = 'Home' %}
-{% set bodyClass = '-bg-cream -color-anthracit' %}
+
 
 {% block hero %}
 	{#Home Hero#}
-	<div class="o-section o-hero has-no-top-space is-full-width -bg-pattern">
+	<div class="o-section o-hero">
 		{% include "_includes/heroImage.twig" %}
 	</div>
 {% endblock %}
 
 {% block content %}
-	<div class="main has-main-vertical-padding has-no-top-space has-top-inner-space">
+	<div class="main mt-0 pt-12">
 		<section class="o-section">
 			<div class="o-group">
             	<h1>Craft Helium</h1>
@@ -22,7 +22,7 @@
 			{% include "_components/" ~ component.type %}
 		{% endfor %}
 
-		<section class="o-section has-background -gray">
+		<section class="o-section has-background bg-gray-200">
 			<div class="o-group">
 				<h2>News Example</h2>
 				{% set newsQuery = craft.entries()

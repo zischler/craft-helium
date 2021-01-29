@@ -1,0 +1,25 @@
+childBlocks: ''
+field: f223541d-0057-4b42-8f60-11587c05dbf9
+fieldLayouts:
+  -
+    tabs:
+      -
+        elements:
+          -
+            fieldUid: da0152ae-2c5c-4580-90c9-19a135efd32e
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Main
+        sortOrder: 1
+handle: image
+maxBlocks: 0
+maxChildBlocks: 0
+maxSiblingBlocks: 0
+name: Image
+sortOrder: 7
+topLevel: false

@@ -1,12 +1,10 @@
 {% set animModule = module %}
-<anim-component inline-template>
-    <transition name="fade-in-top">
-        <div class="anim-component o-component" v-show="animate">
-            {% if animModule.children.all() is not empty %}
-                {% for module in animModule.children.all() %}
-                    {% include "_components/" ~ module.type %}
-                {% endfor %}
-            {% endif %}
-        </div>
-    </transition>
+<anim-component>
+    <div class="anim-component o-component">
+        {% if animModule.children.all() is not empty %}
+            {% for module in animModule.children.all() %}
+                {% include "_components/" ~ module.type %}
+            {% endfor %}
+        {% endif %}
+    </div>
 </anim-component>

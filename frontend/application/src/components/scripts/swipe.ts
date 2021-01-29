@@ -1,4 +1,4 @@
-import { Vue, Component } from "vue-property-decorator";
+import {Options, Vue} from "vue-class-component";
 
 /**
  * Swipe Element
@@ -6,7 +6,9 @@ import { Vue, Component } from "vue-property-decorator";
  * @example
  * <swipe @swipeup="doSomething()" class="o-swipe"></swipe>
  */
-@Component
+@Options({
+    emits: ['swipeend', 'swipemove', 'swiperight', 'swipeleft', 'swipedown', 'swipeup', 'wheeldown', 'wheelup']
+})
 export default class Swipe extends Vue {
     public blockClickEventDistance = 0;
     public swipe = {
@@ -122,9 +124,9 @@ export default class Swipe extends Vue {
      */
     public onWheel(event: WheelEvent) {
         if (event.deltaY > 0) {
-            this.$emit("swipeup");
+            this.$emit("wheelup");
         } else if (event.deltaY < 0) {
-            this.$emit("swipedown");
+            this.$emit("wheeldown");
         }
     }
 

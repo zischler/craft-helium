@@ -1,0 +1,17 @@
+contentColumnType: text
+fieldGroup: d89526f0-270b-4f39-8afb-812fe0300304
+handle: cookieThirdPartyLabel
+instructions: ''
+name: 'Cookie Third Party Label'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: ''
+  columnType: null
+  initialRows: '4'
+  multiline: ''
+  placeholder: 'Third Party Cookies'
+translationKeyFormat: null
+translationMethod: language
+type: craft\fields\PlainText

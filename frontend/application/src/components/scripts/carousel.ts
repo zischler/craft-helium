@@ -1,9 +1,9 @@
-import {Vue, Component, Prop, Watch} from "vue-property-decorator";
+import {Vue, prop } from "vue-class-component";
 import verticalState from "../../helpers/vertical-state";
 import debounce from "lodash-es/debounce";
-import Swipe from "./swipe";
 import {isMobile, isTablet} from "../../helpers/page-state-checker";
-import CarouselSlide from "./carousel-slide";
+import {Action, Getter, Mutation} from "vuex-class";
+import {CarouselMetadata} from "../../models/CarouselMetadata";
 
 
 /*
@@ -42,65 +42,63 @@ enum Orientation {
     Vertical = "vertical",
 }
 
-@Component
-export default class Carousel extends Vue {
-    @Prop({ type: Boolean, default: false })
-    asHero!: boolean; // calculate height from top position, at render
-
-    @Prop({ type: Boolean, default: false })
-    autoplay!: boolean; // play automatically
-
-    @Prop({ type: Number, default: 0 })
-    columns!: number; // number of columns, overwrite minWidth
-
-    @Prop({ type: Number, default: 5000 })
-    delay!: number; // time to show a slide
-
-    @Prop({
-        type: Number,
+class Props {
+    asHero = prop<boolean>({ // calculate height from top position, at render
+        default: false,
+    });
+    autoplay = prop<boolean>({ // play automatically
+        default: false,
+    });
+    columns = prop<number>({ // number of columns, overwrite minWidth
+        default: 0,
+    });
+    delay = prop<number>({ // time to show a slide
+        default: 5000,
+    });
+    maxWidth = prop<number>({ // items maximum width
         default: 0,
         validator(value: number) {
             return value >= 0;
         },
-    })
-    maxWidth!: number; // items maximum width
-
-    @Prop({
-        type: Number,
+    });
+    minWidth = prop<number>({ // items minimum width
         default: 0,
         validator(value: number) {
             return value >= 0;
         },
-    })
-    minWidth!: number; // items minimum width
-
-    @Prop({ type: Number, default: -1 })
-    slideRatio!: number;
-
-    @Prop({ type: String, default: RenderType.Slideshow })
-    renderType!: RenderType;
-
-    @Prop({ type: String, default: Orientation.Horizontal })
-    orientation!: Orientation;
-
-    @Prop({ type: Number, default: 0 })
-    startAt!: number; // first item to show
-
-    @Prop({ type: Boolean, default: true })
-    isInfinite!: boolean; // If slider is infinite
-
-    @Prop({ type: Number, default: 350 })
-    transitionDelay!: number; // duration of the transition animation
-
+    });
+    slideRatio = prop<number>({
+        default: -1,
+    });
+    renderType = prop<string>({
+        default: RenderType.Slideshow,
+    });
+    orientation = prop<string>({
+        default: Orientation.Horizontal,
+    });
+    startAt = prop<number>({ // first item to show
+        default: 0,
+    });
+    isInfinite = prop<boolean>({ // If slider is infinite
+        default: true,
+    });
+    transitionDelay = prop<number>({ // duration of the transition animation
+        default: 350,
+    });
     /* If Slide Width should be changed to allow multiple slides
-     * being visible at the same time.
-     * This is different than columns because here we want to
-     * have navigation to each slide.
-     */
-    @Prop({ type: Number, default: 100 })
-    slideWidthPercentageDesktop!: number;
+    * being visible at the same time.
+    * This is different than columns because here we want to
+    * have navigation to each slide.
+    */
+    slideWidthPercentageDesktop = prop<number>({
+        default: 100,
+    });
+    wheelEnabled = prop<boolean>({ // If Wheel usage changes slides
+        default: false,
+    });
+}
 
-    // Variables
+export default class Carousel extends Vue.with(Props) {
     carouselWidth = 0; // used to control the resize event
     currentItem = -1; // currently shown item, currently badly used
     currentSlide = 1; // currently shown slide
@@ -139,14 +137,14 @@ export default class Carousel extends Vue {
         transform: "",
     };
 
-
     // Swipe
-    swipe = new Swipe();
     hasCursorDown = false;
-    @Watch("swipe.hasCursorDown")
-    onCursorChange() {
-        this.hasCursorDown = !this.hasCursorDown;
-    }
+
+    // Carousel Vuex
+    carouselId = "";
+    @Getter("carousels") carousels;
+    @Action("getCarouselHeight") getCarouselHeight;
+    @Mutation("addCarousel") addCarousel;
 
     get slideWidthPercentage() {
         if(isMobile()) {
@@ -167,14 +165,13 @@ export default class Carousel extends Vue {
     }
 
     created() {
-        // block bounce scroll on ios
-        /*
-        const view = document.querySelector("#view");
-
-        if (view && /ip(ad|op|hone)/i.exec(navigator.userAgent)) {
-            view.addEventListener("touchmove", e => e.preventDefault());
-        }
-        */
+        const carouselsSize = this.carousels.length;
+        this.carouselId = "carousel-" + (carouselsSize+1);
+        const carouselMetadata = {
+            id: this.carouselId,
+            height: 0,
+        } as CarouselMetadata;
+        this.addCarousel(carouselMetadata);
     }
 
     mounted() {
@@ -290,27 +287,13 @@ export default class Carousel extends Vue {
             this.carouselViewportHeight = this.slideRatio;
         } else if (!this.asHero) {
             // Calculate Slideshow Height
-            let maxSlideHeight = 0;
-            let minSlideHeight = 1000;
-            if (this.$children) {
-                for (const _item of this.$children) {
-                    const item = _item as CarouselSlide;
-                    const calcHeight = item.calcHeight();
-
-                    // Take biggest image (in height) that is not isCover. If all are isCover take the smallest one.
-                    if (calcHeight > maxSlideHeight) {
-                        maxSlideHeight = calcHeight;
-                    } else if (calcHeight < minSlideHeight) {
-                        minSlideHeight = calcHeight;
-                    }
+            this.getCarouselHeight(this.carouselId).then(height => {
+                if (height !== 0) {
+                    this.carouselViewportHeight = height / this.carouselWidth * 100;
+                } else {
+                    this.carouselViewportHeight = 1000 / this.carouselWidth * 100;
                 }
-            }
-
-            if (maxSlideHeight !== 0) {
-                this.carouselViewportHeight = maxSlideHeight / this.carouselWidth * 100;
-            } else {
-                this.carouselViewportHeight = minSlideHeight / this.carouselWidth * 100;
-            }
+            });
         }
         this.updateSlidesHeight();
     }
@@ -521,77 +504,42 @@ export default class Carousel extends Vue {
     }
 
     /* --- Swipe --- */
-    blockClick(event: MouseEvent) {
-        this.swipe.blockClick(event);
+    swipeLeft(event) {
+        this.handleSwipe(event, Orientation.Horizontal, true);
     }
 
-    touchStart(event: MouseEvent | Touch) {
-        this.swipe.touchStart(event);
+    swipeRight(event) {
+        this.handleSwipe(event, Orientation.Horizontal, false);
     }
 
-    touchMove(event: MouseEvent | Touch) {
-        this.swipe.touchMove(event);
+    swipeUp(event) {
+        this.handleSwipe(event, Orientation.Vertical, true);
     }
 
-    touchEnd(event: MouseEvent | Touch) {
-        this.swipe.hasCursorDown = false;
-        const swipeMove = this.swipe.swipe;
+    swipeDown(event) {
+        this.handleSwipe(event, Orientation.Vertical, false);
+    }
 
-        if (swipeMove.move) {
-            const endEvent = this.getTouchEvent(event);
-            const now = Date.now();
-            const detail = {
-                x: endEvent.clientX - swipeMove.x,
-                y: endEvent.clientY - swipeMove.y,
-            };
-
-            // Horizontal swipe
-            if (this.orientation === Orientation.Horizontal) {
-                if (Math.abs(endEvent.clientY - swipeMove.y) < 30 && now - swipeMove.time < 1000) {
-                    if (detail.x > 30) {
-                        // swipe left
-                        this.isAutoplay = false;
-                        this.previousSlide(event);
-                    } else if (detail.x < -30) {
-                        // swipe right
-                        this.isAutoplay = false;
-                        this.nextSlide(event);
-                    }
-                }
-            }
-
-            // Vertical Swipe
-            if (this.orientation === Orientation.Vertical) {
-                if (Math.abs(endEvent.clientX - swipeMove.x) < 30 && now - swipeMove.time < 1000) {
-                    if (detail.y > 30) {
-                        // swipe down
-                        this.previousSlide(event);
-                    } else if (detail.y < -30) {
-                        // swipe up
-                        this.nextSlide(event);
-                    }
-                }
-            }
-
-            this.swipe.swipe.move = false;
+    handleSwipe(event, necessaryOrientation, toNextSlide) {
+        if (this.orientation === necessaryOrientation) {
+            this.isAutoplay = false;
+            toNextSlide ? this.nextSlide(event) : this.previousSlide(event);
         }
     }
 
-    onWheel(event: WheelEvent) {
-        // Vertical Swipe
-        if (this.orientation === Orientation.Vertical) {
-            event.preventDefault();
-            if (!this.isTransitioning && !this.isWheelBlocked) {
-                if (event.deltaY && event.deltaY > 3) {
-                    this.blockWheel();
-                    // swipe up
-                    this.nextSlide(event);
-                } else if (event.deltaY && event.deltaY < -3) {
-                    this.blockWheel();
-                    // swipe down
-                    this.previousSlide(event);
-                }
-            }
+    wheelUp(event) {
+        if (this.wheelEnabled && !this.isTransitioning && !this.isWheelBlocked) {
+            this.blockWheel();
+            // swipe up
+            this.nextSlide(event);
+        }
+    }
+
+    wheelDown(event) {
+        if (this.wheelEnabled && !this.isTransitioning && !this.isWheelBlocked) {
+            this.blockWheel();
+            // swipe up
+            this.previousSlide(event);
         }
     }
 

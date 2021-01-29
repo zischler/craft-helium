@@ -1,15 +1,19 @@
-import { Prop, Vue, Component } from "vue-property-decorator";
+import {Vue, prop} from "vue-class-component";
 import "scroll-behavior-polyfill";
+import _ from "lodash";
 
-@Component
-export default class SnapGallery extends Vue {
-    @Prop({ type: String, default: "" })
-    projectTitle!: string;
-    @Prop({ type: String, default: "" })
-    projectDescription!: string;
+class Props {
+    projectTitle = prop<string>({
+        default: '',
+    });
+    projectDescription = prop<string>({
+        default: '',
+    });
+}
+
+export default class SnapGallery extends Vue.with(Props) {
     images: NodeListOf<HTMLImageElement> = {} as any;
     groupBlock = {} as any;
-    mask = {} as any;
     prevArrow = {} as any;
     carouselPositions = [] as any;
     middlePosition = 0;
@@ -26,7 +30,6 @@ export default class SnapGallery extends Vue {
     mounted() {
         this.images = (this.$refs.stripe as HTMLElement).querySelectorAll('img') as NodeListOf<HTMLImageElement>;
         this.groupBlock = (this.$refs.group as HTMLElement) as HTMLElement;
-        this.mask = (this.$refs.mask as HTMLElement) as HTMLElement;
         this.prevArrow = (this.$refs.prevArrow as HTMLElement) as HTMLElement;
 
 
@@ -60,20 +63,14 @@ export default class SnapGallery extends Vue {
                 setTimeout(()=> { this.setCarouselPositions() },1000);
             });
 
-            let tmt;
             this.getCurrentPosition();
-            (this.$refs.stripe as HTMLElement).addEventListener("scroll",()=> {
-                clearTimeout(tmt);
-                tmt = setTimeout(()=>{
-                    this.getCurrentPosition();
-                },500);
-            });
         }, 200);
 
     }
 
-    getCurrentPosition() {
+    onStripeScroll = _.debounce(this.getCurrentPosition, 500);
 
+    getCurrentPosition() {
         const currentScrollLeft = (this.$refs.stripe as HTMLElement).scrollLeft + this.middlePosition;
         this.currentItem = 0;
         for (let i = 0; i < this.carouselPositions.length; i++) {
@@ -89,10 +86,8 @@ export default class SnapGallery extends Vue {
 
     setPlaceholder(){
         const vw = (window as any).innerWidth;
-        const groupW = (this.$refs.group as HTMLElement).offsetWidth;
+        const groupW = this.groupBlock.offsetWidth;
 
-        const maskW = window.innerWidth > 767 ? 30 : 15;
-        this.mask.style.width = maskW + "px";
         let placeholderW = ( vw - groupW ) / 2;
         placeholderW = placeholderW < 15 ? 15 : placeholderW;
         this.images[0].style.width = placeholderW + "px";

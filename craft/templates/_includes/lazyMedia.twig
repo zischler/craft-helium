@@ -74,10 +74,6 @@
         {#-- isCover --#}
         {% set isCover = (parameters.isCover is defined and parameters.isCover) and (hasRatio is defined and hasRatio) %}
 
-        {#-- asHero --#}
-        {% set asHero = (parameters.asHero is defined and parameters.asHero == true) %}
-        {#% set isCover = asHero %#}
-
         {#-- objectfit --#}
         {% if isCover != null and isCover == true %}
             {% set objectfit = "cover" %}
@@ -139,14 +135,15 @@
                     :is-autoplay="{{ isAutoplay ? 'true' : 'false' }}"
                 {% endif %}
         >
+            <!-- No-JS Fallback -->
             <figure class="figure" {% if assetRatioCss is defined %}style="padding-top: {{ assetRatioCss ?? '' }}; font-size: 0;"{% endif %}>
                 {% if asset.kind == 'image' %}
-                    <picture class="container js-loaded {% if assetRatioCss is defined %}has-fixed-ratio{% endif %}">
+                    <picture class="media-container js-loaded {% if assetRatioCss is defined %}has-fixed-ratio{% endif %}">
                         <img class="media {{ positionClass ?? ''}} is-{{ objectfit ?? ''}}" width="{{ imageWidth ?? ''}}" height="{{ imageHeight ?? ''}}"
                              src="{% if assetRatioCss is defined %}data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII={% else %}{{ asset.getUrl(thumb) }}{% endif %}" style="display: block; max-width: {{ maxWidth ?? '' }} ; max-height: {{ maxHeight ?? '' }} ;{% if hasRatio == null %} opacity: 0;{% endif %}" {% if asset.altText is defined %}alt="{{ asset.altText }}"{% endif %}>
                     </picture>
                 {% else %}
-                    <video controls class="container media js-loaded {% if assetRatioCss is defined %}has-fixed-ratio{% endif %}" src="" preload="metadata" style="display: block; max-width:{{ maxWidth ?? '' }}; max-height:{{ maxHeight ?? '' }}; visibility: hidden;">
+                    <video controls class="media-container media js-loaded {% if assetRatioCss is defined %}has-fixed-ratio{% endif %}" src="" preload="metadata" style="display: block; max-width:{{ maxWidth ?? '' }}; max-height:{{ maxHeight ?? '' }}; visibility: hidden;">
                     </video>
                 {% endif %}
             </figure>

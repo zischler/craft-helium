@@ -15,11 +15,6 @@
 
 /* --- Styles --- */
 
-@import "../styles-async/base.css";
 @import "../styles-async/article.css";
 @import "../styles-async/form.css";
-@import "../styles-async/news-teaser.css";
-@import "../styles-async/footer.css";
-@import "../styles-async/accordeon.css";
-@import "../styles-async/quote.css";
 @import "../styles-async/global-transitions.css";

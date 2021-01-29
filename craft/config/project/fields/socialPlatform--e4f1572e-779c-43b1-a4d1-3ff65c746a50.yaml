@@ -1,0 +1,33 @@
+contentColumnType: string
+fieldGroup: 70fb31f1-038f-469d-89a6-cf02323d4630
+handle: socialPlatform
+instructions: ''
+name: 'Social Platform'
+searchable: true
+settings:
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - Youtube
+        -
+          - value
+          - youtube
+        -
+          - default
+          - '1'
+    -
+      __assoc__:
+        -
+          - label
+          - Vimeo
+        -
+          - value
+          - vimeo
+        -
+          - default
+          - ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\RadioButtons

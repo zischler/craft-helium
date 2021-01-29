@@ -1,0 +1,43 @@
+childBlocks: ''
+field: f223541d-0057-4b42-8f60-11587c05dbf9
+fieldLayouts:
+  -
+    tabs:
+      -
+        elements:
+          -
+            fieldUid: 93e318a1-9a35-4cf7-b3e8-582916bfb7ef
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 38294be8-99ee-42aa-86ab-9da980da75db
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 44cb4454-ec9c-4834-a54b-6583b8b0d3de
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Main
+        sortOrder: 1
+handle: snapGallery
+maxBlocks: 0
+maxChildBlocks: 0
+maxSiblingBlocks: 0
+name: Snap-Gallery
+sortOrder: 2
+topLevel: true

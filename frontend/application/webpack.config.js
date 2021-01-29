@@ -18,6 +18,8 @@ const debug =
     process.env.DEBUG &&
     (process.env.DEBUG === "true" || process.env.DEBUG === "1");
 
+process.env.NODE_ENV = debug ? 'debug' : 'production';
+
 // Paths
 let publicPath = `/webresources/build/module/`;
 if(legacy) {
@@ -50,6 +52,7 @@ const cssLoaderConfig = [
             sourceMap: debug ? "inline" : false,
             plugins: [
                 require("postcss-import"),
+                require("tailwindcss")({ config: './application/tailwind.config.js' }),
                 require("postcss-preset-env")({
                     stage: 2,
                     sourceMap: true,
@@ -58,14 +61,13 @@ const cssLoaderConfig = [
                             preserve: false,
                         },
                         "custom-media-queries": true,
+                        "focus-within-pseudo-class": false,
                         "nesting-rules": true,
                     },
                     browsers: "> 0.5% in CH, Firefox ESR, not dead",
-                    autoprefixer: {
-                        grid: true,
-                    },
                 }),
-            ],
+                require("autoprefixer"),
+            ]
         },
     },
 ];
@@ -91,8 +93,6 @@ const entry = {
         "./application/polyfills",
         "./application/src/main.ts",
     ],
-    critical: "./application/src/styles/bundles/styles-critical.css",
-    helium: "./application/src/styles/bundles/styles-async.css",
 };
 
 if (legacy) {
@@ -109,7 +109,7 @@ module.exports = {
     resolve: {
         extensions: [".ts", ".js", ".css"],
         alias: {
-            vue$: "vue/dist/vue.esm.js",
+            "vue": "vue/dist/vue.esm-bundler.js",
         },
     },
     plugins: [
@@ -121,6 +121,10 @@ module.exports = {
             filename: "[name].css",
         }),
         new VueLoaderPlugin(),
+        new webpack.DefinePlugin({
+            __VUE_OPTIONS_API__: true,
+            __VUE_PROD_DEVTOOLS__: false,
+        })
     ],
     module: {
         rules: [

@@ -1,15 +1,15 @@
-import Vuex from 'vuex';
-import Vue from 'vue';
+import {createStore} from 'vuex';
 import ScrollLock from './modules/scrollLock';
 import ActiveSection from './modules/activeSection';
-
-// Load Vuex
-Vue.use(Vuex);
+import CookieBanner from './modules/cookieBanner';
+import Carousel from './modules/carousel';
 
 // Create store
-export default new Vuex.Store({
+export const store = createStore({
     modules: {
         ScrollLock,
-        ActiveSection
+        ActiveSection,
+        CookieBanner,
+        Carousel
     }
 });

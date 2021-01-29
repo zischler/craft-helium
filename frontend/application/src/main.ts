@@ -1,30 +1,38 @@
 /* --- Application --- */
-import Vue from "vue";
-import VueScroll from "./plugins/vue-scroll";
-import scrollIntoViewport from "./helpers/scroll-into-viewport";
-import EventBus from "./helpers/eventbus";
-import {Section} from "./models/Section";
-import store from './store';
+import { createApp } from 'vue';
+import scrollIntoViewport from './helpers/scroll-into-viewport';
+import {Section} from './models/Section';
+import { store } from './store';
 
-Vue.use(VueScroll);
+/* --- Styles --- */
+import 'tailwindcss/tailwind.css';
+import './styles/bundles/styles-async.css';
+import './styles/bundles/styles-critical.css';
+
+/* --- Components --- */
+import CookieBanner from './components/cookie-banner.vue';
+import GoogleMap from './components/google-map.vue';
+import CustomSelect from './components/custom-select.vue';
+import SnapGallery from './components/snap-gallery.vue';
+import AnimComponent from './components/anim-component.vue';
+import LazyMedia from './components/lazy-media.vue';
+import Carousel from './components/carousel.vue';
+import CarouselSlide from './components/carousel-slide.vue';
+import Swipe from "./components/swipe.vue";
 
 // Create the vue instance
-const vm = new Vue({
-    delimiters: ['${', '}'],
-    store,
-    data() {
-        return {
-            isMounted: false,
-            isMenuOpen: false,
-            isMenuAnimate: false,
-            isHomeNavigationHover: false,
-            flyoutScrollbox: document.querySelector("#flyoutScrollbox") as HTMLElement,
-            doc: document.documentElement as HTMLElement,
-            navScrollPosition: 0,
-            blockNavWatch: false,
-            isNavHidden: false
-        }
-    },
+const app = createApp({
+    data: () => ({
+        isMounted: false,
+        isMenuOpen: false,
+        isMenuAnimate: false,
+        isHomeNavigationHover: false,
+        flyoutScrollbox: document.querySelector('#flyoutScrollbox') as HTMLElement,
+        doc: document.documentElement as HTMLElement,
+        navScrollPosition: 0,
+        blockNavWatch: false,
+        isNavHidden: false
+    }),
     computed: {
         sectionAnchors(): Section[] {
             return this.$store.getters.sectionAnchors;
@@ -40,62 +48,46 @@ const vm = new Vue({
         },
     },
     mounted() {
-        this.flyoutScrollbox = document.querySelector("#flyoutScrollbox") as HTMLElement;
+        this.flyoutScrollbox = document.querySelector('#flyoutScrollbox') as HTMLElement;
 
-        this.$store.commit("updateSectionAnchors");
+        this.$store.commit('updateSectionAnchors');
 
         // Helpful for css revealing effects
         setTimeout(() => {
             this.isMounted = true;
-            this.$store.commit("updateSectionPositions");
+            this.$store.commit('updateSectionPositions');
 
             if(((window as any).location as any).hash) {
                 this.scrollTo(((window as any).location as any).hash);
             }
         },100);
 
-        (window as any).addEventListener("resize",()=> {
-            this.$store.commit("updateSectionPositions");
+        (window as any).addEventListener('resize',()=> {
+            this.$store.commit('updateSectionPositions');
         });
 
         window.requestAnimationFrame(this.handleOnScroll);
-
-
-        const images = this.$el.querySelectorAll('img') as NodeListOf<HTMLImageElement>;
-
-        images.forEach((img)=> {
-            let dataSrc:string = (img as HTMLImageElement).dataset.src || "";
-            if(dataSrc) {
-                (img as HTMLImageElement).setAttribute("src", dataSrc);
-                setTimeout(()=> {
-                    (img as HTMLElement).removeAttribute("width");
-                    (img as HTMLElement).removeAttribute("height");
-                }, 200);
-            }
-        });
-
-        EventBus.$on('cookieConsent', this.addGoogleAnalyticsScript);
     },
     methods: {
         toggleFlyout() {
             this.isMenuOpen = !this.isMenuOpen;
 
             if (this.isMenuOpen) {
-                this.$store.dispatch("blockScroll", this.flyoutScrollbox);
+                this.$store.dispatch('blockScroll', this.flyoutScrollbox);
             } else {
-                this.$store.dispatch("clearScroll", this.flyoutScrollbox);
+                this.$store.dispatch('clearScroll', this.flyoutScrollbox);
             }
         },
         scrollToTop() {
             scrollIntoViewport()(document.body);
         },
         scrollTo(elemSelector: string) {
-            this.$store.dispatch("setBlockScrollWatch", true);
+            this.$store.dispatch('setBlockScrollWatch', true);
             const section = document.querySelector(elemSelector) as HTMLElement;
             clearTimeout((window as any).timout);
             (window as any).timout = setTimeout(()=> {
-                this.$store.dispatch("setBlockScrollWatch", false);
-                this.$store.dispatch("updateCurrentSection", section.getBoundingClientRect().top);
+                this.$store.dispatch('setBlockScrollWatch', false);
+                this.$store.dispatch('updateCurrentSection', section.getBoundingClientRect().top);
             } ,3000);
 
             if(this.isMenuOpen) {
@@ -110,7 +102,7 @@ const vm = new Vue({
                 const currentScrollPosition = window.scrollY || window.pageYOffset;
 
                 if(currentScrollPosition !== this.navScrollPosition) {
-                    this.$store.dispatch("updateCurrentSection", this.navScrollPosition);
+                    this.$store.dispatch('updateCurrentSection', this.navScrollPosition);
                 }
 
                 this.navScrollPosition = window.scrollY || window.pageYOffset;
@@ -121,21 +113,10 @@ const vm = new Vue({
             window.requestAnimationFrame(this.handleOnScroll);
         },
         openCookieBanner() {
-            EventBus.$emit('openCookieBanner',{});
-        },
-        addGoogleAnalyticsScript(payload) {
-            if(payload.hasAnalyticsConsent) {
-                const script = document.createElement('script');
-                script.innerHTML = `window.dataLayer = window.dataLayer || [];
-                                    function gtag(){dataLayer.push(arguments);}
-                                    gtag('js', new Date());
-                                    gtag('config', 'UA-********-1', {'anonymize_ip': true});`;
-                // Also change GA ID at the bottom of _layout.twig
-                document.body.appendChild(script);
-            }
+            this.$store.dispatch('openCookieBanner');
         }
     },
-    beforeDestroy() {
+    beforeUnmount() {
         this.isMounted = false;
     }
 });
@@ -143,19 +124,18 @@ const vm = new Vue({
 /* --- Components --- */
 // If a Vue (*.vue) component exists, import only it.
 // The related CSS and TS are linked into the Vue component
-Vue.component("cookie-banner", () => import('./components/cookie-banner.vue'));
-Vue.component("tag-manager", () => import('./components/tag-manager.vue'));
-Vue.component("google-map", () => import('./components/google-map.vue'));
-Vue.component("custom-select", () => import('./components/customSelect.vue'));
-Vue.component("toggle-field", () => import('./components/toggle-field.vue'));
-Vue.component("snap-gallery", () => import('./components/snap-gallery.vue'));
-Vue.component("anim-component", () => import('./components/scripts/anim-component'));
-Vue.component("lazy-media", () => import('./components/lazy-media.vue'));
-Vue.component("multi-carousel", () => import('./components/carousel.vue'));
-Vue.component("carousel-slide", () => import('./components/carousel-slide.vue'));
+app.component('cookie-banner', CookieBanner as any);
+app.component('google-map', GoogleMap as any);
+app.component('custom-select', CustomSelect as any);
+app.component('snap-gallery', SnapGallery as any);
+app.component('anim-component', AnimComponent as any);
+app.component('lazy-media', LazyMedia as any);
+app.component('multi-carousel', Carousel as any);
+app.component('carousel-slide', CarouselSlide as any);
+app.component('swipe', Swipe as any);
 
-// Vue.config.errorHandler = function(err) { console.log("errorHandler", err) }
+app.use(store);
 
-// Connect the Vue instance to the whole <main id="view"> container
+// Connect the Vue instance to the whole <main id='view'> container
 // Avoid to use the standard DOM API as a virtual-dom will handle it
-vm.$mount("#view");
+app.mount('#view');

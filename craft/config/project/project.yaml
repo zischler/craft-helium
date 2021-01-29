@@ -1,0 +1,75 @@
+dateModified: 1611934730
+email:
+  fromEmail: $SYSTEM_EMAIL
+  fromName: $SENDER_NAME
+  replyToEmail: $REPLY_TO_EMAIL
+  template: null
+  transportSettings:
+    encryptionMethod: tls
+    host: $SMTP_HOST_NAME
+    password: $SMTP_PASSWORD
+    port: $SMTP_PORT
+    timeout: '10'
+    useAuthentication: '1'
+    username: $SMTP_USERNAME
+  transportType: craft\mail\transportadapters\Smtp
+graphql:
+  publicToken:
+    enabled: false
+    expiryDate: null
+plugins:
+  contact-form:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+    settings:
+      allowAttachments: ''
+      prependSender: 'On behalf of'
+      prependSubject: 'New message from Craft Helium'
+      successFlashMessage: 'Your message has been sent.'
+      toEmail: $SYSTEM_EMAIL
+  contact-form-extensions:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.1
+    settings:
+      confirmationSubject: 'Craft Helium - Contact Form'
+      confirmationTemplate: _mail/confirmation.twig
+      enableConfirmationEmail: '1'
+      enableDatabase: '1'
+      enableTemplateOverwrite: '1'
+      notificationTemplate: _mail/notification.twig
+      recaptcha: ''
+      recaptchaDataBadge: bottomright
+      recaptchaDebug: ''
+      recaptchaHideBadge: ''
+      recaptchaSecretKey: $RECAPTCHA_SECRET
+      recaptchaSiteKey: $RECAPTCHA_SITE
+      recaptchaThreshold: '0.5'
+      recaptchaTimeout: '5'
+      recaptchaVersion: '3'
+  neo:
+    edition: standard
+    enabled: true
+    licenseKey: W743MMCNQBQOMDZC2SRESSJB
+    schemaVersion: 2.8.16
+  redactor:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.3.0
+  twigpack:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+system:
+  edition: solo
+  live: true
+  name: craft-helium
+  schemaVersion: 3.6.1
+  timeZone: Europe/Zurich
+users:
+  allowPublicRegistration: false
+  defaultGroup: null
+  photoSubpath: ''
+  photoVolumeUid: null
+  requireEmailVerification: true

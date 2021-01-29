@@ -1,0 +1,34 @@
+childBlocks: ''
+field: f223541d-0057-4b42-8f60-11587c05dbf9
+fieldLayouts:
+  -
+    tabs:
+      -
+        elements:
+          -
+            fieldUid: e4f1572e-779c-43b1-a4d1-3ff65c746a50
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 3533ea37-217e-47ab-b49c-87512871c123
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Main
+        sortOrder: 1
+handle: socialVideo
+maxBlocks: 0
+maxChildBlocks: 0
+maxSiblingBlocks: 0
+name: 'Social Video'
+sortOrder: 6
+topLevel: false

@@ -1,13 +1,13 @@
-<footer id="pageFooter" class="page-footer o-section o-footer is-full-width has-no-top-space has-no-bottom-space has-top-inner-space has-bottom-inner-space">
-	<div class="o-group has-inner-gutter">
-		<div class="o-flex-space is-multiline has-gutter">
-			<div class="cell-1of3 cell-1of1-sm-down">
+<footer id="pageFooter" class="page-footer o-section o-footer w-full my-0 py-12">
+	<div class="o-group">
+		<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+			<div>
 				<span class="h2">Navigation</span>
-				<div class="footer-nav o-flex-inline is-left">
+				<div class="mt-2 flex is-left">
 					{% include "_includes/navigation.twig" %}
 				</div>
 			</div>
-			<div class="cell-1of3 cell-1of1-sm-down">
+			<div>
 
 				{% if craft.app.language == 'de' %}
 					<span class="h2">Mehr links</span>
@@ -16,12 +16,12 @@
 				{% endif %}
 
 				{% set footerGlobal = craft.app.globals.getSetByHandle('footer') %}
-				<div class="footer-nav o-flex-inline is-left">
+				<div class="mt-2 flex is-left">
 					{% if footerGlobal.footerLinks %}
 						<ul>
 							{% for footerLink in footerGlobal.footerLinks.all() %}
 								<li>
-									<a class="link {% if entry.id == footerLink.id %}is-active{% endif %}" href="{{ footerLink.url }}">
+									<a class="leading-normal {% if entry.id == footerLink.id %}text-red-400{% endif %}" href="{{ footerLink.url }}">
 										<span>{{ footerLink.title }}</span>
 									</a>
 								</li>
@@ -30,9 +30,9 @@
 					{% endif %}
 				</div>
 			</div>
-			<div class="cell-1of3 cell-1of1-sm-down">©
+			<div>©
 				{{ footerGlobal.copyright }}</div>
-			<div class="cell-1of3 languages">
+			<div class="languages">
 				{% set currentSite = craft.app.sites.currentSite %}
 				{% for siteInGroup in currentSite.getGroup.getSites() %}
 					{% if siteInGroup.language == 'de' %}
@@ -41,11 +41,11 @@
 						{% set languageName = 'English' %}
 					{% endif %}
 					{% if siteInGroup.id == entry.siteId %}
-						<a href="" class="is-active">{{ languageName }}</a>
+						<a href="" class="text-red-400 mr-8">{{ languageName }}</a>
 					{% else %}
 						{% set entryForOtherSite = craft.entries.id(entry.id).site(siteInGroup).one() %}
 						{% if entryForOtherSite != null %}
-							<a href="{{ entryForOtherSite.getUrl() }}">{{ languageName }}</a>
+							<a href="{{ entryForOtherSite.getUrl() }}" class="mr-8">{{ languageName }}</a>
 						{% endif %}
 					{% endif %}
 				{% endfor %}

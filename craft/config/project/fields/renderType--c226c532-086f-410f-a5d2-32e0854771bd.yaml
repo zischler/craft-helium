@@ -1,0 +1,33 @@
+contentColumnType: string
+fieldGroup: d1f3b0d0-bb53-4580-b535-3574ed35136f
+handle: renderType
+instructions: "Slideshow = Runs through the whole thing infinitely\r\nSlider = Slides back to beginning when at the end"
+name: 'Render Type'
+searchable: true
+settings:
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - Slideshow
+        -
+          - value
+          - slideshow
+        -
+          - default
+          - '1'
+    -
+      __assoc__:
+        -
+          - label
+          - Slider
+        -
+          - value
+          - slider
+        -
+          - default
+          - ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\RadioButtons

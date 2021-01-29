@@ -1,0 +1,17 @@
+contentColumnType: text
+fieldGroup: d1f3b0d0-bb53-4580-b535-3574ed35136f
+handle: height
+instructions: ''
+name: Height
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: ''
+  columnType: null
+  initialRows: '4'
+  multiline: ''
+  placeholder: 'Height of the carousel in pixels'
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

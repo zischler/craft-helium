@@ -1,0 +1,17 @@
+contentColumnType: text
+fieldGroup: d1f3b0d0-bb53-4580-b535-3574ed35136f
+handle: width
+instructions: ''
+name: Width
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: ''
+  columnType: null
+  initialRows: '4'
+  multiline: ''
+  placeholder: 'Width in pixels of the carousel'
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

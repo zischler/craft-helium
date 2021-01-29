@@ -1,0 +1,55 @@
+contentColumnType: string
+fieldGroup: d1f3b0d0-bb53-4580-b535-3574ed35136f
+handle: itemRatio
+instructions: ''
+name: 'Item Ratio'
+searchable: false
+settings:
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - none
+        -
+          - value
+          - none
+        -
+          - default
+          - '1'
+    -
+      __assoc__:
+        -
+          - label
+          - 16/9
+        -
+          - value
+          - '1.7777777778'
+        -
+          - default
+          - ''
+    -
+      __assoc__:
+        -
+          - label
+          - 4/3
+        -
+          - value
+          - '1.3333333338'
+        -
+          - default
+          - ''
+    -
+      __assoc__:
+        -
+          - label
+          - 3/2
+        -
+          - value
+          - '1.5'
+        -
+          - default
+          - ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\RadioButtons

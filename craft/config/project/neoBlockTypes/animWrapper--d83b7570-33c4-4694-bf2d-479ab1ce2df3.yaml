@@ -1,0 +1,14 @@
+childBlocks:
+  - text
+  - socialVideo
+  - image
+  - video
+  - imageText
+field: f223541d-0057-4b42-8f60-11587c05dbf9
+handle: animWrapper
+maxBlocks: 0
+maxChildBlocks: 1
+maxSiblingBlocks: 0
+name: 'Anim Wrapper'
+sortOrder: 4
+topLevel: false

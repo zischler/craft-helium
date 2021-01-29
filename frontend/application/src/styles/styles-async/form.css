@@ -1,16 +1,6 @@
 @import url(../../variables.css);
 
 /* --- Default settings --- */
-form {
-    width: 100%;
-    position: relative;
-    margin-top: 2rem;
-}
-
-a, button {
-    cursor: pointer;
-}
-
 button, input {
     color: inherit;
 }
@@ -27,12 +17,8 @@ textarea:-moz-ui-invalid {
 }
 
 button, input, textarea, label {
-    transition: 350ms;
-}
-
-input, textarea {
-    border-radius: 0;
-    font-family: inherit;
+    @apply transition-all;
+    @apply duration-300;
 }
 
 button,
@@ -41,15 +27,28 @@ input[type="radio"],
 input[type="checkbox"],
 input[type="submit"],
 input[type="button"] {
-    cursor: pointer;
+    @apply cursor-pointer;
 }
 
-#winnie {
-    display: none;
+input, textarea {
+    color: inherit;
+    @apply text-base;
+    @apply max-w-full;
+    @apply w-full;
+    @apply p-4;
+    @apply border-solid;
+    @apply border;
+    @apply border-black;
+    @apply rounded-lg;
 }
 
-.text-area-wrapper {
-    padding-top: 15px;
+input {
+    @apply h-10;
+}
+
+textarea {
+    @apply resize-y;
+    @apply h-56;
 }
 
 input:valid {
@@ -60,44 +59,39 @@ input:valid {
 .button,
 input[type="submit"],
 input[type="button"] {
-    border-radius: 0;
-    background: var(--dark-red);
-    color: var(--white);
-    border: none;
-    padding: 10px 15px;
+    @apply border-none;
+    @apply bg-red-400;
+    @apply rounded-3xl;
+    @apply text-white;
+    @apply py-1;
+    @apply px-3;
+    @apply flex;
+    @apply justify-center;
+    @apply items-center;
+    @apply transition-colors;
     min-width: 150px;
     max-width: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 a.button-wrapper {
-    text-decoration: none;
-}
-
-.button svg {
-    margin-left: 8px;
-    transition: transform 0.3s ease-in-out;
+    @apply no-underline;
 }
 
 .button:focus,
 input[type="submit"]:focus,
 input[type="button"]:focus {
-    outline: 0;
-    color: white;
-    background: var(--form-active-color);
+    @apply outline-none;
+    @apply bg-red-500;
     box-shadow: 0 0 0 1px var(--page-background), 0 0 0 4px var(--form-active-color);
 }
 
 .button:hover,
 input[type="submit"]:hover,
 input[type="button"]:hover {
-    color: var(--form-active-color);
-    background: white;
+    @apply bg-red-500;
 
     & svg {
-        transform: translatex(5px);
+        transform: translateX(5px);
     }
 }
 
@@ -105,39 +99,7 @@ input[type="button"]:hover {
     .button,
     input[type="submit"],
     input[type="button"] {
-        max-width: 100%;
-    }
-}
-
-/* --- Form Styling --- */
-
-.form__checkbox-info {
-    color: var(--form-default-color);
-    font-size: 80%;
-    margin-top: 10px;
-}
-
-.form__fieldset-title {
-    flex-basis: 100%;
-}
-
-.form__required-notice {
-    margin-top: 10px;
-    font-size: 85%;
-}
-
-.form .text,
-.form__fieldset-main {
-    margin-bottom: var(--p-margin-bottom);
-}
-
-.form-row {
-    position: relative;
-}
-
-@media (--for-sm-down) {
-    [class*="o-flex"].has-gutter:not(.no-vertical-margin) > .form-row {
-        margin-bottom: 2rem;
+        @apply max-w-full;
     }
 }
 
@@ -162,105 +124,67 @@ input[type="button"]:hover {
 /* Checkbox + Radio */
 input[type="checkbox"],
 input[type="radio"] {
-    cursor: pointer;
-    padding: 12px;
-    border: 2px solid var(--form-default-color);
-    vertical-align: middle;
-    outline: 0;
-    height: 1em;
-    width: 1em;
-}
-
-input[type="checkbox"]:focus,
-input[type="radio"]:focus {
-    border-color: var(--form-active-color)
+    @apply border-solid;
+    @apply border;
+    @apply border-black;
+    @apply align-middle;
+    @apply outline-none;
+    @apply w-1;
+    @apply h-1;
+    @apply p-2;
 }
 
 input[type="radio"] {
-    border-radius: 11px;
+    @apply rounded-full;
+}
+
+input[type="checkbox"] {
+    @apply rounded-none;
 }
 
 input[type="checkbox"]:checked,
 input[type="radio"]:checked {
-    background: url("../../assets/icons/close-icon.svg");
-    color: var(--form-default-color);
+    background: url("../../assets/icons/check-icon.svg") no-repeat;
 }
 
 .checkbox-wrapper {
-    display: flex; /* not o-flex because of input width */
+    @apply flex;
 }
 
-input {
-    height: 44px;
-    width: 100%;
-    color: inherit;
-    padding: 8px 0;
-    border-bottom: 2px solid var(--form-default-color);
-}
-
-input:focus {
-    border-radius: 1px;
-    outline: 0;
-    border-color: var(--form-active-color);
-}
-
-.input-wrapper.filled input:invalid {
-    border-radius: 1px;
-    outline: 0;
-    border-color: var(--form-error-color);
-}
-
-textarea {
-    height: 300px;
-    resize: vertical;
-    width: 100%;
-    color: inherit;
-    padding: 15px;
-    border: 2px solid var(--form-default-color);
-    font-size: var(--default-font-size);
-}
-
+/* Invalid and Focus */
+input:focus,
 textarea:focus {
-    border-radius: 1px;
-    outline: 0;
+    @apply outline-none;
     border-color: var(--form-active-color);
 }
 
+.input-wrapper.filled input:invalid,
 textarea:invalid {
-    border-radius: 1px;
-    outline: 0;
+    @apply outline-none;
     border-color: var(--form-error-color);
 }
 
 /* --- Label --- */
-label:not(.is-static) {
-    position: absolute;
+label.static {
+    position: static;
 }
 
 label {
+    @apply absolute;
+    @apply mb-0;
+    @apply left-4;
+    @apply top-3;
+    @apply origin-bottom-left;
+    @apply opacity-0;
+    @apply transform-gpu;
     color: var(--form-default-color);
-    margin-bottom: 0;
-    left: 15px;
-    top: 10px;
-    transform: translate3d(0, 0, 0);
-    transform-origin: left bottom;
-    opacity: 0;
     will-change: opacity, transform;
 }
 
-textarea + label {
-    left: calc(var(--layout-gutter-width) / 2 + 15px);
-    opacity: 0;
-}
-
+textarea:not(:placeholder-shown) + label,
 input:not(:placeholder-shown) + label {
-    transform: translate3d(0, -1.9em, 0) scale(0.7);
-    opacity: 1;
-}
-
-textarea:not(:placeholder-shown) + label {
-    transform: translate3d(-15px, -2em, 0) scale(0.7);
-    opacity: 1;
+    transform: translate3d(0, -2em, 0) scale(0.7);
+    @apply opacity-100;
 }
 
 input:focus + label,
@@ -274,17 +198,12 @@ input:invalid + label {
 
 input[type="checkbox"] + label,
 input[type="radio"] + label {
-    position: static;
     transform: unset;
-    margin-left: 15px;
-    opacity: 1;
+    @apply static;
+    @apply ml-4;
+    @apply opacity-100;
 }
 
 label span {
-    white-space: nowrap;
-}
-
-.recaptcha-explanation {
-    margin-top: 5px;
-    font-size: 12px;
+    @apply whitespace-nowrap;
 }

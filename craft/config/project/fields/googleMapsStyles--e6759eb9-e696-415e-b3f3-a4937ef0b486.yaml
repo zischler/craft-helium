@@ -1,0 +1,29 @@
+contentColumnType: string
+fieldGroup: 8d3aee83-3990-4b7e-984c-a93af1a5d317
+handle: googleMapsStyles
+instructions: 'Styles JSON File from Google'
+name: 'Google Maps Styles'
+searchable: false
+settings:
+  allowSelfRelations: ''
+  allowedKinds:
+    - json
+  defaultUploadLocationSource: 'volume:93c3ea35-a059-402f-a51b-1eaf3d12b299'
+  defaultUploadLocationSubpath: ''
+  limit: '1'
+  localizeRelations: ''
+  restrictFiles: '1'
+  selectionLabel: ''
+  showUnpermittedFiles: false
+  showUnpermittedVolumes: false
+  singleUploadLocationSource: 'volume:93c3ea35-a059-402f-a51b-1eaf3d12b299'
+  singleUploadLocationSubpath: ''
+  source: null
+  sources: '*'
+  targetSiteId: null
+  useSingleFolder: false
+  validateRelatedElements: ''
+  viewMode: list
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Assets

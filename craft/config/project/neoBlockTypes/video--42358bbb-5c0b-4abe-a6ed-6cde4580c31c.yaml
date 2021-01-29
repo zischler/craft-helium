@@ -1,0 +1,43 @@
+childBlocks: ''
+field: f223541d-0057-4b42-8f60-11587c05dbf9
+fieldLayouts:
+  -
+    tabs:
+      -
+        elements:
+          -
+            fieldUid: 19d32bb7-7568-4543-9031-22820c51c0e1
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 94e53f21-4e9e-4e2f-b7a2-dc4ee1d792fe
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: db3ee226-4e02-49ca-8497-ee2c6b17ad35
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Main
+        sortOrder: 1
+handle: video
+maxBlocks: 0
+maxChildBlocks: 0
+maxSiblingBlocks: 0
+name: Video
+sortOrder: 8
+topLevel: false

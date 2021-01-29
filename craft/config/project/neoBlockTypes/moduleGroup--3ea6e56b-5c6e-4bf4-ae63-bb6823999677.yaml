@@ -1,0 +1,49 @@
+childBlocks:
+  - animWrapper
+  - text
+  - socialVideo
+  - image
+  - video
+  - imageText
+field: f223541d-0057-4b42-8f60-11587c05dbf9
+fieldLayouts:
+  -
+    tabs:
+      -
+        elements:
+          -
+            fieldUid: 919e8f48-730b-4dc2-af72-a3bfe42d65f1
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: ae6b394b-ff73-4594-97d8-4ad851b9a4e9
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 804ec350-22ec-4d47-8cb1-647b34d1b4f9
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Settings
+        sortOrder: 1
+handle: moduleGroup
+maxBlocks: 0
+maxChildBlocks: 0
+maxSiblingBlocks: 0
+name: 'Module Group'
+sortOrder: 3
+topLevel: true

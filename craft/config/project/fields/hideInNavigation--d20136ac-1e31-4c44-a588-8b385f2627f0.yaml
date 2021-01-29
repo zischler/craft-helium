@@ -1,0 +1,22 @@
+contentColumnType: string
+fieldGroup: a61e403f-3fd4-4ce8-9513-5dce27201307
+handle: hideInNavigation
+instructions: ''
+name: 'hide in Navigation'
+searchable: true
+settings:
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - hide
+        -
+          - value
+          - hide
+        -
+          - default
+          - ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Checkboxes
