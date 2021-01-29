@@ -1,35 +1,20 @@
 :root {
-    --white: #ffffff;
     --light: #f0f0f0;
     --dark: #212121;
-    --black: #000000;
-    --light-gray: #bdbdbd;
-    --gray: #808080;
-    --red: #FF363E;
     --dark-red: #C1272D;
-    --orange: #f99157;
-    --yellow: #ffcc66;
-    --green: #99cc99;
-    --cyan: #66cccc;
-    --blue: #6699cc;
-    --violet: #cc99cc;
-    --magenta: #d27b53;
 
-    --page-background: var(--white);
+    --page-background: white;
 
     /* Page - default, layout */
-    --page-gutter-width: 4rem;
-    --page-gutter-width-sm: 2rem;
-
+    --page-gutter-width: 2rem;
     --layout-gutter-width: 3rem;
-    --layout-gutter-height: 3rem;
 
     /* Form */
     --form-default-color: var(--dark);
     --form-border-color: var(--dark);
     --form-error-color: var(--dark-red);
-    --form-active-color: var(--blue);
-    --form-readonly-color: var(--gray);
+    --form-active-color: #6699cc;
+    --form-readonly-color: #808080;
     --form-error-border-color: var(--dark-red);
     --form-error-text-color: var(--dark);
     --form-error-background: transparent;
