@@ -20,7 +20,7 @@
         <div class="controls" v-if="slidesQuantity > 1">
             <div class="bullets">
             <template v-for="index in slidesQuantity">
-                <button class="bullet" v-on:click="gotoSlide(index)" :class="{ 'js-active': (currentSlide === index) }">
+                <button class="bullet" v-on:click="gotoSlide(index - 1)" :class="{ 'js-active': (currentSlide === index - 1) }">
                     <!--span class="is-visually-hidden">${i18n["carousel.show"]} {{ index + 1 }} ${i18n["carousel.showof"]} {{ slidesQuantity }}</span-->
                 </button>
             </template>
