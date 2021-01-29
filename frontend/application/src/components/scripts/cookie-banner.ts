@@ -67,7 +67,12 @@ export default class CookieBanner extends Vue.with(Props) {
     @Getter("showCookieBanner") isShow;
     @Getter("showCookieSettings") isOpen;
 
+    private analyticsModel: boolean;
+    private thirdpartyModel: boolean;
+
     mounted() {
+        this.analyticsModel = this.consentAnalytics;
+        this.thirdpartyModel = this.consentThirdparty;
         const hasCookies = BrowserStorage.getBooleanCookie(this.cookieNameFunctional);
 
         if(hasCookies) {
@@ -82,11 +87,13 @@ export default class CookieBanner extends Vue.with(Props) {
 
         if(this.analyticsCookies) {
             this.setCookieConsentAnalytics(BrowserStorage.getBooleanCookie(this.cookieNameAnalytics) || false);
+            this.analyticsModel = this.consentAnalytics;
             const tagManager = new TagManager();
             tagManager.init(this.isProduction);
         }
         if(this.thirdpartyCookies) {
             this.setCookieConsentThirdparty(BrowserStorage.getBooleanCookie(this.cookieNameThirdParty) || false);
+            this.thirdpartyModel = this.consentThirdparty;
         }
 
         this.closeCookieBanner();
@@ -111,11 +118,13 @@ export default class CookieBanner extends Vue.with(Props) {
         BrowserStorage.setCookie(this.cookieNameFunctional, true, 365);
 
         if(this.analyticsCookies) {
-            BrowserStorage.setCookie(this.cookieNameAnalytics, this.consentAnalytics, 365);
+            BrowserStorage.setCookie(this.cookieNameAnalytics, this.analyticsModel, 365);
+            this.setCookieConsentAnalytics(this.analyticsModel);
         }
 
         if(this.thirdpartyCookies) {
-            BrowserStorage.setCookie(this.cookieNameThirdParty, this.consentThirdparty, 365);
+            BrowserStorage.setCookie(this.cookieNameThirdParty, this.thirdpartyModel, 365);
+            this.setCookieConsentThirdparty(this.thirdpartyModel);
         }
 
         this.closeCookieBanner();

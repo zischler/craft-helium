@@ -48,11 +48,11 @@
                         <label for="functional" v-html="functionalLabel" class="static"></label>
                     </div>
                     <div v-if="analyticsCookies" class="mb-4 relative">
-                        <input name="analytics" id="analytics" type="checkbox" v-model="consentAnalytics">
+                        <input name="analytics" id="analytics" type="checkbox" v-model="analyticsModel">
                         <label for="analytics" v-html="analyticsLabel" class="static"></label>
                     </div>
                     <div v-if="thirdpartyCookies" class="relative">
-                        <input name="Thirdparty" id="Thirdparty" type="checkbox" v-model="consentThirdparty">
+                        <input name="Thirdparty" id="Thirdparty" type="checkbox" v-model="thirdpartyModel">
                         <label for="Thirdparty" v-html="thirdpartyLabel" class="static"></label>
                     </div>
                 </div>
