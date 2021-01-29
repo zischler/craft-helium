@@ -1,29 +1,46 @@
-import {Vue} from "vue-class-component";
-import LazyMedia from "./lazy-media";
+import {prop, Vue} from "vue-class-component";
+import {Action, Mutation} from "vuex-class";
+import {CarouselMetadata} from "../../models/CarouselMetadata";
 
-export default class CarouselSlide extends Vue {
+
+class Props {
+    carouselId = prop<string>({
+        default: ""
+    });
+}
+
+export default class CarouselSlide extends Vue.with(Props) {
+    // Carousel Vuex
+    @Mutation("increaseCarouselHeight") increaseCarouselHeight;
+    @Action("getCarouselHeight") getCarouselHeight;
+
+    mounted() {
+        window.requestAnimationFrame(() => {
+            const height = this.calcHeight();
+            const carouselMetadata = {
+                id: this.carouselId,
+                height
+            } as CarouselMetadata;
+
+            this.getCarouselHeight(this.carouselId).then(carouselHeight => {
+                if(carouselHeight < height) {
+                    this.increaseCarouselHeight(carouselMetadata);
+                }
+            })
+        });
+    }
+
     calcHeight(): number {
         const calcHeightImg = this.calcHeightOfQuery("img");
         const calcHeightVideo = this.calcHeightOfQuery("video");
-
-        if(!calcHeightImg && !calcHeightVideo) {
-            return this.$el.scrollHeight;
-        } else {
-            let calcHeight = calcHeightImg > calcHeightVideo ? calcHeightImg : calcHeightVideo;
-            // height if is isCover image
-            if (calcHeight === 0) {
-                // @ts-ignore
-                this.$children.forEach(child => {
-                    if(child.$options.name === "LazyMedia") {
-                        const lazyMedia = child as LazyMedia;
-                        const height = lazyMedia.naturalHeight;
-                        const width = lazyMedia.naturalWidth;
-                        calcHeight = this.$el.scrollWidth / (width / height);
-                    }
-                });
-            }
-            return calcHeight;
+        let calcHeight = calcHeightImg >= calcHeightVideo ? calcHeightImg : calcHeightVideo;
+        const mediaElement = calcHeightImg >= calcHeightVideo ? this.$el.querySelector("img") : this.$el.querySelector("video");
+        if(!!mediaElement && this.$el.scrollWidth > 0) {
+            const height = mediaElement.height;
+            const width = mediaElement.width;
+            calcHeight = this.$el.scrollWidth / (width / height);
         }
+        return calcHeight;
     }
 
     calcHeightOfQuery(query): number {
