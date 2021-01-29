@@ -165,11 +165,12 @@ textarea:invalid {
 }
 
 /* --- Label --- */
-label:not(.static) {
-    @apply absolute;
+label.static {
+    position: static;
 }
 
 label {
+    @apply absolute;
     @apply mb-0;
     @apply left-4;
     @apply top-3;

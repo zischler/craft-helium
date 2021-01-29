@@ -43,17 +43,17 @@
                 </div>
                 <div class="flex-1of1 lg:flex-3of4" v-if="isOpen">
                     <p class="banner-text" v-html="settingsExplanations" v-if="settingsExplanations"></p>
-                    <div class="mb-4">
+                    <div class="mb-4 relative">
                         <input name="functional" id="functional" type="checkbox" checked disabled>
-                        <label for="functional" v-html="functionalLabel"></label>
+                        <label for="functional" v-html="functionalLabel" class="static"></label>
                     </div>
-                    <div v-if="analyticsCookies" class="mb-4">
+                    <div v-if="analyticsCookies" class="mb-4 relative">
                         <input name="analytics" id="analytics" type="checkbox" v-model="consentAnalytics">
-                        <label for="analytics" v-html="analyticsLabel"></label>
+                        <label for="analytics" v-html="analyticsLabel" class="static"></label>
                     </div>
-                    <div v-if="thirdpartyCookies">
+                    <div v-if="thirdpartyCookies" class="relative">
                         <input name="Thirdparty" id="Thirdparty" type="checkbox" v-model="consentThirdparty">
-                        <label for="Thirdparty" v-html="thirdpartyLabel"></label>
+                        <label for="Thirdparty" v-html="thirdpartyLabel" class="static"></label>
                     </div>
                 </div>
                 <div class="flex-1of1 lg:flex-1of4 is-right" v-if="!isOpen">

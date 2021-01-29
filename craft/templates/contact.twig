@@ -124,7 +124,7 @@
 						<div class="relative">
 							<div class="checkbox-wrapper">
 								<input name="message[privacy]" id="privacy" required type="checkbox">
-								<label class="checkbox-label" for="privacy">
+								<label class="checkbox-label" for="privacy" class="static">
 									{{ contactPrivacyText }}
 									{% if entry.dataPolicyPage is defined and entry.dataPolicyPage.one() != null %}
 										<a href="{{ entry.dataPolicyPage.one().url }}" target="_blank">{{ contactPrivacy }}</a>.
