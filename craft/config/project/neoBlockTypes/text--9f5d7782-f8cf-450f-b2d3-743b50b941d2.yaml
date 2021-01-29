@@ -1,27 +1,52 @@
 childBlocks: ''
 field: f223541d-0057-4b42-8f60-11587c05dbf9
 fieldLayouts:
-  eb464a98-bb10-4bba-aa13-bedf454edf5f:
+  -
     tabs:
       -
-        fields:
-          93e318a1-9a35-4cf7-b3e8-582916bfb7ef:
-            required: false
-            sortOrder: 1
-          93f66945-268c-495f-bd44-4e4f8343a4f9:
-            required: false
-            sortOrder: 2
-          d0c8bbf6-e21f-43db-a9dc-cbf2c4e1ebc8:
-            required: false
-            sortOrder: 4
-          e8013185-75cb-4cc3-83df-74bc8f4c3a64:
-            required: false
-            sortOrder: 3
+        elements:
+          -
+            fieldUid: 93e318a1-9a35-4cf7-b3e8-582916bfb7ef
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 93f66945-268c-495f-bd44-4e4f8343a4f9
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: e8013185-75cb-4cc3-83df-74bc8f4c3a64
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: d0c8bbf6-e21f-43db-a9dc-cbf2c4e1ebc8
+            instructions: null
+            label: null
+            required: '0'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Main
         sortOrder: 1
 handle: text
 maxBlocks: 0
 maxChildBlocks: 0
+maxSiblingBlocks: 0
 name: Text
-sortOrder: 4
+sortOrder: 5
 topLevel: false

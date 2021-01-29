@@ -1,19 +1,16 @@
 @import url(../../variables.css);
 
-/* TODO tailwindcss */
-
 :root {
     /* Header */
     --header-content-height: 44px;
-    --header-margin-height: 3.5rem;
-    --header-margin-height-burger: 3.5rem;
-    --header-margin-height-burger-sm: 4.5vw;
+    --header-margin-height: 3rem;
+    --header-margin-height-burger: 1.5rem;
     --header-height: calc(
-            var(--header-margin-height) + var(--header-margin-height) +
+            2 * var(--header-margin-height) +
             var(--header-content-height)
     );
     --header-height-small: calc(
-            var(--header-margin-height-burger) + var(--header-margin-height-burger) +
+            2 * var(--header-margin-height-burger) +
             var(--header-content-height)
     );
 
@@ -30,16 +27,13 @@
     --default-navigation-timing: 0.15s;
 }
 
-.o-section.header-spacing > .o-group {
+/* Section Anchor and Header Margin */
+.header-spacing {
     padding-top: var(--header-margin-height);
     padding-bottom: var(--header-margin-height);
 }
 
-.page-header-sentinel {
-    height: var(--header-height);
-}
-
-.section-anchor {
+.js-section-anchor {
     position: absolute;
     visibility: hidden;
     top: 0;
@@ -50,7 +44,7 @@
 }
 
 @media (--for-standard-nav) {
-    .section-anchor {
+    .js-section-anchor {
         position: absolute;
         top: 0;
         margin-top: calc(
@@ -61,16 +55,12 @@
 }
 
 @media (--for-burger-nav) {
-    .o-section.header-spacing > .o-group {
+    .header-spacing {
         padding-top: var(--header-margin-height-burger);
         padding-bottom: var(--header-margin-height-burger);
     }
 
-    .page-header-sentinel {
-        height: var(--header-height-small);
-    }
-
-    .section-anchor {
+    .js-section-anchor {
         margin-top: calc(
                 var(--header-height-small) * -1
         );
@@ -79,16 +69,7 @@
 }
 
 @media (--for-sm-down) {
-    .o-section.header-spacing > .o-group {
-        padding-top: var(--header-margin-height-burger-sm);
-        padding-bottom: var(--header-margin-height-burger-sm);
-    }
-
-    .page-header-sentinel {
-        height: var(--header-height-small);
-    }
-
-    .section-anchor {
+    .js-section-anchor {
         margin-top: calc(
                 var(--header-height-small) * -1
         );
@@ -174,61 +155,37 @@
 }
 
 /* Navigation */
-.o-navigation li {
-    @apply my-4;
+.header-navigation li {
+    @apply inline-block;
+    @apply mx-3;
+    @apply text-lg;
 }
 
-.o-navigation a {
-    position: relative;
-    white-space: nowrap;
-    text-decoration: none;
-    display: inline-block;
+.header-navigation a,
+.flyout-navigation a {
     line-height: 1.2em;
-    color: currentColor;
-    font-weight: bold;
-    @apply text-3xl;
-}
+    @apply whitespace-nowrap;
+    @apply font-bold;
+    transition: color 0.15s linear;
 
-.o-navigation a::after {
-    content: "";
-    width: 100%;
-    height: 4px;
-    background-color: currentColor;
-    position: absolute;
-    bottom: -6px;
-    left: 0;
-    opacity: 0;
-    transition: opacity var(--default-navigation-timing) linear, bottom 0.2s ease-in-out;
-}
-
-.o-navigation a:hover::after {
-    content: "";
-    width: 100%;
-    background-color: currentColor;
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    opacity: 1;
-}
-
-@media (--for-md-up) {
-    .o-navigation ul {
-        text-align: left;
-    }
-
-    .o-navigation li {
-        line-height: 1em;
+    &:hover {
+        @apply text-red-500;
     }
 }
 
 @media (--for-sm-down) {
-    .o-navigation ul,
-    .o-navigation li {
+    .flyout-navigation li {
+        @apply my-4;
+        @apply text-3xl;
+    }
+
+    .flyout-navigation ul,
+    .flyout-navigation li {
         display: block;
         text-align: left;
     }
 
-    .o-navigation li {
-        line-height: 2em;
+    .flyout-navigation li {
+        line-height: 1.5em;
     }
 }

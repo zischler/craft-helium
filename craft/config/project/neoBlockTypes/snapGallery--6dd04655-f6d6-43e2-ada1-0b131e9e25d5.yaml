@@ -6,38 +6,38 @@ fieldLayouts:
       -
         elements:
           -
-            fieldUid: 19d32bb7-7568-4543-9031-22820c51c0e1
+            fieldUid: 93e318a1-9a35-4cf7-b3e8-582916bfb7ef
             instructions: null
             label: null
-            required: '0'
+            required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
             warning: null
             width: 100
           -
-            fieldUid: 94e53f21-4e9e-4e2f-b7a2-dc4ee1d792fe
+            fieldUid: 38294be8-99ee-42aa-86ab-9da980da75db
             instructions: null
             label: null
-            required: '0'
+            required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
             warning: null
             width: 100
           -
-            fieldUid: db3ee226-4e02-49ca-8497-ee2c6b17ad35
+            fieldUid: 44cb4454-ec9c-4834-a54b-6583b8b0d3de
             instructions: null
             label: null
-            required: '0'
+            required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
             warning: null
             width: 100
         name: Main
         sortOrder: 1
-handle: video
+handle: snapGallery
 maxBlocks: 0
 maxChildBlocks: 0
 maxSiblingBlocks: 0
-name: Video
-sortOrder: 8
-topLevel: false
+name: Snap-Gallery
+sortOrder: 2
+topLevel: true
