@@ -6,7 +6,7 @@ childBlocks:
   - textWithBackground
 field: f223541d-0057-4b42-8f60-11587c05dbf9
 fieldLayouts:
-  -
+  f017f72c-cdd5-43e0-a8cf-cc5a320ee389:
     tabs:
       -
         elements:
@@ -14,7 +14,7 @@ fieldLayouts:
             fieldUid: c226c532-086f-410f-a5d2-32e0854771bd
             instructions: null
             label: null
-            required: '0'
+            required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
             warning: null
@@ -23,7 +23,7 @@ fieldLayouts:
             fieldUid: a9b1fe21-6b14-4f6d-aeb5-76c232e8a7a3
             instructions: null
             label: null
-            required: '0'
+            required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
             warning: null
@@ -32,7 +32,7 @@ fieldLayouts:
             fieldUid: 5a72de37-5a52-4c64-ac04-16d19fd02ef2
             instructions: null
             label: null
-            required: '0'
+            required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
             warning: null
@@ -41,7 +41,7 @@ fieldLayouts:
             fieldUid: 32f312f9-f788-46e9-a60e-9dea685ededb
             instructions: null
             label: null
-            required: '0'
+            required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
             warning: null
@@ -50,7 +50,7 @@ fieldLayouts:
             fieldUid: 8f50e70e-171a-413d-9675-189a61c3b153
             instructions: null
             label: null
-            required: '0'
+            required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
             warning: null
@@ -59,7 +59,7 @@ fieldLayouts:
             fieldUid: 0d9869f7-7677-4cb3-b142-3660d90d576c
             instructions: null
             label: null
-            required: '0'
+            required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
             warning: null
@@ -68,7 +68,7 @@ fieldLayouts:
             fieldUid: dc80296e-6637-45d8-9b63-1eb7ecb8b0e1
             instructions: null
             label: null
-            required: '0'
+            required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
             warning: null
@@ -77,7 +77,7 @@ fieldLayouts:
             fieldUid: 0de45245-1f4e-40bb-a6ee-5bd3bf466701
             instructions: null
             label: null
-            required: '0'
+            required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
             warning: null
@@ -86,7 +86,7 @@ fieldLayouts:
             fieldUid: db03ff3a-df92-453f-9e20-35bc8667d83d
             instructions: null
             label: null
-            required: '0'
+            required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
             warning: null
@@ -95,7 +95,7 @@ fieldLayouts:
             fieldUid: 31a78a9a-2ab7-414a-bc5e-bbf21b31092d
             instructions: null
             label: null
-            required: '0'
+            required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
             warning: null
@@ -104,7 +104,7 @@ fieldLayouts:
             fieldUid: 174dbb59-9ec4-41d8-bb34-4ff50a88c694
             instructions: null
             label: null
-            required: '0'
+            required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
             warning: null
@@ -113,7 +113,7 @@ fieldLayouts:
             fieldUid: 78733c9a-3026-48a3-9a2e-c1f5d3ffd2d8
             instructions: null
             label: null
-            required: '0'
+            required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
             warning: null
@@ -122,7 +122,7 @@ fieldLayouts:
             fieldUid: bcd95e58-4270-455a-ac1a-a2f34bc6806c
             instructions: null
             label: null
-            required: '0'
+            required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
             warning: null
