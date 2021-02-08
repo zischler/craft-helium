@@ -4,7 +4,8 @@
 			<div>
 				<span class="h2">Navigation</span>
 				<div class="mt-2 flex is-left">
-					{% include "_includes/navigation.twig" %}
+					{% import "_macros/navigation.twig" as navigationMacros %}
+					{{ navigationMacros.navigation(entry) }}
 				</div>
 			</div>
 			<div>

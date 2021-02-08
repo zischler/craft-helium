@@ -1,4 +1,5 @@
 {% set isHomeClass = entry.type == "homepage" ? "is-home" : "" %}
+{% import "_macros/navigation.twig" as navigationMacros %}
 
 <header id="page-header" class="fixed sm:relative visible left-0 top-0 w-full h-20 md:h-auto z-50 transition-all text-white {{ isHomeClass }}" :class="{'js-open': isMenuOpen, 'opacity-0 invisible': isHomeNavigationHover}">
     <div class="fixed sm:relative w-full px-4 z-40" :class="{'bg-white': isMenuOpen, 'bg-gray-900': !isMenuOpen}">
@@ -13,7 +14,7 @@
                         </a>
                     </div>
                     <nav class="header-navigation hidden md:inline-block ml-8">
-                        {% include "_includes/navigation.twig" %}
+                        {{ navigationMacros.navigation(entry) }}
                     </nav>
                 </div>
                 <div class="flex-1of2 block md:hidden is-right transition-colors" v-bind:class="{'text-black': isMenuOpen}">
@@ -36,7 +37,7 @@
                     <div class="o-group">
                         <div class="relative">
                             <nav class="flyout-navigation" v-bind:class="{'js-open': isMenuOpen}">
-                                {% include "_includes/navigation.twig" %}
+                                {{ navigationMacros.navigation(entry) }}
                             </nav>
                         </div>
                     </div>
