@@ -136,9 +136,12 @@
         <!-- JS -->
         <script nomodule src="/webresources/build/legacy/main.js"></script>
         <script type="module" src="/webresources/build/module/main.js"></script>
+        {% set recaptchaKey = getenv('RECAPTCHA_SITE') %}
         <script>
             // Remove no js class
             document.body.classList.remove('no-js');
+            // Set RecaptchaKey for usage in Custom Form
+            window.recaptchaKey = '{{ recaptchaKey }}';
         </script>
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-********-1"></script>
     </body>
