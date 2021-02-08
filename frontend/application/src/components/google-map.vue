@@ -1,5 +1,5 @@
 <template>
-    <div class="relative overflow-hidden w-full h-64 md:h-auto" :class="{'js-initialized':isInitialized && !showCookieMessage}">
+    <div class="map-wrapper relative overflow-hidden w-full h-64 md:h-auto" :class="{'js-initialized':isInitialized && !showCookieMessage}">
         <div ref="map" class="absolute top-0 left-0 w-full h-full"></div>
         <p v-if="showCookieMessage" class="o-editorial relative z-10">
             <span v-html="cookiemsgSpecific"></span><br>
