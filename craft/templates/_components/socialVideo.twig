@@ -1,10 +1,10 @@
-<div class="o-component module-social-video">
-    {% if module.platform == "youtube" %}
-        <iframe width="1100" height="500" src="https://www.youtube.com/embed/{{ module.videoId | raw }}?rel=0&iv_load_policy=3&modestbranding=1"
-                frameborder="0" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen>
-        </iframe>
-    {% endif %}
-    {% if module.platform == "vimeo" %}
-        <iframe width="1100" height="500" title="vimeo-player" src="https://player.vimeo.com/video/{{ module.videoId | raw }}?byline=0&dnt=0&portrait=0&title=0" frameborder="0" allowfullscreen></iframe>
-    {% endif %}
+<div class="o-component module-social-video aspect-w-16 aspect-h-9">
+        {% if module.socialPlatform == "youtube" %}
+                <iframe src="https://www.youtube.com/embed/{{ module.videoId | raw }}?rel=0&iv_load_policy=3&modestbranding=1"
+                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen>
+                </iframe>
+        {% endif %}
+        {% if module.socialPlatform == "vimeo" %}
+                <iframe title="vimeo-player" src="https://player.vimeo.com/video/{{ module.videoId | raw }}?byline=0&dnt=0&portrait=0&title=0" frameborder="0" allowfullscreen></iframe>
+        {% endif %}
 </div>
