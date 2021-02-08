@@ -12,12 +12,6 @@
 
 {% block content %}
 	<div class="main mt-0 pt-12">
-		<section class="o-section">
-			<div class="o-group">
-            	<h1>Craft Helium</h1>
-			</div>
-		</section>
-
 		{% for component in entry.components.level(1).all() %}
 			{% include "_components/" ~ component.type %}
 		{% endfor %}
