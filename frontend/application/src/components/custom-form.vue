@@ -3,6 +3,7 @@
         <fieldset>
             <slot name="csrf"></slot>
             <input type="hidden" name="action" :value="action">
+            <input type="hidden" name="message[language]" :value="$i18n.locale">
 
             <div class="relative mb-6">
                 <custom-select

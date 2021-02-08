@@ -10,11 +10,7 @@
 			</div>
 			<div>
 
-				{% if craft.app.language == 'de' %}
-					<span class="h2">Mehr links</span>
-				{% else %}
-					<span class="h2">More links</span>
-				{% endif %}
+				<span class="h2">{{ 'footer.moreLinks'|t }}</span>
 
 				{% set footerGlobal = craft.app.globals.getSetByHandle('footer') %}
 				<div class="mt-2 flex is-left">

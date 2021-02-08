@@ -1,8 +1,7 @@
-{% set homepage = craft.entries.section('homepage').one() %}
+{% set emailGlobal = craft.app.globals.getSetByHandle('email') %}
 <div>
-    {% set confirmationText = homepage["confirmationMailText"] ?? null %}
-    {% if confirmationText %}
-        <div>{{ confirmationText }}</div>
+    {% if emailGlobal.confirmationMailText is defined and emailGlobal.confirmationMailText is not empty %}
+        <div>{{ emailGlobal.confirmationText }}</div>
     {% endif %}
     <br>
 

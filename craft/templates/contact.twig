@@ -14,12 +14,6 @@
 
 {% set title = entry.title %}
 
-{% if craft.app.language == 'de' %}
-	{% set contactTitle = 'Kontaktformular' %}
-{% else %}
-	{% set contactTitle = 'Contact Form' %}
-{% endif %}
-
 {% block hero %}
 	{#Hero#}
 	<div class="o-section o-hero">
@@ -48,7 +42,7 @@
 
 		<div class="o-section">
 			<div class="o-group">
-				<h2>{{ contactTitle }}</h2>
+				<h2>{{ 'form.contactForm'|t }}</h2>
 				<custom-form
 						:data-policy-page="'{{ entry.dataPolicyPage.one().url }}'"
 						{% if entry.successMessage is defined and entry.successMessage is not empty %}

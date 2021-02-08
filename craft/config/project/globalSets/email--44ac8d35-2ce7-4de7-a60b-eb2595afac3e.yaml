@@ -1,0 +1,18 @@
+fieldLayouts:
+  8dc87168-69b4-4eb0-b36c-9cc3b155033c:
+    tabs:
+      -
+        elements:
+          -
+            fieldUid: 114a318e-21fc-4304-a4d9-7b6702c52fa2
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Main
+        sortOrder: 1
+handle: email
+name: Email
