@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@kazupon/vue-i18n-loader": "^0.3.0",
+    "@tailwindcss/aspect-ratio": "^0.2.0",
     "@tailwindcss/postcss7-compat": "^2.0.2",
     "@types/animejs": "^2.0.2",
     "@types/googlemaps": "^3.39.13",

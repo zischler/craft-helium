@@ -1,5 +1,4 @@
 childBlocks:
-  - animWrapper
   - text
   - socialVideo
   - image
@@ -7,7 +6,7 @@ childBlocks:
   - imageText
 field: f223541d-0057-4b42-8f60-11587c05dbf9
 fieldLayouts:
-  -
+  e86ef0bc-02ad-48a9-85c0-690e4bde9d07:
     tabs:
       -
         elements:
@@ -15,7 +14,7 @@ fieldLayouts:
             fieldUid: 919e8f48-730b-4dc2-af72-a3bfe42d65f1
             instructions: null
             label: null
-            required: '0'
+            required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
             warning: null
@@ -24,7 +23,7 @@ fieldLayouts:
             fieldUid: ae6b394b-ff73-4594-97d8-4ad851b9a4e9
             instructions: null
             label: null
-            required: '0'
+            required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
             warning: null
@@ -33,7 +32,7 @@ fieldLayouts:
             fieldUid: 804ec350-22ec-4d47-8cb1-647b34d1b4f9
             instructions: null
             label: null
-            required: '0'
+            required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
             warning: null
