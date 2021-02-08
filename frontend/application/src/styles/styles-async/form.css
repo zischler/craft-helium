@@ -158,8 +158,8 @@ textarea:focus {
     border-color: var(--form-active-color);
 }
 
-.input-wrapper.filled input:invalid,
-textarea:invalid {
+input.dirty:invalid,
+textarea.dirty:invalid {
     @apply outline-none;
     border-color: var(--form-error-color);
 }
@@ -192,7 +192,7 @@ textarea:focus + label {
     color: var(--form-active-color);
 }
 
-input:invalid + label {
+input.dirty:invalid + label {
     color: var(--form-error-color);
 }
 

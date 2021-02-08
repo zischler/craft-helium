@@ -1,0 +1,18 @@
+contentColumnType: text
+fieldGroup: 01e54fd7-954a-449d-baee-f11148cbb95d
+handle: successMessage
+instructions: ''
+name: 'Success Message'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: ''
+  columnType: null
+  initialRows: '4'
+  multiline: ''
+  placeholder: 'Your message has been sent'
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: language
+type: craft\fields\PlainText

@@ -1,0 +1,18 @@
+contentColumnType: text
+fieldGroup: 01e54fd7-954a-449d-baee-f11148cbb95d
+handle: errorMessage
+instructions: ''
+name: 'Error Message'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: ''
+  columnType: null
+  initialRows: '4'
+  multiline: ''
+  placeholder: 'An error occurred while sending the form, please try again later.'
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: language
+type: craft\fields\PlainText

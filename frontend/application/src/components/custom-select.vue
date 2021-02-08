@@ -8,6 +8,7 @@
                 ref="select"
                 :class="{'hidden':isHidden}"
                 :id="selectId"
+                :name="selectId"
                 @focus="focusSelect()"
                 @blur="blurSelect()"
                 @change="changeSelect()"

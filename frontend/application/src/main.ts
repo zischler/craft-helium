@@ -1,8 +1,10 @@
 /* --- Application --- */
 import { createApp } from 'vue';
 import scrollIntoViewport from './helpers/scroll-into-viewport';
-import {Section} from './models/Section';
+import { Section } from './models/Section';
 import { store } from './store';
+import { i18n } from "./i18n";
+import { VueReCaptcha } from "vue-recaptcha-v3";
 
 /* --- Styles --- */
 import 'tailwindcss/tailwind.css';
@@ -18,6 +20,7 @@ import LazyMedia from './components/lazy-media.vue';
 import Carousel from './components/carousel.vue';
 import CarouselSlide from './components/carousel-slide.vue';
 import Swipe from "./components/swipe.vue";
+import CustomForm from "./components/custom-form.vue";
 
 // Create the vue instance
 const app = createApp({
@@ -45,6 +48,9 @@ const app = createApp({
         activeSectionId(): string {
             return this.$store.getters.activeSectionId;
         },
+    },
+    created() {
+        this.$i18n.locale = document.documentElement.lang;
     },
     mounted() {
         this.flyoutScrollbox = document.querySelector('#flyoutScrollbox') as HTMLElement;
@@ -131,8 +137,17 @@ app.component('lazy-media', LazyMedia as any);
 app.component('multi-carousel', Carousel as any);
 app.component('carousel-slide', CarouselSlide as any);
 app.component('swipe', Swipe as any);
+app.component('custom-form', CustomForm as any);
 
 app.use(store);
+app.use(i18n);
+app.use(VueReCaptcha, {
+    // @ts-ignore
+    siteKey: window.recaptchaKey,
+    loaderOptions: {
+        autoHideBadge: true
+    }
+})
 
 // Connect the Vue instance to the whole <main id='view'> container
 // Avoid to use the standard DOM API as a virtual-dom will handle it
